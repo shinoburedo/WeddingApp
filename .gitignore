@@ -1,0 +1,56 @@
+# Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
+[Bb]in
+[Oo]bj/
+App_Data/
+
+# mstest test results
+/TestResults
+
+*.js.map
+*.map
+_ReSharper.*
+*.user
+*.csproj.user
+*.resharper.user
+*.resharper
+*.suo
+*.cache
+*~
+*.swp
+sh.exe*
+*.stackdump
+/Build
+NDependOut
+
+*.vspscc
+*.vssscc
+
+[Rr]elease*/
+packages*/
+
+# Publish directory
+[Pp]ublish
+
+# Publish Web Output
+*.Publish.xml
+
+### ActiveReports Licens file
+##*.licx
+
+#WCF Service Trace Log
+*.e2e
+MauloaDemo.Web/Scripts/App/customer_search.js
+MauloaDemo.Web/Areas/Masters/Scripts/ChurchBlockEditView.js
+MauloaDemo.Web/Areas/Masters/Scripts/LoginUserEditView.js
+MauloaDemo.Web/Scripts/App/customer_edit.js
+MauloaDemo.Web/Scripts/App/customer_addressinfodetail.js
+MauloaDemo.Web/Scripts/App/customer_cosinfodetail.js
+MauloaDemo.Web/Scripts/App/customer_duplist.js
+MauloaDemo.Web/Scripts/App/customer_folder.js
+MauloaDemo.Web/Scripts/App/customer_note.js
+MauloaDemo.Web/Scripts/App/customer_optiondetail.js
+MauloaDemo.Web/Scripts/App/customer_plansearch.js
+.vs/config/applicationhost.config
+MauloaDemo.Web/Areas/Masters/Scripts/**/*.js
+MauloaDemo.Web/Scripts/App/**/*.js
+MauloaDemo.Web/Areas/Reports/Scripts/**/*.js
