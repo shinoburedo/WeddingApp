@@ -1,0 +1,207 @@
+﻿@using MauloaDemo.Models
+@using MauloaDemo.Models.Combined
+@model MauloaDemo.Repository.CustomerRepository.SearchParams
+
+@* Orders Tab *@
+<div class="tab-pane clearfix" id="panOrders">
+    @using (Html.BeginForm("Index", "Home", new { area = "Customers" }, FormMethod.Post,
+        new { @id = "frmSearchOrder", role = "form", @class = "form-horizontal" })) {
+
+        <div class="form-group">
+            <label for="custName" class="col-sm-1 control-label">Name</label>
+            <div class="col-sm-2">
+                @Html.TextBoxFor(m => m.cust_name, new {
+                                                    @id = "custName",
+                                                    @class = "form-control input-sm k-input k-textbox w100 toupper tohankaku custname", 
+                                                    maxlength = "30",
+                                                    //@data_value_update = "keyup",
+                                                    @data_bind = "value: cust_name, events: {change: DoSearchOrders}"
+                })
+            </div>
+
+            <label for="custNum" class="col-sm-2 control-label">Customer #</label>
+            <div class="col-sm-1">
+                @Html.TextBoxFor(m => m.c_num, new { 
+                                                    @id = "OrdersCustNum",
+                                                    @class = "form-control input-sm k-input k-textbox w100 tohankaku custnum", 
+                                                    @style = "width: 90px !important;",
+                                                    maxlength = "7", 
+                                                    //@data_value_update = "keyup",
+                                                    @data_bind = "value: c_num, events: {change: DoSearchOrders}"
+                })
+            </div>
+
+            <label for="" class="col-sm-2 control-label">Date From</label>
+            <div class="col-sm-2">
+                @Html.TextBoxFor(m => m.date_from,
+                                    new {
+                                        @class = "form-control input-sm todate",
+                                        maxlength = "10",
+                                        data_role = "datepicker",
+                                        @style = "width: 100px;",
+                                        @data_bind = "value: date_from, events: {change: DoSearchOrders}, enabled: isDatesEnabled"
+                                    })
+            </div>
+
+            <label for="" class="col-sm-1 control-label">To</label>
+            <div class="col-sm-2">
+                @Html.TextBoxFor(m => m.date_to,
+                                    new {
+                                        @class = "form-control input-sm todate",
+                                        maxlength = "10",
+                                        data_role = "datepicker",
+                                        @style = "width: 100px;",
+                                        @data_bind = "value: date_to, events: {change: DoSearchOrders}, enabled: isDatesEnabled"
+                                    })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="churchCd" class="col-sm-1 control-label">Church</label>
+            <div class="col-sm-2">
+                @Html.TextBoxFor(m => m.church_cd,
+                        new {
+                            @id="churchCd",
+                            type = "text",
+                            @class = "form-control input-sm select-church toupper tohankaku",
+                            @style = "width: 90px;",
+                            maxlength = "5",
+                            @data_bind = "value: church_cd, events: {change: DoSearchOrders}"
+                        })
+                @Html.ValidationMessageFor(m => m.church_cd)
+            </div>
+
+            <label for="agentCd" class="col-sm-2 control-label" data-bind="visible:isSubAgentVisible">Agent</label>
+            <div class="dummy col-sm-2" data-bind="invisible:isSubAgentVisible">&nbsp;</div>
+            <div class="col-sm-2">
+                @Html.TextBoxFor(m => m.sub_agent_cd,
+                        new {
+                            @id = "agentCd", 
+                            type = "text",
+                            @class = "form-control input-sm select-subagent toupper tohankaku",
+                            @style = "width: 90px;",
+                            maxlength = "6",
+                            @data_bind = "value: sub_agent_cd, events: {change: DoSearchOrders}, visible:isSubAgentVisible",
+                        })
+            </div>
+
+            <label for="" class="col-sm-1 control-label">By</label>
+            <div class="col-sm-2">
+                <select class="form-control input-sm"
+                        style="width: 110px;"
+                        data-role="dropdownlist"
+                        data-bind="value: date_type, events: {change: DoSearchOrders}">
+                    <option value="W" selected>Wedding Date</option>
+                    <option value="C">Created</option>
+                    <option value="U">Updated</option>
+                </select>
+            </div>
+
+            <div class="col-sm-offset-1 col-sm-2">
+                <button type="button" class="btn btn-primary search-button"
+                        data-bind="events:{ click: DoSearchOrders}">
+                    Search
+                </button>
+                @Html.ValidationSummary(true)
+            </div>
+        </div>
+                        
+        <div class="form-group">
+            <label for="drpStatus" class="col-sm-1 control-label">Status</label>
+            <div class="col-sm-2">
+                <select class="form-control input-sm"
+                        style="width: 110px;"
+                        data-role="dropdownlist"
+                        data-bind="value: book_status, events: {change: DoSearchOrders}">
+                    @*K(=OK), Q(=RQ), N(=NG), X(=CXLRQ), C(=CXL), 1=OK以外, 2=RQ/CXLRQ*@
+                    <option value="" selected>All</option>
+                    <option value="1" >OK以外</option>
+                    <option value="2">RQ, CXLRQ</option>
+                    <option value="K">OK</option>
+                    <option value="Q">RQ</option>
+                    <option value="N">NG</option>
+                    <option value="X">CXLRQ</option>
+                    <option value="C">CXL</option>
+                </select>
+            </div>
+            <label for="itemType" class="col-sm-2 control-label">Item Type</label>
+            <div class="col-sm-2">
+                @Html.TextBoxFor(m => m.item_type,
+                        new {
+                            @id = "itemType",
+                            type = "text",
+                            @class = "form-control input-sm select-itemtype toupper tohankaku",
+                            @style = "width: 90px;",
+                            maxlength = "3",
+                            data_addpkgopt = "true",
+                            @data_bind = "value: item_type, events: {change: changeItemType }"
+                        })
+                @Html.ValidationMessageFor(m => m.item_type)
+            </div>
+
+            <label for="itemCd" class="col-sm-1 control-label">Item Cd</label>
+            <div class="col-sm-2">
+                <select name="itemCd"
+                        maxlength="15"
+                        class="form-control input-sm toupper tohankaku "
+                        data-height="400"
+                        data-role="combobox"
+                        data-value-field="item_cd"
+                        data-text-field="item_cd"
+                        data-value-primitive="true"
+                        data-cascade-from="txtItemType"
+                        data-cascade-from-field="item_type"
+                        data-bind="value: item_cd, source: itemList, events: {change: DoSearchOrders}"
+                        data-template="itemCdComboTemplate"></select>
+            </div>
+            <div class="col-sm-offset-1 col-sm-2">
+                <span data-bind="text: countOrders"></span> records found.
+            </div>
+        </div>
+    }
+
+    <div id="grdOrders"
+            data-role="grid"
+            data-auto-bind="true"
+            data-bind="source: listOrders"
+            data-sortable="true"
+            data-resizable="true"
+            data-selectable="true"
+            data-scrollable="true"
+            data-groupable="false"
+            data-navigatable="false"
+            data-pageable="{ pageSize: 50, pageSizes: [10, 25, 50, 100], refresh: true }"
+            data-height="600"
+            data-columns="[ {field: 'c_num', title: 'Cust #', width: 60 }
+                        , {field: 'wed_time', title: 'Wed Date/Time', width: 120 }
+                        , {field: 'cust_name', title: 'Customer Name', width: 140 }
+                        , {field: 'sub_agent_cd', title: 'Agent', width: 80 }
+                        , {field: 'church_cd', title: 'Church', width: 70 }
+                        , {field: 'item_type', title: 'Type', width: 50 }
+                        , {field: 'item_cd', title: 'Code', width: 80 }
+                        , {field: 'item_name_jpn', title: 'Item Name' }
+                        , {field: 'BookStatus', title: 'Status', width: 70 }
+                        , {field: 'create_date', title: 'Created', width: 120}
+                        , {field: 'update_date', title: 'Updated', width: 120}
+                    ]"
+            data-row-template="tpl_orders_row">
+    </div>
+
+    <script id="tpl_orders_row" type="text/k-kendo-tmpl">
+            <tr data-uid="#: uid #">
+                <td ><a href="home/edit/#: c_num #" target="_blank">#: c_num #</a></td>
+                <td>#: wed_time ? kendo.toString(wed_time, App.Config.DateFormat) + ' ' + wed_date_s : '' #</td>
+                <td class="text-small">#: cust_name #</td>
+                <td >#: sub_agent_cd || '' #</td>
+                <td >#: church_cd || '' #</td>
+                <td class="text-small">#: item_type || '' #</td>
+                <td class="text-small">#: item_cd || '' #</td>
+                <td class="text-small">#: App.L(item_name_jpn, item_name) || '' #</td>
+                <td >#: BookStatus #</td>
+                <td >#: kendo.toString(create_date, App.Config.DateFormat + ' ' + App.Config.TimeFormat) #</td>
+                <td >#: kendo.toString(update_date, App.Config.DateFormat + ' ' + App.Config.TimeFormat) #</td>
+            </tr>
+    </script>
+
+</div>
+

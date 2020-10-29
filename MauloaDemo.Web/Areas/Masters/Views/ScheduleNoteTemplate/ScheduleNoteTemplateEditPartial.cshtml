@@ -1,0 +1,69 @@
+﻿<style scoped>
+    #editDiv {
+        width: 100% !important;
+    }
+</style>
+
+<div id="editWindow"
+     data-role="window"
+     data-visible="false"
+     data-modal="true"
+     data-min-width="600"
+     data-width="700"
+     data-min-height="600"
+     data-height="600"
+     style="display:none;">
+
+    <div id="editDiv">
+        <form class="form-horizontal" data-role="validator">
+            <div class="form-group">
+                <label for="template_cd" class="col-sm-2 control-label required">Code</label>
+                <div class="col-sm-6">
+                    <input name="template_cd" type="text" data-bind="value: model.template_cd, enabled: isCodeEditable"
+                           maxlength="20" required
+                           class="form-control input-sm k-input k-textbox toupper tohankaku" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="title_jpn" class="col-sm-2 control-label">Name Jpn</label>
+                <div class="col-sm-12">
+                    <input name="title_jpn" type="text" data-bind="value: model.title_jpn" maxlength="80"
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="title_eng" class="col-sm-2 control-label">Name Eng</label>
+                <div class="col-sm-12">
+                    <input name="title_eng" type="text" data-bind="value: model.title_eng" maxlength="80"
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="note_jpn" class="col-sm-2 control-label">Note Jpn</label>
+                <div class="col-sm-12">
+                    <textarea class="form-control input-sm k-input k-textbox w100" style="height:200px;"
+                              data-bind="value: model.note_jpn"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="note_eng" class="col-sm-2 control-label">Note Eng</label>
+                <div class="col-sm-12">
+                    <textarea class="form-control input-sm k-input k-textbox w100" style="height:200px;"
+                              data-bind="value: model.note_eng"></textarea>
+                </div>
+            </div>
+
+            @* Saveボタン、Closeボタン *@
+            <div class="buttons">
+                <input id="btnEditSave" type="button" value="Save" data-bind="click:onSave" class="btn btn-primary btn-save" />
+                <input id="btnEditClose" type="button" value="Close" data-bind="click: onClose" class="btn btn-default btn-close" />
+            </div>
+        </form>
+    </div>
+
+</div> @* End of editWindow *@
+

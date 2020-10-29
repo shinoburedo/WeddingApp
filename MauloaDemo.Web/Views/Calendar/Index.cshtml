@@ -1,0 +1,210 @@
+﻿@using System.Configuration;
+@using MauloaDemo.Models;
+@using MauloaDemo.Web.ViewModels;
+
+@{
+    ViewBag.Title = TypeHelper.GetStrTrim(ConfigurationManager.AppSettings["CompanyName"]) + " Calendar";
+    LoginUser user = ViewBag.CurrentLoginUser;
+    var access_level = user != null ? user.access_level : 0;
+}
+
+@section head {
+    <link href="@Url.Content("~/Content/calendar.css")?v=20151229" rel="stylesheet" type="text/css" />
+}
+
+<div id="app"></div>
+<div id="dialog"></div>
+
+<script type="text/template" id="churchCdComboTemplate">
+    <dl>
+        <dt style='width:60px;'>${ data.church_cd }</dt>
+        <dd>${ App.L(data.church_name_jpn, data.church_name) }</dd>
+    </dl>
+</script>
+
+<script id="index" type="text/x-kendo-template">
+
+    <form class="form-horizontal " role="form">
+        <div class="calender_range clearfix form-group">
+            <div class="w-5">
+
+                <button type="button" class="btn btn-default btn-sm" data-bind="click: prevMonth">
+                    <span class="glyphicon glyphicon-fast-backward"></span> 
+                </button>
+                <button type="button" class="btn btn-default btn-sm" data-bind="click: prevWeek">
+                    <span class="glyphicon glyphicon-step-backward"></span> 
+                </button>
+
+                <input id="txtSearchDate"
+                       type="text"
+                       class="form-control input-sm todate"
+                       style="width:96px; margin-right:0; margin-left:0;padding-left:0; padding-right:0;"
+                       data-role="datepicker"
+                       data-bind="value: search.start_date" />
+                
+                <button type="button" class="btn btn-default btn-sm" data-bind="click: nextWeek">
+                    <span class="glyphicon glyphicon-step-forward"></span> 
+                </button>
+                <button type="button" class="btn btn-default btn-sm" data-bind="click: nextMonth">
+                    <span class="glyphicon glyphicon-fast-forward"></span> 
+                </button>
+
+                <input type="text" id="txtWeeks"
+                       class="form-control input-sm"
+                       style="width:48px;"
+                       maxlength="2"
+                       data-role="combobox"
+                       data-source="[4,6,8,12]"
+                       data-bind="value: search.weeks" ></input> weeks
+            </div>
+
+            @if (access_level >= 3) {
+                <div class="w-3 ">
+                    Church
+                    <select id="txtChurchCd"
+                            maxlength="5"
+                            class="form-control input-sm toupper tohankaku"
+                            style="width:100px;"
+                            data-height="400"
+                            data-role="combobox"
+                            data-value-field="church_cd"
+                            data-text-field="church_cd"
+                            data-value-primitive="true"
+                            data-bind="value: search.church_cd, source:churchList"
+                            data-template="churchCdComboTemplate"></select>
+                </div>
+
+                <div class="w-3" data-bind="visible:locationVisible">
+                    Location
+                    <select id="txtLocation"
+                            maxlength="5"
+                            class="form-control input-sm toupper tohankaku"
+                            style="width:100px;"
+                            data-height="400"
+                            data-role="combobox"
+                            data-value-field="church_cd"
+                            data-text-field="church_cd"
+                            data-value-primitive="true"
+                            data-bind="value: search.location, source:locationList"
+                            data-template="churchCdComboTemplate"></select>
+                </div>
+
+                <div class="w-3" data-bind="visible:isSubAgentVisible">
+                    Agent
+                    <input id="txtAgentCd"
+                           type="text"
+                           class="form-control input-sm toupper tohankaku select-subagent"
+                           style="width:100px;"
+                           data-bind="value: search.sub_agent_cd" />
+                </div>
+            }
+
+            <div class="w-2">
+                <button type="button" class="btn btn-default search-button"
+                        data-bind="events:{ click: doSearch }">
+                    Refresh
+                </button>
+            </div>
+            <div class="clearfix w-12 pickup_msg" data-bind="visible: isPickUpMsgVisible">
+                ピックアップ時間はプランにより多少異なる場合があります。 P/U Time may vary depending on the actual plan.
+            </div>
+        </div>
+    </form>
+
+
+    <div class="calendar-wrapper clearfix">
+        <div data-role="listview"
+             data-bind="source: calendar.Headers"
+             data-selectable="false"
+             data-template="calendar-header-template"></div>
+        <div data-role="listview"
+             data-bind="source: calendar.Days"
+             data-selectable="false"
+             data-template="calendar-day-template"></div>
+    </div>
+    <hr />
+</script>
+
+<script id="calendar-header-template" type="text/x-kendo-template">
+    <div class="calendar_header # if (DayNum==0 || DayNum==6) { # weekend # } # "  # if (DayNum==0) { # style='clear:both;' # } #>
+        #: moment(Date).format('ddd') #
+    </div>
+</script>
+
+<script id="calendar-day-template" type="text/x-kendo-template">
+    <div class="calendar_day # if (is_past) { # past_date # } # # if (DayNum==0 || DayNum==6) { # weekend # } #" 
+         # if (DayNum==0) { # style='clear:both;' # } #>
+        <div class="clearfix calendar_day_title # if (isSearchDate) { # search_date # } #">
+            <div style="float:left;">
+                # if (moment(Date).date() == 1 || DayIndex==0){ #
+                #: moment(Date).format('M') # /
+                # } #
+                #: moment(Date).format('D') #
+            </div>
+            <div style="float:right;">
+            </div>
+        </div>
+
+        <div data-role="listview"
+             class="calendar-dayitem-list"
+             data-bind="source: Items"
+             data-selectable="false"
+             data-template="calendar-dayitem-template"></div>
+    </div>
+</script>
+
+<script id="calendar-dayitem-template" type="text/x-kendo-template">
+    @if (access_level >= 2) {
+        <div class="calendar_dayitem
+         # if (block_status=='X') { # notavailable # } #
+         # if (book_status=='X') { # cxlrq # } #
+         # if (c_num) { # booked # } #
+         # if (is_sunset) { # sunset # } #
+         # if (is_irregular_time) { # irregular_time # } #
+         # if (is_finalized) { # finalized # } #
+         "
+             # if (!is_past || c_num) { #
+             data-bind="click: onDayItemClick"
+             # } #
+             data-date="#: DateStr #"
+             data-time="#: StartTimeStr #"
+             data-cnum="#: c_num #"
+             data-status="#: block_status #"
+             data-issunset="#: is_sunset #">
+            #: Description #
+
+            # if (c_num){ #
+            <div>
+                #: c_num #
+                #: g_last #
+            </div>
+            # } #
+        </div>
+
+    } else {
+        <div class="calendar_dayitem displayonly 
+             # if (block_status=='X') { # notavailable # } # 
+             # if (is_sunset) { # sunset # } #
+             ">
+            #: Description #
+        </div>
+    }
+</script>
+
+@* プランの新規入力・編集用ダイアログ *@
+@Html.Partial("CalendarSelectDialog")
+
+@* カスタマー氏名の重複確認ダイアログ *@
+<div id="DupListDialog"
+     data-role="window"
+     data-modal="true"
+     data-visible="false">
+@Html.Partial("DuplicateListDialog")
+</div>
+
+@section scripts{
+    <script src="@Url.Content("~/Scripts/require.min.js")"
+            data-main="@Url.Content("~/Scripts/App/calendar")"></script>
+}
+
+

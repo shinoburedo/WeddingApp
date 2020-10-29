@@ -1,0 +1,114 @@
+﻿@using MauloaDemo.Customer.ViewModels;
+@model MauloaDemo.Customer.ViewModels.ContactMessage
+
+@section head {
+    <link href="@Url.Content("~/Content/contact.css")" rel="stylesheet" type="text/css" />
+}
+
+@section scripts {
+    <script src="@Url.Content("~/Scripts/App/contact.js")" type="text/javascript"></script>
+}
+
+@{
+    List<RegionAreaViewModel> areas = ViewBag.Areas as List<RegionAreaViewModel>;
+
+    ViewBag.Title = Lang.L("お問合せ", "Contact");
+}
+
+@Html.Partial("_Header")
+
+<section class="contact-form-wrapper">
+    <div class="stepArea">
+        <p>
+            @Lang.L("お問合せ", "Contact Us")
+        </p>
+    </div>
+
+    @using (Html.BeginForm("PostContactMessage", "Home", 
+        FormMethod.Post,
+        new { role = "form", @class = "contact-form" })) {
+        @Html.AntiForgeryToken()
+        
+        <div class="form-group">
+            <label for="Name" class="control-label">@Lang.L("お名前", "Name")</label>
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", maxlength = "30", 
+                                    data_val_required = Lang.L("お名前を入力して下さい。", "Please input your name.") })
+            @Html.ValidationMessageFor(m => m.Name)
+        </div>
+
+        <div class="form-group">
+            <label for="Email" class="control-label">@Lang.L("メールアドレス", "Email")</label>
+            @Html.TextBoxFor(m => m.Email, new { type = "email", @class = "form-control", maxlength = "100", 
+                                    data_val_required = Lang.L("メールアドレスを入力して下さい。", "Please input your email address.") })
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+
+        <div class="form-group">
+            <label for="Email" class="control-label">@Lang.L("メールアドレス（確認用に再度入力してください。）", "Email ( Type it again. )")</label>
+            @Html.TextBox("EmailConfirm", null, new
+       {
+           type = "email",
+           @class = "form-control",
+           maxlength = "100",
+           onpaste = "return false",
+           data_val_required = Lang.L("メールアドレスを入力して下さい。", "Please input your email address.")
+       })
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+
+        <div class="form-group">
+            <label for="area_cd" class="control-label">@Lang.L("お問合せ先エリア", "Area to send inquiry")</label>
+            <select id="area_cd" name="area_cd" class="form-control" data-val="true" data-val-required="@Lang.L("地域を選択して下さい。", "Please select a reigon.")">
+                <option value="">--- @Lang.L("お問合せ先のエリアを選択して下さい", "Please select an area") ---</option>
+                @foreach (var ar in areas) {
+                    <option value="@ar.area_cd" @if (ar.area_cd == Model.area_cd) { <text>selected</text> }>@ar.area_name</option>
+                }
+            </select>
+            @Html.ValidationMessageFor(m => m.area_cd)
+        </div>
+
+        <div class="form-group">
+            <label for="Subject" class="control-label">@Lang.L("件名", "Subject")</label>
+            @Html.TextBoxFor(m => m.Subject, new { @class = "form-control", maxlength = "80",
+                                    data_val_required = Lang.L("件名を入力して下さい。", "Please input a subject.") })
+            @Html.ValidationMessageFor(m => m.Subject)
+        </div>
+
+        <div class="form-group">
+            <label for="Message" class="control-label">@Lang.L("お問合せ内容", "Message")</label>
+            @Html.TextAreaFor(m => m.Message, new { @class = "form-control",  maxlength = "4000",
+                                     data_val_required = Lang.L("お問合せ内容を入力して下さい。", "Please input a message.") })
+            @Html.ValidationMessageFor(m => m.Message)
+        </div>
+
+        <div class="form-group">
+            <div style="color:red;font-weight:bold;">
+                @Lang.L("【ご注意ください】", "Attention")
+            </div>
+            @Lang.L("携帯電話のメールでお問い合わせをいただく際、返信が必要な場合は、メールドメイン指定受信許可のご確認をお願いします。",
+           "When you use your email with your mobile service, please check policies to allow incoming mail from your service provider.")<br>
+            @Lang.L("「@watabe.com」から届くメールを、ドメイン指定で受信許可に設定してください。",
+           "Please set policies to allow mail from「@watabe.com」domain.")<br>
+            @Lang.L("携帯電話以外のインターネットメールの受信を拒否している場合は、設定を解除してください。",
+           "If you are receiving only mobile emails and are blocking all other emails, please release the setting that blocks all other emails.")<br>
+            @Lang.L("（watabe.comからお問い合わせいただいた携帯電話のメールアドレスに返信しても、メールが届かないことがあります。必ず迷惑メールの設定をご確認いただきますようお願いします。）",
+           "(Even though we respond to your inquiry, you may not receive our response on your mobile device. In this case, please confirm that your spam mail settings are correct.)")
+                    </div>
+
+        <div style="text-align:center;">
+            <input type="button" class="btn btn-lg btn-primary contact-button" value="@Lang.L("送信する", "Send")" />
+            <span class="spnWait"><img src="~/Content/img/wait3.gif" alt="Wait..." />@Lang.L("送信しています", "Sending")...</span>
+            <br />
+            @Html.ValidationSummary(true)
+        </div>
+    }
+
+    <div class="thanks">
+        <h2>@Lang.L("お問合せありがとうございます。", "Thank you for contacting us.")</h2>
+        <p>@Lang.L("選択された地域の店舗へお問合せ内容を送信しました。",
+                   "Your message has been sent to our branch office in the selected region.")</p>
+    </div>
+
+    <div class="error"></div>
+
+</section>

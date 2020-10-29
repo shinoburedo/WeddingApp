@@ -1,0 +1,96 @@
+﻿@using System.Configuration;
+@using MauloaDemo.Models;
+@using MauloaDemo.Web.ViewModels;
+@{
+    LoginUser user = ViewBag.CurrentLoginUser;
+}
+<div class="buttons-option clearfix">
+    <div class="pull-left" style="margin-left:60px;">
+        <button id="btnAddOption"
+                type="button"
+                class="btn btn-primary"
+                data-bind="click: addOption, enabled:optionAddEnabled, visible: isSaveButtonVisible">
+            <span class="glyphicon glyphicon-plus"></span> Add Option
+        </button>
+
+        @*<button id="btnEditOption"
+                type="button"
+                class="btn btn-primary"
+                data-bind="click: editOption, enabled:optionEditEnabled">
+            <span class="glyphicon glyphicon-pencil"></span> Edit Option
+        </button>*@
+    </div>
+
+    <div class="pull-left" style="margin-left:200px;">
+        <label for="chkShowCxl" style="color:#444;cursor:pointer;">Show Canceled items</label>
+        <input id="chkShowCxl" type="checkbox" data-bind="checked:showCxlOption, events: {change: showCxlOptionChanged}" />
+    </div>
+
+    @*<div class="pull-right" style="margin-right: 100px;">
+        <button type="button"
+                class="btn btn-default"
+                data-bind="click: onOrderSheetClick, enabled:optionEditEnabled">
+            Order Sheet
+        </button>
+    </div>*@
+</div>
+
+<div id="grdOptions"
+     data-role="grid"
+     data-auto-bind="true"
+     data-bind="source: Options, events:{change: onOptionGridChange, dataBound: onOptionsDataBound}"
+     data-sortable="true"
+     data-resizable="true"
+     data-selectable="true"
+     data-scrollable="true"
+     data-groupable="false"
+     data-navigatable="false"
+     data-height="368"
+     @if (user.IsStaff()) { <text>
+     data-columns="[  {field: 'item_type', title: 'Type', width: 50 }
+                    , {field: 'item_cd', title: 'Code', width: 100 }
+                    , {field: 'item_name', title: 'Name'}
+                    , {field: 'quantity', title: 'Qty', width: 40, headerAttributes: ' class=\'col_numeric\'' }
+                    , {field: 'price', title: 'Price', width: 70, headerAttributes: ' class=\'col_numeric\'' }
+                    , {field: 'amount', title: 'Amount', width: 70, headerAttributes: ' class=\'col_numeric\'' }
+                    , {field: 'BookStatus', title: 'Status', width: 70, headerAttributes: ' class=\'centered\''  }
+                    , {field: 'vendor_cd' , title: 'Vendor' , width: 80 }
+                    , {field: 'cfmd', title: 'Cfmd', width: 60, headerAttributes: ' class=\'centered\''  }
+                    , {field: 'op_seq', title: ' ', width: 40}
+                  ]"
+     </text>       } else {   <text>
+     data-columns="[  {field: 'item_type', title: 'Type', width: 50 }
+                    , {field: 'item_cd', title: 'Code', width: 100 }
+                    , {field: 'item_name', title: 'Name'}
+                    , {field: 'quantity', title: 'Qty', width: 40, headerAttributes: ' class=\'col_numeric\'' }
+                    , {field: 'price', title: 'Price', width: 70, headerAttributes: ' class=\'col_numeric\'' }
+                    , {field: 'amount', title: 'Amount', width: 70, headerAttributes: ' class=\'col_numeric\'' }
+                    , {field: 'BookStatus', title: 'Status', width: 70, headerAttributes: ' class=\'centered\''  }
+                    , {field: 'op_seq', title: ' ', width: 40}
+                  ]"
+     </text>   }
+     data-row-template="tpl_option_row">
+</div>
+
+<script id="tpl_option_row" type="text/k-kendo-tmpl">
+    <tr data-uid="#: uid #" class="#if (book_status=='Q'){# status-rq #}# #if (book_status=='K'){# status-ok #}# #if (book_status=='N'){# status-ng #}# #if (book_status=='X'){# status-cxlrq #}# #if (book_status=='C'){# status-cxl #}# ">
+        <td >#: item_type #</td>
+        <td >#: item_cd #</td>
+        <td >#: App.L(item_name_jpn, item_name) #</td>
+        <td class="col_numeric">#: quantity #</td>
+        <td class="col_numeric">#: kendo.toString(price, '0.00') #</td>
+        <td class="col_numeric">#: kendo.toString(amount, '0.00') #</td>
+        <td class="centered">#: BookStatus #</td>
+    @if (user.IsStaff()) {
+        <td>#: vendor_cd || '' #</td>
+        <td class="centered">
+            <input type="checkbox" data-bind='checked: cfmd' disabled />
+        </td>
+    } 
+        <td class="col_edit">
+            <a data-opseq='#=op_seq#' class='btn btn-sm btn-default' data-bind='click:editOption'><span class='k-icon k-edit'></span></a>
+        </td>
+    </tr>
+</script>
+
+

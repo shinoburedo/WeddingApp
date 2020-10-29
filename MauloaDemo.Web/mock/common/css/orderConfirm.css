@@ -1,0 +1,185 @@
+﻿@charset "UTF-8";
+/*****************************************************
+File Name: step3.css
+Style Info: 個別設定
+*****************************************************/
+/*====================================================
+メインビジュアル
+====================================================*/
+#mainVisual{
+	width: 100%;
+	height: 300px;
+	min-height: 300px;
+	text-align: center;
+	display: table;
+	background:url(../img/visual_sub_02.jpg) no-repeat center center;
+	background-size:100%;
+	background-position: center 70%;
+}
+.mainSection{
+	display: table-cell;
+    text-align: center;
+	vertical-align: middle;
+}
+
+/*====================================================
+#contents
+====================================================*/
+#contents{
+	width: 100%;
+	min-width: 100%;
+    overflow: hidden;
+	margin:0 auto;
+	padding:0 0 100px;
+	background: #fff;
+}
+/*====================================================
+言語切り替えボタン
+====================================================*/
+.languageArea{
+	background: #f3f3f3;
+	width: 100%;
+	text-align: right;
+	padding:10px;
+}
+.languageArea ul:after{
+	content:"";
+	display: block;
+	clear: both;
+	overflow: hidden;
+}
+.languageArea ul li{
+	display: inline-block;
+	vertical-align: top;
+}
+.languageArea ul li + li{
+	margin-left:10px;
+}
+/*====================================================
+processArea_wide
+====================================================*/
+.processArea_wide{
+    margin-top:20px;
+}
+.processArea_wide ul{
+    display: table;
+    border:solid 4px #fff;
+    font-size:14px;
+    line-height:52px;
+    height:60px;
+    text-align: center;
+    margin: 0 auto;
+    background:url(../img/bg_process_wide_05.png) no-repeat center center;
+}
+.processArea_wide li{
+    display: table-cell;
+    vertical-align: middle;
+    width:200px;
+    position: relative;
+}
+.processArea_wide li img{
+    vertical-align: middle;
+    margin-right:10px;
+}
+
+/*====================================================
+orderConfirm
+====================================================*/
+.orderConfirmArea{
+	font-size: 18px;
+	line-height: 1.5;
+	text-align: center;
+	width:900px;
+	margin: 30px auto;
+}
+/*テーブル orderConfirmTable*/
+
+.orderConfirmArea .orderConfirmTable .th_header {
+    background-color: #f3f3f3;
+    width: 10%;
+    padding:6px 15px;
+    white-space: nowrap;
+}
+/*テーブル orderPlanDetail*/
+.orderConfirmArea .orderPlanTtl{
+    text-align: left;
+    margin-top:90px;
+    font-weight: bold;
+}
+.orderConfirmArea .orderPlanDetail{
+	margin-top:20px;
+}
+.orderConfirmArea .orderPlanDetail strong{
+	font-size: 18px;
+	display: block;
+}
+.orderConfirmArea .orderPlanDetail .tdPicture.th_header {
+    padding: 0;
+    border-right: none !important;
+    width: 14%;
+}
+.orderConfirmArea .orderPlanDetail .tdDescription.th_header{
+    width: 40%;
+}
+.orderConfirmArea .orderPlanDetail td{
+	background: #f3f3f3;
+}
+.orderConfirmArea .orderPlanDetail .th_header {
+    background-color: #d4d4d4;
+    width: 10%;
+}
+.orderConfirmArea .orderPlanDetail .tdPicture{
+	padding:0;
+}
+.orderConfirmArea .orderPlanDetail .tdPicture #list_content img{
+	width:100%;
+}
+.orderConfirmArea .textBtnArea{
+	margin-top:120px;
+}
+.orderConfirmArea .textBtnArea p{
+	font-size:16px;
+}
+.orderConfirmArea .btnList{
+	display: table;
+    margin: 25px auto 0;
+}
+.orderConfirmArea .btnList li{
+	display: table-cell;
+}
+.orderConfirmArea .btnList li + li{
+	padding-left:80px;
+}
+
+.orderConfirmArea input{
+    font-size: 14px;
+    width:100%;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 5px;
+    margin-bottom:15px;
+    font-size: 18px;
+}
+
+.orderConfirmArea input[type="submit"]{
+    display: block;
+    background: #d4d4d4;
+    color: #000;
+    text-align: center;
+    width: 150px;
+    line-height: 44px;
+    min-height: 44px;
+    border-radius: 5px;
+    font-size: 14px;
+    border:none;
+    -webkit-transition: opacity 0.2s; -moz-transition: opacity 0.2s; -ms-transition: opacity 0.2s; -o-transition: opacity 0.2s; transition: opacity 0.2s;
+}
+.orderConfirmArea input[type="submit"]:hover{
+    opacity: 0.7;
+    filter: alpha(opacity=0.7);
+}
+.orderConfirmArea .btnList .btn-primary{
+    background: #000;
+    color: #fff;
+}

@@ -1,0 +1,401 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CD6BF7C4-8CA0-4FEE-94C0-658D23A105FA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MauloaDemo.Reports</RootNamespace>
+    <AssemblyName>MauloaDemo.Reports</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=3.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4, Version=3.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="CBAF2013, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\DOTNET\CBAF2013\CBAF2013\bin\Release\CBAF2013.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Chart.v11, Version=11.0.8705.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff" />
+    <Reference Include="GrapeCity.ActiveReports.Design.Win.v11, Version=11.0.8705.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff" />
+    <Reference Include="GrapeCity.ActiveReports.Diagnostics.v11, Version=11.0.8705.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff" />
+    <Reference Include="GrapeCity.ActiveReports.Document.v11, Version=11.0.8705.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff" />
+    <Reference Include="GrapeCity.ActiveReports.Export.Document.v11, Version=11.0.8705.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff" />
+    <Reference Include="GrapeCity.ActiveReports.Export.Image.v11, Version=11.0.8705.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff" />
+    <Reference Include="GrapeCity.ActiveReports.Export.Pdf.v11, Version=11.0.8705.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff" />
+    <Reference Include="GrapeCity.ActiveReports.Export.Rdf.v11, Version=11.0.8705.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff" />
+    <Reference Include="GrapeCity.ActiveReports.Extensibility.v11, Version=11.0.8705.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff" />
+    <Reference Include="GrapeCity.ActiveReports.v11, Version=11.0.8705.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff" />
+    <Reference Include="GrapeCity.ActiveReports.Viewer.Win.v11, Version=11.0.8705.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff" />
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BookingReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BookingReport.Designer.cs">
+      <DependentUpon>BookingReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CostumeOrderSheet_CosInfos.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CostumeOrderSheet_CosInfos.Designer.cs">
+      <DependentUpon>CostumeOrderSheet_CosInfos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CostumeOrderSheet_FlwDlv.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CostumeOrderSheet_FlwDlv.Designer.cs">
+      <DependentUpon>CostumeOrderSheet_FlwDlv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CostumeOrderSheet_Orders.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CostumeOrderSheet_Orders.Designer.cs">
+      <DependentUpon>CostumeOrderSheet_Orders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CostumeOrderSheet_Schedule.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CostumeOrderSheet_Schedule.Designer.cs">
+      <DependentUpon>CostumeOrderSheet_Schedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ActiveReportsCommon.cs" />
+    <Compile Include="DailyMovement.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DailyMovement.Designer.cs">
+      <DependentUpon>DailyMovement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WeddingInfoSheet_WedInfo.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WeddingInfoSheet_WedInfo.Designer.cs">
+      <DependentUpon>WeddingInfoSheet_WedInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WeddingInfoSheet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WeddingInfoSheet.Designer.cs">
+      <DependentUpon>WeddingInfoSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FinalInfoSheet_AddressInfo.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FinalInfoSheet_AddressInfo.Designer.cs">
+      <DependentUpon>FinalInfoSheet_AddressInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FinalInfoSheet_CostumeInfo.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FinalInfoSheet_CostumeInfo.Designer.cs">
+      <DependentUpon>FinalInfoSheet_CostumeInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FinalInfoSheet_WedInfo.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FinalInfoSheet_WedInfo.Designer.cs">
+      <DependentUpon>FinalInfoSheet_WedInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScheduleSheet_Notes.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ScheduleSheet_Notes.Designer.cs">
+      <DependentUpon>ScheduleSheet_Notes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VendorConfirmation_Datail_TRN.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VendorConfirmation_Datail_TRN.Designer.cs">
+      <DependentUpon>VendorConfirmation_Datail_TRN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VendorConfirmation_Datail_SHT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VendorConfirmation_Datail_SHT.Designer.cs">
+      <DependentUpon>VendorConfirmation_Datail_SHT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VendorConfirmation_Datail_RCP.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VendorConfirmation_Datail_RCP.Designer.cs">
+      <DependentUpon>VendorConfirmation_Datail_RCP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VendorConfirmation_Datail_MKS.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VendorConfirmation_Datail_MKS.Designer.cs">
+      <DependentUpon>VendorConfirmation_Datail_MKS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FinalInfoSheet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FinalInfoSheet.Designer.cs">
+      <DependentUpon>FinalInfoSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementReportGeneric.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ChurchOrderSheet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ChurchOrderSheet.Designer.cs">
+      <DependentUpon>ChurchOrderSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScheduleSheet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ScheduleSheet.Designer.cs">
+      <DependentUpon>ScheduleSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CostumeOrderSheet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CostumeOrderSheet.Designer.cs">
+      <DependentUpon>CostumeOrderSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VendorConfirmation.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VendorConfirmation.Designer.cs">
+      <DependentUpon>VendorConfirmation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VendorConfirmation_Datail_OTHER.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VendorConfirmation_Datail_OTHER.Designer.cs">
+      <DependentUpon>VendorConfirmation_Datail_OTHER.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VendorOrderSheet_Datail_OTHER.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VendorOrderSheet_Datail_OTHER.Designer.cs">
+      <DependentUpon>VendorOrderSheet_Datail_OTHER.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VendorConfirmation_Datail_DLV.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VendorConfirmation_Datail_DLV.Designer.cs">
+      <DependentUpon>VendorConfirmation_Datail_DLV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VendorOrderSheet_Datail_SHT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VendorOrderSheet_Datail_SHT.Designer.cs">
+      <DependentUpon>VendorOrderSheet_Datail_SHT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VendorOrderSheet_Datail_RCP.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VendorOrderSheet_Datail_RCP.Designer.cs">
+      <DependentUpon>VendorOrderSheet_Datail_RCP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VendorOrderSheet_Datail_MKS.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VendorOrderSheet_Datail_MKS.Designer.cs">
+      <DependentUpon>VendorOrderSheet_Datail_MKS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VendorOrderSheet_Datail_TRN.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VendorOrderSheet_Datail_TRN.Designer.cs">
+      <DependentUpon>VendorOrderSheet_Datail_TRN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VendorOrderSheet_Datail_DLV.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VendorOrderSheet_Datail_DLV.Designer.cs">
+      <DependentUpon>VendorOrderSheet_Datail_DLV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VendorOrderSheet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VendorOrderSheet.Designer.cs">
+      <DependentUpon>VendorOrderSheet.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MauloaDemo.Models\MauloaDemo.Models.csproj">
+      <Project>{cb262ae1-41a4-47d0-9669-9d0a19002845}</Project>
+      <Name>MauloaDemo.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MauloaDemo.Repository\MauloaDemo.Repository.csproj">
+      <Project>{97799b02-2cee-4e7e-a64a-5fe3ea6870e6}</Project>
+      <Name>MauloaDemo.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BookingReport.resx">
+      <DependentUpon>BookingReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CostumeOrderSheet_CosInfos.resx">
+      <DependentUpon>CostumeOrderSheet_CosInfos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CostumeOrderSheet_FlwDlv.resx">
+      <DependentUpon>CostumeOrderSheet_FlwDlv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CostumeOrderSheet_Orders.resx">
+      <DependentUpon>CostumeOrderSheet_Orders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CostumeOrderSheet_Schedule.resx">
+      <DependentUpon>CostumeOrderSheet_Schedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DailyMovement.resx">
+      <DependentUpon>DailyMovement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WeddingInfoSheet_WedInfo.resx">
+      <DependentUpon>WeddingInfoSheet_WedInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WeddingInfoSheet.resx">
+      <DependentUpon>WeddingInfoSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FinalInfoSheet_AddressInfo.resx">
+      <DependentUpon>FinalInfoSheet_AddressInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FinalInfoSheet_CostumeInfo.resx">
+      <DependentUpon>FinalInfoSheet_CostumeInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FinalInfoSheet_WedInfo.resx">
+      <DependentUpon>FinalInfoSheet_WedInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScheduleSheet_Notes.resx">
+      <DependentUpon>ScheduleSheet_Notes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VendorConfirmation_Datail_TRN.resx">
+      <DependentUpon>VendorConfirmation_Datail_TRN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VendorConfirmation_Datail_SHT.resx">
+      <DependentUpon>VendorConfirmation_Datail_SHT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VendorConfirmation_Datail_RCP.resx">
+      <DependentUpon>VendorConfirmation_Datail_RCP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VendorConfirmation_Datail_MKS.resx">
+      <DependentUpon>VendorConfirmation_Datail_MKS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FinalInfoSheet.resx">
+      <DependentUpon>FinalInfoSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="ChurchOrderSheet.resx">
+      <DependentUpon>ChurchOrderSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScheduleSheet.resx">
+      <DependentUpon>ScheduleSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CostumeOrderSheet.resx">
+      <DependentUpon>CostumeOrderSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VendorConfirmation.resx">
+      <DependentUpon>VendorConfirmation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VendorConfirmation_Datail_OTHER.resx">
+      <DependentUpon>VendorConfirmation_Datail_OTHER.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VendorOrderSheet_Datail_OTHER.resx">
+      <DependentUpon>VendorOrderSheet_Datail_OTHER.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VendorConfirmation_Datail_DLV.resx">
+      <DependentUpon>VendorConfirmation_Datail_DLV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VendorOrderSheet_Datail_SHT.resx">
+      <DependentUpon>VendorOrderSheet_Datail_SHT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VendorOrderSheet_Datail_RCP.resx">
+      <DependentUpon>VendorOrderSheet_Datail_RCP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VendorOrderSheet_Datail_MKS.resx">
+      <DependentUpon>VendorOrderSheet_Datail_MKS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VendorOrderSheet_Datail_TRN.resx">
+      <DependentUpon>VendorOrderSheet_Datail_TRN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VendorOrderSheet_Datail_DLV.resx">
+      <DependentUpon>VendorOrderSheet_Datail_DLV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VendorOrderSheet.resx">
+      <DependentUpon>VendorOrderSheet.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="images\ご案内書_BR.png" />
+    <Content Include="images\ご案内書_Center.png" />
+    <Content Include="images\ご案内書_TL.png" />
+    <Content Include="images\ご案内書_Top.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

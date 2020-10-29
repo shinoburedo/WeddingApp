@@ -1,0 +1,964 @@
+﻿/*========================================================
+	Bootstrapのカスタマイズ設定
+
+    Bootstrap included in this project is already customized using the following web site.
+    http://getbootstrap.com/customize/?id=9014652
+========================================================*/
+
+.panel.panel-default {
+    min-width:940px;
+}
+
+.row {
+    margin-left: 0;
+}
+
+.w-1, .w-2, .w-3, .w-4, .w-5, .w-6, .w-7, .w-8, .w-9, .w-10, .w-11, .w-12, .w-13, .w-14, .w-15, .w-16 {
+    float:left;
+    position: relative;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.w-1 {
+    width: 70px;
+}
+
+.w-2 {
+    width: 140px;
+}
+
+.w-3 {
+    width: 210px;
+}
+
+.w-4 {
+    width: 280px;
+}
+
+.w-5 {
+    width: 350px;
+}
+
+.w-6 {
+    width: 420px;
+}
+
+.w-7 {
+    width: 490px;
+}
+
+.w-8 {
+    width: 560px;
+}
+
+.w-9 {
+    width: 630px;
+}
+
+.w-10 {
+    width: 700px;
+}
+
+.w-11 {
+    width: 770px;
+}
+
+.w-12 {
+    width: 840px;
+}
+
+.w-13 {
+    width: 910px;
+}
+
+.w-14 {
+    width: 980px;
+}
+
+.w-15 {
+    width: 1050px;
+}
+
+.w-16 {
+    width: 1120px;
+}
+
+.w-off-0 {
+    margin-left: 0;
+}
+
+.w-off-1 {
+    margin-left: 70px;
+}
+
+.w-off-2 {
+    margin-left: 140px;
+}
+
+.w-off-3 {
+    margin-left: 210px;
+}
+
+.w-off-4 {
+    margin-left: 280px;
+}
+
+.w-off-5 {
+    margin-left: 350px;
+}
+
+.w-off-6 {
+    margin-left: 420px;
+}
+
+.w-off-7 {
+    margin-left: 490px;
+}
+
+.w-off-8 {
+    margin-left: 560px;
+}
+
+.w-off-9 {
+    margin-left: 630px;
+}
+
+.w-off-10 {
+    margin-left: 700px;
+}
+
+.w-off-11 {
+    margin-left: 770px;
+}
+
+.w-off-12 {
+    margin-left: 840px;
+}
+
+.w-off-13 {
+    margin-left: 910px;
+}
+
+.w-off-14 {
+    margin-left: 980px;
+}
+
+.w-off-15 {
+    margin-left: 1050px;
+}
+
+.w-off-16 {
+    margin-left: 1120px;
+}
+
+.w90 {
+    width: 90% !important;
+}
+.w100 {
+    width: 100% !important;
+}
+
+/*.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, 
+.col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, 
+.col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, 
+.col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, 
+.col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, 
+.col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, 
+.col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, 
+.col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, 
+.col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, 
+.col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, 
+.col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, 
+.col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+    padding-left: 8px;
+    padding-right: 8px;
+}*/
+
+h3 {
+    margin-bottom:4px;
+}
+
+form {
+    margin: 0;
+}
+
+.form-group {
+    margin:4px;
+}
+.form-control {
+    border: 1px solid #888;
+}
+.form-control.input-sm {
+    padding:4px;
+}
+
+
+input.form-control.input-sm.totime {
+    width: 56px;
+}
+
+.nav-tabs {
+    border-bottom-color: #888;
+}
+
+.nav-tabs > li {
+    text-align: center;
+    height: 30px;
+}
+
+.nav-tabs > li > a {
+    height: 30px;
+    padding: 4px 8px 4px 8px;
+    background-color: #eee;
+    border-color: #888 #888 #888;
+}
+
+.nav-tabs > li > a:hover {
+    background-color: #ffe;
+    border-color: #888 #888 #888;
+}
+
+.nav-tabs > li.active > a {
+    border-top-color: #888;
+    border-right-color: #888;
+    border-bottom-color: #fff;
+    border-left-color: #888;
+}
+
+.nav-tabs > li.active > a:hover {
+    border-top-color: #888;
+    border-right-color: #888;
+    border-bottom-color: #fff;
+    border-left-color: #888;
+}
+
+.tab-pane {
+    min-height: 80px;
+    padding: 10px;
+    border-top: 0px solid #fff;
+    border-left: 1px solid #888;
+    border-right: 1px solid #888;
+    border-bottom: 1px solid #888;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-color: #888;
+}
+
+
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    margin-bottom: 0;
+}
+
+textarea {
+    min-height: 40px;
+}
+
+input[disabled], input[readonly], select[disabled], select[readonly], textarea[disabled],textarea[readonly] {
+    cursor: default;
+}
+
+input[type="text"][disabled], input[type="text"][readonly], 
+input[type="date"][disabled], input[type="date"][readonly], 
+textarea[disabled], textarea[readonly]
+{
+    background-color: #ffd;
+}
+
+.row-fluid [class*="span"] {
+    margin-left: 10px;
+}
+
+.well {
+    padding: 5px 10px;
+    margin-bottom: 5px;
+}
+
+legend {
+    margin-bottom: 5px;
+    font-size: 15px;
+    line-height: 1;
+}
+
+.radio.inline,
+.checkbox.inline {
+    padding-top: 0;
+}
+
+/* IEのチェックボックスの周りにできる余白を削除 */
+input[type=checkbox] {
+    padding: 0;
+}
+label input[type=checkbox] { 
+    margin-top:3px;
+}
+
+/* チェックボックスにチェックが付いている場合、外枠を青色にする。 */
+input[type=checkbox]:checked{
+    outline:2px solid blue;
+}
+
+/*========================================================
+	Bootstrap Responsive のカスタマイズ設定
+========================================================*/
+@media (max-width: 767px) {
+
+    [class*="span"], .row-fluid [class*="span"] {
+        display: block;
+        float: none;
+        width: 100%;
+        margin-left: 0;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+}
+
+@media (min-width: 1200px) {
+    .row-fluid [class*="span"] {
+        margin-left: 0.564102564102564%;
+    }
+
+    .row-fluid .span6 {
+        width: 49.717948717948715%;
+    }
+
+    .row-fluid .span7 {
+        width: 59.26495726495726%;
+    }
+}
+
+body {
+    padding-left: 0;
+    background-color: #fefcee;
+    color: #232323;
+    line-height: 1; /* Bootstrapのカスタマイズ */
+	font:12px/14px "メイリオ",Meiryo,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",Osaka,"ＭＳ Ｐゴシック","MS PGothic",sans-serif;
+}
+
+body.testsite {
+    background-color: #FFF;
+    /*background-color: #FFE2F6;*/
+}
+
+header, footer, nav, section {
+    display: block;
+}
+
+#wrapper {
+    min-width:1150px;
+    max-width:1400px;
+    margin: 0 auto;
+    padding-bottom: 60px;
+}
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+/* bootstrapを優先する為コメントアウト */
+/*fieldset {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}*/
+
+.editor-label {
+    margin: 1em 0 0 0;
+}
+
+.editor-field {
+    margin: 0.5em 0 0 0;
+}
+
+label {
+    white-space: nowrap; /* スペースで改行されないように設定 */
+}
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.k-tooltip.k-tooltip-validation.k-invalid-msg.field-validation-error {
+    position: absolute;
+    top: 24px;
+    left: 22px;
+    width: 240px;
+    font-weight:bold;
+    color:red;
+    opacity: 0.7;
+}
+
+
+/*========================================================
+	Kendo UI のカスタマイズ設定
+========================================================*/
+/* タブストリップ内の<a>タグのテキスト部分のクリック時に画面がスクロールしてしまう現象を防ぐ */
+/* 下記だとIEでは効かないのでjQueryでクリックイベントを無効化する事にした。 */
+/* 
+.k-tabstrip-items a {
+    pointer-events: none;
+} 
+*/
+
+.k-input {
+    padding-left:4px;
+    padding-right:4px;
+}
+
+.k-input.k-textbox {
+    padding-left:2px;
+    padding-right:2px;
+}
+
+.col_numeric {
+    text-align: right;
+}
+
+.col_edit {
+    text-align: left;
+}
+
+.k-grid-header th.k-header.col_numeric, 
+.k-filter-row th.col_numeric {
+    text-align: right;
+}
+
+.k-header.col_numeric {
+    text-align: right;
+}
+
+.centered{
+    text-align: center;
+}
+.k-header.centered {
+    text-align: center;
+}
+
+/* NumericTextBoxのスタイル */
+/*.k-numeric-wrap input {
+    display: inline-block !important ;
+}
+    .k-numeric-wrap input[data-role=numerictextbox] {
+        display: none !important ;
+    }*/
+
+/*---------- ComboBoxのリスト部分のスタイル (START)----------*/
+.k-list .k-item {
+    overflow: hidden; 
+}
+
+.k-list .k-item dl {
+    /*width: 400px;*/
+    line-height: 1;
+    margin: 3px;
+}
+
+.k-list .k-item dt,
+.k-list .k-item dd {
+    float: left;
+}
+
+.k-list .k-item dt {
+    clear: left;
+    font-weight: bold;
+    width: 60px;
+    text-align: left;
+}
+
+.k-list .k-item dd {
+    padding-bottom: .3em;
+}
+/*---------- ComboBoxのリスト部分のスタイル (END) ----------*/
+
+
+/*---------- DatePickerのスタイル (START)----------*/
+.k-widget.k-datepicker.k-header.k-input.form-control{
+    padding-top: 0px;
+}
+.k-datepicker.form-control{
+    padding-top: 0px;
+}
+.k-datepicker.form-control.input-sm{
+    padding-top: 4px;
+}
+/*---------- DatePickerのスタイル (END)----------*/
+
+
+/*---------- Gridのスタイル(START) ----------*/
+/* IE8,9だとtrに背景色が付いている場合、選択時に行の色が変わらない現象を防ぐ。 */
+.k-state-selected {
+    /*
+    background-color: #ffb6e1 !important;
+    border-color: #ffb6e1 !important;
+    background-image: none !important;
+    */
+
+    /*background-image: none !important;*/
+}
+    .k-state-selected td {
+        border-top: 1px solid #ffb6e1 !important;
+        border-bottom: 1px solid #ffb6e1 !important;
+        font-weight: bold;
+    }
+    .k-state-selected td:first-child {
+        border-left: 1px solid #ffb6e1 !important;
+        font-weight: bold;
+    }
+    .k-state-selected td:last-child {
+        border-right: 1px solid #ffb6e1 !important;
+        font-weight: bold;
+    }
+
+/* グリッドの行に横の区切り線を付ける。 */
+.k-grid tbody td {
+    border-bottom-style: solid;
+    border-bottom-color: rgba(0, 0, 0, 0.18);;
+    border-bottom-width: 1px;
+}
+
+/*---------- Gridのスタイル(END) ----------*/
+
+/*========================================================
+	My Styles
+========================================================*/
+
+header {
+    height: 48px;
+    padding: 0;
+    color: #FFFFFF;
+}
+
+    header > ul li {
+        color: rgba(64, 64, 64, 0.40);
+    }
+
+    header a {
+        color: #FFF;
+        text-decoration: none;
+    }
+
+        header a:hover {
+            color: #FF0;
+            text-decoration: none;
+        }
+
+    header .horizontal_menu {
+        position: absolute;
+        top: 25px;
+        left: 180px;
+        float: left;
+    }
+
+        header .horizontal_menu li {
+            display: inline;
+        }
+
+            header .horizontal_menu li.cust_num label {
+                padding-bottom: 10px;
+                color: #eee;
+                font-weight:normal;
+            }
+            header .horizontal_menu li.cust_num input {
+                width: 70px;
+                color: #444;
+            }
+
+footer {
+    height: 60px;
+    padding: 10px;
+    font-size: 80%;
+    text-align: center;
+    /*color: #FFFFFF;*/
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+
+/*
+    グラデーションは下記のサイトで作成しました。
+    http://www.colorzilla.com/gradient-editor/
+*/
+
+/* ヘッダー */
+.bg_gradient {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e4f5fc+0,bfe8f9+40,9fd8ef+72,33b3ea+100 */
+    background: #e4f5fc; /* Old browsers */
+    background: -moz-linear-gradient(top,  #e4f5fc 0%, #bfe8f9 45%, #9fd8ef 72%, #33b3ea 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e4f5fc), color-stop(45%,#bfe8f9), color-stop(72%,#9fd8ef), color-stop(100%,#33b3ea)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #e4f5fc 0%,#bfe8f9 45%,#9fd8ef 72%,#33b3ea 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #e4f5fc 0%,#bfe8f9 45%,#9fd8ef 72%,#33b3ea 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #e4f5fc 0%,#bfe8f9 45%,#9fd8ef 72%,#33b3ea 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #e4f5fc 0%,#bfe8f9 45%,#9fd8ef 72%,#33b3ea 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e4f5fc', endColorstr='#33b3ea',GradientType=0 ); /* IE6-9 */
+}
+
+/* フッター */
+.bg_gradient_FT {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#33b3ea+0,9fd8ef+28,bfe8f9+60,e4f5fc+100 */
+    background: #33b3ea; /* Old browsers */
+    background: -moz-linear-gradient(top,  #33b3ea 0%, #9fd8ef 28%, #bfe8f9 60%, #e4f5fc 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#33b3ea), color-stop(28%,#9fd8ef), color-stop(60%,#bfe8f9), color-stop(100%,#e4f5fc)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #33b3ea 0%,#9fd8ef 28%,#bfe8f9 60%,#e4f5fc 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #33b3ea 0%,#9fd8ef 28%,#bfe8f9 60%,#e4f5fc 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #33b3ea 0%,#9fd8ef 28%,#bfe8f9 60%,#e4f5fc 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #33b3ea 0%,#9fd8ef 28%,#bfe8f9 60%,#e4f5fc 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33b3ea', endColorstr='#e4f5fc',GradientType=0 ); /* IE6-9 */
+}
+
+
+/* ヘッダー（テストサイト用） */
+.testsite .bg_gradient {
+    background: pink; /* Old browsers */
+}
+
+/* ヘッダー（テストサイト用） */
+.old_testsite .old_bg_gradient {
+    background: #fcecfc; /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZjZWNmYyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2ZiYTZlMSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUxJSIgc3RvcC1jb2xvcj0iI2ZkODlkNyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZjdjZDgiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,  #fcecfc 0%, #fba6e1 50%, #fd89d7 51%, #ff7cd8 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fcecfc), color-stop(50%,#fba6e1), color-stop(51%,#fd89d7), color-stop(100%,#ff7cd8)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #fcecfc 0%,#fba6e1 50%,#fd89d7 51%,#ff7cd8 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #fcecfc 0%,#fba6e1 50%,#fd89d7 51%,#ff7cd8 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #fcecfc 0%,#fba6e1 50%,#fd89d7 51%,#ff7cd8 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #fcecfc 0%,#fba6e1 50%,#fd89d7 51%,#ff7cd8 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcecfc', endColorstr='#ff7cd8',GradientType=0 ); /* IE6-8 */
+}
+
+/* フッター（テストサイト用） */
+.testsite .bg_gradient_FT {
+    background: #e2f5f3; /* Old browsers */
+}
+
+/* フッター（テストサイト用） */
+.old_testsite .old_bg_gradient_FT {
+    background: #ff7cd8; /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmN2NkOCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjQ5JSIgc3RvcC1jb2xvcj0iI2ZkODlkNyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2ZiYTZlMSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmY2VjZmMiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,  #ff7cd8 0%, #fd89d7 49%, #fba6e1 50%, #fcecfc 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff7cd8), color-stop(49%,#fd89d7), color-stop(50%,#fba6e1), color-stop(100%,#fcecfc)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ff7cd8 0%,#fd89d7 49%,#fba6e1 50%,#fcecfc 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ff7cd8 0%,#fd89d7 49%,#fba6e1 50%,#fcecfc 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ff7cd8 0%,#fd89d7 49%,#fba6e1 50%,#fcecfc 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #ff7cd8 0%,#fd89d7 49%,#fba6e1 50%,#fcecfc 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff7cd8', endColorstr='#fcecfc',GradientType=0 ); /* IE6-8 */
+}
+
+.main {
+    padding: 8px 16px 8px 16px;
+}
+
+.center {
+    text-align: center;
+}
+
+.numeric {
+    text-align:right;
+}
+
+#loginuser {
+    position: absolute;
+    display: block;
+    top: 28px;
+    left: 870px;
+    width: 360px;
+    color: #FFFFFF;
+    /*border: 1px solid red;*/
+}
+
+    #loginuser a {
+        color: #FFFFFF;
+        text-decoration: none;
+    }
+
+        #loginuser a:hover {
+            color: #FF0;
+            text-decoration: none;
+        }
+
+.savedmessage {
+    padding: 8px;
+    border: 1px solid #3399FF;
+    font-weight: bold;
+    color: #00F;
+    background-color: #FFFFCC;
+}
+
+.errormessage {
+    margin: 8px;
+    padding: 8px;
+    color: #FF3300;
+    background-color: #FFFFCC;
+    border: 1px solid #FF66CC;
+    font-weight: bold;
+
+    border-radius: 5px;
+    box-shadow: rgba(0,0,0,0.4) 3px 3px;
+}
+
+.notdone, .notdone:hover {
+    color: #888;
+}
+
+#shadow {
+    opacity: 0.25;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #000;
+    z-index: 20001;
+}
+
+#_loading {
+    z-index: 20010;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}   
+
+
+.k-content.kendo-alert-error {
+    background-color: #fac;
+    color: #C22;
+}
+.k-content.kendo-alert-info {
+    background-color: #ffc;
+    color: #444;
+}
+ 
+
+/* テストサイトの場合に表示するメッセージ */
+.test_flag {
+    display: block;
+    position: absolute;
+    width: 210px;
+    height: 56px;
+    top: 0px;
+    left: 0px;
+    padding: 10px;
+    background-color: #f00;
+    color: #FFFFCC;
+    font-size: xx-large;
+    text-align: center;
+}
+
+
+.menu_box {
+    width: 90%;
+    text-align:center;
+}
+    .menu_box ul li {
+        display: block;
+        float: left;
+        width: 240px;
+        height: 50px;
+    }
+    .menu_box ul li a {
+        display: block;
+        float: left;
+        width: 92%;
+    }
+
+
+/* Sidenav for Docs
+-------------------------------------------------- */
+.bs-docs-sidenav {
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+    -moz-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+    box-shadow: 0 1px 4px rgba(0,0,0,.065);
+}
+
+    .bs-docs-sidenav > li > a {
+        display: block;
+        *width: 190px;
+        margin: 0 0 -1px;
+        padding: 8px 14px;
+        border: 1px solid #e5e5e5;
+    }
+
+    .bs-docs-sidenav > li:first-child > a {
+        -webkit-border-radius: 6px 6px 0 0;
+        -moz-border-radius: 6px 6px 0 0;
+        border-radius: 6px 6px 0 0;
+    }
+
+    .bs-docs-sidenav > li:last-child > a {
+        -webkit-border-radius: 0 0 6px 6px;
+        -moz-border-radius: 0 0 6px 6px;
+        border-radius: 0 0 6px 6px;
+    }
+
+    .bs-docs-sidenav > .active > a {
+        position: relative;
+        z-index: 2;
+        padding: 9px 15px;
+        border: 0;
+        text-shadow: 0 1px 0 rgba(0,0,0,.15);
+        -webkit-box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+        -moz-box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+        box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+    }
+    /* Chevrons */
+    .bs-docs-sidenav .icon-chevron-right {
+        float: right;
+        margin-top: 2px;
+        margin-right: -6px;
+        opacity: .25;
+    }
+
+    .bs-docs-sidenav > li > a:hover {
+        background-color: #f5f5f5;
+    }
+
+    .bs-docs-sidenav a:hover .icon-chevron-right {
+        opacity: .5;
+    }
+
+    .bs-docs-sidenav .active .icon-chevron-right,
+    .bs-docs-sidenav .active a:hover .icon-chevron-right {
+        background-image: url(../img/glyphicons-halflings-white.png);
+        opacity: 1;
+    }
+
+    .bs-docs-sidenav.affix {
+        top: 40px;
+    }
+
+    .bs-docs-sidenav.affix-bottom {
+        position: absolute;
+        top: auto;
+        bottom: 270px;
+    }
+
+/* Masterポップアップ配置用クラス(IE8対策、かけないとアイコンが回り込む）
+-------------------------------------------------- */
+.master-popup-cell
+{
+    width:120px;
+    white-space:nowrap;
+}
+
+.SearchResultTable tbody{
+    cursor: pointer;
+}
+
+.SearchResultTable td{
+    line-height:10px;
+}
+
+/* フォントタイプをMSに変更(\マーク等日本語フォント使用する場合に使用)
+-------------------------------------------------- */
+.MsFontSetting {
+    font-family:'MS Gothic'
+}
+
+
+.view-switcher {
+    color: #666;
+}
+
+.hasdata {
+    color: #fff;
+    /*font-weight: bold;*/
+    /*-webkit-text-shadow: 2px 2px 2px #c00;
+    text-shadow: 2px 2px 2px #c00;*/
+}
+
+/*a.hasdata {
+    border: 2px dotted #888  ;
+}*/
+
+/*button.hasdata:hover,
+input.hasdata:hover {
+    color: yellow;
+}*/
+
+li.hasdata:after {
+    content: "";
+    position: relative;
+    display: inline-block;
+    z-index:2001;
+    top: -28px;
+    left: 45px;
+    width: 14px;
+    height: 14px;
+    background-image: url(Images/btn_red_check.png);
+    font-size: 0.8em;
+    color: rgba(0, 0, 0, 0);
+    /*-webkit-text-shadow: none;
+    text-shadow: none;*/
+
+    border-radius: 5px;
+}
+
+a.hasdata:after, 
+button.hasdata:after,
+input.hasdata:after {
+    content: "";
+    position: relative;
+    display: inline-block;
+    z-index:2001;
+    top: -4px;
+    left: -2px;
+    width: 14px;
+    height: 14px;
+    background-image: url(Images/btn_red_check.png);
+    font-size: 0.8em;
+    color: rgba(0, 0, 0, 0);
+    -webkit-text-shadow: none;
+    text-shadow: none;
+
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff428bca', endColorstr='#ff2d6ca2', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    background-repeat: repeat-x;
+    border-color: #000;
+    background-color:#000;
+}
+
+.btn-primary.disabled, .btn-primary[disabled], fieldset[disabled] .btn-primary, .btn-primary.disabled:hover, .btn-primary[disabled]:hover, fieldset[disabled] .btn-primary:hover, .btn-primary.disabled:focus, .btn-primary[disabled]:focus, fieldset[disabled] .btn-primary:focus, .btn-primary.disabled:active, .btn-primary[disabled]:active, fieldset[disabled] .btn-primary:active, .btn-primary.disabled.active, .btn-primary[disabled].active, fieldset[disabled] .btn-primary.active {
+    background-color: #888;
+    border-color: #888;
+}

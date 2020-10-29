@@ -1,0 +1,60 @@
+﻿<style scoped>
+    #editDiv {
+        width: 95% !important;
+    }
+
+</style>
+
+<div id="editWindow"
+     data-role="window"
+     data-visible="false"
+     data-modal="true"
+     data-min-width="250"
+     data-width="250"
+     data-min-height="500"
+     data-height="500"
+     style="display:none;">
+
+    <div id="editDiv">
+        <form class="form-horizontal" data-role="validator">
+
+            <div id="grdChurchTime"
+                 data-role="grid"
+                 data-auto-bind="true"
+                 data-bind="source: churchTimes"
+                 data-editable="{mode: 'incell', createAt:'bottom'}"
+                 data-toolbar="[{name:'create', text:''}, {name:'destroy', text:'' }, {name: 'refresh', text:'Refresh'}]"
+                 data-sortable="false"
+                 data-resizable="true"
+                 data-selectable="true"
+                 data-scrollable="true"
+                 data-groupable="false"
+                 data-navigatable="false"
+                 data-height="400"
+                 data-columns="[ {field: 'start_time', title: 'Start Time', width: 80, format:'{0:HH:mm}', editor: timeEditor } ]">
+            </div>
+
+
+            @* Saveボタン、Closeボタン *@
+            <div class="buttons">
+                <input id="btnEditSave" type="button" value="Save" data-bind="click:onSave" class="btn btn-primary btn-save" style="width:70px;" />
+                <input id="btnEditClose" type="button" value="Close" data-bind="click: onClose" class="btn btn-default btn-close" style="width:70px; margin-left: 10px;" />
+            </div>
+        </form>
+    </div>
+
+</div> @* End of editWindow *@
+
+<script>
+
+    function timeEditor(container, options) {
+        var input = $("<input/>");
+        input.attr("name", options.field);
+        input.appendTo(container);
+        input.kendoTimePicker({
+            format: "HH:mm"
+        });
+    }
+
+</script>
+

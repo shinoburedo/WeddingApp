@@ -1,0 +1,94 @@
+﻿@using System.Configuration;
+@using System.Web.Mvc;
+@using System.Web.Mvc.Html;
+@using MauloaDemo.Customer.Controllers;
+@using MauloaDemo.Utilities;
+
+@functions{
+
+    public static string GetCDNBaseUrl()
+    {
+        var cdn_base = TypeHelper.GetStr(ConfigurationManager.AppSettings["ImageCDNBaseURL"]);
+        if (cdn_base.EndsWith("/"))
+        {
+            cdn_base = cdn_base.TrimEnd("/".ToArray());
+        }
+        return cdn_base;
+    }
+
+    //public static string GetTrfTypeImageUrl(string region_cd, string area_cd, string trf_type, DateTime? image_upload_date)
+    //{
+    //    var s = "";
+    //    var cdn_base = ImageHelper.GetCDNBaseUrl();
+    //    if (!string.IsNullOrEmpty(cdn_base) && image_upload_date.HasValue)
+    //    {
+    //        s = string.Format("{0}/{1}/{2}/{3}/{3}_1_S.JPG?v={4}", cdn_base, region_cd, area_cd, trf_type, image_upload_date.Value.ToString("yyyyMMddHHmmss"));
+    //    }
+    //    else
+    //    {
+    //        var pg = (WebViewPage)PageContext.Page;
+    //        s = pg.Url.Content("~/Photo/GetType/") + string.Format("{0}/{1}/1/S", region_cd, trf_type);
+    //    }
+    //    return s;
+    //}
+
+    public static string GetPhotoServerUrl()
+    {
+        var cdn_base = TypeHelper.GetStr(ConfigurationManager.AppSettings["ItemPicturePath"]);
+        if (cdn_base.EndsWith("/"))
+        {
+            cdn_base = cdn_base.TrimEnd("/".ToArray());
+        }
+        return cdn_base;
+    }
+
+    public static string GetItemImageUrl(string item_type, string item_cd, int imageno, string size, DateTime? image_upload_date)
+    {
+        var s = "";
+        var cdn_base = ImageHelper.GetCDNBaseUrl();
+        if (!string.IsNullOrEmpty(cdn_base) && image_upload_date.HasValue)
+        {
+            //s = string.Format("{0}/{1}/{2}/{3}/{3}_{4}_{5}.JPG?v={6}",
+            //            cdn_base, region_cd, trf_type, trf_item_cd, imageno, size, image_upload_date.Value.ToString("yyyyMMddHHmmss"));
+        }
+        else
+        {
+            var pic_path = TypeHelper.GetStr(ConfigurationManager.AppSettings["ItemPicturePath"]);
+            if (pic_path.EndsWith("/"))
+            {
+                pic_path = pic_path.TrimEnd("/".ToArray());
+            }
+            s = string.Format("{0}/{1}/{2}/{2}_{3}_{4}.jpg",
+                        pic_path, item_type, item_cd, imageno, size);
+        }
+        return s;
+    }
+
+    public static string GetAreaImageUrl(string region_cd, string area_cd, string size, DateTime? image_upload_date)
+    {
+        var s = "";
+        var cdn_base = ImageHelper.GetCDNBaseUrl();
+        if (!string.IsNullOrEmpty(cdn_base) && image_upload_date.HasValue)
+        {
+            s = string.Format("{0}/{1}/{2}/{2}_1_{3}.JPG?v={4}", cdn_base, region_cd, area_cd, size, image_upload_date.Value.ToString("yyyyMMddHHmmss"));
+        }
+        else
+        {
+            s = string.Format("{0}/{1}/{2}/{2}_1_{3}.JPG", cdn_base, region_cd, area_cd, size);
+        }
+        return s;
+    }
+
+
+}
+
+@*@helper TrfTypeImage(string region_cd, string area_cd, string trf_type, DateTime? image_upload_date)
+{
+var url = GetTrfTypeImageUrl(region_cd, area_cd, trf_type, image_upload_date);
+    <img src="@(url)" alt="@(trf_type)" width="280" />
+}*@
+
+@*@helper TrfItemImage(string region_cd, string trf_type, string trf_item_cd, int imageno, string size, DateTime? image_upload_date) {
+        var url = GetTrfItemImageUrl(region_cd, trf_type, trf_item_cd, imageno, size, image_upload_date);
+        <img src="@(url)" alt="@(trf_item_cd)" width="167" />
+    }*@

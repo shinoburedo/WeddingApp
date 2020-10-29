@@ -1,0 +1,105 @@
+﻿@model IEnumerable<MauloaDemo.Models.Combined.ItemTypeC>
+@{
+    var region_cd = ViewBag.CurrentRegionInfo.CurrentDestination;
+    var area_cd = ViewBag.CurrentSelectItem.area_cd;
+    var str_wed_date = ViewBag.CurrentSelectItem.str_wed_date;
+    var language = ViewBag.CurrentRegionInfo.CurrentLanguage;
+    var picture_lang = Lang.isJPN() ? "jpn" : "eng";
+}
+<script>
+    $(function () {
+        var min_date = kendo.parseDate("@(ViewBag.CurrentSelectItem.str_min_date)", "yyyyMMdd");
+        var default_date = kendo.parseDate("@(ViewBag.CurrentSelectItem.str_wed_date)", "yyyyMMdd");
+        if (default_date < min_date) default_date = min_date;
+
+        var date_wedding = $("#selectWedDate").kendoDatePicker({
+            value: default_date,
+            change: refreshItemList,
+            format: "yyyy/MM/dd",
+            min: min_date
+        });
+        @*$("#datepicker").datepicker();
+        $("#datepicker").datepicker("option", "showOn", 'both');
+        $("#datepicker").datepicker("option", "buttonImageOnly", true);
+        $("#datepicker").datepicker("option", "buttonImage", '@Url.Content("~/common/img/icon_calendar.png")');*@
+    });
+
+    // 挙式希望日が変更された時の処理
+    function refreshItemList() {
+        var weddingDate = kendo.toString(date_wedding.val(), "yyyy/MM/dd");
+        window.location.href = App.getUrl("Home/SelectWeddingDate?wed_date=" + weddingDate);
+    }
+
+</script>
+
+
+<div id="sidebarL">
+    @*<div id="calendarArea">
+        <div class="calendarBox">
+            <p>ご希望日</p>
+            <input type="text" id="datepicker" />
+        </div>
+    </div>*@
+    <ul >
+        <li class="menu_parent">
+            <p>ご希望日</p>
+        </li>
+        <li>
+            <input type="text" id="selectWedDate" />
+        </li>
+    </ul>
+
+    <ul>
+            @{
+                var flg_pkg = false;
+                var flg_opn = false;
+                foreach (var type in Model)
+                {
+                    if (type.is_pkg)
+                    {
+                        if (!flg_pkg)
+                        {
+                            //pkgのタグ
+                        <li class="menu_parent">
+                            <span>ウェディングプラン</span></li>
+                            flg_pkg = true;
+                        }
+                    }
+                    else
+                    {
+                        if (!flg_opn)
+                        {
+                            <li class="menu_parent">
+                                <span>オプション</span>
+                            </li>
+                            flg_opn = true;
+                        }
+                    }
+                    if (ViewBag.CurrentSelectItem.item_type == type.item_type)
+                    {
+                        <li class="menu_child selected"><a href="~/@language/items/@type.item_type?str_wed_date=@str_wed_date">@type.description</a></li>
+                    }
+                    else
+                    {
+                        @*<li class="menu_child"><a href="~/@language/items/@type.item_type?str_wed_date=@str_wed_date">@type.description</a></li>*@
+                        <li class="menu_child"><a href="~/@language/items/@type.item_type?str_wed_date=@str_wed_date">@type.description</a></li>
+                    }
+
+                }
+            }
+    </ul>
+
+
+                                    <div id="calendarArea">
+                                        <a href="login.html"><span>ログイン/新規登録</span></a>
+                                    </div>
+                                    <div id="calendarArea">
+                                        <a href="myWedding.html"><span>My Page</span></a>
+                                    </div>
+                                    <div id="calendarArea">
+                                        <a href="cart.html"><span>カート</span></a>
+                                    </div>
+                                    <div id="calendarArea">
+                                        <a id="a_help"><span>ご利用ガイド</span></a>
+                                    </div>
+                                </div>

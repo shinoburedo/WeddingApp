@@ -1,0 +1,71 @@
+﻿@using System.Configuration;
+@using CBAF;
+@using MauloaDemo.Models;
+
+@model IEnumerable<MgmReport>
+
+@{
+    LoginUser cur_user = ViewBag.CurrentLoginUser;
+    int user_level = cur_user.access_level;
+    bool show_manage_reports = (user_level>= 6);
+    int buttonCount = show_manage_reports ? 1 : 0;
+
+    ViewBag.Title = "Reports";
+}
+
+<style scoped>
+    .menu_box {
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+</style>
+
+<h3>@ViewBag.Title</h3>
+
+<script>
+
+    function clickDailyMovement() {
+
+        var win = $("#DailyMovementDialog");
+        var kendoWindow = win.data("kendoWindow");
+        kendoWindow.setOptions({
+            title: "Daily Movement",
+            width: 400,
+            minWidth: 200,
+            minHeight: 100,
+        });
+        kendoWindow.center().open();
+    }
+
+</script>
+
+<div class="menu_box clearfix">
+    <ul>
+@if (show_manage_reports) { 
+        <li> <a class="btn btn-primary" href="@Url.Action("ManageReports")">Manage Reports</a> </li>
+}
+
+        <li> <a class="btn btn-primary" href="@Url.Action("Index", "BookingReport", new { area = "Reports" })">Booking Report</a> </li>
+        <li> <a class="btn btn-primary" href="@Url.Action("Index", "VendorConfirmation", new { area = "Reports" })">Vendor Confirmation</a> </li>
+        <li> <a class="btn btn-primary" onclick="clickDailyMovement();">Daily Movement</a> </li>
+
+@if (Model != null) { 
+    foreach (var report in Model) {
+        <li><a href="@Url.Action("Report", "Home", new { area = "Reports", cd = @report.rep_cd })" class="btn btn-primary">@report.rep_name</a></li>
+    }
+}
+   </ul>
+
+@if (ViewBag.Error != null) { 
+    <p style="color:#bbb; font-size: smaller;">@ViewBag.Error</p>
+}
+
+</div>
+<div id="DailyMovementDialog"
+     data-role="window"
+     data-modal="true"
+     data-visible="false">
+    @Html.Partial("DailyMovementDialog")
+</div>

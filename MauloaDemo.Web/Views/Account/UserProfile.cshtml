@@ -1,0 +1,313 @@
+﻿@model MauloaDemo.Web.ViewModels.UserProfile
+<style scoped>
+    header .horizontal_menu {
+        top: 15px;
+    }
+
+    #tabStrip {
+        width: 800px;
+    }
+        #tabStrip div[role='tabpanel'] {
+            height: 600px;
+        }
+
+    /*input[type='password'], input[type='text'] {
+        width: 120px;
+    }*/
+
+    label {
+        margin-top: 10px;
+        margin-bottom: 2px;
+    }
+
+    .lbl_new_pwd {
+        display: block;
+        width: 200px;
+        height: 2em;
+        background-color: #ffc;
+        padding: 4px;
+        padding-top: 8px;
+        text-align:center;
+        font-size: 120%;
+        font-weight: bold;
+    }
+
+    .msg_new_pwd {
+        color: red;
+    }
+
+    .bottom-buttons {
+        margin-bottom: 20px;
+    }
+</style>
+
+<div id="app"></div>
+
+<script id="tmpl_user_profile" type="text/template">
+    <div class="section-profile">
+        <header class="clearfix">
+            <div class="pull-left">
+                <h4>User Profile</h4>
+            </div>
+        </header>
+
+        <div class="panel panel-default">
+            <div class="panel-body clearfix">
+                <div class="w-off-1 w-12">
+                    <ul class="nav nav-tabs nav-tabs-profile">
+                        <li class="active"><a href="#panUserInfo" data-toggle="tab">User Info</a></li>
+                        <li><a href="#panPassword" data-toggle="tab">Password</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        @* User Info Tab *@
+                        <div class="tab-pane active" id="panUserInfo">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label for="" class="w-2 control-label">Name (Romaji)</label>
+                                    <div class="w-2">
+                                        @Html.TextBoxFor(m => m.e_last_name,
+                                            new {
+                                                @class = "form-control input-sm k-input k-textbox w100 toupper tohankaku",
+                                                maxlength = "30",
+                                                @data_bind = "value: e_last_name",
+                                                @readonly = "readonly"
+                                            })
+                                        @Html.ValidationMessageFor(m => m.e_last_name)
+                                    </div>
+
+                                    <div class="w-2">
+                                        @Html.TextBoxFor(m => m.e_first_name,
+                                            new {
+                                                @class = "form-control input-sm k-input k-textbox w100 toupper tohankaku",
+                                                maxlength = "30",
+                                                @data_bind = "value: e_first_name",
+                                                @readonly = "readonly"
+                                            })
+                                        @Html.ValidationMessageFor(m => m.e_first_name)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="w-2 control-label">Name (Kanji)</label>
+                                    <div class="w-2">
+                                        @Html.TextBoxFor(m => m.j_last_name,
+                                            new {
+                                                @class = "form-control input-sm k-input k-textbox w100 ",
+                                                maxlength = "30",
+                                                @data_bind = "value: j_last_name",
+                                                @readonly = "readonly"
+                                            })
+                                        @Html.ValidationMessageFor(m => m.j_last_name)
+                                    </div>
+
+                                    <div class="w-2">
+                                        @Html.TextBoxFor(m => m.j_first_name,
+                                            new {
+                                                @class = "form-control input-sm k-input k-textbox w100 ",
+                                                maxlength = "30",
+                                                @data_bind = "value: j_first_name",
+                                                @readonly = "readonly"
+                                            })
+                                        @Html.ValidationMessageFor(m => m.j_first_name)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="w-2 control-label">Agent</label>
+                                    <div class="w-2">
+                                        @Html.TextBoxFor(m => m.sub_agent_cd,
+                                            new {
+                                                @class = "form-control input-sm k-input k-textbox w100 toupper tohankaku",
+                                                maxlength = "6",
+                                                @data_bind = "value: sub_agent_cd",
+                                                @readonly = "readonly"
+                                            })
+                                        @Html.ValidationMessageFor(m => m.sub_agent_cd)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="w-2 control-label">Email</label>
+                                    <div class="w-4">
+                                        @Html.TextBoxFor(m => m.e_mail,
+                                            new {
+                                                @class = "form-control input-sm k-input k-textbox w100 tohankaku",
+                                                maxlength = "50",
+                                                @data_bind = "value: e_mail"
+                                            })
+                                        @Html.ValidationMessageFor(m => m.e_mail)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">&nbsp;</div>
+
+                                <div class="form-group">
+                                    <label for="culture_name" class="w-2 control-label">Language</label>
+                                    <div class="w-3">
+                                        <select id="culture_name"
+                                                class="form-control input-sm k-input w100"
+                                                data-role="dropdownlist"
+                                                data-value-field="Key"
+                                                data-text-field="Value"
+                                                data-value-primitive="true"
+                                                data-bind="value: culture_name, source: cultureNameList" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="date_format" class="w-2 control-label">Date Format</label>
+                                    <div class="w-3">
+                                        <select id="date_format" 
+                                               class="form-control input-sm k-input w100"
+                                               data-role="dropdownlist"
+                                               data-value-field="Key"
+                                               data-text-field="Value"
+                                               data-value-primitive="true"
+                                               data-bind="value: date_format, source: dateFormatList" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="time_format" class="w-2 control-label">Time Format</label>
+                                    <div class="w-3">
+                                        <input id="time_format" type="text"
+                                               class="form-control input-sm k-input k-textbox w100"
+                                               data-bind="value: time_format"
+                                               readonly />
+                                    </div>
+                                </div>
+
+                                <div class="w-off-2 bottom-buttons" style="margin-top: 20px;">
+                                    <button type="button" id="btnSaveUserInfo"
+                                            data-bind="enabled: isSaveUserInfoEnabled"
+                                            class="btn btn-small btn-primary" style="width: 100px;">
+                                        Save
+                                    </button>
+                                    &nbsp;
+                                </div>
+                            </form>
+                        </div>
+
+                        @* Password Tab *@
+                        <div class="tab-pane" id="panPassword">
+                            <div style="float:left;">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label class="w-2 control-label">Expiration</label>
+                                        <div class="w-3">
+                                            <input type="text"
+                                                   class="form-control input-sm k-input k-textbox w100 tohankaku"
+                                                   data-bind="value: getPwdExpiration" readonly="readonly" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="w-2 control-label">Current Password</label>
+                                        <div class="w-3">
+                                            <input type="password"
+                                                   class="form-control input-sm k-input k-textbox w100 tohankaku"
+                                                   data-bind="value: cur_password" @*data-value-update="keyup"*@ />
+                                        </div>
+                                    </div>
+
+                                    <div class="w-off-2 bottom-buttons" style="margin-top: 20px;">
+                                        @*<button type="button" id="btnSavePassword"
+                                                class="btn btn-small btn-primary" style="width: 100px;">
+                                            Save
+                                        </button>*@
+                                        <button type="button" id="btnResetPassword"
+                                                class="btn btn-small btn-primary" style="width: 160px;">
+                                            Reset Password
+                                        </button>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="w-2 control-label">New Password</label>
+                                        <div class="w-8">
+                                            <span class="lbl_new_pwd"
+                                                  data-bind="text: new_password"></span>
+                                            <br />
+                                            <span class="msg_new_pwd" data-bind="visible: new_password">
+                                                新しいパスワードを記憶するかメモして安全な場所に保管して下さい。<br />
+                                                一旦この画面を閉じるとパスワードの再表示は出来ません。
+                                                <br /><br />
+                                                Please remember or save this new password in a safe place, 
+                                                because it will not be displayed again once you close this screen.
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+@*
+                            <div style="float:left;margin:20px;">
+                                <h5 style="margin-bottom:0px;">パスワードの付け方:</h5><br />
+                                - 半角英数字および記号のみ (「”’；￥」、空白は不可)<br />
+                                - 6文字以上15文字以内<br />
+                                - ユーザーIDと同じでなくかつユーザーIDを含まない事<br />
+                                - ユーザーの氏名(姓または名)を含まない事<br>
+                                - 数字1文字以上、アルファベット2文字以上を含む事<br />
+                                - アルファベットの大文字と小文字の両方を含む事<br />
+                                - 3文字以上の連続した数字・アルファベット(123, 432, XYZ等)を含まない事<br />
+                                - 3文字以上の連続した同一文字(111, AAA等)を含まない事<br />
+                                <br />
+                                <span style="color:red; font-weight:bold;">※ご注意： パスワードの大文字と小文字は区別されます。入力する際にはお間違えの無いようにご注意下さい。</span>
+                                <br /><br />
+
+                                <h5 style="margin-bottom:0px;">Password must:</h5><br />
+                                - Include only alphabets, numbers and symbols except quotation mark, semicolon, blank space and back slash.<br />
+                                - Be at least 6 characters and at most 15 characters.<br />
+                                - Be different from User ID and must not include the User ID.<br />
+                                - Not contain the user's last name or first name.<br />
+                                - Include at least one number and two alphabets.<br />
+                                - Include BOTH upper case and lower case.<br />
+                                - NOT contain more than 3 sequential characters such as 123, 432 or ABC...<br />
+                                - NOT contain more than 3 identical letters such as 111, AAA...<br />
+                                <br />
+                                <span style="color:red; font-weight:bold;">*** CAUTION: Password is case sensitive. Please be aware when you input the new password.</span>
+                            </div>
+*@
+                            <div style="clear:both;"></div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="w-off-1 w-9">
+                    @Html.ValidationSummary(true)
+                </div>
+            </div>
+        </div>
+    </div>
+
+</script>
+
+
+@section scripts{
+<script src="@Url.Content("~/Scripts/require.min.js")" ></script>
+<script>
+    require.config({
+        baseUrl: '@Url.Content("~/Scripts/App")',
+        urlArgs: App.Config.IsTest ? "bust=" + (new Date()).getTime() : ""      //JavaScriptファイルをキャッシュしない様にする。(デバッグ用)
+    });
+
+    require(['models/user_profile', 'user_profile_edit_view'],
+    function (UserProfile, UserProfileEditView) {
+
+        var model = JSON.parse('@Html.Raw(JsonHelper.MySerializeObject(Model))') || {};
+        model.cultureNameList = JSON.parse('@Html.Raw(JsonHelper.MySerializeObject(ViewBag.CultureNameList))');
+        model.dateFormatList = JSON.parse('@Html.Raw(JsonHelper.MySerializeObject(ViewBag.DateFormatList))');
+        var userProfile = new UserProfile(model);
+
+        var userProfileEditView = new UserProfileEditView("tmpl_user_profile", { model: userProfile });
+        userProfileEditView.AfterUpdateActionPath = "@Url.Action("AfterUpdateProfile")";
+        var tab = "@(ViewBag.Tab)" - 0;
+        userProfileEditView.render("#app", tab);
+    });
+</script>
+}
+
+
+

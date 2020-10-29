@@ -1,0 +1,78 @@
+﻿@using System.Configuration;
+@using MauloaDemo.Utilities;
+@using MauloaDemo.Customer.ViewModels;
+@using MauloaDemo.Models;
+
+@{
+    var picture_lang = Lang.isJPN() ? "jpn" : "eng";
+    var shopping_enabled = MauloaDemo.Utilities.TypeHelper.GetBool(ConfigurationManager.AppSettings["ShoppingEnabled"]);
+    var logged_in = (ViewBag.CurrentLoginUser!= null);
+    var IsTest = MauloaDemo.Utilities.TypeHelper.GetBool(ConfigurationManager.AppSettings["IsTest"]);
+    var select_language_enabled = (ViewBag.DisabledLanguage == null);
+    var path = Request.Url.AbsoluteUri;
+    var facebook_url = "https://www.watabe.com/" + ViewBag.FbUrl;
+    var base_url = Url.Content("~/");
+    base_url = base_url.EndsWith("/") ? base_url : base_url + "/";
+}
+    <a id="pagetop" name="pagetop"></a>
+    <div id="header">
+        @*@if (logged_in) {
+                <div style="position:absolute;padding-left:430px;padding-top:0px;">
+                    <strong>@Lang.L("", "Logged in as ")@ViewBag.CurrentLoginUser.CustomerName @Lang.L("様としてログイン中", "")</strong>
+                </div>
+            }*@
+        @*<div style="position:absolute;padding-left:810px;padding-top:0px;">
+        </div>*@
+        <p class="logo">
+            <a href="@(base_url)"><img src="@Url.Content("~/common/img/header_logo2.png")" alt="Mauloa" /></a>
+        </p>
+        <div class="headerContentList">
+            <ul>
+                @if (shopping_enabled)
+                {
+                    if (logged_in)
+                    {
+                        <li><div id="login" class="head_top_tempo"><a id="a_login">@Lang.L("", "Logged in as ")@ViewBag.CurrentLoginUser.CustomerName @Lang.L("様▼", "▼")</a></div></li>
+                    }
+                    else
+                    {
+                        <li><div class="head_top_camp"><a href="@Url.Action("Index", "Login")"><span>ログイン/新規登録</span></a></div></li>
+                    }
+                    <li><div class="head_top_camp"><a href="@Url.Action("Index", "MyWedding")"><span>My Page</span></a></div></li>
+                }
+            </ul>
+            <ul>
+                @if (shopping_enabled)
+                {
+                    <li>
+                        <div style="position:relative;height:32px;" class="head_top_camp">
+                            <a href="@Url.Action("Index", "Cart")">
+                                <span>@Lang.L("カート", "Cart")</span>
+                                <div class="head_middle_cart">
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                }
+                <li><div id="help" data-role="tooltip"><a id="a_help"><span>ご利用ガイド</span></a></div></li>
+            </ul>
+            @*<ul>
+                <li><div class="head_top_f"><a href="https://twitter.com/intent/tweet?original_referer=@(path)&amp;ref_src=twsrc%5Etfw&amp;text=@(ViewBag.Title)&amp;tw_p=tweetbutton&amp;url=@(path)" id="b"><img src="@Url.Content("~/common/img/icon_twitter.png")" width="31" height="30" alt="" /></a></div></li>
+                <li><div class="head_top_f"><a href="http://www.facebook.com/watabewedding.japan" target="_blank"><img src="@Url.Content("~/common/img/icon_facebook.png")" width="30" height="30" alt="" /></a></div></li>
+                <li>
+                    <div class="fb-like" data-href="@(facebook_url)" data-layout="button_count" data-action="like" data-share="true"></div>
+                </li>
+            </ul>*@
+            @*@if (select_language_enabled)
+            {
+                <ul>
+                    <li>
+                        <div class="language"><a class="select_lang_j" data-lang="J" href="@Url.Action("SelectLanguage", "Home")?language=J"><img src="@Url.Content("~/common/img/btn_japanese.png")" width="62" height="19" alt="日本語" style="vertical-align:bottom;" /></a></div>
+                    </li>
+                    <li>
+                        <div class="language"><a class="select_lang_e" data-lang="E" href="@Url.Action("SelectLanguage", "Home")?language=E"><img src="@Url.Content("~/common/img/btn_english.png")" width="62" height="19" alt="英語" style="vertical-align:bottom;" /></a></div>
+                    </li>
+                </ul>
+            }*@
+        </div><!-- headerContentList -->
+    </div><!-- header -->

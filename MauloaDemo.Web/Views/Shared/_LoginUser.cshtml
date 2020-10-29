@@ -1,0 +1,17 @@
+﻿@using MauloaDemo.Models
+@using MauloaDemo.Web.Controllers
+
+@{
+    LoginUser cur_user = UserHelper.LoginUser;
+    //RegionInfo cur_region = ViewBag.CurrentRegionInfo;
+    string user_name = (cur_user == null) ? "" : String.Format("{0} / {1}", cur_user.login_id, cur_user.UserName);
+}
+
+<div id="loginuser">
+    @if (cur_user != null) {
+        if (cur_user.access_level >= 2) { 
+            <span>User: @Html.ActionLink(user_name, "Profile", "Account", new { area = "" }, null) | </span>
+        }
+        <span>@Html.ActionLink("Log Out", "Logout", "Account", new { area = "" }, null)</span>
+    }
+</div>

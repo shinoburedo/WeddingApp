@@ -1,0 +1,152 @@
+﻿@using MauloaDemo.Utilities;
+@section head {
+    <link href="@Url.Content("~/common/css/step3.css")" rel="stylesheet" type="text/css" media="all" charset="utf-8" />
+    <link href="@Url.Content("~/common/css/jquery.bxslider.css")" rel="stylesheet" type="text/css" media="all" charset="utf-8" />
+    <link rel="stylesheet" href="@Url.Content("~/common/css/jquery-ui.css")" />
+    <style>
+        .hidden {
+            /*display:none;*/
+            opacity: 0;
+            -webkit-transition-property: opacity;
+            -webkit-transition-duration: 0.4s;
+            -webkit-transition-timing-function: linear;
+            -webkit-transition-delay: 0.1s;
+            transition-duration: 0.4s;
+        }
+
+        .shown {
+            /*display: inline-block;*/
+            opacity: 1.0;
+            -webkit-transition-property: opacity;
+            -webkit-transition-duration: 0.4s;
+            -webkit-transition-timing-function: linear;
+            -webkit-transition-delay: 0.1s;
+            transition-duration: 0.4s;
+        }
+    </style>
+
+}
+
+@section scripts {
+@{
+    //このページで使っているJavaScriptを更新した場合は、
+    //確実にユーザーのブラウザのキャッシュを更新するためにこの文字列を変更する事。
+    var versionStr = "20161213";
+}
+<script type="text/javascript" src="~/Scripts/App/items-detail-dialog.js?v=@(versionStr)"></script>
+<script type="text/javascript" src="~/Scripts/App/Models/c_item.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/App/index.js")"></script>
+    <script>
+        $(function () {
+
+            $("img[id^='detail']").css("display", "none");
+            $("#detail1").toggle();
+
+            $("div[class='detailBlock']").css("display", "none");
+
+            //$("span[id^='ex']").zoom();
+
+        // 挙式希望日が変更された時の処理
+        function refreshItemList() {
+            var weddingDate = kendo.toString(date_wedding.val(), "yyyy/MM/dd");
+            window.location.href = App.getUrl("Home/SelectWeddingDate?wed_date=" + weddingDate);
+        }
+
+        var min_date = kendo.parseDate("@(ViewBag.CurrentSelectItem.str_min_date)", "yyyyMMdd");
+        var default_date = kendo.parseDate("@(ViewBag.CurrentSelectItem.str_wed_date)", "yyyyMMdd");
+        if (default_date < min_date) default_date = min_date;
+
+        //var date_wedding = $("#datepicker").kendoDatePicker({
+        //    value: default_date,
+        //    change: refreshItemList,
+        //    format: "yyyy/MM/dd",
+        //    min: min_date
+        //});
+        });
+
+        function openDetail(that) {
+            $(that).parents(".itemBlockArea").find(".detailBlock").toggle();
+            $(that).css("display", "none");
+        }
+
+        function closeDetail(that) {
+            $(that).parents(".detailBlock").css("display", "none");
+            $(that).parents(".itemBlockArea").find(".opendetail").toggle();
+        }
+
+        function changeMediumPicture(that) {
+            $("img[id^='detail']").css("display", "none");
+            $("#detail" + that).toggle();
+        }
+
+        function cart(item_cd) {
+            var wed_date = kendo.parseDate("@(ViewBag.CurrentSelectItem.str_wed_date)", "yyyyMMdd");
+            var str_wed_date = kendo.toString(wed_date, 'yyyy/MM/dd');
+            App.ViewModels.MyWeddingOrderDetailDialog.open(item_cd, "@(ViewBag.CurrentRegionInfo.CurrentLanguage)", str_wed_date);
+
+
+            //var win = $("item-detail-window").data("kendoWindow");
+            ////win.setOptions({ title: "Option: " + id });
+            //win.unbind();                               //deactivateでunbindしているが念のため。
+            //win.bind("activate", function () {
+            //    App.Utils.ShowLoading(true);
+            //    App.Models.WtBooking.fetch(region_cd, id)
+            //        .done(function (model) {
+            //            App.Utils.HideLoading(true);
+            //            var item = new App.Models.WtBooking(model);
+            //            item.parseJSON();
+            //            vm.set("model", item);
+            //        });
+            //});
+            //win.bind("deactivate", function () {
+            //    this.unbind();                          //イベントハンドラーの登録を解除。（これをしないとactivateのハンドラが多重呼び出しされてしまう。）
+            //});
+            //win.center().open();
+
+
+
+
+            //var x = (screen.width - 300) / 2;
+            //var y = (screen.height - 200) / 2;
+            //window.open("detail.html", "Mauloa", "width=300,height=200,scrollbars=yes" + ",top=" + y + ",left=" + x);
+
+        }
+    </script>
+}
+
+@{
+    //var regionName = ViewBag.RegionName;
+    //var areaName = ViewBag.AreaName;
+
+    ViewBag.Title = "Mauloa";
+    //ViewBag.Title += (string.IsNullOrEmpty(areaName) ? regionName : areaName) + " ";
+
+    //if (string.IsNullOrEmpty(ViewBag.CurrentSelectItem.trf_type)) {
+    //    ViewBag.Title += Lang.L("カテゴリ一覧", "Categories");
+    //} else {
+    //    ViewBag.Title += Lang.L("商品一覧", "Plans/Options");
+    //}
+}
+
+@Html.Partial("_Header")
+
+<div id="container">
+
+    @Html.Action("ItemMenu", "Home")
+
+    <div id="contents">
+
+        @Html.Action("ItemList", "Home", new { page = ViewBag.PageNum })
+
+    </div>
+
+
+</div>
+
+
+@* カート詳細ダイアログ *@
+@Html.Partial("ItemPartial")
+
+
+
+

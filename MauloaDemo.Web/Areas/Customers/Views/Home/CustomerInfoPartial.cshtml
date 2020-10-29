@@ -1,0 +1,763 @@
+﻿@using MauloaDemo.Models
+@using MauloaDemo.Models.Combined
+
+@model CustomerInfo
+@{
+    CustomerInfo customerInfo = (CustomerInfo)Model;
+    Customer customer = Model.Customer;
+    LoginUser loginUser = ViewBag.CurrentLoginUser;
+}
+
+<div class="w-10 ">
+    <div class="form-group">
+        <label for="" class="w-1 control-label">Groom</label>
+        <div class="w-2">
+            @Html.TextBoxFor(m => m.Customer.g_last,
+                                new {
+                                    @class = "form-control input-sm k-textbox w100 toupper tohankaku",
+                                    maxlength = "20",
+                                    placeholder = "Lastname",
+                                    @data_bind = "value: Customer.g_last, disabled: isFinalized",
+                                    @data_value_update="keyup" })
+            @Html.ValidationMessageFor(m => m.Customer.g_last)
+        </div>
+        <div class="w-2">
+            @Html.TextBoxFor(m => m.Customer.g_first,
+                                new {
+                                    @class = "form-control input-sm k-textbox w100 toupper tohankaku",
+                                    maxlength = "20",
+                                    placeholder = "Firstname",
+                                    @data_bind = "value: Customer.g_first, disabled: isFinalized"
+                                })
+            @Html.ValidationMessageFor(m => m.Customer.g_first)
+        </div>
+
+        <label for="" class="w-1 control-label">Bride</label>
+        <div class="w-2">
+            @Html.TextBoxFor(m => m.Customer.b_last,
+                                new {
+                                    @class = "form-control input-sm k-textbox w100 toupper tohankaku",
+                                    maxlength = "20",
+                                    placeholder = "Lastname",
+                                    @data_bind = "value: Customer.b_last, disabled: isFinalized"
+                                })
+            @Html.ValidationMessageFor(m => m.Customer.b_last)
+        </div>
+        <div class="w-2">
+            @Html.TextBoxFor(m => m.Customer.b_first,
+                                new {
+                                    @class = "form-control input-sm k-textbox w100 toupper tohankaku",
+                                    maxlength = "20",
+                                    placeholder = "Firstname",
+                                    @data_bind = "value: Customer.b_first, disabled: isFinalized"
+                                })
+            @Html.ValidationMessageFor(m => m.Customer.b_first)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="" class="w-1 control-label"></label>
+        <div class="w-2">
+            @Html.TextBoxFor(m => m.Customer.g_last_kanji, new { @class = "form-control input-sm k-textbox w100 ", maxlength = "20", placeholder = "姓",
+                                                                 @data_bind = "value: Customer.g_last_kanji, disabled: isFinalized"
+                            })
+            @Html.ValidationMessageFor(m => m.Customer.g_last_kanji)
+        </div>
+        <div class="w-2">
+            @Html.TextBoxFor(m => m.Customer.g_first_kanji, new { @class = "form-control input-sm k-textbox w100 ", maxlength = "20", placeholder = "名",
+                                                                  @data_bind = "value: Customer.g_first_kanji, disabled: isFinalized"
+                            })
+            @Html.ValidationMessageFor(m => m.Customer.g_first_kanji)
+        </div>
+
+        <label for="" class="w-1 control-label"></label>
+        <div class="w-2">
+            @Html.TextBoxFor(m => m.Customer.b_last_kanji, new { @class = "form-control input-sm k-textbox w100 ", maxlength = "20", placeholder = "姓",
+                                                                 @data_bind = "value: Customer.b_last_kanji, disabled: isFinalized"
+                            })
+            @Html.ValidationMessageFor(m => m.Customer.b_last_kanji)
+        </div>
+        <div class="w-2">
+            @Html.TextBoxFor(m => m.Customer.b_first_kanji, new { @class = "form-control input-sm k-textbox w100 ", maxlength = "20", placeholder = "名",
+                                                                  @data_bind = "value: Customer.b_first_kanji, disabled: isFinalized"
+                            })
+            @Html.ValidationMessageFor(m => m.Customer.b_first_kanji)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="" class="w-1 control-label">Area</label>
+        <div class="w-1">
+            @Html.TextBoxFor(m => m.Customer.area_cd,
+                             new {
+                                 type = "text",
+                                 @class = "form-control input-sm select-area toupper tohankaku",
+                                 @style = "width: 70px;",
+                                 maxlength = "3",
+                                 @data_bind = "value: Customer.area_cd, disabled: isFinalized"
+                             })
+            @Html.ValidationMessageFor(m => m.Customer.area_cd)
+        </div>
+
+        <label for="" class="w-1 control-label">Agent</label>
+        <div class="w-2">
+            @Html.TextBoxFor(m => m.Customer.sub_agent_cd,
+                             new {
+                                 type = "text",
+                                 @class = "form-control input-sm select-subagent toupper tohankaku",
+                                 @style = "width: 90px;",
+                                 maxlength = "6",
+                                 @data_bind = "value: Customer.sub_agent_cd, disabled: isFinalized"
+                             })
+            @Html.ValidationMessageFor(m => m.Customer.sub_agent_cd)
+        </div>
+
+        <label for="" class="w-1 control-label">Tour Cd</label>
+        <div class="w-2">
+            @Html.TextBoxFor(m => m.Customer.tour_cd,
+                                new {
+                                    @class = "form-control input-sm k-textbox w100 tohankaku",
+                                    maxlength = "20",
+                                    @data_bind = "value: Customer.tour_cd, disabled: isFinalized"
+                                })
+            @Html.ValidationMessageFor(m => m.Customer.tour_cd)
+        </div>
+    </div>
+
+    @if (loginUser.IsStaff()) {
+        <div class="form-group">
+            <label for="" class="w-1 w-off-1 control-label" style="text-align:left;">Note <span style="font-size:70%;color:orange;">(Click the text area to add)</span></label>
+            <label for="" class="w-1 w-off-4 control-label staff_note" style="text-align:left;">Staff Note</label>
+        </div>
+        <div class="form-group">
+            <div class="w-5 w-off-1">
+                @Html.TextAreaFor(m => m.Customer.note,
+                                 new {
+                                     @class = "form-control input-sm k-textbox w100  note-readonly",
+                                          @data_bind = "value: Customer.note",
+                                          @readonly = true
+                                    })
+                @Html.ValidationMessageFor(m => m.Customer.note)
+            </div>
+
+            <div class="w-4">
+                @Html.TextAreaFor(m => m.Customer.staff_note,
+                                    new { @class = "form-control input-sm k-textbox w100 ",
+                                          @data_bind = "value: Customer.staff_note"})
+                @Html.ValidationMessageFor(m => m.Customer.staff_note)
+            </div>
+        </div>
+    } else {
+        <div class="form-group">
+            <label for="" class="w-1 control-label">Note<br /><span style="font-size:70%;color:orange;">(Click to add)</span></label>
+            <div class="w-9">
+                @Html.TextAreaFor(m => m.Customer.note,
+                                    new { @class = "form-control input-sm k-textbox w100 note-readonly",
+                                          @data_bind = "value: Customer.note",
+                                          @readonly = true
+                                    })
+                @Html.ValidationMessageFor(m => m.Customer.note)
+            </div>
+        </div>
+    }
+</div>
+
+<div class="w-3" style="height: 160px; margin-left:8px;padding:0; ">
+    
+    <div class="w-3 customer-wedinfo" data-bind="visible: all_loaded, css: {has_wed_date: hasPlanOrders}" style="display:none;">
+        <div class="form-group">
+            <label class="w-1 control-label">Wed Date</label>
+            <div class="w-2">
+                <input type="text"
+                       class="form-control input-sm todate k-input"
+                       maxlength="10"
+                       data-role="datepicker"
+                       data-bind="value: Customer.wed_date, visible: isOptionOnly"
+                       style="width: 96px; " />
+                <input type="text" readonly
+                       data-bind="value: Customer.getWedDateStr, visible: hasPlanOrders"
+                       class="form-control input-sm k-textbox"
+                       style="width:84px; display: none;" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="w-1 control-label">Time</label>
+            <div class="w-2">
+                <input type="text" readonly
+                       data-bind="value: Customer.wed_time_s, readonly: hasPlanOrders"
+                       class="form-control input-sm k-textbox totime"
+                       style="width:60px;" />
+            </div>
+        </div>
+        <div class="form-group" data-bind="visible: hasPlanOrders">
+            <label class="w-1 control-label">Church</label>
+            <div class="w-2">
+                <input type="text" readonly
+                       data-bind="value: Customer.church_cd"
+                       class="form-control input-sm k-textbox"
+                       style="width:84px;" />
+            </div>
+        </div>
+    </div>
+
+    <div class="w-3 created_by" style="position:absolute; bottom: 0; ">
+        <table>
+            <tr>
+                <td>Created: </td>
+                <td>
+                    <span data-bind="text: Customer.create_by"></span>
+                    (<span data-bind="text: Customer.create_date_s"></span>)
+                </td>
+            </tr>
+            <tr>
+                <td>Updated: </td>
+                <td>
+                    <span data-bind="text: Customer.last_person"></span>
+                    (<span data-bind="text: Customer.update_date_s"></span>)
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="w-2" style="margin-left:8px;">
+    <div class="form-group">
+        <button type="button" class="btn btn-danger save-button"
+                style="margin-bottom: 20px;display:none;"
+                data-bind="events: {click: onSaveClick}, visible: isSaveButtonVisible">
+            SAVE
+        </button>
+
+        <button type="button" id="btnFinalInfo"
+                class="btn btn-primary btn-sm button-report"
+                data-contenturl='@Url.Action("PreviewFolderSheet")'
+                data-bind="events: {click: onFolderSheetClick}, enabled: isScheduleSheetEnabled, visible: isEditScheduleVisible">
+            Folder Sheet
+        </button>
+
+        <button type="button" id="btnWeddingInfo"
+                class="btn btn-primary btn-sm button-report"
+                data-contenturl='@Url.Action("PreviewWeddingInfo")'
+                data-bind="events: {click: onFolderSheetClick}, enabled: isScheduleSheetEnabled">
+            Wedding Info
+        </button>
+
+        <button type="button" id="btnScheduleSheet"
+                class="btn btn-default btn-sm button-report"
+                style="display:none;"
+                data-contenturl='@Url.Action("ScheduleDialog")'
+                data-bind="events: {click: onEditScheduleClick}, enabled: isScheduleSheetEnabled, visible:isEditScheduleVisible">
+            Edit Schedule
+        </button>
+
+        <button type="button" id="btnPreviewScheduleSheet" 
+                class="btn btn-primary btn-sm button-report"
+                data-contenturl='@Url.Action("PreviewScheduleSheet")'
+                data-bind="events: {click: onPreviewScheduleSheetClick}, enabled: isScheduleSheetEnabled">
+            Schedule
+        </button>
+
+    </div>
+</div>
+
+
+<div class="w-off-1 w-12">
+    <ul class="nav nav-tabs nav-tabs-customer">
+        <li class="active" data-bind="css: {hasdata: Customer.hasBriefingInfo}"><a href="#panBriefing" data-toggle="tab">Briefing/Fitting</a></li>
+        <li data-bind="css: {hasdata: Customer.hasInFlightInfo}"><a href="#panInFlight" data-toggle="tab">In Flight</a></li>
+        <li data-bind="css: {hasdata: Customer.hasOutFlightInfo}"><a href="#panOutFlight" data-toggle="tab">Out Flight</a></li>
+        <li data-bind="css: {hasdata: Customer.hasHotelInfo}"><a href="#panHotel" data-toggle="tab">Hotel</a></li>
+        <li data-bind="css: {hasdata: Customer.hasAttendantInfo}"><a href="#panAttend" data-toggle="tab">Attendant</a></li>
+        <li data-bind="css: {hasdata: Customer.hasAddressInfo}"><a href="#panAddress" data-toggle="tab">Address</a></li>
+        <li data-bind="css: {hasdata: Customer.hasCostumeInfo}"><a href="#panCostume" data-toggle="tab">Costume</a></li>
+    </ul>
+
+    <div class="tab-content">
+
+        @* Briefing Tab *@
+        <div class="tab-pane active" id="panBriefing">
+            <div class="form-group">
+                <label for="" class="w-2 control-label">Briefing</label>
+                <div class="w-2">
+                    @Html.TextBoxFor(m => m.Customer.bf_date,
+                                            new {
+                                                @class = "form-control input-sm todate",
+                                                maxlength = "10",
+                                                data_role = "datepicker",
+                                                @style = "width: 100px;",
+                                                @data_bind = "value: Customer.bf_date, disabled: isFinalized"
+                                            })
+                    @Html.ValidationMessageFor(m => m.Customer.bf_date)
+                </div>
+
+                <div class="w-1">
+                    @Html.TextBoxFor(m => m.Customer.bf_time_s,
+                                            new {
+                                                @class = "form-control input-sm k-textbox totime",
+                                                maxlength = "5",
+                                                placeholder = "hh:mm",
+                                                @data_bind = "value: Customer.bf_time_s, disabled: isFinalized"
+                                            })
+                    @Html.ValidationMessageFor(m => m.Customer.bf_time_s)
+                </div>
+
+                <label for="" class="w-1 control-label">Place</label>
+                <div class="w-3">
+                    @Html.TextBoxFor(m => m.Customer.bf_place, new { @class = "form-control input-sm k-textbox w100 ", maxlength = "100",
+                                                                     @data_bind = "value: Customer.bf_place, disabled: isFinalized"
+                                     })
+                    @Html.ValidationMessageFor(m => m.Customer.bf_place)
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="w-2 control-label">Fitting</label>
+                <div class="w-2">
+                    @Html.TextBoxFor(m => m.Customer.ft_date,
+                                            new {
+                                                @class = "form-control input-sm todate",
+                                                maxlength = "10",
+                                                data_role = "datepicker",
+                                                @style = "width: 100px;",
+                                                @data_bind = "value: Customer.ft_date, disabled: isFinalized"
+                                            })
+                    @Html.ValidationMessageFor(m => m.Customer.ft_date)
+                </div>
+
+                <div class="w-1">
+                    @Html.TextBoxFor(m => m.Customer.ft_time_s,
+                                            new {
+                                                @class = "form-control input-sm k-textbox totime",
+                                                maxlength = "5",
+                                                placeholder = "hh:mm",
+                                                @data_bind = "value: Customer.ft_time_s, disabled: isFinalized"
+                                            })
+                    @Html.ValidationMessageFor(m => m.Customer.ft_time_s)
+                </div>
+
+                <label for="" class="w-1 control-label">Place</label>
+                <div class="w-3">
+                    @Html.TextBoxFor(m => m.Customer.ft_place, new { @class = "form-control input-sm k-textbox w100 ", maxlength = "100",
+                                                                     @data_bind = "value: Customer.ft_place, disabled: isFinalized"
+                                    })
+                    @Html.ValidationMessageFor(m => m.Customer.ft_place)
+                </div>
+            </div>
+        </div>
+
+        @* In Flight Tab *@
+        <div class="tab-pane" id="panInFlight">
+            <div class="form-group">
+                <label for="" class="w-2 control-label">Flight No.</label>
+                <div class="w-1">
+                    @Html.TextBoxFor(m => m.Customer.in_flight,
+                                            new {
+                                                @class = "form-control input-sm k-textbox w100 toupper tohankaku",
+                                                maxlength = "10",
+                                                @data_bind = "value: Customer.in_flight, disabled: isFinalized"
+                                            })
+                    @Html.ValidationMessageFor(m => m.Customer.in_flight)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="" class="w-2 control-label">Origin</label>
+                <div class="w-1">
+                    @Html.TextBoxFor(m => m.Customer.in_dep,
+                                            new {
+                                                @class = "form-control input-sm k-textbox w100 toupper tohankaku",
+                                                maxlength = "3",
+                                                @data_bind = "value: Customer.in_dep, disabled: isFinalized"
+                                            })
+                    @Html.ValidationMessageFor(m => m.Customer.in_dep)
+                </div>
+                <label for="" class="w-2 control-label">Departure</label>
+                <div class="w-2">
+                    @Html.TextBoxFor(m => m.Customer.in_dep_date,
+                                            new {
+                                                @class = "form-control input-sm todate",
+                                                maxlength = "10",
+                                                data_role = "datepicker",
+                                                @style = "width: 100px;",
+                                                @data_bind = "value: Customer.in_dep_date, disabled: isFinalized"
+                                            })
+                    @Html.ValidationMessageFor(m => m.Customer.in_dep_date)
+                </div>
+                <div class="w-1">
+                    @Html.TextBoxFor(m => m.Customer.in_dep_time_s,
+                                            new {
+                                                @class = "form-control input-sm k-textbox totime",
+                                                maxlength = "5",
+                                                placeholder = "hh:mm",
+                                                @data_bind = "value: Customer.in_dep_time_s, disabled: isFinalized"
+                                            })
+                    @Html.ValidationMessageFor(m => m.Customer.in_dep_time_s)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="" class="w-2 control-label">Destination</label>
+                <div class="w-1">
+                    @Html.TextBoxFor(m => m.Customer.in_arr,
+                                            new {
+                                                @class = "form-control input-sm k-textbox w100 toupper tohankaku",
+                                                maxlength = "3",
+                                                @data_bind = "value: Customer.in_arr, disabled: isFinalized"
+                                            })
+                    @Html.ValidationMessageFor(m => m.Customer.in_arr)
+                </div>
+                <label for="" class="w-2 control-label">Arrival</label>
+                <div class="w-2">
+                    @Html.TextBoxFor(m => m.Customer.in_arr_date,
+                                            new {
+                                                @class = "form-control input-sm todate",
+                                                maxlength = "10",
+                                                data_role = "datepicker",
+                                                @style = "width: 100px;",
+                                                @data_bind = "value: Customer.in_arr_date, disabled: isFinalized"
+                                            })
+                    @Html.ValidationMessageFor(m => m.Customer.in_arr_date)
+                </div>
+                <div class="w-1">
+                    @Html.TextBoxFor(m => m.Customer.in_arr_time_s,
+                                             new {
+                                                 @class = "form-control input-sm k-textbox totime",
+                                                 maxlength = "5",
+                                                 placeholder = "hh:mm",
+                                                 @data_bind = "value: Customer.in_arr_time_s, disabled: isFinalized"
+                                             })
+                    @Html.ValidationMessageFor(m => m.Customer.in_arr_time_s)
+                </div>
+            </div>
+        </div>
+
+        @* Out Flight Tab *@
+        <div class="tab-pane" id="panOutFlight">
+            <div class="form-group">
+                <label for="" class="w-2 control-label">Flight No.</label>
+                <div class="w-1">
+                    @Html.TextBoxFor(m => m.Customer.out_flight,
+                                            new {
+                                                @class = "form-control input-sm k-textbox w100 toupper tohankaku",
+                                                maxlength = "10",
+                                                @data_bind = "value: Customer.out_flight, disabled: isFinalized"
+                                            })
+                    @Html.ValidationMessageFor(m => m.Customer.out_flight)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="" class="w-2 control-label">Origin</label>
+                <div class="w-1">
+                    @Html.TextBoxFor(m => m.Customer.out_dep,
+                                            new {
+                                                @class = "form-control input-sm k-textbox w100 toupper tohankaku",
+                                                maxlength = "3",
+                                                @data_bind = "value: Customer.out_dep, disabled: isFinalized"
+                                            })
+                    @Html.ValidationMessageFor(m => m.Customer.out_dep)
+                </div>
+                <label for="" class="w-2 control-label">Departure</label>
+                <div class="w-2">
+                    @Html.TextBoxFor(m => m.Customer.out_dep_date,
+                                            new {
+                                                @class = "form-control input-sm todate",
+                                                maxlength = "10",
+                                                data_role = "datepicker",
+                                                @style = "width: 100px;",
+                                                @data_bind = "value: Customer.out_dep_date, disabled: isFinalized"
+                                            })
+                    @Html.ValidationMessageFor(m => m.Customer.out_dep_date)
+                </div>
+                <div class="w-1">
+                    @Html.TextBoxFor(m => m.Customer.out_dep_time_s,
+                                            new {
+                                                @class = "form-control input-sm k-textbox totime",
+                                                maxlength = "5",
+                                                placeholder = "hh:mm",
+                                                @data_bind = "value: Customer.out_dep_time_s, disabled: isFinalized"
+                                            })
+                    @Html.ValidationMessageFor(m => m.Customer.out_dep_time_s)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="" class="w-2 control-label">Destination</label>
+                <div class="w-1">
+                    @Html.TextBoxFor(m => m.Customer.out_arr,
+                                            new {
+                                                @class = "form-control input-sm k-textbox w100 toupper tohankaku",
+                                                maxlength = "3",
+                                                @data_bind = "value: Customer.out_arr, disabled: isFinalized"
+                                            })
+                    @Html.ValidationMessageFor(m => m.Customer.out_arr)
+                </div>
+                <label for="" class="w-2 control-label">Arrival</label>
+                <div class="w-2">
+                    @Html.TextBoxFor(m => m.Customer.out_arr_date,
+                                            new {
+                                                @class = "form-control input-sm todate",
+                                                maxlength = "10",
+                                                data_role = "datepicker",
+                                                @style = "width: 100px;",
+                                                @data_bind = "value: Customer.out_arr_date, disabled: isFinalized"
+                                            })
+                    @Html.ValidationMessageFor(m => m.Customer.out_arr_date)
+                </div>
+                <div class="w-1">
+                    @Html.TextBoxFor(m => m.Customer.out_arr_time_s,
+                                            new {
+                                                @class = "form-control input-sm k-textbox totime",
+                                                maxlength = "5",
+                                                placeholder = "hh:mm",
+                                                @data_bind = "value: Customer.out_arr_time_s, disabled: isFinalized"
+                                            })
+                    @Html.ValidationMessageFor(m => m.Customer.out_arr_time_s)
+                </div>
+            </div>
+        </div>
+
+        @* Hotel Tab *@
+        <div class="tab-pane" id="panHotel">
+            <div class="form-group">
+                <label for="" class="w-2 control-label">Hotel</label>
+                <div class="w-3">
+                    @Html.TextBoxFor(m => m.Customer.hotel_cd,
+                         new {
+                             @class = "form-control input-sm  select-hotel toupper tohankaku",
+                             maxlength = "3",
+                             @data_bind = "value: Customer.hotel_cd, disabled: isFinalized"
+                         })
+                    @Html.ValidationMessageFor(m => m.Customer.hotel_cd)
+                </div>
+                <label for="" class="w-1 control-label">Room No.</label>
+                <div class="w-1">
+                    @Html.TextBoxFor(m => m.Customer.room_number,
+                                            new {
+                                                @class = "form-control input-sm k-textbox w100 toupper tohankaku",
+                                                maxlength = "5",
+                                                @data_bind = "value: Customer.room_number, disabled: isFinalized"
+                                            })
+                    @Html.ValidationMessageFor(m => m.Customer.room_number)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="" class="w-2 control-label">Check In</label>
+                <div class="w-2">
+                    @Html.TextBoxFor(m => m.Customer.checkin_date,
+                                            new {
+                                                @class = "form-control input-sm todate",
+                                                maxlength = "10",
+                                                data_role = "datepicker",
+                                                @style = "width: 100px;",
+                                                @data_bind = "value: Customer.checkin_date, disabled: isFinalized"
+                                            })
+                    @Html.ValidationMessageFor(m => m.Customer.checkin_date)
+                </div>
+
+                <label for="" class="w-2 control-label">Check Out</label>
+                <div class="w-2">
+                    @Html.TextBoxFor(m => m.Customer.checkout_date,
+                                            new {
+                                                @class = "form-control input-sm todate",
+                                                maxlength = "10",
+                                                data_role = "datepicker",
+                                                @style = "width: 100px;",
+                                                @data_bind = "value: Customer.checkout_date, disabled: isFinalized"
+                                            })
+                    @Html.ValidationMessageFor(m => m.Customer.checkout_date)
+                </div>
+            </div>
+        </div>
+
+        @* Attend Tab *@
+        <div class="tab-pane" id="panAttend">
+            <div class="form-group">
+                <label for="attend_count" class="w-2 control-label">Count</label>
+                <div class="w-1">
+                    @Html.TextBoxFor(m => m.Customer.attend_count,
+                                            new {
+                                                @class = "numeric",
+                                                maxlength = "3",
+                                                data_role = "numerictextbox",
+                                                data_format= "n0",
+                                                data_spinners = "false",
+                                                data_step = "1",
+                                                data_min = "0",
+                                                data_max = "999",
+                                                @style = "width: 40px;",
+                                                @data_bind = "value: Customer.attend_count, disabled: isFinalized"
+                                            })
+                    @Html.ValidationMessageFor(m => m.Customer.attend_count)
+                </div>
+
+                <label for="attend_name" class="w-1 control-label">Name</label>
+                <div class="w-3">
+                    @Html.TextBoxFor(m => m.Customer.attend_name,
+                                            new {
+                                                @class = "form-control input-sm k-textbox w100 toupper tohankaku",
+                                                maxlength = "100",
+                                                @data_bind = "value: Customer.attend_name, disabled: isFinalized"
+                                            })
+                    @Html.ValidationMessageFor(m => m.Customer.bf_time_s)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="" class="w-1 control-label">Memo</label>
+                <div class="w-9">
+                    @Html.TextAreaFor(m => m.Customer.attend_memo, 
+                                        new { @class = "form-control input-sm k-textbox w100 ",
+                                              @data_bind = "value: Customer.attend_memo, disabled: isFinalized"
+                                        })
+                    @Html.ValidationMessageFor(m => m.Customer.attend_memo)
+                </div>
+            </div>
+        </div>
+
+        @* Address Tab *@
+        <div class="tab-pane" id="panAddress">
+            <div class="toolbar">
+                <button type="button"
+                        class="btn btn-primary"
+                        style="display:none;"
+                        data-bind="click: onAddressInfoNew, disabled: isFinalized, visible: isSaveButtonVisible">
+                    <span class="glyphicon glyphicon-plus"></span> Add Address
+                </button>
+            </div>
+
+            <div data-role="grid"
+                 data-auto-bind="true"
+                 data-bind="source: Customer.AddressInfos, events: {edit: onEdit}"
+                 data-sortable="true"
+                 data-resizable="true"
+                 data-selectable="true"
+                 data-scrollable="true"
+                 data-groupable="false"
+                 data-navigatable="false"
+                 data-height="140"
+                 data-columns="[  {field: 'pax_type', title: 'Type', width: 50 }
+                    , {field: 'pax_name', title: 'Name', width: 140 }
+                    , {field: 'jpn_zip', title: 'Postal', width: 80 }
+                    , {field: 'address_kanji', title: 'Address' }
+                    , {field: 'home_tel', title: 'Home Tel', width: 120 }
+                    , {field: 'info_id', title: ' ', width: 80}
+                 ]"
+                 data-row-template="tpl_address_row">
+            </div>
+
+            <script id="tpl_address_row" type="text/k-kendo-tmpl">
+                <tr data-uid="#: uid #" >
+                    <td >#: pax_type || '' #</td>
+                    <td >#: pax_name || '' #</td>
+                    <td >#: jpn_zip || '' #</td>
+                    <td >#: address_kanji || '' #</td>
+                    <td >#: home_tel || '' #</td>
+                    <td class="col_edit">
+                        <a data-infoid='#=info_id#' class='btn btn-sm btn-default' 
+                            data-bind='click:onAddressInfoEdit'><span class='k-icon k-edit'></span></a> 
+                        <a data-infoid='#=info_id#' class='btn btn-sm btn-default'
+                           data-bind='click:onAddressInfoDelete, disabled: isFinalized, visible:isSaveButtonVisible'><span class='k-icon k-delete'></span></a>
+                    </td>
+                </tr>
+            </script>
+        </div>
+
+        @* Costume Tab *@
+        <div class="tab-pane" id="panCostume">
+            <div class="toolbar">
+                <button type="button"
+                        class="btn btn-primary"
+                        style="display:none;"
+                        data-bind="click: onCosInfoNew, disabled: isFinalized, visible: isSaveButtonVisible">
+                    <span class="glyphicon glyphicon-plus"></span> Add Costume
+                </button>
+                <button type="button" id="btnOrderSheet" class="btn btn-primary pull-right" style="width:100px; "
+                        data-contenturl='@Url.Action("PreviewCostumeOrderSheet")'
+                        data-bind="events: {click: onOrderSheetClick}, visible:undoFinalizeEnabled, disabled: orderSheetDisabled">
+                    Order Sheet
+                </button>
+            </div>
+
+            <div data-role="grid"
+                 data-auto-bind="true"
+                 data-bind="source: Customer.CosInfos, events: {edit: onEdit}"
+                 data-sortable="true"
+                 data-resizable="true"
+                 data-selectable="true"
+                 data-scrollable="true"
+                 data-groupable="false"
+                 data-navigatable="false"
+                 data-height="140"
+                 data-columns="[  {field: 'pax_type', title: 'Type', width: 50 }
+                    , {field: 'height', title: 'Height', width: 70, attributes: ' style=\'text-align:right;\'' }
+                    , {field: 'chest', title: 'Chest', width: 70, attributes: ' style=\'text-align:right;\'' }
+                    , {field: 'waist', title: 'Waist', width: 70 , attributes: ' style=\'text-align:right;\'' }
+                    , {field: 'cloth_size', title: 'Cloth Size', attributes: ' style=\'text-align:right;\'' }
+                    , {field: 'shoe_size', title: 'Shoe Size', attributes: ' style=\'text-align:right;\'' }
+                    , {field: 'note', title: 'Note', width: 200 }
+                    , {field: 'info_id', title: ' ', width: 80}
+                 ]"
+                 data-row-template="tpl_cosinfo_row">
+            </div>
+
+            <script id="tpl_cosinfo_row" type="text/k-kendo-tmpl">
+                <tr data-uid="#: uid #" >
+                    <td >#: pax_type || '' #</td>
+                    <td >#: height || '' #</td>
+                    <td >#: chest || '' #</td>
+                    <td >#: waist || '' #</td>
+                    <td >#: cloth_size || '' #</td>
+                    <td >#: shoe_size || '' #</td>
+                    <td >#: note || '' #</td>
+                    <td class="col_edit">
+                        <a data-infoid='#=info_id#' class='btn btn-sm btn-default'
+                           data-bind='click:onCosInfoEdit'><span class='k-icon k-edit'></span></a> 
+                        <a data-infoid='#=info_id#' class='btn btn-sm btn-default'
+                           data-bind='click:onCosInfoDelete, disabled: isFinalized, visible:isSaveButtonVisible'><span class='k-icon k-delete'></span></a>
+                    </td>
+                </tr>
+            </script>
+        </div>    
+    </div>
+</div>
+
+<div class="w-2" style="margin-left:16px;">
+    <div class="form-group">
+        <button type="button" class="btn btn-primary btn-sm button-report"
+                data-contenturl='@Url.Action("PreviewFinalInfo")'
+                data-bind="events: {click: onFileClick}, enabled: isScheduleSheetEnabled">
+            File (<span data-bind="text: FileNumber"></span>)
+</button>
+
+        <div data-bind="visible: isFinalizeVisible" style="display:none;margin-top:24px;">
+            <button type="button" class="btn btn-warning save-button"
+                    style="margin-bottom: 20px; display:none;"
+                    data-bind="events: {click: onFinalizeClick}, visible: isSaveButtonVisible">
+                Finalize
+            </button>
+        </div>
+
+        <div data-bind="visible: isFinalized" style="display:none;margin-top:24px;">
+            <div type="button" class="btn btn-warning save-button" disabled >
+                <span>FINALIZED</span>
+            </div>
+        </div>
+
+        <div data-bind="visible: isUndoFinalizeVisible" style="display:none;margin-top:4px;">
+            <button type="button" class="btn save-button"
+                    style="margin-bottom: 4px;"
+                    data-bind="events: {click: onUndoFinalizeClick}, enabled: undoFinalizeEnabled">
+                <span data-bind="text: undoFinalizeText">Undo Finalize</span>
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="w-off-1 w-9">
+    @Html.ValidationSummary(true)
+</div>

@@ -1,0 +1,30 @@
+﻿@using MauloaDemo.Customer.Controllers;
+@using MauloaDemo.Customer.ViewModels;
+
+@functions {
+
+    public static bool isJPN()
+    {
+        var pg = (System.Web.Mvc.WebViewPage)PageContext.Page;
+        var viewBag = pg.ViewBag;
+
+        RegionInfo regionInfo = viewBag.CurrentRegionInfo;
+
+        if (regionInfo == null)
+        {
+            regionInfo = Session[Constants.SSKEY_CURRENT_REGION] as RegionInfo;
+        }
+
+        if (regionInfo == null)
+        {
+            regionInfo = new RegionInfo();
+        }
+        return regionInfo.CurrentLanguage == "J";
+    }
+}
+
+@helper L(string str_jpn, string str_eng)
+{
+    @(Lang.isJPN() ? str_jpn : str_eng)
+}
+

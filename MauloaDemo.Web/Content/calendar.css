@@ -1,0 +1,171 @@
+﻿/* カレンダー画面用スタイル
+-------------------------------------------------- */
+.customer_box {
+    min-height: 40px;
+    width: 160px;
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid pink;
+    float: left;
+    background-color:#ddd;
+    cursor:pointer;
+}
+
+.calender_range {
+    margin: 10px;
+    padding: 8px;
+    font-size: larger;
+    background-color: #fff;
+    border-radius:8px;
+}
+
+.pickup_msg {
+    margin-top: 12px;
+    margin-left:20px;
+    color: #888;
+    font-size: small;
+}
+
+/*#txtChurchCd {
+    margin-left: 60px;
+}*/
+
+.calendar-wrapper {
+    margin: auto;
+    min-width:400px;
+    max-width:1400px;
+}
+
+.calendar_header {
+    min-height: 26px;
+    width: 12.5%;
+    margin: 1px;
+    padding: 8px 6px 6px 6px;
+    border: 1px solid #ccc;
+    float: left;
+    font-size:larger;
+    text-align: center;
+    color: #444;
+    background-color:#fff;
+    cursor:default;
+}
+.calendar_header.weekend {
+    color: rgb(252, 45, 178);
+    background-color: #fff;
+}
+
+.calendar_day {
+    min-height: 100px;
+    width: 12.5%;
+    margin: 1px;
+    padding: 2px 6px 6px 6px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #ccc;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #ccc;
+    float: left;
+    background-color:#eee;
+}
+.calendar_day.weekend {
+    color: #fff;
+    background-color: #fdd;
+}
+
+.calendar_day_title {
+    font-size: medium;
+    color: #444;
+    text-align: left;
+}
+
+.search_date {
+    background-color: yellow;
+}
+
+.past_date {
+    background-color: #bbb;
+}
+
+.calendar-dayitem-list {
+    border: none;
+    background-color: transparent;
+}
+
+.past_date .calendar_dayitem {
+    background-color: #ccc;
+    border: 1px solid transparent;
+    cursor: default;
+}
+
+.calendar_dayitem {
+    margin: 1px;
+    padding: 2px 1px 2px 1px;
+    font-size: smaller;
+    color: #44a;
+    background-color: #fff;
+    border: 1px solid transparent;
+    text-align: left;
+    cursor:pointer;
+}
+
+    .calendar_dayitem:hover {
+        border: 1px solid red;
+        color: red;
+        font-weight: bold;
+    }
+
+    .calendar_dayitem.notavailable {
+        display: none;
+    }
+
+    .calendar_dayitem.booked {
+        cursor: pointer;
+        color: #00f;
+        background-color: #9decfc;
+    }
+
+    .calendar_dayitem.booked.cxlrq {
+        color: #f00;
+        background-color: pink;
+        font-weight: bold;
+    }
+
+    .calendar_dayitem.sunset {
+        /*color: orange;*/
+        /*background-color: #fcc895;*/
+    }
+
+    .calendar_dayitem.irregular_time {
+        color: #00f;
+        background-color: #fba6e1;
+    }
+
+    .calendar_dayitem.finalized {
+        color: #fff;
+        background-color: #f3a20e;
+    }
+
+    .calendar_dayitem.displayonly {
+        cursor: default;
+    }
+
+    .calendar_dayitem>div {
+        display:none;
+        margin: 5px;
+        padding: 3px 3px 3px 3px;
+        /*font-size: smaller;*/
+        color: #444;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        text-align: left;
+    }
+    .calendar_dayitem:hover>div {
+        display: block;
+        position: absolute;
+    }
+
+.bottom-buttons {
+    clear: both;
+    text-align: center;
+    margin-top: 30px;
+}
+

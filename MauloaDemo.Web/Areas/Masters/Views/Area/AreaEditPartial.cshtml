@@ -1,0 +1,145 @@
+﻿<div id="editWindow"
+     data-role="window"
+     data-visible="false"
+     data-modal="true"
+     data-min-width="500"
+     data-width="600"
+     data-min-height="400"
+     data-height="500"
+     style="display:none;">
+
+    <div id="editDiv">
+        <form class="form-horizontal" data-role="validator">
+            <div class="form-group">
+                <label for="area_cd" class="col-sm-4 control-label required">Code</label>
+                <div class="col-sm-2">
+                    <input name="area_cd" type="text" data-bind="value: model.area_cd, enabled: isCodeEditable"
+                           maxlength="3" required
+                           class="form-control input-sm k-input k-textbox toupper tohankaku" />
+                </div>
+                <label for="area_seq" class="col-sm-offset-2 col-sm-1 control-label">Seq#</label>
+                <div class="col-sm-2">
+                    <input name="area_seq" type="text" data-bind="value: model.area_seq"
+                           maxlength="4"
+                           class="form-control input-sm k-input k-textbox tohankaku numeric" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="desc_eng" class="col-sm-4 control-label">Description Eng</label>
+                <div class="col-sm-9">
+                    <input name="desc_eng" type="text" data-bind="value: model.desc_eng" maxlength="30" 
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="desc_jpn" class="col-sm-4 control-label">Description Jpn</label>
+                <div class="col-sm-9">
+                    <input name="desc_jpn" type="text" data-bind="value: model.desc_jpn" maxlength="30"
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="address_name" class="col-sm-4 control-label required">Name Eng</label>
+                <div class="col-sm-9">
+                    <input name="address_name" type="text" data-bind="value: model.address_name" 
+                           maxlength="50" required
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="add_name_jpn" class="col-sm-4 control-label required">Name Jpn</label>
+                <div class="col-sm-9">
+                    <input name="add_name_jpn" type="text" data-bind="value: model.add_name_jpn" 
+                           maxlength="50" required
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="main_add1" class="col-sm-4 control-label required">Address 1</label>
+                <div class="col-sm-9">
+                    <input name="main_add1" type="text" data-bind="value: model.main_add1" 
+                           maxlength="50" required
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="main_add2" class="col-sm-4 control-label">Address 2</label>
+                <div class="col-sm-9">
+                    <input name="main_add2" type="text" data-bind="value: model.main_add2" maxlength="50" 
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="main_add3" class="col-sm-4 control-label">Address 3</label>
+                <div class="col-sm-9">
+                    <input name="main_add3" type="text" data-bind="value: model.main_add3" maxlength="50" 
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="main_add4" class="col-sm-4 control-label">Address 4</label>
+                <div class="col-sm-9">
+                    <input name="main_add4" type="text" data-bind="value: model.main_add4" maxlength="50" 
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="main_tel" class="col-sm-4 control-label">Phone</label>
+                <div class="col-sm-4">
+                    <input name="main_tel" type="text" data-bind="value: model.main_tel" maxlength="20" 
+                           class="form-control input-sm k-input k-textbox tohankaku " />
+                </div>
+                <label for="main_fax" class="col-sm-1 control-label">Fax</label>
+                <div class="col-sm-3">
+                    <input name="main_fax" type="text" data-bind="value: model.main_fax" maxlength="20" 
+                           class="form-control input-sm k-input k-textbox tohankaku " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="emg_contact1" class="col-sm-4 control-label">Emg Contact 1</label>
+                <div class="col-sm-3">
+                    <input name="emg_contact1" type="text" data-bind="value: model.emg_contact1" maxlength="20" 
+                           class="form-control input-sm k-input k-textbox tohankaku " />
+                </div>
+
+                <div class="col-sm-3">
+                    <input name="emg_tel1" type="text" data-bind="value: model.emg_tel1" maxlength="20" 
+                           class="form-control input-sm k-input k-textbox tohankaku " />
+                </div>
+                <div class="col-sm-3 help-block">(Name/Phone)</div>
+            </div>
+
+            <div class="form-group">
+                <label for="emg_contact2" class="col-sm-4 control-label">Emg Contact 2</label>
+                <div class="col-sm-3">
+                    <input name="emg_contact2" type="text" data-bind="value: model.emg_contact2" maxlength="20" 
+                           class="form-control input-sm k-input k-textbox tohankaku " />
+                </div>
+
+                <div class="col-sm-3">
+                    <input name="emg_tel2" type="text" data-bind="value: model.emg_tel2" maxlength="20" 
+                           class="form-control input-sm k-input k-textbox tohankaku " />
+                </div>
+                <div class="col-sm-3 help-block">(Name/Phone)</div>
+            </div>
+
+            @* Saveボタン、Closeボタン *@
+            <div class="buttons">
+                <input id="btnEditSave" type="button" value="Save" data-bind="click:onSave" class="btn btn-primary btn-save" />
+                <input id="btnEditClose" type="button" value="Close" data-bind="click: onClose" class="btn btn-default btn-close" />
+            </div>
+        </form>
+    </div>
+
+</div> @* End of editWindow *@
+

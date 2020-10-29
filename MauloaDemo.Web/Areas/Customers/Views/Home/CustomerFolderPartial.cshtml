@@ -1,0 +1,79 @@
+﻿@using MauloaDemo.Models
+@using MauloaDemo.Models.Combined
+@model CustomerInfo
+@{
+    Customer customer = Model.Customer;
+
+}
+
+
+<style scoped>
+    #editDiv {
+        width: 100% !important;
+    }
+
+    .customer-number {
+        color: #44A;
+        margin-top: 16px;
+    }
+
+    .form-delete {
+        display: inline;
+    }
+
+    .upload_button {
+        margin: 20px auto 8px 20px;
+        padding-left: 30px;
+    }
+
+    .table_description {
+        text-align: left;
+        margin: 2px auto 8px 500px;
+        color: #808080;
+    }
+</style>
+
+<div id="editWindow"
+     data-role="window"
+     data-visible="false"
+     data-modal="true"
+     data-min-width="700"
+     data-width="90%"
+     data-min-height="610"
+     data-height="610"
+     style="display:none;">
+
+    <div id="editDiv">
+        <h4 class="customer-number">
+            Files for Customer #(<span data-bind="text: c_num"></span>)
+        </h4>
+        @*<input type="hidden" id="hdnCNum" value="@c_num" />*@
+
+        <div class="row upload_button">
+            Add files...
+            <input id="files"
+                   name="files"
+                   type="file"
+                   data-role="upload"
+                   data-async='{"saveUrl":"@Url.Action("Upload", "CustomerFolder")?c_num=@customer.c_num", "autoUpload":true}'
+                   data-bind="events: {complete: onUploadComplete, error: onUploadError}" />
+        </div>
+
+        <div class="row">
+            <div class="table_description">各列の見出しをクリックすると並べ替え出来ます。</div>
+            <div class="k-content" style="width: 600px; margin-left: 40px;">
+                <div id="grd"
+                     data-auto-bind="true"
+                     data-role="grid"
+                     data-bind="source: listFiles"
+                     data-sortable="true"
+                     data-resizable="true"
+                     data-scrollable="true"
+                     data-columns="[{field: 'Filename', title: 'Filename', template: '<a href=\'\' target=\'_blank\' data-bind=\'click:onDownloadFile\'>#=Filename#</a>'}, {field: 'Size', title: 'Size(KB)', width: 80, template: '#=SizeInKB#', attributes: ' style=\'text-align:right;\''}, {field: 'UploadDate', title: 'Uploaded', width: 160, template: '#=UploadDateStr#'}, {field: 'Filename', title: ' ', width: 100, template: '<a href=\'\' data-bind=\'click:onDeleteFile\'>Delete</a>'}]">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div> @* End of editWindow *@
+

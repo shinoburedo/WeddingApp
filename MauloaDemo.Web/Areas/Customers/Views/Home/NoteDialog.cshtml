@@ -1,0 +1,49 @@
+﻿<style scoped>
+    .bottom-buttons {
+        clear: both;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .section-info {
+        margin: 30px 16px 30px 20px;
+    }
+
+</style>
+
+<div class="note-dialog">
+
+    <form class="form-horizontal">
+
+        <div class="form-group" id="add_note">
+            <textarea class="form-control input-sm k-input k-textbox" style="width:100%;height:200px;"
+                        data-bind="value: add_note"></textarea>
+        </div>
+
+        <div class="form-group">
+            <textarea class="form-control input-sm k-input k-textbox" style="width:100%;height:280px;color:#888;background-color:aliceblue;cursor:default;"
+                        data-bind="value: note, disabled: isEditPastDisable"></textarea>
+        </div>
+
+        <div class="bottom-buttons">
+            <input type="button" value=" Edit Past Entry "
+                   class="btn btn-default" style="width:100px;display:none;"
+                   data-bind="click: onEditClick, visible:isEditPastVisible" />
+
+            <input type="button" value=" Cancel Editing "
+                   class="btn btn-default" style="width:100px;display:none;"
+                   data-bind="click: onEditCancelClick, visible:isEditCancelVisible" />
+
+            <input type="button" value=" SAVE "
+                   class="btn btn-danger" style="width:100px; margin-left: 50px;"
+                   data-bind="click: onOkClick" />
+
+            <input type="button" value="Close"
+                    class="btn btn-default" style="width:100px; margin-left: 50px;"
+                    data-bind="click: closeDialog" />
+        </div>
+
+</form>
+</div>
+
+

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WtbApi.Data.Models.Region>
+<script>
+    function changeArea(region_cd, area_cd) {
+//        window.location.href = "@(Url.Action("Types", "Home"))" + region_cd + "/" + area_cd;
+        window.location.href = App.getUrl(region_cd + "/" + area_cd);
+    }
+
+    @*function changeRegion(region_cd, area_cd) {
+        var weddingDate = kendo.toString($("#datepicker").val(), "yyyy/MM/dd");
+
+        window.location.href = "@(Url.Action("SelectWeddingDate", "Home"))" + "?wed_date=" + weddingDate + "&region_cd=" + region_cd + "&area_cd=" + area_cd + "&type_list_display=true";
+    }*@
+</script>
+
+<div class="itemBlockArea">
+    @foreach (var region in Model) {
+        @*<h2 class="ribbonTtl"><span>@region.region_name_dis</span></h2>*@
+    @*<a onclick="changeArea('@region.region_cd', '@area.area_cd');" class="afade">*@
+        foreach (var area in region.areas) {
+        <div class="itemBlockIndex">
+            <div class="thumbArea">
+                <a href="~/Types/@region.region_cd/@area.area_cd" class="afade">
+                    <img src="@(ImageHelper.GetAreaImageUrl(region.region_cd, area.area_cd, "S", area.image_upload_date))" alt="" width="280" height="150" />
+                </a>
+            </div>
+            <div class="txtArea">
+                <a href="~/Types/@region.region_cd/@area.area_cd" class="afade">
+                    <h2>
+                        @if (region.region_name_dis == area.area_name_dis) {
+                            @Html.Raw(region.region_name_dis);
+                        } else {
+                            @Html.Raw(region.region_name_dis + " / " + area.area_name_dis);
+                        }
+                    </h2>
+                </a>
+            </div>
+        </div>
+        }
+        }
+</div>

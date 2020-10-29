@@ -1,0 +1,698 @@
+﻿/*========================================================
+	Bootstrapのカスタマイズ設定
+========================================================*/
+.row {
+    margin-left: 0;
+}
+
+form {
+    margin: 0;
+}
+
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    margin-bottom: 0;
+}
+
+textarea {
+    min-height: 60px;
+}
+
+input[disabled], input[readonly], select[disabled], select[readonly], textarea[disabled],textarea[readonly] {
+    cursor: default;
+}
+
+input[type="text"][disabled], input[type="text"][readonly], 
+input[type="date"][disabled], input[type="date"][readonly], 
+textarea[disabled], textarea[readonly]
+{
+    background-color: #ffd;
+}
+
+.row-fluid [class*="span"] {
+    margin-left: 10px;
+}
+
+.well {
+    padding: 5px 10px;
+    margin-bottom: 5px;
+}
+
+legend {
+    margin-bottom: 5px;
+    font-size: 15px;
+    line-height: 1;
+}
+
+.radio.inline,
+.checkbox.inline {
+    padding-top: 0;
+}
+
+/* IEのチェックボックスの周りにできる余白を削除 */
+input[type=checkbox] {
+    padding: 0;
+}
+label input[type=checkbox] { 
+    margin-top:3px;
+}
+
+/* チェックボックスにチェックが付いている場合、外枠を青色にする。 */
+input[type=checkbox]:checked{
+    outline:2px solid blue;
+}
+
+/*========================================================
+	Bootstrap Responsive のカスタマイズ設定
+========================================================*/
+@media (max-width: 767px) {
+
+    [class*="span"], .row-fluid [class*="span"] {
+        display: block;
+        float: none;
+        width: 100%;
+        margin-left: 0;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+}
+
+@media (min-width: 1200px) {
+    .row-fluid [class*="span"] {
+        margin-left: 0.564102564102564%;
+    }
+
+    .row-fluid .span6 {
+        width: 49.717948717948715%;
+    }
+
+    .row-fluid .span7 {
+        width: 59.26495726495726%;
+    }
+}
+
+body {
+    /* bootstrapを優先する為 */
+    /*font-size: .85em;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    background-color: #fff;
+    margin: 0px;*/
+    padding-left: 0;
+    color: #232323;
+    line-height: 1; /* Bootstrapのカスタマイズ */
+}
+
+header, footer, nav, section {
+    display: block;
+}
+
+#wrapper {
+    margin: 0 auto;
+    background: #fff;
+}
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+/* bootstrapを優先する為コメントアウト */
+/*fieldset {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}*/
+
+.editor-label {
+    margin: 1em 0 0 0;
+}
+
+.editor-field {
+    margin: 0.5em 0 0 0;
+}
+
+label {
+    white-space: nowrap; /* スペースで改行されないように設定 */
+}
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+
+
+/*========================================================
+	Kendo UI のカスタマイズ設定
+========================================================*/
+/* タブストリップ内の<a>タグのテキスト部分のクリック時に画面がスクロールしてしまう現象を防ぐ */
+/* 下記だとIEでは効かないのでjQueryでクリックイベントを無効化する事にした。 */
+/* 
+.k-tabstrip-items a {
+    pointer-events: none;
+} 
+*/
+
+/*---------- ComboBoxのリスト部分のスタイル (START)----------*/
+.k-list .k-item {
+    overflow: hidden; 
+}
+
+.k-list .k-item dl {
+    width: 400px;
+    line-height: 1;
+    margin: 3px;
+}
+
+.k-list .k-item dt,
+.k-list .k-item dd {
+    float: left;
+}
+
+.k-list .k-item dt {
+    clear: left;
+    font-weight: bold;
+    width: 60px;
+    text-align: left;
+}
+
+.k-list .k-item dd {
+    padding-bottom: .3em;
+}
+/*---------- ComboBoxのリスト部分のスタイル (END) ----------*/
+
+
+/*---------- DatePickerのスタイル (START)----------*/
+/* 不要 
+.k-widget.k-datepicker.k-header.k-input{
+    padding-top: 0px;
+}*/
+/*---------- DatePickerのスタイル (END)----------*/
+
+
+/*---------- Gridのスタイル(START) ----------*/
+/* IE8,9だとtrに背景色が付いている場合、選択時に行の色が変わらない現象を防ぐ。 */
+.k-state-selected {
+    background-color: #ffb6e1 !important;
+    border-color: #ffb6e1 !important;
+    background-image: none !important;
+}
+/*---------- Gridのスタイル(END) ----------*/
+
+/*========================================================
+	My Styles
+========================================================*/
+
+header {
+    height: 48px;
+    padding: 0;
+    color: #FFFFFF;
+}
+
+    header > ul li {
+        color: rgba(64, 64, 64, 0.40);
+    }
+
+    header a {
+        color: #FFF;
+        text-decoration: none;
+    }
+
+        header a:hover {
+            color: #FF0;
+            text-decoration: none;
+        }
+
+    header .horizontal_menu {
+        position: absolute;
+        top: 28px;
+        left: 180px;
+        width: 520px;
+        float: left;
+    }
+
+        header .horizontal_menu li {
+            display: inline;
+        }
+
+footer {
+    height: 30px;
+    margin-top: 60px;
+    padding: 4px;
+    font-size: 80%;
+    text-align: center;
+    /*background-color: #0033CC;*/
+    color: #FFFFFF;
+}
+
+/*
+    グラデーションは下記のサイトで作成しました。
+    http://www.colorzilla.com/gradient-editor/
+*/
+
+.bg_gradient {
+    background: #fcecfc; /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZjZWNmYyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2ZiYTZlMSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUxJSIgc3RvcC1jb2xvcj0iI2ZkODlkNyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZjdjZDgiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,  #fcecfc 0%, #fba6e1 50%, #fd89d7 51%, #ff7cd8 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fcecfc), color-stop(50%,#fba6e1), color-stop(51%,#fd89d7), color-stop(100%,#ff7cd8)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #fcecfc 0%,#fba6e1 50%,#fd89d7 51%,#ff7cd8 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #fcecfc 0%,#fba6e1 50%,#fd89d7 51%,#ff7cd8 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #fcecfc 0%,#fba6e1 50%,#fd89d7 51%,#ff7cd8 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #fcecfc 0%,#fba6e1 50%,#fd89d7 51%,#ff7cd8 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcecfc', endColorstr='#ff7cd8',GradientType=0 ); /* IE6-8 */
+}
+
+.bg_gradient_FT {
+    background: #ff7cd8; /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmN2NkOCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjQ5JSIgc3RvcC1jb2xvcj0iI2ZkODlkNyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2ZiYTZlMSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmY2VjZmMiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,  #ff7cd8 0%, #fd89d7 49%, #fba6e1 50%, #fcecfc 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff7cd8), color-stop(49%,#fd89d7), color-stop(50%,#fba6e1), color-stop(100%,#fcecfc)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ff7cd8 0%,#fd89d7 49%,#fba6e1 50%,#fcecfc 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ff7cd8 0%,#fd89d7 49%,#fba6e1 50%,#fcecfc 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ff7cd8 0%,#fd89d7 49%,#fba6e1 50%,#fcecfc 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #ff7cd8 0%,#fd89d7 49%,#fba6e1 50%,#fcecfc 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff7cd8', endColorstr='#fcecfc',GradientType=0 ); /* IE6-8 */
+}
+
+.bg_gradient_HWI {
+    background: rgb(122,188,255); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(122,188,255,1) 0%, rgba(96,171,248,1) 40%, rgba(64,150,238,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(122,188,255,1)), color-stop(40%,rgba(96,171,248,1)), color-stop(100%,rgba(64,150,238,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(122,188,255,1) 0%,rgba(96,171,248,1) 40%,rgba(64,150,238,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(122,188,255,1) 0%,rgba(96,171,248,1) 40%,rgba(64,150,238,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(122,188,255,1) 0%,rgba(96,171,248,1) 40%,rgba(64,150,238,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(122,188,255,1) 0%,rgba(96,171,248,1) 40%,rgba(64,150,238,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7abcff', endColorstr='#4096ee',GradientType=0 ); /* IE6-9 */
+}
+
+.bg_gradient_MIC {
+    background: rgb(44,83,158); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(44,83,158,1) 0%, rgba(44,83,158,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(44,83,158,1)), color-stop(100%,rgba(44,83,158,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(44,83,158,1) 0%,rgba(44,83,158,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(44,83,158,1) 0%,rgba(44,83,158,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(44,83,158,1) 0%,rgba(44,83,158,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(44,83,158,1) 0%,rgba(44,83,158,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2c539e', endColorstr='#2c539e',GradientType=0 ); /* IE6-9 */
+}
+
+.bg_gradient_USA {
+    background: rgb(96,108,136); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(96,108,136,1) 0%, rgba(63,76,107,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(96,108,136,1)), color-stop(100%,rgba(63,76,107,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#606c88', endColorstr='#3f4c6b',GradientType=0 ); /* IE6-9 */
+}
+
+.bg_gradient_JPN {
+    background: rgb(242,130,91); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(242,130,91,1) 0%, rgba(229,91,43,1) 50%, rgba(240,113,70,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(242,130,91,1)), color-stop(50%,rgba(229,91,43,1)), color-stop(100%,rgba(240,113,70,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(242,130,91,1) 0%,rgba(229,91,43,1) 50%,rgba(240,113,70,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(242,130,91,1) 0%,rgba(229,91,43,1) 50%,rgba(240,113,70,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(242,130,91,1) 0%,rgba(229,91,43,1) 50%,rgba(240,113,70,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(242,130,91,1) 0%,rgba(229,91,43,1) 50%,rgba(240,113,70,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2825b', endColorstr='#f07146',GradientType=0 ); /* IE6-9 */
+}
+
+.main {
+    padding: 8px 16px 8px 16px;
+}
+
+.center {
+    text-align: center;
+}
+
+#loginuser {
+    position: absolute;
+    display: block;
+    top: 16px;
+    left: 880px;
+    width: 240px;
+    color: #FFFFFF;
+}
+
+    #loginuser a {
+        color: #FFFFFF;
+        text-decoration: none;
+    }
+
+        #loginuser a:hover {
+            color: #FF0;
+            text-decoration: none;
+        }
+
+.savedmessage {
+    padding: 8px;
+    border: 1px solid #3399FF;
+    font-weight: bold;
+    color: #00F;
+    background-color: #FFFFCC;
+}
+
+.errormessage {
+    margin: 8px;
+    padding: 8px;
+    color: #FF3300;
+    background-color: #FFFFCC;
+    border: 1px solid #FF66CC;
+    font-weight: bold;
+
+    border-radius: 5px;
+    box-shadow: rgba(0,0,0,0.4) 3px 3px;
+}
+
+.notdone, .notdone:hover {
+    color: #888;
+}
+
+#_alert {
+    display: none;
+    z-index: 20001;
+    position: absolute;
+    top: 50%;
+    left: 35%;
+    width: 400px;
+    margin-top: -14px;
+    margin-left: -56.5px;
+    vertical-align: middle;
+    text-align : center;
+}
+
+.alert-error {
+    background-color: #fcc;
+    border: solid 2px red;
+}
+ 
+
+
+.hasdata {
+    color: #fff;
+    font-weight: bold;
+    -webkit-text-shadow: 2px 2px 2px #c00;
+    text-shadow: 2px 2px 2px #c00;
+}
+
+a.hasdata {
+    border: 2px dotted #888  ;
+}
+
+button.hasdata:hover,
+input.hasdata:hover {
+    color: yellow;
+}
+
+a.hasdata:after,
+button.hasdata:after,
+input.hasdata:after {
+    content: "";
+    position: relative;
+    display: inline-block;
+    /*z-index:20001;*/
+    top: -4px;
+    left: -2px;
+    width: 14px;
+    height: 14px;
+    background-image: url(Images/btn_red_check.png);
+    font-size: 0.8em;
+    color: rgba(0, 0, 0, 0);
+    -webkit-text-shadow: none;
+    text-shadow: none;
+
+    border-radius: 5px;
+    /*-webkit-box-shadow: 1px 1px 1px #444;
+    box-shadow: 1px 1px 1px #444;*/
+}
+
+/* テストサイトの場合に表示するメッセージ */
+.test_flag {
+    display: block;
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    top: 0px;
+    right: 0px;
+    padding: 4px;
+    background-color: #fc79dc;
+    color: #FFFFCC;
+    font-size: xx-large;
+    text-align: center;
+}
+
+
+/*-------------------
+	Login
+--------------------*/
+.login {
+    margin: 20px 100px 100px 40px;
+}
+
+    .login label {
+        display: block;
+        margin-top: 10px;
+    }
+
+    .login input {
+        display: block;
+    }
+
+    .login #email, .login #password {
+        width: 200px;
+    }
+
+/*---------------------
+ Users
+---------------------*/
+form #email, form #pwd_hash {
+    width: 280px;
+}
+
+#resetPwd {
+    display: none;
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: 380px;
+    left: 120px;
+    background-color: #ffc;
+    border: 1px solid blue;
+}
+
+    #resetPwd input {
+        display: block;
+    }
+
+#btnResetPwdClose a {
+    color: White;
+}
+
+    #btnResetPwdClose a:hover, #btnResetPwdClose a:active {
+        color: Yellow;
+    }
+
+/* Sidenav for Docs
+-------------------------------------------------- */
+.bs-docs-sidenav {
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+    -moz-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+    box-shadow: 0 1px 4px rgba(0,0,0,.065);
+}
+
+    .bs-docs-sidenav > li > a {
+        display: block;
+        *width: 190px;
+        margin: 0 0 -1px;
+        padding: 8px 14px;
+        border: 1px solid #e5e5e5;
+    }
+
+    .bs-docs-sidenav > li:first-child > a {
+        -webkit-border-radius: 6px 6px 0 0;
+        -moz-border-radius: 6px 6px 0 0;
+        border-radius: 6px 6px 0 0;
+    }
+
+    .bs-docs-sidenav > li:last-child > a {
+        -webkit-border-radius: 0 0 6px 6px;
+        -moz-border-radius: 0 0 6px 6px;
+        border-radius: 0 0 6px 6px;
+    }
+
+    .bs-docs-sidenav > .active > a {
+        position: relative;
+        z-index: 2;
+        padding: 9px 15px;
+        border: 0;
+        text-shadow: 0 1px 0 rgba(0,0,0,.15);
+        -webkit-box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+        -moz-box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+        box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+    }
+    /* Chevrons */
+    .bs-docs-sidenav .icon-chevron-right {
+        float: right;
+        margin-top: 2px;
+        margin-right: -6px;
+        opacity: .25;
+    }
+
+    .bs-docs-sidenav > li > a:hover {
+        background-color: #f5f5f5;
+    }
+
+    .bs-docs-sidenav a:hover .icon-chevron-right {
+        opacity: .5;
+    }
+
+    .bs-docs-sidenav .active .icon-chevron-right,
+    .bs-docs-sidenav .active a:hover .icon-chevron-right {
+        background-image: url(../img/glyphicons-halflings-white.png);
+        opacity: 1;
+    }
+
+    .bs-docs-sidenav.affix {
+        top: 40px;
+    }
+
+    .bs-docs-sidenav.affix-bottom {
+        position: absolute;
+        top: auto;
+        bottom: 270px;
+    }
+
+/* Masterポップアップ配置用クラス(IE8対策、かけないとアイコンが回り込む）
+-------------------------------------------------- */
+.master-popup-cell
+{
+    width:120px;
+    white-space:nowrap;
+}
+
+.SearchResultTable tbody{
+    cursor: pointer;
+}
+
+.SearchResultTable td{
+    line-height:10px;
+}
+
+/* フォントタイプをMSに変更(\マーク等日本語フォント使用する場合に使用)
+-------------------------------------------------- */
+.MsFontSetting {
+    font-family:'MS Gothic'
+}
+
+
+
+/* カレンダー画面用スタイル
+-------------------------------------------------- */
+.customer_box {
+    min-height: 40px;
+    width: 160px;
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid pink;
+    float: left;
+    background-color:#ddd;
+    cursor:pointer;
+}
+
+.calender_range {
+    margin: 10px;
+    font-size: larger;
+}
+
+.calendar-wrapper {
+    margin: auto;
+    min-width:400px;
+}
+
+.calendar_header {
+    min-height: 30px;
+    width: 13.5%;
+    margin: 1px;
+    padding: 8px;
+    border: 1px solid pink;
+    float: left;
+    font-size:larger;
+    text-align: center;
+    color: #444;
+    background-color:#fba6e1;
+    cursor:default;
+}
+
+.weekend {
+    background-color:rgb(252, 45, 178);
+    color: white;
+}
+
+.calendar_day {
+    min-height: 100px;
+    width: 13.5%;
+    margin: 1px;
+    padding: 2px 6px 6px 6px;
+    border: 1px solid pink;
+    float: left;
+    background-color:#eee;
+    cursor:pointer;
+}
+
+.calendar_day_title {
+    font-size: small;
+    color: #444;
+    text-align: right;
+}
+
+.calendar_dayitem {
+    margin: 0;
+    font-size: smaller;
+    color: #44a;
+    background-color: #fff;
+    border: solid 1px #eee;
+    text-align: left;
+}
+
+
+.view-switcher {
+    color: #666;
+}
+
+
+
+
+
+
+
+

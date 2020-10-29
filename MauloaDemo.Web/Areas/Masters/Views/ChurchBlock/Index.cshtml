@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Church Block";
+}
+
+@section head{
+    <link href="@Url.Content("~/Areas/Masters/Content/masters.css")" rel="stylesheet" type="text/css" />
+}
+
+<div class="app_wrapper">
+    <h3>@ViewBag.Title</h3>
+
+    <div id="app">
+        @* 検索パネル *@
+        <div class="search clearfix">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="" class="col-sm-1 control-label">Code</label>
+                    <div class="col-sm-1">
+                        <input type="text" data-bind="value: search.church_cd, events: {change: refreshList }" 
+                               maxlength="5"
+                               class="form-control input-sm k-input k-textbox toupper tohankaku" />
+                    </div>
+                    <label for="" class="col-sm-1 control-label">Name</label>
+                    <div class="col-sm-4">
+                        <input type="text" data-bind="value: search.church_name, events: { change: refreshList }" 
+                               maxlength="100"
+                                class="form-control input-sm k-input k-textbox" />
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+        @* 検索結果の一覧グリッド *@
+        <div id="grd"
+             data-role="grid"
+             data-bind="source: list"
+             data-selectable="true"
+             data-sortable="true"
+             data-resizable="true"
+             data-scrollable="true"
+             data-height="560"
+             data-columns="[  {field: 'church_cd', title: 'Code', width: 80}
+                            , {field: 'church_name', title: 'Name Eng'}
+                            , {field: 'church_name_jpn', title: 'Name Jpn'}
+                            , {field: 'church_cd', title: ' ', width: 60, template: '<a data-key=\'#=church_cd#\' class=\'btn btn-sm btn-default grid_edit_button\' data-bind=\'click:editItem\'><span class=\'k-icon k-edit\'><\/span><\/a>'}
+                        ]"></div>
+    </div>
+
+    @* 詳細編集ダイアログ *@
+    @Html.Partial("ChurchBlockEditPartial")
+</div>
+
+@section scripts {
+<script src="@Url.Content("~/Scripts/require.min.js")"
+            data-main="@Url.Content("~/Areas/Masters/Scripts/ChurchBlockIndexView")"></script>
+}

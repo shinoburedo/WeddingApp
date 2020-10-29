@@ -1,0 +1,262 @@
+@charset "UTF-8";
+/*****************************************************
+File Name: step3.css
+Style Info: 個別設定
+*****************************************************/
+/*====================================================
+メインビジュアル
+====================================================*/
+#mainVisual{
+	width: 100%;
+	height: 200px;
+	min-height: 200px;
+	text-align: center;
+	display: table;
+	background:url(../img/visual_sub_02.jpg) no-repeat center center;
+	background-size:100%;
+	background-position: center 70%;
+}
+.mainSection{
+	display: table-cell;
+    text-align: center;
+	vertical-align: middle;
+}
+
+/*====================================================
+#contents
+====================================================*/
+#contents{
+	width: 100%;
+	min-width: 100%;
+    overflow: hidden;
+	margin:0 auto;
+	padding:0 0 100px;
+	background: #fff;
+}
+/*====================================================
+言語切り替えボタン
+====================================================*/
+.languageArea{
+	background: #f3f3f3;
+	width: 100%;
+	text-align: right;
+	padding:10px;
+}
+.languageArea ul:after{
+	content:"";
+	display: block;
+	clear: both;
+	overflow: hidden;
+}
+.languageArea ul li{
+	display: inline-block;
+	vertical-align: top;
+}
+.languageArea ul li + li{
+	margin-left:10px;
+}
+
+/*====================================================
+processArea_wide
+====================================================*/
+.processArea_wide{
+    margin-top:10px;
+}
+.processArea_wide ul{
+    display: table;
+    border:solid 4px #fff;
+    font-size:14px;
+    line-height:40px;
+    height:40px;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    background:url(../img/bg_process_wide_04.png) no-repeat center center;
+}
+.processArea_wide li{
+    display: table-cell;
+    vertical-align: middle;
+    width:200px;
+    position: relative;
+}
+.processArea_wide li img{
+    vertical-align: middle;
+    margin-right:10px;
+}
+
+
+/*====================================================
+creditCardInputArea
+====================================================*/
+.creditCardInputArea{
+	font-size: 16px;
+	line-height: 1.5;
+	text-align: center;
+	width:1200px;
+	margin:0 auto;
+}
+/*====================================================
+クレジットカード情報の入力
+====================================================*/
+.creditCardInputArea{
+    width:680px;
+    margin:0 auto;
+    font-size:14px;
+    line-height: 1.5;
+}
+.creditCardInputArea .text-danger {
+    color: #e60012;
+    font-size: 14px;
+}
+.creditCardInputArea .form-group{
+    display: table;
+    text-align: center;
+    width:100%;
+}
+.creditCardInputArea .form_block_labelArea{
+    width:220px;
+    display: table-cell;
+    vertical-align: top;
+    text-align:right;
+    font-size:14px;
+    line-height: 32px;
+    white-space: nowrap;
+}
+.creditCardInputArea .form_block_inputArea{
+    width:540px;
+    display: table-cell;
+    vertical-align: top;
+    text-align:left;
+    padding-left:20px;
+}
+.creditCardInputArea .form_block_inputArea > img{
+    margin-top:3px;
+}
+.creditCardInputArea #card_number{
+    width: 330px;
+}
+.creditCardInputArea #card_conf_number{
+    width: 140px;
+}
+.creditCardInputArea .select_wrap_md{
+    display: table;
+    margin-bottom:15px;
+}
+.creditCardInputArea .select_wrap_md > div{
+    display:table-cell;
+    vertical-align: middle;
+}
+.creditCardInputArea .select_wrap_md > div + div{
+    padding-left:10px;
+}
+.creditCardInputArea .textArea{
+	font-size:14px;
+}
+
+.creditCardInputArea .btnList{
+	display: table;
+    margin: 40px auto 0;
+}
+.creditCardInputArea .btnList li{
+	display: table-cell;
+}
+.creditCardInputArea .btnList li + li{
+	padding-left:40px;
+}
+
+.creditCardInputArea input{
+    font-size: 14px;
+    width:100%;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 5px;
+    margin-bottom:15px;
+    font-size: 14px;
+}
+
+.creditCardInputArea input[type="submit"]{
+    display: block;
+    background: #d4d4d4;
+    color: #000;
+    text-align: center;
+    width: 110px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 5px;
+    font-size: 14px;
+    border:none;
+    -webkit-transition: opacity 0.2s; -moz-transition: opacity 0.2s; -ms-transition: opacity 0.2s; -o-transition: opacity 0.2s; transition: opacity 0.2s;
+}
+.creditCardInputArea input[type="submit"]:hover{
+    opacity: 0.7;
+    filter: alpha(opacity=0.7);
+}
+.creditCardInputArea .btnList .btn-primary{
+    background: #000;
+    color: #fff;
+}
+/*====================================================
+input
+====================================================*/
+.creditCardInputArea .custom-selectbox {
+    position: relative;
+    display: inline-block;
+    min-width:140px;
+}
+.creditCardInputArea .custom-selectbox select {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    opacity: 0;
+    width: 100%;
+    height:40px;
+}
+.creditCardInputArea .custom-selectbox .custom-inner {
+    display:block;
+    position: relative;
+    z-index: 0;
+    border: 1px solid #CCCCCC;
+    padding: 0 30px 0 12px;
+    vertical-align: middle;
+    font-size: 14px;
+    height:30px;
+    color:#000;
+    text-align: left;
+    line-height: 40px;
+    border-radius: 5px;
+}
+.creditCardInputArea .custom-selectbox .custom-inner:before,
+.creditCardInputArea .custom-selectbox .custom-inner:after {
+    content: '';
+    position: absolute;
+    display: block;
+}
+.creditCardInputArea .custom-selectbox .custom-inner:before {
+    border-left:solid 1px #CCCCCC;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 40px;
+    background: #ffffff;
+    background: -moz-linear-gradient(top,  #ffffff 0%, #d0cecf 100%);
+    background: -webkit-linear-gradient(top,  #ffffff 0%,#d0cecf 100%);
+    background: linear-gradient(to bottom,  #ffffff 0%,#d0cecf 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#d0cecf',GradientType=0 );
+
+}
+.creditCardInputArea .custom-selectbox .custom-inner:after {
+    top: 50%;
+    right: 14px;
+    margin-top: -3px;
+    width: 0;
+    height: 0;
+    border: solid transparent;
+    border-top-color: #000;
+    border-width: 6px 5px 0 5px;
+}
+.creditCardInputArea .custom-selectbox option{
+    font-size: 16px;
+    line-height: 1.5;
+}

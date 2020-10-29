@@ -1,0 +1,122 @@
+﻿<style scoped>
+    #editDiv {
+        width: 100% !important;
+    }
+</style>
+
+<div id="editWindow"
+     data-role="window"
+     data-visible="false"
+     data-modal="true"
+     data-min-width="600"
+     data-width="650"
+     data-min-height="710"
+     data-height="710"
+     style="display:none;">
+
+    <div id="editDiv">
+        <form class="form-horizontal" data-role="validator">
+
+            <div class="form-group">
+                <label for="from_date" class="col-sm-2 control-label required">From Date</label>
+                <div class="col-sm-12">
+                    <input name="from_date" type="text"
+                           data-role="datepicker"
+                           data-bind="value: model.from_date"
+                           class="form-control input-sm tohankaku "
+                           style="width:100px;" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="to_date" class="col-sm-2 control-label">To Date</label>
+                <div class="col-sm-12">
+                    <input name="to_date" type="text"
+                           data-role="datepicker"
+                           data-bind="value: model.to_date"
+                           class="form-control input-sm tohankaku "
+                           style="width:100px;" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="agent_cd" class="col-sm-2 control-label">Agent Cd</label>
+                <div class="col-sm-4">
+                    <input name="agent_cd" type="text" data-bind="value: model.agent_cd"
+                           class="form-control input-sm select-agent" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="notice_type" class="col-sm-2 control-label">Type</label>
+                <div class="col-sm-2">
+                    <select id="cmbNoticeType"
+                            maxlength="15"
+                            class="form-control input-sm toupper tohankaku "
+                            style="width:100px;"
+                            data-height="400"
+                            data-role="combobox"
+                            data-value-field="notice_type"
+                            data-text-field="notice_type"
+                            data-value-primitive="true"
+                            data-bind="value: model.notice_type, source: notice_type_list"
+                            data-template="typeComboTemplate"></select>
+                    <script type="text/template" id="typeComboTemplate">
+                        <dl>
+                            <dt>${ data.notice_type }</dt>
+                            <dd>${ data.name }</dd>
+                        </dl>
+                    </script>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="title_jpn" class="col-sm-2 control-label">Title Jpn</label>
+                <div class="col-sm-12">
+                    <input name="title_jpn" type="text" data-bind="value: model.title_jpn" maxlength="80"
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="title_eng" class="col-sm-2 control-label">Title Eng</label>
+                <div class="col-sm-12">
+                    <input name="title_eng" type="text" data-bind="value: model.title_eng" maxlength="80"
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="notice_jpn" class="col-sm-2 control-label">Notice Jpn</label>
+                <div class="col-sm-12">
+                    <textarea class="form-control input-sm k-input k-textbox w100" style="height:200px;"
+                              data-bind="value: model.notice_jpn"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="notice_eng" class="col-sm-2 control-label">Notice Eng</label>
+                <div class="col-sm-12">
+                    <textarea class="form-control input-sm k-input k-textbox w100" style="height:200px;"
+                              data-bind="value: model.notice_eng"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="disp_seq" class="col-sm-2 control-label">Disp Seq</label>
+                <div class="col-sm-2">
+                    <input name="disp_seq" type="number" data-bind="value: model.disp_seq"
+                           class="form-control input-sm k-input k-textbox numeric" />
+                </div>
+            </div>
+
+            @* Saveボタン、Closeボタン *@
+            <div class="buttons">
+                <input id="btnEditSave" type="button" value="Save" data-bind="click:onSave" class="btn btn-primary btn-save" />
+                <input id="btnEditClose" type="button" value="Close" data-bind="click: onClose" class="btn btn-default btn-close" />
+            </div>
+        </form>
+    </div>
+
+</div> @* End of editWindow *@
+

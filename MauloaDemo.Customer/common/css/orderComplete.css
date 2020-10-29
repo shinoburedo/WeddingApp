@@ -1,0 +1,97 @@
+@charset "UTF-8";
+/*****************************************************
+File Name: step3.css
+Style Info: 個別設定
+*****************************************************/
+/*====================================================
+メインビジュアル
+====================================================*/
+#mainVisual{
+	width: 100%;
+	height: 300px;
+	min-height: 300px;
+	text-align: center;
+	display: table;
+	background:url(../img/visual_sub_02.jpg) no-repeat center center;
+	background-size:100%;
+	background-position: center 70%;
+}
+.mainSection{
+	display: table-cell;
+    text-align: center;
+	vertical-align: middle;
+}
+
+/*====================================================
+#contents
+====================================================*/
+#contents{
+	width: 100%;
+	min-width: 100%;
+    overflow: hidden;
+	margin:0 auto;
+	padding:0 0 100px;
+	background: #fff;
+}
+/*====================================================
+言語切り替えボタン
+====================================================*/
+.languageArea{
+	background: #f3f3f3;
+	width: 100%;
+	text-align: right;
+	padding:10px;
+}
+.languageArea ul:after{
+	content:"";
+	display: block;
+	clear: both;
+	overflow: hidden;
+}
+.languageArea ul li{
+	display: inline-block;
+	vertical-align: top;
+}
+.languageArea ul li + li{
+	margin-left:10px;
+}
+/*====================================================
+processArea_wide
+====================================================*/
+.processArea_wide{
+    margin-top:20px;
+}
+.processArea_wide ul{
+    display: table;
+    border:solid 4px #fff;
+    font-size:14px;
+    line-height:52px;
+    height:60px;
+    text-align: center;
+    margin: 0 auto;
+    background:url(../img/bg_process_wide_06.png) no-repeat center center;
+}
+.processArea_wide li{
+    display: table-cell;
+    vertical-align: middle;
+    width:200px;
+    position: relative;
+}
+.processArea_wide li img{
+    vertical-align: middle;
+    margin-right:10px;
+}
+
+/*====================================================
+orderComplete
+====================================================*/
+.orderCompleteArea{
+	font-size: 18px;
+	line-height: 1.5;
+	text-align: center;
+	width:1200px;
+	margin:0 auto;
+}
+.orderCompleteArea ul{
+	margin-top:140px;
+}

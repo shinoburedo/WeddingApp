@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ERR_DUP_KEY" xml:space="preserve">
+    <value>キーの値が重複しています。</value>
+  </data>
+  <data name="ERR_NOTFOUND" xml:space="preserve">
+    <value>データが見つかりません。</value>
+  </data>
+  <data name="ERR_USEDKEY_DELETE" xml:space="preserve">
+    <value>他のテーブルで使われているためこのレコードを削除する事は出来ません。</value>
+  </data>
+  <data name="LBL_ADDRESS" xml:space="preserve">
+    <value>住所</value>
+  </data>
+  <data name="LBL_ADDR_KANA1" xml:space="preserve">
+    <value>カナ(1)</value>
+  </data>
+  <data name="LBL_ADDR_KANA2" xml:space="preserve">
+    <value>カナ(2)</value>
+  </data>
+  <data name="LBL_ADDR_KANA3" xml:space="preserve">
+    <value>カナ(3)</value>
+  </data>
+  <data name="LBL_ADDR_KANJI1" xml:space="preserve">
+    <value>漢字(1)</value>
+  </data>
+  <data name="LBL_ADDR_KANJI2" xml:space="preserve">
+    <value>漢字(2)</value>
+  </data>
+  <data name="LBL_ADDR_KANJI3" xml:space="preserve">
+    <value>漢字(3)</value>
+  </data>
+  <data name="LBL_BRIDE" xml:space="preserve">
+    <value>新婦</value>
+  </data>
+  <data name="LBL_COUNT" xml:space="preserve">
+    <value>回数</value>
+  </data>
+  <data name="LBL_DATE_BY" xml:space="preserve">
+    <value>Date / By</value>
+  </data>
+  <data name="LBL_DISCLOSURE" xml:space="preserve">
+    <value>個人情報開示の同意</value>
+  </data>
+  <data name="LBL_DO_NOT_SEND" xml:space="preserve">
+    <value>送信しない</value>
+  </data>
+  <data name="LBL_EMAIL" xml:space="preserve">
+    <value>E-Mail</value>
+  </data>
+  <data name="LBL_FIRST_NAME" xml:space="preserve">
+    <value>名</value>
+  </data>
+  <data name="LBL_GROOM" xml:space="preserve">
+    <value>新郎</value>
+  </data>
+  <data name="LBL_JPN_ZIP" xml:space="preserve">
+    <value>郵便番号</value>
+  </data>
+  <data name="LBL_KANA" xml:space="preserve">
+    <value>カナ</value>
+  </data>
+  <data name="LBL_KANJI" xml:space="preserve">
+    <value>漢字</value>
+  </data>
+  <data name="LBL_LANG_NAME" xml:space="preserve">
+    <value>日本語</value>
+  </data>
+  <data name="LBL_LAST_NAME" xml:space="preserve">
+    <value>氏</value>
+  </data>
+  <data name="LBL_MYPAGE_INFO" xml:space="preserve">
+    <value>MYページ情報</value>
+  </data>
+  <data name="LBL_MYPAGE_RE_SENDING" xml:space="preserve">
+    <value>MYページ再送</value>
+  </data>
+  <data name="LBL_NEW_ADDRESS" xml:space="preserve">
+    <value>新居住所</value>
+  </data>
+  <data name="LBL_NEW_ANSWERDATE" xml:space="preserve">
+    <value>最新回答日</value>
+  </data>
+  <data name="LBL_NEW_SENDDATE" xml:space="preserve">
+    <value>最新送信日</value>
+  </data>
+  <data name="LBL_QUESTIONNAIRE_INFO" xml:space="preserve">
+    <value>アンケート情報</value>
+  </data>
+  <data name="LBL_QUESTIONNAIRE_RE_SENDING" xml:space="preserve">
+    <value>アンケート再送</value>
+  </data>
+  <data name="LBL_REGION" xml:space="preserve">
+    <value>地域</value>
+  </data>
+  <data name="MSG_CONFIRM" xml:space="preserve">
+    <value>実行してもよろしいですか？</value>
+  </data>
+  <data name="MSG_CONFIRM_DELETE" xml:space="preserve">
+    <value>このレコードを削除してもよろしいですか？</value>
+  </data>
+  <data name="MSG_FMT_DELETED" xml:space="preserve">
+    <value>{0} を削除しました。</value>
+  </data>
+  <data name="MSG_OK_DELETED" xml:space="preserve">
+    <value>削除しました。</value>
+  </data>
+  <data name="MSG_OK_MYPAGE_SENDING" xml:space="preserve">
+    <value>MYページ再送OKです。</value>
+  </data>
+  <data name="MSG_OK_SAVED" xml:space="preserve">
+    <value>保存しました。</value>
+  </data>
+  <data name="MSG_OK_SURVEY_SENDING" xml:space="preserve">
+    <value>アンケート再送OKです。</value>
+  </data>
+  <data name="MSG_PWDCHG_ALPHABETCHARERR" xml:space="preserve">
+    <value>パスワードには少なくとも２文字のアルファベットを含めて下さい。またアルファベットには大文字、小文字の両方を含めて下さい。</value>
+    <comment>Password must include at least 2 alphabetic characters, which also must include both upper case and lower case.</comment>
+  </data>
+  <data name="MSG_PWDCHG_CURPWDBLANKERR" xml:space="preserve">
+    <value>現在のパスワードを入力して下さい。</value>
+  </data>
+  <data name="MSG_PWDCHG_INVALIDCHARERR" xml:space="preserve">
+    <value>新しいパスワードに使えない文字が含まれています。（「\;"」など）</value>
+    <comment>The new password contains one or more invalid characters. ("'\;)</comment>
+  </data>
+  <data name="MSG_PWDCHG_INVALIDOLDPASS" xml:space="preserve">
+    <value>現在のパスワードが正しくありません。</value>
+    <comment>The current password is invalid.</comment>
+  </data>
+  <data name="MSG_PWDCHG_LENGTHERR" xml:space="preserve">
+    <value>新しいパスワードの長さは{0}文字以上{1}文字以内にして下さい。</value>
+    <comment>Length of the new password must be between {0} to {1}.</comment>
+  </data>
+  <data name="MSG_PWDCHG_NEWCONF" xml:space="preserve">
+    <value>新しいパスワードが確認用の入力内容と一致しません。</value>
+    <comment>New passwords don't match.</comment>
+  </data>
+  <data name="MSG_PWDCHG_NEWPWDBLANKERR" xml:space="preserve">
+    <value>新しいパスワードを入力して下さい。</value>
+    <comment>New password is required.</comment>
+  </data>
+  <data name="MSG_PWDCHG_NOCHANGEERR" xml:space="preserve">
+    <value>新しいパスワードには現在と異なるものを入力して下さい。</value>
+    <comment>New password must be different from the current one.</comment>
+  </data>
+  <data name="MSG_PWDCHG_NUMERICCHARERR" xml:space="preserve">
+    <value>新しいパスワードには少なくとも１文字以上の数字を含めて下さい。</value>
+    <comment>Password must include at least one numeric character.</comment>
+  </data>
+  <data name="MSG_PWDCHG_REPEATEDERR" xml:space="preserve">
+    <value>パスワードには同じ文字を3回以上連続で含める事は出来ません。 (例： 111, AAA, $$$)</value>
+    <comment>Password cannot contain more than 3 identical letters in a row. (e.g. 111, AAA, $$$)</comment>
+  </data>
+  <data name="MSG_PWDCHG_SAMEASUIDERR" xml:space="preserve">
+    <value>パスワードにログインIDやユーザー名を含める事は出来ません。</value>
+    <comment>Password cannot be same as, or contain the user ID.</comment>
+  </data>
+  <data name="MSG_PWDCHG_SEQUENTIALERR" xml:space="preserve">
+    <value>パスワードに3文字以上の連続する数字やアルファベットを含める事は出来ません。(例: 123, 432, ABC)</value>
+    <comment>Password cannot contain more than 3 sequential numbers or alphabets, such as 123, 432, or ABC.</comment>
+  </data>
+</root>

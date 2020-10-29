@@ -1,0 +1,157 @@
+﻿<div class="item-detail-window"
+     data-role="window"
+     data-width="600px"
+     data-height="300px"
+     data-visible="false"
+     data-modal="true"
+     data-title="@Lang.L("カートに入れる","Add to cart")"
+     style="margin:0;padding:8px; display:none;">
+
+    <style scoped>
+       .item-detail-window {
+            background-color:#FFE4E1;
+            text-align: center;
+            padding : 30px !important;
+        }
+        .wrapper {
+            text-align: left;
+        }
+
+        .div-itemname {
+        }
+
+        .div-buttons {
+            margin-top: 20px;
+            text-align:center;
+        }
+    </style>
+
+    <div data-bind="visible:model">
+
+        <div class="txtArea">
+            <div class="boxTypeA">
+                <div class="selectArea">
+                    <p style="font-size:larger;font-weight:bold;">
+                        <span data-bind="html:model.item_name"></span>
+                    </p>
+
+                    <div data-bind="visible: isEditAvailDate" class="wrap" style="padding-top:10px;">
+                        <p>
+                            日付を選択してください。<br />
+                        </p>
+                        <br>
+                        <input type="text" id="drpAvailDate"
+                               class="form-control input"
+                               data-role="dropdownlist"
+                               data-bind="source: AvailDate, value: SelectDate,
+                                events: {
+                                    change: onAvailDateChange
+                                  }                               
+                               "
+                               data-template="temp_avail_date"
+                               data-value-field="block_date"
+                               data-text-field="str_block_date"
+                               style="width:200px;" />
+                        <script id="temp_avail_date" type="text/x-kendo-template">
+                            #:str_block_date #　 #: status #
+                        </script>
+                        <!-- /SelectWedDateArea -->
+                        <p style="font-size:larger;font-weight:bold;">
+                            <span data-bind="html:msgAvailDate"></span>
+                        </p>
+
+                        <div data-bind="visible: isEditAvailTime" class="wrap" style="padding-top:20px;">
+                            <p>
+                                時間を選択してください。<br />
+                            </p>
+                            <br>
+                            <input type="text" id="drpAvailTime"
+                                   class="form-control input"
+                                   data-role="dropdownlist"
+                                   data-bind="source: AvailTime, value: SelectTime,
+                                events: {
+                                    change: onAvailDateChange
+                                  }
+                               "
+                                   data-template="temp_avail_time"
+                                   data-value-field="str_start_time"
+                                   data-text-field="str_start_time"
+                                   style="width:200px;" />
+                            <script id="temp_avail_time" type="text/x-kendo-template">
+                                #:str_start_time #　 #: status #
+                            </script>
+                            <!-- /SelectWedDateArea -->
+                            <p style="font-size:larger;font-weight:bold;">
+                                <span data-bind="html:msgAvailTime"></span>
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+                </div><!-- /selectArea -->
+            </div><!-- /boxTypeA -->
+        </div><!-- /txtArea -->
+
+    </div><!-- contents -->
+
+    @*<div style="width: 100%;" class="wrapper clearfix" data-bind="visible:model">
+
+        <table style="width: 100%;">
+            <tr>
+                <td style="width:104px;">
+                    <img data-bind="attr: { src: getPhotoPath }, visible: model" class="img-rounded" width="100" />
+                </td>
+                <td>
+                    <div class="div-itemname">
+                        <strong data-bind="html:model.trf_item_name, visible: model"></strong> (<span data-bind="html:model.trf_item_cd, visible: model"></span>)
+                        <br />
+                        <span data-bind="html:model.service_date_s, visible: model"></span>
+                        <span data-bind="html:model.service_time_s, visible: isPkg"></span>
+                        <br /><br />
+                        <div>
+                            @Lang.L("数量", "Quantity"): <span data-bind="html:getQuantity"></span>
+                            @Lang.L("価格", "Price"): <span data-bind="html:getPriceCharge"></span>
+                            @Lang.L("合計", "Extended"): <strong data-bind="html:getPriceChargeExt"></strong>
+                        </div>
+                        <div data-bind="visible: isCxl">
+                            <br />
+                            @Lang.L("キャンセル料", "Cancel Charge"): <span data-bind="html:getCxlCharge"></span>
+                            @Lang.L("ご返金額", "Refund"): <strong data-bind="html:getRefund"></strong>
+                        </div>
+                        <br />
+
+                        <div>
+                            <span data-bind="visible: model.alb_mount_name">
+                                @Lang.L("【マウント】", "(Mount)") <span data-bind="html:model.alb_mount_name"></span><br />
+                            </span>
+                            <span data-bind="visible: model.alb_cover_name">
+                                @Lang.L("【カバー】", "(Cover)") <span data-bind="html:model.alb_cover_name"></span><br />
+                            </span>
+                            <span data-bind="visible: model.alb_type_name">
+                                @Lang.L("【タイプ】", "(Type)") <span data-bind="html:model.alb_type_name"></span><br />
+                            </span>
+                            <span data-bind="visible: model.dvd_menucolor_name">
+                                @Lang.L("【BGM】", "(BGM)") <span data-bind="html:model.dvd_menucolor_name"></span><br />
+                            </span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>*@
+
+        <div class="div-buttons">
+            <button type="button"
+                        data-bind="events: {click: onAddCartClick}, visible: visibleAddCart "
+                        class="btn_black" >
+                @Lang.L("カートに入れる", "ADD TO CART")
+                </button>
+
+            <button type="button" style="margin-left:30px;"
+                    data-bind="events: {click: onCloseClick}"
+                    class="btn btn-small btn-default">
+                @Lang.L("閉じる", "Close")
+            </button>
+        </div>
+</div>

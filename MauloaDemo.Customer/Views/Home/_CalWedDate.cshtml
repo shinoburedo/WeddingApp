@@ -1,0 +1,34 @@
+﻿@using MauloaDemo.Customer.ViewModels;
+@{
+    var path = Request.Url.AbsoluteUri;
+    var culture_name = Lang.isJPN() ? "ja" : "en";
+    var picture_lang = Lang.isJPN() ? "jpn" : "eng";
+    //var facebook_url = "https://www.watabe.com/index_" + culture_name + ".html";
+    var facebook_url = "https://www.watabe.com/" + ViewBag.FbUrl;    
+}
+<table class="cal_wedding_date">
+    <tr>
+        <td style="text-align:left;padding:0px 0px 10px 10px;" colspan="4">
+            @Lang.L("watabe.com へようこそ。お好きなフォトウェディング＆海外・国内リゾートウェディングをチェック！", "Welcome to watabe.com. Check out our variety of Photo & Wedding Packages!")
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input id="datepicker" style="width:150px;" />
+            <img src="@Url.Content("~/Content/img/select_wed_date_" + picture_lang + ".png")" />
+        </td>
+        <td style="text-align:left;">
+            @*@Lang.L("watabe.com へようこそ。お好きなフォトウェディング＆海外・国内リゾートウェディングをチェック！", "Welcome to watabe.com. Check out our variety of Photo & Wedding Packages!")<br />
+                @Lang.L("さっそく ご希望のエリア＆ご利用日を選択しよう。", "Please select the preferred region and date to get started now!!")*@
+        </td>
+        <td style="width:146px;text-align:right;">
+            <!-- FB, Twitter -->
+            @*<div class="fb-like" data-href="@(facebook_url)" data-layout="button_count" data-action="like" data-share="true"></div>*@
+            <div class="fb-like" data-href="@(facebook_url)" data-layout="button_count" data-action="like" data-share="true"></div>
+        </td>
+        <td style="width:67px;padding-top:2px;padding-right:5px;text-align:left;">
+            <!-- FB, Twitter -->
+            <a style="padding-top:5px;" class="twitter-share-button" href="https://twitter.com/share" data-url="@(path)" data-lang="@culture_name" data-loading-text="@ViewBag.Title">Tweet</a>
+        </td>
+    </tr>
+</table>

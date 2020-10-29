@@ -1,0 +1,351 @@
+﻿<style scoped>
+    #editDiv {
+        width: 100% !important;
+    }
+
+    table.th-text-right th {
+        text-align: right;
+    }
+
+    .k-list .k-item {
+        min-height: 1.8em;
+    }
+
+    .k-grid td {
+        height: 1.8em;
+    }
+
+    .selkind {
+        cursor: pointer;
+        width: 70px;
+    }
+
+    .select-selkind {
+        border: solid 2px blue;
+    }
+
+    .select-block {
+        background-color: yellow !important;
+    }
+
+    .block {
+        background-color: #b2ffea;
+        text-align: center;
+    }
+
+    .booked {
+        background-color: #06c28f;
+        text-align: center;
+    }
+
+    .available {
+        background-color: #fff;
+        text-align: center;
+    }
+
+    .closed {
+        background-color: #f88e8e;
+        text-align: center;
+    }
+
+    .unknown {
+        background-color: #ccc;
+        text-align: center;
+    }
+
+    .edit {
+        border: solid 2px #F00 !important;
+    }
+
+    .c-grid td {
+        padding: 2px 1px;
+        border-width: 0 1px 1px 0;
+        border-color: #B5B5B5;
+        border-style: solid;
+        overflow: hidden;
+        vertical-align: middle;
+        text-overflow: ellipsis;
+    }
+
+    .c-widget {
+        font-size: 100%;
+        font-family: inherit;
+        border-style: solid;
+        border-width: 1px;
+        outline: 0;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        border-color: #C5C5C5;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .k-input {
+        padding: 0;
+    }
+
+    #progress {
+        display: none;
+        z-index: 20001;
+        position: absolute;
+        top: 50%;
+        left: 40%;
+        width: 400px;
+        margin-top: -14px;
+        margin-left: -56.5px;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    /* Blockタブのグリッドスタイル */
+    #availGrid {
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+
+    #availGrid tbody {
+        width: auto;
+    }
+
+    #availGrid td {
+        line-height: 15px;
+        height: 15px;
+        padding: .0em .4em;
+    }
+
+    #availGrid th {
+        padding: .3em .4em;
+        min-width: 30px;
+        max-width: 55px;
+        overflow: hidden;
+        border-style: solid;
+        border-width: 0 0 1px 1px;
+        font-weight: normal;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+</style>
+
+<div id="editWindow"
+     data-role="window"
+     data-visible="false"
+     data-modal="true"
+     data-min-width="800"
+     data-width="95%"
+     data-min-height="600"
+     data-height="600"
+     style="display:none;">
+
+    <div id="editDiv">
+        <form class="form-horizontal" data-role="validator">
+
+            <table><tr>
+                       <th style="padding:5px;">Year</th>
+                       <td style="padding:5px;">
+                           <input id="year"
+                                  type="text"
+                                  class="form-control input-sm todate"
+                                  style="width:96px; margin-right:0; margin-left:0;padding-left:0; padding-right:0;"
+                                  data-role="datepicker"
+                                  data-start="decade"
+                                  data-depth="decade"
+                                  data-format="yyyy"
+                                  data-bind="value: year" />
+                       </td>
+                       <th style="padding:5px;">Month</th>
+                       <td style="padding:5px;">
+                           <input id="month"
+                                  type="text"
+                                  class="form-control input-sm todate"
+                                  style="width:96px; margin-right:0; margin-left:0;padding-left:0; padding-right:0;"
+                                  data-role="datepicker"
+                                  data-format="MM"
+                                  data-start="year"
+                                  data-depth="year"
+                                  data-bind="value: month" />
+                       </td>
+                       <td style="padding:5px;">
+                           <button id="btnRefresh" type="button" class="btn btn-primary" style="margin-left:2px;width:80px;">Refresh</button>
+                           <button id="btnSaveBlockInfo" type="button" class="btn btn-primary" style="margin-left:2px;width:130px;">Save Block Info</button>
+                       </td>
+            </tr></table>
+
+            @*<div class="form-group">
+                <label for="church_cd" class="col-sm-1 control-label">Year</label>
+                <div class="col-sm-2">
+                </div>
+                <label for="church_cd" class="col-sm-1 control-label">Month</label>
+                <div class="col-sm-2">
+                </div>
+                <div class="col-sm-4">
+                    <button id="btnRefresh" type="button" class="btn btn-primary" style="margin-left:2px;width:80px;">Refresh</button>
+                    <button id="btnSaveBlockInfo" type="button" class="btn btn-primary" style="margin-left:2px;width:130px;">Save Block Info</button>
+                </div>
+            </div>*@
+
+                <div style="width:75%;float:left;">
+                    <!-- AvailGrid -->
+                    <div id="availGrid" class="c-grid c-widget" data-role="grid" style="height:530px;">
+                    </div>
+                </div>
+                <div style="width:25%;float:right;">
+                    <div class="well" style="margin-top:5px;">
+                        <fieldset>
+                            <legend>Entry Pad</legend>
+                            <table>
+                                <tr>
+                                    <th colspan="2">
+                                        Date
+                                        <input id="fromDateRange1"
+                                               type="text"
+                                               class="form-control input-sm todate"
+                                               style="width:96px; margin-right:0; margin-left:0;padding-left:0; padding-right:0;"
+                                               data-role="datepicker"
+                                               data-format="MM/dd/yyyy"
+                                               data-bind="value: fromDateRange1" />
+                                        --
+                                        <input id="toDateRange1"
+                                               type="text"
+                                               class="form-control input-sm todate"
+                                               style="width:96px; margin-right:0; margin-left:0;padding-left:0; padding-right:0;"
+                                               data-role="datepicker"
+                                               data-format="MM/dd/yyyy"
+                                               data-bind="value: toDateRange1" />
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="2" style="padding-top:5px;">
+                                        Time
+                                        <input id="fromTimeRange2"
+                                               type="text"
+                                               class="form-control input-sm totime"
+                                               style="width:96px; margin-right:0; margin-left:0;padding-left:0; padding-right:0;"
+                                               data-role="timepicker"
+                                               data-format="HH:mm"
+                                               data-bind="value: fromTimeRange2" />
+                                        --
+                                        <input id="toTimeRange2"
+                                               type="text"
+                                               class="form-control input-sm totime"
+                                               style="width:96px; margin-right:0; margin-left:0;padding-left:0; padding-right:0;"
+                                               data-role="timepicker"
+                                               data-format="HH:mm"
+                                               data-bind="value: toTimeRange2" />
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top:10px;">
+                                        <table>
+                                            <tr>
+                                                <td style="padding-left:10px;">
+                                                    <label class="radio inline"><input type="radio" name="optDate" value="0" checked="checked" />ALL</label>
+                                                    <label class="radio inline"><input type="radio" name="optDate" value="1" />Individually</label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-left:20px;">
+                                                    <span style="text-align:center;">v<br />v<br />v</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-left:10px;">
+                                                    <label class="checkbox inline"><input id="chkSun" type="checkbox" name="optWeek" value="0" disabled="disabled" />SUN</label>
+                                                    <label class="checkbox inline"><input id="chkMon" type="checkbox" name="optWeek" value="1" disabled="disabled" />MON</label>
+                                                    <label class="checkbox inline"><input id="chkTue" type="checkbox" name="optWeek" value="2" disabled="disabled" />TUE</label>
+                                                    <label class="checkbox inline"><input id="chkWed" type="checkbox" name="optWeek" value="3" disabled="disabled" />WED</label>
+                                                    <label class="checkbox inline"><input id="chkThu" type="checkbox" name="optWeek" value="4" disabled="disabled" />THU</label>
+                                                    <label class="checkbox inline"><input id="chkFri" type="checkbox" name="optWeek" value="5" disabled="disabled" />FRI</label>
+                                                    <label class="checkbox inline"><input id="chkSat" type="checkbox" name="optWeek" value="6" disabled="disabled" />SAT</label>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td style="vertical-align:top;padding-top:10px;">
+                                        <table>
+                                            <tr>
+                                                <th style="text-align:center;">
+                                                    @*Agent
+                                            @(Html.Kendo().ComboBox()
+                                                .Name("agentCombo2")
+                                                .DataTextField("agent_cd")
+                                                .DataValueField("agent_cd")
+                                                .DataSource(source => {
+                                                    source.Read(read => {
+                                                        read.Action("GetAgentList", "Church");
+                                                    });
+                                                })
+                                                .Height(300)
+                                                .Filter(FilterType.StartsWith)
+                                                .Template("<dl>" +
+                                                            "<dt>${ data.agent_cd }</dt>" +
+                                                            "<dd>${ data.agent_name }</dd>" +
+                                                            "</dl>")
+                                                .HtmlAttributes(new { style = "width:100px;" })
+                                            )*@
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align:center;">
+                                                    <div class="selkind closed" style="display:inline-block;">Closed</div><br />
+                                                    <div class="selkind available" style="display:inline-block;">Open</div><br />
+                                                    @*<div class="selkind block" style="display:inline-block;">Block</div><br />
+                                                    <div class="selkind booked" style="display:inline-block;">Booked</div><br />
+                                                    <div class="selkind unknown" style="display:inline-block;">Unknown</div>*@
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="text-align:center;">
+                                        <button id="btnGo2" type="button" class="btn btn-small btn-primary" style="width:100px;">Apply</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div> @* End of editWindow *@
+
+<script>
+
+    function timeEditor(container, options) {
+        var input = $("<input/>");
+        input.attr("name", options.field);
+        input.appendTo(container);
+        input.kendoTimePicker({
+            format: "HH:mm"
+        });
+    }
+
+    $("div.selkind").on("click", function () {
+        $("div.select-selkind").removeClass("select-selkind");
+        $(this).addClass("select-selkind");
+    });
+
+
+    $("input:radio[name=optDate]").on("click", function () {
+        if ($(this).val() == 1) {
+            $("input:checkbox[name=optWeek]").removeAttr("disabled");
+        }
+        else {
+            setBoolAttr("input:checkbox[name=optWeek]", "checked", false);
+            $("input:checkbox[name=optWeek]").attr("disabled", "disabled");
+        }
+    });
+
+    //$("input:radio[name=blockType]").on("click", function () {
+    //    if ($(this).val() == 1) {
+    //        agentCombo.enable(true);
+    //    }
+    //    else {
+    //        agentCombo.value(null);
+    //        agentCombo.enable(false);
+    //    }
+    //});
+
+
+</script>
+

@@ -1,0 +1,79 @@
+﻿@using System.Configuration;
+@using MauloaDemo.Models;
+@using MauloaDemo.Web.ViewModels;
+
+@{
+    ViewBag.Title = TypeHelper.GetStrTrim(ConfigurationManager.AppSettings["CompanyName"]) + " Notice";
+    LoginUser user = ViewBag.CurrentLoginUser;
+    var access_level = user != null ? user.access_level : 0;
+}
+
+<div id="app">
+    <div class="header-notice">
+            お知らせ
+    </div>
+
+    <div class="notice-wrapper">
+        <div data-role="listview"
+             data-bind="source: list"
+             data-selectable="false"
+             data-template="calendar-day-template"></div>
+    </div>
+</div>
+
+<script id="calendar-day-template" type="text/x-kendo-template">
+    #if (App.L(data.title_jpn, data.title_eng) || App.L(data.notice_jpn, data.notice_eng)){# 
+    <ul style="list-style:none;padding:0px;">
+        <li>
+            <div class="notice-title">
+                <i class="glyphicon #if (data.notice_type =='OPE'){# glyphicon-envelope blue #}#  #if (data.notice_type =='SYS'){# glyphicon-wrench pink #}#"></i>
+                #if (App.L(data.title_jpn, data.title_eng)){#
+                #= App.L(data.title_jpn, data.title_eng) #
+                #}#
+            </div>
+            #if (App.L(data.notice_jpn, data.notice_eng)){#
+            <div class="notice-contents">
+                #= App.L(data.notice_jpn, data.notice_eng) #
+            </div>
+            #}#
+        </li>
+    </ul>
+    #}#
+</script>
+
+@section scripts{
+    <script src="@Url.Content("~/Scripts/require.js")"
+            data-main="@Url.Content("~/Scripts/App/notice_list")"></script>
+}
+
+<style>
+.header-notice {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    margin-left:20px;
+    font-size:22px;
+    font-weight:bold;
+    color: #808080;
+}
+.notice-wrapper {
+    background-color:#fff;
+    padding:15px;
+    min-width:400px;
+    max-width:1400px;
+}
+.notice-title {
+    font-weight:bold;
+    font-size:larger;
+}
+.notice-contents {
+    margin-left:20px;
+}
+.pink {
+    color: pink;
+}
+.blue {
+    color: lightblue;
+}
+</style>
+
+

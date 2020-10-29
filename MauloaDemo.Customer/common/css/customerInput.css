@@ -1,0 +1,165 @@
+@charset "UTF-8";
+/*****************************************************
+File Name: step3.css
+Style Info: 個別設定
+*****************************************************/
+/*====================================================
+メインビジュアル
+====================================================*/
+#mainVisual{
+	width: 100%;
+	height: 200px;
+	min-height: 200px;
+	text-align: center;
+	display: table;
+	background:url(../img/visual_sub_02.jpg) no-repeat center center;
+	background-size:100%;
+	background-position: center 70%;
+}
+.mainSection{
+	display: table-cell;
+    text-align: center;
+	vertical-align: middle;
+}
+
+/*====================================================
+#contents
+====================================================*/
+#contents{
+	width: 100%;
+	min-width: 100%;
+    overflow: hidden;
+	margin:0 auto;
+	padding:0 0 100px;
+	background: #fff;
+}
+/*====================================================
+言語切り替えボタン
+====================================================*/
+.languageArea{
+	background: #f3f3f3;
+	width: 100%;
+	text-align: right;
+	padding:10px;
+}
+.languageArea ul:after{
+	content:"";
+	display: block;
+	clear: both;
+	overflow: hidden;
+}
+.languageArea ul li{
+	display: inline-block;
+	vertical-align: top;
+}
+.languageArea ul li + li{
+	margin-left:10px;
+}
+/*====================================================
+processArea_wide
+====================================================*/
+.processArea_wide{
+    margin-top:10px;
+}
+.processArea_wide ul{
+    display: table;
+    border:solid 4px #fff;
+    font-size:14px;
+    line-height:40px;
+    height:40px;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    background:url(../img/bg_process_wide_03.png) no-repeat center center;
+}
+.processArea_wide li{
+    display: table-cell;
+    vertical-align: middle;
+    width:200px;
+    position: relative;
+}
+.processArea_wide li img{
+    vertical-align: middle;
+    margin-right:10px;
+}
+
+/*====================================================
+メールアドレス登録
+====================================================*/
+.customerInputArea{
+    width:660px;
+    margin:0 auto;
+    font-size:14px;
+    line-height: 1.5;
+}
+.customerInputArea .form-group{
+    display: table;
+    text-align: center;
+    width:100%;
+}
+.customerInputArea .form_block_labelArea{
+    width:280px;
+    display: table-cell;
+    vertical-align: top;
+    text-align:right;
+    font-size:14px;
+    line-height: 20px;
+}
+.customerInputArea .form_block_labelArea .ttl_th{
+    font-size:14px;
+    margin-right:10px;
+}
+.customerInputArea .form_block_labelArea label{
+    padding:5px 10px;
+}
+.customerInputArea .form_block_inputArea{
+    width:480px;
+    display: table-cell;
+    vertical-align: top;
+    text-align:left;
+}
+.customerInputArea .text-danger{
+    color:#e60012;
+    font-size: 14px;
+}
+.customerInputArea .text-danger + ul{
+    font-size: 14px;
+    margin-top:10px;
+}
+.customerInputArea input{
+    font-size: 14px;
+    width:100%;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 5px;
+    margin-bottom:5px;
+    font-size: 14px;
+}
+.customerInputArea .textFiled-half-box {
+    font-size:0;
+}
+.customerInputArea .textFiled-half-box input{
+    width:49%;
+    display: inline;
+}
+.customerInputArea .textFiled-half-box input + input{
+    margin-left:2%;
+}
+.customerInputArea input[type="submit"]{
+    display: block;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    width: 110px;
+    margin: 90px auto 0;
+    line-height: 34px;
+    border-radius: 5px;
+    font-size: 14px;
+    border:none;
+    -webkit-transition: opacity 0.2s; -moz-transition: opacity 0.2s; -ms-transition: opacity 0.2s; -o-transition: opacity 0.2s; transition: opacity 0.2s;
+}
+.customerInputArea input[type="submit"]:hover{
+    opacity: 0.7;
+    filter: alpha(opacity=0.7);
+}

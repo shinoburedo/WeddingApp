@@ -1,0 +1,57 @@
+﻿@using System.Configuration;
+@using MauloaDemo.Models;
+@using MauloaDemo.Web.ViewModels;
+@{
+    Layout = "~/Views/Shared/_TopLayout.cshtml";
+}
+@section head {
+    @*<link href="@Url.Content("~/Content/index.css")" rel="stylesheet" type="text/css" />*@
+    <link href="@Url.Content("~/common/css/step1.css")" rel="stylesheet" type="text/css" media="all" charset="utf-8" />
+    <link rel="stylesheet" href="@Url.Content("~/common/css/jquery-ui.css")">
+}
+
+@{
+    var regionName = ViewBag.RegionName;
+    var areaName = ViewBag.AreaName;
+    ViewBag.Title = "WATABE.COM ";
+    ViewBag.Title += (string.IsNullOrEmpty(areaName) ? regionName : areaName) + " ";
+    var picture_lang = Lang.L("jpn", "eng");
+    
+}
+
+<a name="top" id="top"></a>
+
+    <div id="mainVisual">
+        <div class="mainSection">
+
+            <h1><img src="@Url.Content("~/common/img/h1_watabe.com_" + picture_lang + ".png")" width="494" height="134" alt="WATABE.COM リゾートウェディング・フォトウェディング WEB申込サイトへようこそ" /></h1>
+            <p class="mainStep">
+                <a href="#pagetop">
+                    @Lang.L("WEBで申込! 手ぶらで現地へ!", "Book online! Everything you need for the wedding will be waiting for you at the locale!")
+                    <span>
+                        @Lang.L("来店不要でリゾートウェディングや", "You can reserve your Resort Wedding or Wedding Photo Shoot through this site,")
+                        <br />
+                        @Lang.L("フォトウェディングが申し込めるサイトです。", "without stepping foot into our boutique.")
+                    </span>
+                </a>
+            </p>
+
+        </div><!-- section -->
+    </div><!-- mainVisual -->
+
+    @Html.Partial("_Header")
+
+    <div id="contents">
+
+        <div class="processArea step1">
+            <ul>
+                <li><span>@Lang.L("エリアを選ぶ", "Select the Location")</span></li>
+                <li><span>@Lang.L("プラン・オプションを選ぶ", "Select a Plan/Option")</span></li>
+                <li><span>@Lang.L("商品を選ぶ", "Select an Item")</span></li>
+                <li><span>@Lang.L("ご購入手続きへ", "Proceed to Checkout")</span></li>
+            </ul>
+        </div>
+
+        @Html.Action("AreaMenu", "Home")
+    </div><!-- contents -->
+

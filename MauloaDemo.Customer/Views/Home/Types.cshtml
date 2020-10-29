@@ -1,0 +1,92 @@
+﻿@using MauloaDemo.Utilities;
+@section head {
+    @*<link href="@Url.Content("~/Content/index.css")" rel="stylesheet" type="text/css" />*@
+    <link href="@Url.Content("~/common/css/step2.css")" rel="stylesheet" type="text/css" media="all" charset="utf-8" />
+    <link rel="stylesheet" href="@Url.Content("~/common/css/jquery-ui.css")">
+}
+
+@section scripts {
+
+    <script>
+        $(function () {
+            // 挙式希望日が変更された時の処理
+            function refreshItemList() {
+                var weddingDate = kendo.toString(date_wedding.val(), "yyyy/MM/dd");
+                window.location.href = App.getUrl("Home/SelectWeddingDate?wed_date=" + weddingDate);
+            }
+
+            var min_date = kendo.parseDate("@(ViewBag.CurrentSelectItem.str_min_date)", "yyyyMMdd");
+            var default_date = kendo.parseDate("@(ViewBag.CurrentSelectItem.str_wed_date)", "yyyyMMdd");
+            if (default_date < min_date) default_date = min_date;
+
+            var date_wedding = $("#datepicker").kendoDatePicker({
+                value: default_date,
+                change: refreshItemList,
+                format: "yyyy/MM/dd",
+                min: min_date
+            });
+        });
+    </script>
+}
+
+@{
+    var regionName = ViewBag.RegionName;
+    var areaName = ViewBag.AreaName;
+
+    ViewBag.Title = "WATABE.COM ";
+    ViewBag.Title += (string.IsNullOrEmpty(areaName) ? regionName : areaName) + " ";
+
+    //if (string.IsNullOrEmpty(ViewBag.CurrentSelectItem.trf_type)) {
+    //    ViewBag.Title += Lang.L("カテゴリ一覧", "Categories");
+    //} else {
+    //    ViewBag.Title += Lang.L("商品一覧", "Plans/Options");
+    //}
+}
+<style scoped>
+#mainVisual{
+	width: 100%;
+	height: 200px;
+	min-height: 200px;
+	text-align: center;
+	display: table;
+    background:url('@(ImageHelper.GetAreaImageUrl(ViewBag.CurrentRegionInfo.CurrentDestination, ViewBag.CurrentSelectItem.area_cd, "L", ViewBag.CurrentSelectItem.image_upload_date))') no-repeat center center;
+	background-size:auto 200px;
+	background-position: center 70%;
+}
+</style>
+<a name="top" id="top"></a>
+
+    @Html.Partial("_Header")
+    <!-- サイドメニュー -->
+    @Html.Action("AreaSideMenu", "Home")
+    @Html.Action("ItemMenu", "Home")
+    <!-- /サイドメニュー -->
+
+    <div id="mainVisual">
+        <div class="mainSection">
+        </div><!-- section -->
+    </div><!-- mainVisual -->
+
+    <div id="contents">
+        <div id="calendarArea">
+            <div class="calendarBox">
+                <div class="inner">
+                    <span>@Lang.L("ご希望日", "select the preferred date")</span>
+                    <input type="text" id="datepicker">
+                </div>
+            </div>
+        </div>
+
+        <div class="processArea step2">
+            <ul>
+                <li><span>@Lang.L("エリアを選ぶ", "Select the Location")</span></li>
+                <li><span>@Lang.L("プラン・オプションを選ぶ", "Select a Plan/Option")</span></li>
+                <li><span>@Lang.L("商品を選ぶ", "Select an Item")</span></li>
+                <li><span>@Lang.L("ご購入手続きへ", "Proceed to Checkout")</span></li>
+            </ul>
+        </div>
+
+        @Html.Action("TypeList", "Home")
+
+    </div><!-- contents -->
+

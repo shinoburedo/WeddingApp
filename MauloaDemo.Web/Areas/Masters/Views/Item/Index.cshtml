@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Item";
+}
+
+@section head{
+    <link href="@Url.Content("~/Areas/Masters/Content/masters.css")" rel="stylesheet" type="text/css" />
+}
+
+<style scoped>
+    #editDiv {
+        width: 100% !important;
+    }
+</style>
+
+<div class="app_wrapper">
+    <h3>@ViewBag.Title</h3>
+
+    <div id="app">
+        @* 検索パネル *@
+        <div class="search clearfix">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="" class="col-sm-1 control-label">Item Type</label>
+                    <div class="col-sm-2">
+                        <input type="text"
+                               placeholder=""
+                               class="form-control input-sm toupper tohankaku select-itemtype"
+                               style="width:70px;"
+                               data-height="300"
+                               data-bind="value: search.item_type, events: { change: refreshList }" />
+                    </div>
+
+                    <label for="" class="col-sm-1 control-label">Item Code</label>
+                    <div class="col-sm-2">
+                        <input type="text" data-bind="value: search.item_cd, events: {change: refreshList }" 
+                               class="form-control input-sm k-input k-textbox toupper tohankaku" />
+                    </div>
+
+                    <label for="" class="col-sm-1 control-label">Item Name</label>
+                    <div class="col-sm-5">
+                        <input type="text" data-bind="value: search.item_name, events: { change: refreshList }" 
+                                class="form-control input-sm k-input k-textbox" />
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        @* 検索結果の一覧グリッド *@
+        <div id="grd"
+             data-role="grid"
+             data-bind="source: list"
+             data-toolbar="[{name:'create', text:'Create New'}, {name:'copy', text:'Copy'}, {name:'destroy', text:'Delete' }, {name: 'refresh', text:'Refresh'}]"
+             data-selectable="true"
+             data-sortable="true"
+             data-resizable="true"
+             data-scrollable="true"
+             data-height="560"
+             data-columns="[  {field: 'item_type', title: 'Type', width:70}
+                            , {field: 'item_cd', title: 'Item Code', width: 150}
+                            , {field: 'item_name', title: 'Item Name'}
+                            , {field: 'discon_date', title: 'Discon Date', width:140, format: '{0:MM/dd/yyyy}' }
+                            , {field: 'last_person', title: 'Last person', width:80}
+                            , {field: 'update_date', title: 'Updated', width:160, format: '{0:MM/dd/yyyy HH:mm:ss}' }
+                            , {field: 'item_cd', title: ' ', width: 60, template: '<a data-key=\'#=item_cd#\' class=\'btn btn-sm btn-default grid_edit_button\' data-bind=\'click:editItem\'><span class=\'k-icon k-edit\'><\/span><\/a>'}
+                        ]"></div>
+    </div>
+
+    @* 詳細編集ダイアログ *@
+    @Html.Partial("ItemEditPartial")
+</div>
+
+@section scripts {
+<script src="@Url.Content("~/Scripts/require.min.js")"
+            data-main="@Url.Content("~/Areas/Masters/Scripts/ItemIndexView")"></script>
+}
+

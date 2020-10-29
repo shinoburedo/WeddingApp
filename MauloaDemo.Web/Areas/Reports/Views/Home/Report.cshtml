@@ -1,0 +1,108 @@
+﻿@using System.Configuration;
+@using MauloaDemo.Models;
+@using MauloaDemo.Models.Combined;
+@using CBAF;
+
+@{
+    LoginUser cur_user = ViewBag.CurrentLoginUser;
+    int user_level = cur_user.access_level;
+}
+
+@section head{
+    <link href="@Url.Content("~/Areas/Reports/Content/MgmReport.css")" rel="stylesheet" type="text/css" />
+}
+
+<div id="app">
+    <h3 class="report_name" data-bind="text: mgmReport.rep_name"></h3>
+    <p class="report_description" data-bind="text: mgmReport.description"></p>
+    <div data-bind="visible: status">
+        <span data-bind="text: status"></span>
+        <img src="@Url.Content("~/Content/Images/wait3.gif")" />
+    </div>
+    <p class="error_msg" data-bind="visible: error, text: error"></p>
+
+    <div class="well" data-bind="visible: reportVisible">
+        <form id="frmParams">
+            <input type="hidden" id="hdnRepCd" value="@ViewBag.RepCd" />
+
+            @*<p class="report_description">This report has <span data-bind="    text: mgmReport.paramsCount"></span> parameters.</p>*@
+
+            <div data-role="listview"
+                 data-bind="source: mgmReport.Params"
+                 data-template="param-template"></div>
+
+            <div class="div_execute">
+                <input type="button" value="Execute" class="btn btn-primary"
+                       data-bind="click: onExecute" data-url="@Url.Action("ExecuteReport")" />
+            </div>
+        </form>
+
+        @* レポート編集ボタン *@
+        @if (user_level >= 6) {
+            <a class="btn btn-sm btn-default pull-right"
+               data-bind="click: editReport, attr: { data-repcd: mgmReport.rep_cd }"><span class="k-icon k-edit"></span></a>
+        }
+        <div style="clear:both;"></div>
+    </div>
+</div>
+
+@Html.Partial("MgmReportEditPartial")
+
+<script id="param-template" type="text/x-kendo-template">
+    <div class="parameter #= param_type # # if (param_name == '_dummy_'){ # dummy # } # # if (break_before) { # break_before # } # ">
+        <div>
+            #= caption || "" # <span class="required"># if (required) { # * # } #　@*←位置合わせのために全角スペースが必要*@</span>
+        </div>
+        <div>
+            #= prefix || "" #
+            <input # if (param_type =='check' ){ #
+                        type="checkbox"
+                        # if (default_value =='1' ) { #
+                            checked='checked'
+                        # } #
+                   # } else if(param_type =='radio' ) { #
+                        type="radio"
+                   # } else if(param_type =='hidden' ) { #
+                        type="hidden"
+                   # } else { #
+                        type="text"
+                   # } #
+
+                   name="#= param_name #"
+                   class="k-input"
+
+                   # if (param_type !='check' ) { #
+                        value="#= input_value || '' #"
+                   # } #
+                   # if (param_type =='date' ){ #
+                        data-role="datepicker"
+                        data-format="@UserHelper.LoginUser.date_format"
+                   # } #
+
+                   # if (param_type =='combo' ){ #
+                        data-role="combobox"
+                        data-text-field="value"
+                        data-value-field="value"
+                        data-template="combolist-template"
+                   # } # 
+               />
+            #= suffix || "" #
+        </div>
+    </div>
+</script>
+
+<script id="combolist-template" type="text/x-kendo-template">
+    <dl style='width:100%;'>
+        <dt style='width:80px;float:left;'>${ data.value }</dt>
+        <dd style='width:300px;float:left;'>${ data.text }</dd>
+    </dl>
+</script>
+
+<script id="radio-template" type="text/x-kendo-template">
+    <input type="radio" name="#= name #" value="#= value #" class="k-input" />
+</script>
+
+@section scripts {
+    <script src="@Url.Content("~/Scripts/require.min.js")"
+            data-main="@Url.Content("~/Areas/Reports/Scripts/ReportView")"></script>
+}

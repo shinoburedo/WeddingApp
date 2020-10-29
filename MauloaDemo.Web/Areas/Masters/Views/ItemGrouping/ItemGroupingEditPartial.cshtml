@@ -1,0 +1,191 @@
+﻿<style scoped>
+
+    #editDiv {
+        width: 100% !important;
+    }
+
+    #txtItemCd_listbox dt {
+        float:left;
+        font-size:90%;
+    }
+
+    #txtItemCd_listbox dd {
+        float:left;
+        overflow:hidden;
+        text-wrap:none;
+        font-size:90%;
+    }
+
+</style>
+
+<div id="editWindow"
+     data-role="window"
+     data-visible="false"
+     data-modal="true"
+     data-min-width="800"
+     data-width="90%"
+     data-min-height="700"
+     data-height="80%"
+     style="display:none;">
+
+    <div id="editDiv">
+        <form class="form-horizontal" data-role="validator">
+            <div class="form-group">
+                <label for="item_type" class="col-sm-1 control-label">Item Type</label>
+                <div class="col-sm-1">
+                    <input type="text" id="txtItemType"
+                           maxlength="3"
+                           placeholder=""
+                           class="form-control input-sm toupper tohankaku select-itemtype"
+                           style="width:95%;"
+                           data-height="300"
+                           data-bind="value: model.item_type, enabled:isCodeEditable"
+                           data-change="refreshItemCombo"
+                           data-bound="refreshItemCombo" />
+                </div>
+                <label for="item_cd" class="col-sm-1 control-label">Item Cd</label>
+                <div class="col-sm-3">
+                    <select id="txtItemCd"
+                            maxlength="15"
+                            class="form-control input-sm toupper tohankaku "
+                            data-height="400"
+                            data-role="combobox"
+                            data-value-field="item_cd"
+                            data-text-field="item_cd"
+                            data-value-primitive="true"
+                            data-cascade-from="txtItemType"
+                            data-cascade-from-field="item_type"
+                            data-bind="value: model.item_cd, source: itemList, enabled:isCodeEditable"
+                            data-template="itemCdComboTemplate"></select>
+                    <script type="text/template" id="itemCdComboTemplate">
+                        <dl>
+                            <dt style="width:17%;">${ data.item_cd }</dt>
+                            # if (App.Config.Lang === 'ja'){ #
+                            <dd style="width:74%;">${ data.item_name_jpn }</dd>
+                            # } else { #
+                            <dd style="width:74%;">${ data.item_name }</dd>
+                            # } #
+                        </dl>
+                    </script>
+                </div>
+                <div class="col-sm-9">
+                    <input name="item_name" type="text" data-bind="value: model.item_name"
+                           maxlength="100" readonly
+                           class="form-control input-sm k-input k-textbox tohankaku" />
+
+                </div>
+            </div>
+
+            <section class="section-arrangement">
+                <div id="grdItemOption"
+                     data-role="grid"
+                     data-auto-bind="true"
+                     data-bind="source: itemOptions"
+                     data-editable="{mode: 'incell', createAt:'bottom'}"
+                     data-toolbar="[{name:'create', text:'Create New'}, {name:'destroy', text:'Delete' }, {name: 'refresh', text:'Refresh'}]"
+                     data-sortable="false"
+                     data-resizable="true"
+                     data-selectable="true"
+                     data-scrollable="true"
+                     data-groupable="false"
+                     data-navigatable="false"
+                     data-height="500"
+                     data-columns="[ {field: 'item_type', title: 'Type', width: 80, editor: itemTypeEditor  }, {field: 'child_cd', title: 'Code', width: 160, editor: itemCdEditor  },  {field: 'item_name', title: 'Name'},  {field: 'item_name_jpn', title: 'NameJpn'} ]">
+                </div>
+            </section>
+
+
+            @* Saveボタン、Closeボタン *@
+            <div class="buttons">
+                <input id="btnEditSave" type="button" value="Save" data-bind="click:onSave" class="btn btn-primary btn-save" />
+                <input id="btnEditClose" type="button" value="Close" data-bind="click: onClose" class="btn btn-default btn-close" />
+            </div>
+        </form>
+    </div>
+
+</div> @* End of editWindow *@
+
+<script>
+
+    function itemTypeEditor(container, options) {
+        var input = $("<input/>");
+        input.attr("name", options.field);
+        input.appendTo(container);
+        input.kendoComboBox({
+            valuePrimitive: true,
+            dataValueField: "item_type",
+            dataTextField: "item_type",
+            dataSource: new kendo.data.DataSource({
+                transport: {
+                    read: {
+                        url: App.getApiPath("ItemTypes/search"),
+                        type: "POST",
+                        dataType: "json"
+                    }
+                }
+            }),
+            //change: function (e) {
+            //    itemCdRead(container, this.value());
+            //},
+            template: "<dl><dt>${ data.item_type }</dt><dd>${ data.desc_eng }</dd></dl>",
+        });
+        input.data("kendoComboBox").list.width("400");
+    }
+
+
+    function itemCdEditor(container, options) {
+        var input = $("<input/>");
+        input.attr("name", options.field);
+        input.appendTo(container);
+        var grid = $("#grdItemOption").data("kendoGrid");
+        var item = grid.dataItem(container.parent());
+        var item_type = item.item_type;
+        input.kendoComboBox({
+            valuePrimitive: true,
+            dataValueField: "item_cd",
+            dataTextField: "item_cd",
+            dataSource: new kendo.data.DataSource({
+                transport: {
+                    read: {
+                        url: App.getApiPath("Items/search"),
+                        type: "POST",
+                        dataType: "json",
+                        data: function () {
+                            return {
+                                item_type: item_type
+                            };
+                        }
+                    }
+                }
+            }),
+            change: function (e) {
+                changeItemCd(container, this.value());
+            },
+            template: "<dl><dt style='width:200px;'>${ data.item_cd }</dt><dd>${ data.item_name }</dd></dl>",
+        });
+        input.data("kendoComboBox").list.width("600");
+    }
+
+    function changeItemCd(container, item_cd) {
+        var cmb = container.parent().find('input[name="child_cd"]').data("kendoComboBox");
+        var selectedIndex = cmb.selectedIndex;
+        var item_name = "";
+        var item_name_jpn = "";
+        if (selectedIndex >= 0) {
+            item_name = cmb.dataItem(selectedIndex).item_name;
+            item_name_jpn = cmb.dataItem(selectedIndex).item_name_jpn;
+        }
+        var grid = $("#grdItemOption").data("kendoGrid");
+        var item = grid.dataItem(container.parent());
+        item.item_name = item_name;
+        item.item_name_jpn = item_name_jpn;
+        var column = grid.columns[2];
+        var cell = container.parent().children("td:not(.k-group-cell,.k-hierarchy-cell)").eq(2);
+        grid._displayCell(cell, column, item);
+        column = grid.columns[3];
+        cell = container.parent().children("td:not(.k-group-cell,.k-hierarchy-cell)").eq(3);
+        grid._displayCell(cell, column, item);
+    }
+
+</script>
+

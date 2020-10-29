@@ -1,0 +1,97 @@
+@charset "UTF-8";
+/*****************************************************
+File Name: step3.css
+Style Info: 個別設定
+*****************************************************/
+/*====================================================
+メインビジュアル
+====================================================*/
+#mainVisual{
+	width: 100%;
+	height: 200px;
+	min-height: 200px;
+	text-align: center;
+	display: table;
+	background:url(../img/visual_sub_02.jpg) no-repeat center center;
+	background-size:100%;
+	background-position: center 70%;
+}
+.mainSection{
+	display: table-cell;
+    text-align: center;
+	vertical-align: middle;
+}
+
+/*====================================================
+#contents
+====================================================*/
+#contents{
+	width: 100%;
+	min-width: 100%;
+    overflow: hidden;
+	margin:0 auto;
+	padding:0 0 100px;
+	background: #fff;
+}
+/*====================================================
+言語切り替えボタン
+====================================================*/
+.languageArea{
+	background: #f3f3f3;
+	width: 100%;
+	text-align: right;
+	padding:10px;
+}
+.languageArea ul:after{
+	content:"";
+	display: block;
+	clear: both;
+	overflow: hidden;
+}
+.languageArea ul li{
+	display: inline-block;
+	vertical-align: top;
+}
+.languageArea ul li + li{
+	margin-left:10px;
+}
+/*====================================================
+processArea
+====================================================*/
+.processArea{
+    margin-top:10px;
+}
+.processArea ul{
+    display: table;
+    border:solid 4px #fff;
+    font-size:14px;
+    line-height:42px;
+    height:40px;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    background:url(../img/bg_process_02.png) no-repeat center center;
+}
+.processArea li{
+    display: table-cell;
+    vertical-align: middle;
+    width:300px;
+    position: relative;
+}
+.processArea li img{
+    vertical-align: middle;
+    margin-right:10px;
+}
+
+/*====================================================
+メールアドレス登録
+====================================================*/
+.confirmArea{
+    text-align: center;
+    font-size:16px;
+    line-height: 1.5
+}
+.confirmArea .attention{
+    color:#e60012;
+    margin-top:30px;
+}

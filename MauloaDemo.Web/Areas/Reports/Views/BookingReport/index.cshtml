@@ -1,0 +1,166 @@
+﻿@using MauloaDemo.Models.Combined
+@{
+    ViewBag.Title = "Booking Report";
+}
+
+@section head{
+    <link href="@Url.Content("~/Areas/Reports/Content/MgmReport.css")" rel="stylesheet" type="text/css" />
+}
+<div class="app_wrapper">
+    <h3>@ViewBag.Title</h3>
+    <div id="app">
+        <div class="search clearfix">
+            <div style="padding-bottom:10px;">
+                <label for="txtFrom" class="w-2 control-label">Date From</label>
+                <div class="w-2">
+                    <input id="txtSearchDateFrom"
+                           type="text"
+                           class="form-control input-sm todate"
+                           style="width:95px;"
+                           data-role="datepicker"
+                           data-bind="value: search.date_from" />
+                </div>
+
+                <label for="txtFrom" class="w-1 control-label">To</label>
+                <div class="w-2">
+                    <input id="txtSearchDateTo"
+                           type="text"
+                           class="form-control input-sm todate"
+                           style="width:95px;"
+                           data-role="datepicker"
+                           data-bind="value: search.date_to" />
+                </div>
+                <label for="txtAgent" class="w-1 control-label">Agent</label>
+                <div class="w-2">
+                    <input type="text" id="txtAgent"
+                           maxlength="6"
+                           class="form-control input-sm select-agent toupper tohankaku"
+                           style="width:90px;"
+                           data-bind="value: search.agent_cd, enabled: isPhotoPlanAgentEnabled" />
+                </div>
+                <label for="txtChurch" class="w-1 control-label">Church</label>
+                <div class="w-2">
+                    <input type="text" id="txtChurch"
+                           maxlength="5"
+                           class="form-control input-sm select-church toupper tohankaku"
+                           style="width:90px;"
+                           data-bind="value: search.church_cd, enabled: isPhotoPlanAgentEnabled" />
+                </div>
+            </div>
+            <div style="padding-bottom:10px;">
+                <label for="txtVendor" class="w-1 control-label">Vendor</label>
+                <div class="w-2">
+                    <input type="text" id="txtVendor"
+                           maxlength="6"
+                           class="form-control input-sm select-vendor toupper tohankaku"
+                           style="width:90px;"
+                           data-bind="value: search.vendor_cd, enabled: isPhotoPlanAgentEnabled" />
+                </div>
+                <label for="txtItemType" class="w-1 control-label">Item Type</label>
+                <div class="w-2">
+                    <input type="text" id="txtItemType"
+                           maxlength="3"
+                           class="form-control input-sm select-itemtype toupper tohankaku"
+                           style="width:90px;"
+                           data-bind="value: search.item_type, enabled: isPhotoPlanAgentEnabled, events: {change: changeItemType }" />
+                </div>
+                <label for="txtItemCd" class="w-1 control-label">Item Cd</label>
+                <div class="w-3">
+                    <select name="txtItemCd"
+                            maxlength="15"
+                            class="form-control input-sm toupper tohankaku "
+                            data-height="400"
+                            data-role="combobox"
+                            data-value-field="item_cd"
+                            data-text-field="item_cd"
+                            data-value-primitive="true"
+                            @*data-cascade-from="txtItemType"
+                            data-cascade-from-field="item_type"*@
+                            data-bind="value: search.item_cd, source: itemList, events: {change: DoSearchOrders}"
+                            data-template="itemCdComboTemplate"></select>
+                    <script type="text/template" id="itemCdComboTemplate">
+                        <dl>
+                            <dt style="width:22%;">${ data.item_cd }</dt>
+                            <dd style="width:76%;">${ App.L(data.item_name_jpn, data.item_name) }</dd>
+                        </dl>
+                    </script>
+                </div>
+                <label for="txtSortBy" class="w-1 control-label">Sort By</label>
+                <div class="w-3">
+                    <select name="txtSortBy"
+                            data-role="combobox"
+                            data-bind="value: search.sort_by"
+                            class="form-control input-sm "
+                            style="width:200px;">
+                        <option value="@(BookingReport.SortBy.c_num)">Customer #</option>
+                        <option value="@(BookingReport.SortBy.wed_date)">Wdg.Date, Wdg.Time</option>
+                        <option value="@(BookingReport.SortBy.vendor_cd)">Vendor, Wdg.Date, Wdg.Time</option>
+                        <option value="@(BookingReport.SortBy.agent_cd)">Agent, Wdg.Date, Wdg.Time</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <div class="w-3">
+                    <input type="checkbox"
+                           id="incdCustCxl"
+                           data-bind="checked: search.include_cust_cxl ">
+                    <label for="incdCustCxl" style="cursor:pointer;">Include Customer CXL</label>
+                </div>
+                <div class="w-3">
+                    <input type="checkbox"
+                           id="incdSalesCxl"
+                           data-bind="checked: search.include_sales_cxl ">
+                    <label for="incdSalesCxl" style="cursor:pointer;">Include Vendor CXL</label>
+                </div>
+                <div class="w-3">
+                    <input type="checkbox"
+                           id="notFinalizedOnly"
+                           data-bind="checked: search.not_finalized_only ">
+                    <label for="notFinalizedOnly" style="cursor:pointer;">Not Finalized Only</label>
+                </div>
+                <div class="w-1">
+                    <button id="refresh" type="button" class="btn btn-default search-button">
+                        Refresh
+                    </button>
+                </div>
+                <div class="w-1">
+                    <button id="report" type="button" class="btn btn-default button-report">
+                        Report
+                    </button>
+                </div>
+                <div class="w-2">
+                    <span data-bind="text: record_count"></span> records found.
+                </div>
+            </div>
+        </div>
+            <div class="k-content" style="width: 100%;">
+                <div id="grd"
+                     data-role="grid"
+                     data-bind="source: list"
+                     data-selectable="true"
+                     data-sortable="true"
+                     data-resizable="true"
+                     data-scrollable="true"
+                     data-height="560"
+                     data-columns="[{field: 'cust_cxl', title: 'CXL', width: 40, attributes: ' class=\'centered\'', template: '<input type=\'checkbox\' disabled data-bind=\'checked:cust_cxl\' \ />' },
+                     {field: 'c_num', title: 'CNum', width: 60 },
+                     {field: 'agent_cd', title: 'Agent', width: 60 },
+                     {field: 'wed_date_s', title: 'WedDate', width: 85, format: '{0:MM/dd/yyyy}' },
+                     {field: 'wed_time_s', title: 'Time', width: 55, format: '{0:HH:mm}' },
+                     {field: 'church_cd', title: 'Location', width: 60 },
+                     {field: 'g_name', title: 'Groom', width: 130 },
+                     {field: 'b_name', title: 'Bride', width: 130 },
+                     {field: 'vendor_cd', title: 'Vendor', width: 60 },
+                     {field: 'item_type', title: 'ItemType', width: 60 },
+                     {field: 'item_cd', title: 'ItemCd', width: 130 },
+                     {field: 'book_status_n', title: 'Status', width: 70 }]">
+                </div>
+            </div>
+        </div>
+
+</div>
+
+@section scripts {
+    <script src='@Url.Content("~/Scripts/require.min.js")' data-main='@Url.Content("~/Areas/Reports/Scripts/BookingReportListView")'></script>
+}
+

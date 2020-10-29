@@ -1,0 +1,1360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{94643627-AF27-4F8C-B12F-E2D0DCED119F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MauloaDemo.Web</RootNamespace>
+    <AssemblyName>MauloaDemo.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper, Version=3.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4, Version=3.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="CBAF2013, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\DOTNET\CBAF2013\CBAF2013\bin\Release\CBAF2013.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FiftyOne.Foundation, Version=3.1.4.5, Culture=neutral, PublicKeyToken=e967ae578dabd98e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\51Degrees.mobi.3.1.4.5\lib\NET40\FiftyOne.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Chart.v11, Version=11.0.8705.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Diagnostics.v11, Version=11.0.8705.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Document.v11, Version=11.0.8705.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Export.Document.v11, Version=11.0.8705.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Export.Html.v11, Version=11.0.8705.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Export.Image.v11, Version=11.0.8705.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Export.Pdf.v11, Version=11.0.8705.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Export.Rdf.v11, Version=11.0.8705.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Export.Xaml.v11, Version=11.0.8705.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Extensibility.v11, Version=11.0.8705.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.v11, Version=11.0.8705.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Web.v11, Version=11.0.8705.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HttpAuthModule, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HttpAuthModule.2.2.0.0\lib\net45\HttpAuthModule.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationServer.Caching.AzureClientHelper, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAzure.Caching.2.4.0.0\lib\net40-full\Microsoft.ApplicationServer.Caching.AzureClientHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationServer.Caching.AzureCommon, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAzure.Caching.2.4.0.0\lib\net40-full\Microsoft.ApplicationServer.Caching.AzureCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationServer.Caching.Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAzure.Caching.2.4.0.0\lib\net40-full\Microsoft.ApplicationServer.Caching.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationServer.Caching.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAzure.Caching.2.4.0.0\lib\net40-full\Microsoft.ApplicationServer.Caching.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.1.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Owin.1.2.1\lib\net45\Microsoft.AspNet.SignalR.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.1.1\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.Edm.5.6.2\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.OData.5.6.2\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.DistributedCache, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAzure.Caching.2.4.0.0\lib\net40-full\Microsoft.Web.DistributedCache.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebHelpers.3.2.0\lib\net45\Microsoft.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsFabric.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAzure.Caching.2.4.0.0\lib\net40-full\Microsoft.WindowsFabric.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsFabric.Data.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAzure.Caching.2.4.0.0\lib\net40-full\Microsoft.WindowsFabric.Data.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.22.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.22\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.22.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.22\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Spatial, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Spatial.5.6.2\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Http, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.0\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.OData, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.OData.5.2.0\lib\net45\System.Web.Http.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.0\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.2.0.0\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.2.0\lib\net45\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.3.2.0\lib\net45\WebMatrix.WebData.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Api\AgentsController.cs" />
+    <Compile Include="Api\ChurchTimesController.cs" />
+    <Compile Include="Api\HolidaysController.cs" />
+    <Compile Include="Api\ArrangementsController.cs" />
+    <Compile Include="Api\ItemCostsController.cs" />
+    <Compile Include="Api\ItemOptionsController.cs" />
+    <Compile Include="Api\ItemVendorsController.cs" />
+    <Compile Include="Api\ItemPricesController.cs" />
+    <Compile Include="Api\LogChangesController.cs" />
+    <Compile Include="Api\NoticesController.cs" />
+    <Compile Include="Api\ScheduleNoteTemplatesController.cs" />
+    <Compile Include="Api\SchedulePatternsController.cs" />
+    <Compile Include="Api\ScheduleNotesController.cs" />
+    <Compile Include="Api\SchedulePhrasesController.cs" />
+    <Compile Include="Api\VendorsController.cs" />
+    <Compile Include="Api\LoginUsersController.cs" />
+    <Compile Include="Api\MgmReportComboListController.cs" />
+    <Compile Include="Api\MgmReportController.cs" />
+    <Compile Include="Api\PickupPlacesController.cs" />
+    <Compile Include="Api\AreasController.cs" />
+    <Compile Include="Api\CalendarController.cs" />
+    <Compile Include="Api\ChurchBlocksController.cs" />
+    <Compile Include="Api\ChurchesController.cs" />
+    <Compile Include="Api\CustomersController.cs" />
+    <Compile Include="Api\HotelsController.cs" />
+    <Compile Include="Api\ItemsController.cs" />
+    <Compile Include="Api\ItemTypesController.cs" />
+    <Compile Include="Api\SalesController.cs" />
+    <Compile Include="Api\SubAgentsController.cs" />
+    <Compile Include="Api\WeddingPlansController.cs" />
+    <Compile Include="App_Start\BootstrapBundleConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Accounting\AccountingAreaRegistration.cs" />
+    <Compile Include="Areas\Accounting\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Customers\Controllers\CustomerFolderController.cs" />
+    <Compile Include="Areas\Customers\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Reports\CustomersAreaRegistration.cs" />
+    <Compile Include="Areas\Masters\Controllers\ChurchBlockController.cs" />
+    <Compile Include="Areas\Masters\Controllers\NoticeController.cs" />
+    <Compile Include="Areas\Masters\Controllers\SchedulePatternController.cs" />
+    <Compile Include="Areas\Masters\Controllers\ScheduleNoteTemplateController.cs" />
+    <Compile Include="Areas\Masters\Controllers\PickupPlaceController.cs" />
+    <Compile Include="Areas\Masters\Controllers\ChurchTimeController.cs" />
+    <Compile Include="Areas\Masters\Controllers\ChurchController.cs" />
+    <Compile Include="Areas\Masters\Controllers\SubAgentController.cs" />
+    <Compile Include="Areas\Masters\Controllers\BaseMasterController.cs" />
+    <Compile Include="Areas\Masters\Controllers\HolidayController.cs" />
+    <Compile Include="Areas\Masters\Controllers\ItemGroupingController.cs" />
+    <Compile Include="Areas\Masters\Controllers\ItemController.cs" />
+    <Compile Include="Areas\Masters\Controllers\VendorController.cs" />
+    <Compile Include="Areas\Masters\Controllers\AgentController.cs" />
+    <Compile Include="Areas\Masters\Controllers\AreaController.cs" />
+    <Compile Include="Areas\Masters\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Masters\Controllers\HotelController.cs" />
+    <Compile Include="Areas\Masters\Controllers\ItemTypeController.cs" />
+    <Compile Include="Areas\Masters\Controllers\LoginUserController.cs" />
+    <Compile Include="Areas\Masters\MastersAreaRegistration.cs" />
+    <Compile Include="Areas\Reports\Controllers\ComboListController.cs" />
+    <Compile Include="Areas\Reports\Controllers\BookingReportController.cs" />
+    <Compile Include="Areas\Reports\Controllers\VendorConfirmationController.cs" />
+    <Compile Include="Areas\Reports\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Reports\ReportsAreaRegistration.cs" />
+    <Compile Include="Controllers\NoticeController.cs" />
+    <Compile Include="Controllers\CalendarController.cs" />
+    <Compile Include="Helpers\AccessLevelFilterAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helpers\ApiAccessLevelFilterAttribute.cs" />
+    <Compile Include="Helpers\StaffOnlyFilterAttribute.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Helpers\AjaxUserSessionFilterAttribute.cs" />
+    <Compile Include="Helpers\ApiAuthorizeFilterAttribute.cs" />
+    <Compile Include="Api\BaseApiController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CommonController.cs" />
+    <Compile Include="Helpers\Constants.cs" />
+    <Compile Include="Helpers\CSVResult.cs" />
+    <Compile Include="Helpers\CustomJsonResult.cs" />
+    <Compile Include="Helpers\EXCELResult.cs" />
+    <Compile Include="Helpers\Exceptions.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ViewSwitcherController.cs" />
+    <Compile Include="Hubs\HomeHub.cs" />
+    <Compile Include="Helpers\JsonDateFormatFilterAttribute.cs" />
+    <Compile Include="Helpers\LoggingFilterAttribute.cs" />
+    <Compile Include="Helpers\NoClientCacheAttribute.cs" />
+    <Compile Include="Helpers\UserCultureFilterAttribute.cs" />
+    <Compile Include="Helpers\UserSessionFilterAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\FileListHelper.cs" />
+    <Compile Include="Helpers\JsonHelper.cs" />
+    <Compile Include="Helpers\MyUrlHelper.cs" />
+    <Compile Include="Helpers\PDFExportHelper.cs" />
+    <Compile Include="Helpers\ResourceExtensions.cs" />
+    <Compile Include="Helpers\UserHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Shared.Designer.cs" />
+    <Compile Include="Resources\Shared.ja.Designer.cs" />
+    <Compile Include="ViewModels\AccountLogin.cs" />
+    <Compile Include="ViewModels\RegionInfo.cs" />
+    <Compile Include="ViewModels\UserProfile.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Customers\Content\customer_edit.css" />
+    <Content Include="Areas\Masters\Content\masters.css" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\Models\Notice.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\Models\SchedulePattern.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\Models\ScheduleNoteTemplate.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\NoticeEditView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\NoticeIndexView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\SchedulePatternEditView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\SchedulePatternIndexView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\ScheduleNoteTemplateEditView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\ScheduleNoteTemplateIndexView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\PickupPlaceEditView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\ChurchEditView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\PickupPlaceIndexView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\ChurchIndexView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\ChurchBlockEditView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\ChurchTimeEditView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\ChurchBlockIndexView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\ChurchTimeIndexView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\Models\ChurchBlock.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\Models\ChurchTime.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\Models\Church.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\Models\PickupPlace.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\SubAgentEditView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\SubAgentIndexView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\ItemGroupingEditView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\HolidayEditView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\HolidayIndexView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\ItemGroupingIndexView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\ItemIndexView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\ItemEditView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\Models\SubAgent.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\Models\Holiday.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\Models\ItemOption.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\Models\ItemCost.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\Models\ItemVendor.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\Models\ItemPrice.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\Models\Item.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\VendorEditView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\VendorIndexView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\LoginUserEditView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\AgentEditView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\LoginUserIndexView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\AgentIndexView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\ItemTypeEditView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\HotelEditView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\AreaEditView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\ItemTypeIndexView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\HotelIndexView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\AreaIndexView.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\Models\Vendor.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\Models\Agent.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\Models\ItemType.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\Models\Hotel.ts" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\Models\Area.ts" />
+    <Content Include="Areas\Masters\Scripts\AgentEditView.js" />
+    <Content Include="Areas\Masters\Scripts\AgentIndexView.js" />
+    <Content Include="Areas\Masters\Scripts\AreaEditView.js" />
+    <Content Include="Areas\Masters\Scripts\AreaIndexView.js" />
+    <Content Include="Areas\Masters\Scripts\ChurchBlockEditView.js" />
+    <Content Include="Areas\Masters\Scripts\ChurchBlockIndexView.js" />
+    <Content Include="Areas\Masters\Scripts\ChurchEditView.js" />
+    <Content Include="Areas\Masters\Scripts\ChurchIndexView.js" />
+    <Content Include="Areas\Masters\Scripts\ChurchTimeEditView.js" />
+    <Content Include="Areas\Masters\Scripts\ChurchTimeIndexView.js" />
+    <Content Include="Areas\Masters\Scripts\HolidayEditView.js" />
+    <Content Include="Areas\Masters\Scripts\HolidayIndexView.js" />
+    <Content Include="Areas\Masters\Scripts\HotelEditView.js" />
+    <Content Include="Areas\Masters\Scripts\HotelIndexView.js" />
+    <Content Include="Areas\Masters\Scripts\ItemCostEditView.js" />
+    <Content Include="Areas\Masters\Scripts\ItemEditView.js" />
+    <Content Include="Areas\Masters\Scripts\ItemGroupingEditView.js" />
+    <Content Include="Areas\Masters\Scripts\ItemGroupingIndexView.js" />
+    <Content Include="Areas\Masters\Scripts\ItemIndexView.js" />
+    <Content Include="Areas\Masters\Scripts\ItemTypeEditView.js" />
+    <Content Include="Areas\Masters\Scripts\ItemTypeIndexView.js" />
+    <Content Include="Areas\Masters\Scripts\ItemVendorEditView.js" />
+    <Content Include="Areas\Masters\Scripts\ItemPriceEditView.js" />
+    <Content Include="Areas\Masters\Scripts\LoginUserEditView.js" />
+    <Content Include="Areas\Masters\Scripts\LoginUserIndexView.js" />
+    <Content Include="Areas\Masters\Scripts\Models\Agent.js" />
+    <Content Include="Areas\Masters\Scripts\Models\Area.js" />
+    <Content Include="Areas\Masters\Scripts\Models\Church.js" />
+    <Content Include="Areas\Masters\Scripts\Models\ChurchBlock.js" />
+    <Content Include="Areas\Masters\Scripts\Models\ChurchTime.js" />
+    <Content Include="Areas\Masters\Scripts\Models\Holiday.js" />
+    <Content Include="Areas\Masters\Scripts\Models\Hotel.js" />
+    <Content Include="Areas\Masters\Scripts\Models\Item.js" />
+    <Content Include="Areas\Masters\Scripts\Models\ItemCost.js" />
+    <Content Include="Areas\Masters\Scripts\Models\ItemOption.js" />
+    <Content Include="Areas\Masters\Scripts\Models\ItemPrice.js" />
+    <Content Include="Areas\Masters\Scripts\Models\ItemType.js" />
+    <Content Include="Areas\Masters\Scripts\Models\ItemVendor.js" />
+    <Content Include="Areas\Masters\Scripts\Models\LoginUser.js" />
+    <Content Include="Areas\Masters\Scripts\Models\Notice.js" />
+    <Content Include="Areas\Masters\Scripts\Models\PickupPlace.js" />
+    <Content Include="Areas\Masters\Scripts\Models\ScheduleNoteTemplate.js" />
+    <Content Include="Areas\Masters\Scripts\Models\SchedulePattern.js" />
+    <Content Include="Areas\Masters\Scripts\Models\SubAgent.js" />
+    <Content Include="Areas\Masters\Scripts\Models\Vendor.js" />
+    <Content Include="Areas\Masters\Scripts\NoticeEditView.js" />
+    <Content Include="Areas\Masters\Scripts\NoticeIndexView.js" />
+    <Content Include="Areas\Masters\Scripts\PickupPlaceEditView.js" />
+    <Content Include="Areas\Masters\Scripts\PickupPlaceIndexView.js" />
+    <Content Include="Areas\Masters\Scripts\ScheduleNoteTemplateEditView.js" />
+    <Content Include="Areas\Masters\Scripts\ScheduleNoteTemplateIndexView.js" />
+    <Content Include="Areas\Masters\Scripts\SchedulePatternEditView.js" />
+    <Content Include="Areas\Masters\Scripts\SchedulePatternIndexView.js" />
+    <Content Include="Areas\Masters\Scripts\SubAgentEditView.js" />
+    <Content Include="Areas\Masters\Scripts\SubAgentIndexView.js" />
+    <Content Include="Areas\Masters\Scripts\VendorEditView.js" />
+    <Content Include="Areas\Masters\Scripts\VendorIndexView.js" />
+    <Content Include="Areas\Reports\Content\MgmReport.css" />
+    <TypeScriptCompile Include="Areas\Masters\Scripts\Models\LoginUser.ts" />
+    <TypeScriptCompile Include="Areas\Reports\Scripts\ComboListEditView.ts" />
+    <TypeScriptCompile Include="Areas\Reports\Scripts\ComboListIndexView.ts" />
+    <TypeScriptCompile Include="Areas\Reports\Scripts\Models\MgmReportComboList.ts" />
+    <TypeScriptCompile Include="Areas\Reports\Scripts\Models\MgmReport.ts" />
+    <TypeScriptCompile Include="Areas\Reports\Scripts\Models\MgmReportParam.ts" />
+    <TypeScriptCompile Include="Areas\Reports\Scripts\ReportEditView.ts" />
+    <TypeScriptCompile Include="Areas\Reports\Scripts\BookingReportListView.ts" />
+    <TypeScriptCompile Include="Areas\Reports\Scripts\VendorConfirmationListView.ts" />
+    <TypeScriptCompile Include="Areas\Reports\Scripts\ReportListView.ts" />
+    <TypeScriptCompile Include="Areas\Reports\Scripts\ReportView.ts" />
+    <Content Include="Areas\Masters\Views\Area\Index.cshtml" />
+    <Content Include="Areas\Masters\Views\Area\AreaEditPartial.cshtml" />
+    <Content Include="51Degrees.config" />
+    <Content Include="Areas\Masters\Views\Hotel\Index.cshtml" />
+    <Content Include="Areas\Masters\Views\Hotel\HotelEditPartial.cshtml" />
+    <Content Include="Areas\Masters\Views\ItemType\Index.cshtml" />
+    <Content Include="Areas\Masters\Views\ItemType\ItemTypeEditPartial.cshtml" />
+    <Content Include="Areas\Masters\Views\Agent\Index.cshtml" />
+    <Content Include="Areas\Masters\Views\Agent\AgentEditPartial.cshtml" />
+    <Content Include="Areas\Customers\Views\Home\ScheduleDialog.cshtml" />
+    <Content Include="Areas\Masters\Views\LoginUser\Index.cshtml" />
+    <Content Include="Areas\Masters\Views\LoginUser\LoginUserEditPartial.cshtml" />
+    <Content Include="Areas\Customers\Views\Home\CosInfoDialog.cshtml" />
+    <Content Include="Areas\Masters\Views\Vendor\Index.cshtml" />
+    <Content Include="Areas\Masters\Views\Vendor\VendorEditPartial.cshtml" />
+    <Content Include="Areas\Masters\Views\Holiday\Index.cshtml" />
+    <Content Include="Areas\Masters\Views\Holiday\HolidayEditPartial.cshtml" />
+    <Content Include="Areas\Masters\Views\Item\Index.cshtml" />
+    <Content Include="Areas\Masters\Views\Item\ItemEditPartial.cshtml" />
+    <Content Include="Areas\Masters\Views\Item\ItemPriceDialog.cshtml" />
+    <Content Include="Areas\Masters\Views\Item\ItemVendorDialog.cshtml" />
+    <Content Include="Areas\Masters\Views\Item\ItemCostDialog.cshtml" />
+    <Content Include="Areas\Masters\Views\ItemGrouping\ItemGroupingEditPartial.cshtml" />
+    <Content Include="Areas\Masters\Views\ItemGrouping\Index.cshtml" />
+    <Content Include="Areas\Masters\Views\SubAgent\SubAgentEditPartial.cshtml" />
+    <Content Include="Areas\Masters\Views\SubAgent\Index.cshtml" />
+    <Content Include="Areas\Masters\Views\Church\ChurchEditPartial.cshtml" />
+    <Content Include="Areas\Masters\Views\Church\Index.cshtml" />
+    <Content Include="Areas\Masters\Views\ChurchTime\ChurchTimeEditPartial.cshtml" />
+    <Content Include="Areas\Masters\Views\ChurchTime\Index.cshtml" />
+    <Content Include="Areas\Masters\Views\ChurchBlock\ChurchBlockEditPartial.cshtml" />
+    <Content Include="Areas\Masters\Views\ChurchBlock\Index.cshtml" />
+    <Content Include="Areas\Masters\Views\PickupPlace\PickupPlaceEditPartial.cshtml" />
+    <Content Include="Areas\Masters\Views\PickupPlace\Index.cshtml" />
+    <Content Include="Areas\Masters\Views\ScheduleNoteTemplate\ScheduleNoteTemplateEditPartial.cshtml" />
+    <Content Include="Areas\Masters\Views\ScheduleNoteTemplate\Index.cshtml" />
+    <Content Include="Areas\Masters\Views\Notice\Index.cshtml" />
+    <Content Include="Areas\Masters\Views\Notice\NoticeEditPartial.cshtml" />
+    <Content Include="Areas\Customers\Views\Home\Index_ChangesPartial.cshtml" />
+    <Content Include="Areas\Customers\Views\Home\Index_OrdersPartial.cshtml" />
+    <Content Include="Areas\Customers\Views\Home\Index_CustomersPartial.cshtml" />
+    <Content Include="Areas\Customers\Views\Home\Index_DuplicatesPartial.cshtml" />
+    <Content Include="Areas\Reports\Scripts\BookingReportListView.js" />
+    <Content Include="Areas\Reports\Scripts\ComboListEditView.js" />
+    <Content Include="Areas\Reports\Scripts\ComboListIndexView.js" />
+    <Content Include="Areas\Reports\Scripts\Models\MgmReport.js" />
+    <Content Include="Areas\Reports\Scripts\Models\MgmReportComboList.js" />
+    <Content Include="Areas\Reports\Scripts\Models\MgmReportParam.js" />
+    <Content Include="Areas\Reports\Scripts\ReportEditView.js" />
+    <Content Include="Areas\Reports\Scripts\ReportListView.js" />
+    <Content Include="Areas\Reports\Scripts\ReportView.js" />
+    <Content Include="Areas\Reports\Scripts\VendorConfirmationListView.js" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
+    <Content Include="mock\accountRegisterInput.html" />
+    <Content Include="mock\cart.html" />
+    <Content Include="mock\common\css\accountRegisterInput.css" />
+    <Content Include="mock\common\css\base.css" />
+    <Content Include="mock\common\css\colorbox.css" />
+    <Content Include="mock\common\css\common.css" />
+    <Content Include="mock\common\css\creditCardInput.css" />
+    <Content Include="mock\common\css\customerInput.css" />
+    <Content Include="mock\common\css\detail.css" />
+    <Content Include="mock\common\css\jquery-ui.css" />
+    <Content Include="mock\common\css\jquery.bxslider.css" />
+    <Content Include="mock\common\css\login.css" />
+    <Content Include="mock\common\css\mailAddressRegisterConfirm.css" />
+    <Content Include="mock\common\css\mailAddressRegisterInput.css" />
+    <Content Include="mock\common\css\modal.css" />
+    <Content Include="mock\common\css\myWedding.css" />
+    <Content Include="mock\common\css\normalize.css" />
+    <Content Include="mock\common\css\orderComplete.css" />
+    <Content Include="mock\common\css\orderConfirm.css" />
+    <Content Include="mock\common\css\reset.css" />
+    <Content Include="mock\common\css\step1.css" />
+    <Content Include="mock\common\css\step2.css" />
+    <Content Include="mock\common\css\step3.css" />
+    <Content Include="mock\common\css\step4.css" />
+    <Content Include="mock\common\css\systemError.css" />
+    <Content Include="mock\common\image\bx_loader.gif" />
+    <Content Include="mock\common\image\controls.png" />
+    <Content Include="mock\common\image\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="mock\common\image\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="mock\common\image\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="mock\common\image\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="mock\common\image\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="mock\common\image\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="mock\common\image\ui-icons_222222_256x240.png" />
+    <Content Include="mock\common\image\ui-icons_2e83ff_256x240.png" />
+    <Content Include="mock\common\image\ui-icons_454545_256x240.png" />
+    <Content Include="mock\common\image\ui-icons_888888_256x240.png" />
+    <Content Include="mock\common\image\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="mock\common\img\arrow_01.png" />
+    <Content Include="mock\common\img\arrow_02.png" />
+    <Content Include="mock\common\img\arrow_next.png" />
+    <Content Include="mock\common\img\arrow_prev.png" />
+    <Content Include="mock\common\img\arrow_sideMenu.png" />
+    <Content Include="mock\common\img\arrow_step1.png" />
+    <Content Include="mock\common\img\bg_process_01.png" />
+    <Content Include="mock\common\img\bg_process_02.png" />
+    <Content Include="mock\common\img\bg_process_03.png" />
+    <Content Include="mock\common\img\bg_process_04.png" />
+    <Content Include="mock\common\img\bg_process_wide_01.png" />
+    <Content Include="mock\common\img\bg_process_wide_02.png" />
+    <Content Include="mock\common\img\bg_process_wide_03.png" />
+    <Content Include="mock\common\img\bg_process_wide_04.png" />
+    <Content Include="mock\common\img\bg_process_wide_05.png" />
+    <Content Include="mock\common\img\bg_process_wide_06.png" />
+    <Content Include="mock\common\img\bg_step1.png" />
+    <Content Include="mock\common\img\bg_step2.png" />
+    <Content Include="mock\common\img\bg_step3.png" />
+    <Content Include="mock\common\img\bg_step4.png" />
+    <Content Include="mock\common\img\bg_ttl_ribbon.png" />
+    <Content Include="mock\common\img\btn_close.png" />
+    <Content Include="mock\common\img\btn_english.png" />
+    <Content Include="mock\common\img\btn_japanese.png" />
+    <Content Include="mock\common\img\btn_login.png" />
+    <Content Include="mock\common\img\btn_menu.png" />
+    <Content Include="mock\common\img\btn_mypage.png" />
+    <Content Include="mock\common\img\card_01.png" />
+    <Content Include="mock\common\img\card_02.png" />
+    <Content Include="mock\common\img\H1V2_1_L.jpg" />
+    <Content Include="mock\common\img\H1V2_1_M.jpg" />
+    <Content Include="mock\common\img\H1V2_1_S.jpg" />
+    <Content Include="mock\common\img\H1V2_2_L.jpg" />
+    <Content Include="mock\common\img\H1V2_2_M.jpg" />
+    <Content Include="mock\common\img\H1V2_2_S.jpg" />
+    <Content Include="mock\common\img\H1V2_3_L.jpg" />
+    <Content Include="mock\common\img\H1V2_3_M.jpg" />
+    <Content Include="mock\common\img\H1V2_3_S.jpg" />
+    <Content Include="mock\common\img\H1V2_4_L.jpg" />
+    <Content Include="mock\common\img\H1V2_4_M.jpg" />
+    <Content Include="mock\common\img\H1V2_4_S.jpg" />
+    <Content Include="mock\common\img\H1V2_5_L.jpg" />
+    <Content Include="mock\common\img\H1V2_5_M.jpg" />
+    <Content Include="mock\common\img\H1V2_5_S.jpg" />
+    <Content Include="mock\common\img\H1V2_6_L.jpg" />
+    <Content Include="mock\common\img\H1V2_6_M.jpg" />
+    <Content Include="mock\common\img\H1V2_6_S.jpg" />
+    <Content Include="mock\common\img\h1_weddingPlan.png" />
+    <Content Include="mock\common\img\header_logo1.png" />
+    <Content Include="mock\common\img\header_logo2.png" />
+    <Content Include="mock\common\img\icon_calendar.png" />
+    <Content Include="mock\common\img\icon_cart.png" />
+    <Content Include="mock\common\img\icon_facebook.png" />
+    <Content Include="mock\common\img\icon_facebook_share.png" />
+    <Content Include="mock\common\img\icon_login.png" />
+    <Content Include="mock\common\img\icon_menu.png" />
+    <Content Include="mock\common\img\icon_movie.png" />
+    <Content Include="mock\common\img\icon_mypage.png" />
+    <Content Include="mock\common\img\icon_question.png" />
+    <Content Include="mock\common\img\icon_twitter.png" />
+    <Content Include="mock\common\img\thumb_11.jpg" />
+    <Content Include="mock\common\img\thumb_12.jpg" />
+    <Content Include="mock\common\img\thumb_13.jpg" />
+    <Content Include="mock\common\img\thumb_14.jpg" />
+    <Content Include="mock\common\img\thumb_15.jpg" />
+    <Content Include="mock\common\img\thumb_16.jpg" />
+    <Content Include="mock\common\img\thumb_17.jpg" />
+    <Content Include="mock\common\img\thumb_18.jpg" />
+    <Content Include="mock\common\img\thumb_19.jpg" />
+    <Content Include="mock\common\img\thumb_20.jpg" />
+    <Content Include="mock\common\img\thumb_21.jpg" />
+    <Content Include="mock\common\img\thumb_step3_1.jpg" />
+    <Content Include="mock\common\img\top_img.png" />
+    <Content Include="mock\common\img\ttl_thumbArea_01.png" />
+    <Content Include="mock\common\js\common.js" />
+    <Content Include="mock\common\js\jquery.backstretch.min.js" />
+    <Content Include="mock\common\js\jquery.bxslider.min.js" />
+    <Content Include="mock\common\js\jquery.colorbox-min.js" />
+    <Content Include="mock\common\js\jquery.zoom.js" />
+    <Content Include="mock\creditCardInput.html" />
+    <Content Include="mock\customerInput.html" />
+    <Content Include="mock\detail.html" />
+    <Content Include="mock\index.html" />
+    <Content Include="mock\items.html" />
+    <Content Include="mock\login.html" />
+    <Content Include="mock\mailAddressRegisterConfirm.html" />
+    <Content Include="mock\mailAddressRegisterInput.html" />
+    <Content Include="mock\myWedding.html" />
+    <Content Include="mock\orderComplete.html" />
+    <Content Include="mock\orderConfirm.html" />
+    <Content Include="mock\systemError.html" />
+    <Content Include="Scripts\App\application.js" />
+    <Content Include="Scripts\App\common.js" />
+    <Content Include="Scripts\App\customer_addressinfodetail.js" />
+    <Content Include="Scripts\App\customer_cosinfodetail.js" />
+    <Content Include="Scripts\App\customer_duplist.js" />
+    <Content Include="Scripts\App\customer_edit.js" />
+    <TypeScriptCompile Include="Scripts\App\customer_note.ts" />
+    <TypeScriptCompile Include="Scripts\App\customer_duplist.ts" />
+    <Content Include="Scripts\App\customer_file.js" />
+    <Content Include="Scripts\App\customer_folder.js" />
+    <Content Include="Scripts\App\customer_note.js" />
+    <Content Include="Scripts\App\customer_optiondetail.js" />
+    <Content Include="Scripts\App\customer_plansearch.js" />
+    <Content Include="Scripts\App\customer_schedule.js" />
+    <Content Include="Scripts\App\models\address_info.js" />
+    <Content Include="Scripts\App\models\arrangement.js" />
+    <Content Include="Scripts\App\models\church_block.js" />
+    <Content Include="Scripts\App\models\cos_info.js" />
+    <Content Include="Scripts\App\models\customer.js" />
+    <Content Include="Scripts\App\models\customerlistitem.js" />
+    <Content Include="Scripts\App\models\delivery_info.js" />
+    <Content Include="Scripts\App\models\itemwithprice.js" />
+    <Content Include="Scripts\App\models\make_info.js" />
+    <Content Include="Scripts\App\models\pickupplace.js" />
+    <Content Include="Scripts\App\models\planlistitem.js" />
+    <Content Include="Scripts\App\models\reception_info.js" />
+    <Content Include="Scripts\App\models\sales.js" />
+    <Content Include="Scripts\App\models\schedule_note.js" />
+    <Content Include="Scripts\App\models\schedule_note_template.js" />
+    <Content Include="Scripts\App\models\schedule_pattern.js" />
+    <Content Include="Scripts\App\models\schedule_pattern_item.js" />
+    <Content Include="Scripts\App\models\schedule_pattern_line.js" />
+    <Content Include="Scripts\App\models\schedule_pattern_note.js" />
+    <Content Include="Scripts\App\models\schedule_phrase.js" />
+    <Content Include="Scripts\App\models\shoot_info.js" />
+    <Content Include="Scripts\App\models\trans_info.js" />
+    <Content Include="Scripts\App\models\user_profile.js" />
+    <Content Include="Scripts\App\models\weddingplan.js" />
+    <Content Include="Scripts\App\notice_list.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment-timezone-utils.js" />
+    <Content Include="Scripts\moment-timezone-with-data-2010-2020.js" />
+    <Content Include="Scripts\moment-timezone-with-data-2010-2020.min.js" />
+    <Content Include="Scripts\moment-timezone-with-data.js" />
+    <Content Include="Scripts\moment-timezone-with-data.min.js" />
+    <Content Include="Scripts\moment-timezone.js" />
+    <Content Include="Scripts\moment-timezone.min.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\r.js" />
+    <Content Include="Scripts\require.js" />
+    <Content Include="Scripts\require.min.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\underscore.js" />
+    <Content Include="Scripts\underscore.min.js" />
+    <Content Include="Views\Shared\DuplicateListDialog.cshtml" />
+    <Content Include="Areas\Masters\Views\SchedulePattern\Index.cshtml" />
+    <Content Include="Areas\Masters\Views\SchedulePattern\SchedulePatternEditPartial.cshtml" />
+    <Content Include="Areas\Customers\Views\Home\CustomerFolderPartial.cshtml" />
+    <Content Include="Areas\Customers\Views\Home\NoteDialog.cshtml" />
+    <None Include="Areas\Reports\Views\ComboList\Index.cshtml" />
+    <Content Include="Content\alertify\alertify.bootstrap.css" />
+    <Content Include="Content\alertify\alertify.core.css" />
+    <Content Include="Content\alertify\alertify.custom.css" />
+    <Content Include="Content\alertify\alertify.default.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\calendar.css" />
+    <Content Include="Content\kendo\Black\editor.png" />
+    <Content Include="Content\kendo\Black\imagebrowser.png" />
+    <Content Include="Content\kendo\Black\indeterminate.gif" />
+    <Content Include="Content\kendo\Black\loading-image.gif" />
+    <Content Include="Content\kendo\Black\loading.gif" />
+    <Content Include="Content\kendo\Black\loading_2x.gif" />
+    <Content Include="Content\kendo\Black\markers.png" />
+    <Content Include="Content\kendo\Black\markers_2x.png" />
+    <Content Include="Content\kendo\Black\slider-h.gif" />
+    <Content Include="Content\kendo\Black\slider-v.gif" />
+    <Content Include="Content\kendo\Black\sprite.png" />
+    <Content Include="Content\kendo\Black\sprite_2x.png" />
+    <Content Include="Content\kendo\BlueOpal\editor.png" />
+    <Content Include="Content\kendo\BlueOpal\imagebrowser.png" />
+    <Content Include="Content\kendo\BlueOpal\indeterminate.gif" />
+    <Content Include="Content\kendo\BlueOpal\loading-image.gif" />
+    <Content Include="Content\kendo\BlueOpal\loading.gif" />
+    <Content Include="Content\kendo\BlueOpal\loading_2x.gif" />
+    <Content Include="Content\kendo\BlueOpal\markers.png" />
+    <Content Include="Content\kendo\BlueOpal\markers_2x.png" />
+    <Content Include="Content\kendo\BlueOpal\slider-h.gif" />
+    <Content Include="Content\kendo\BlueOpal\slider-v.gif" />
+    <Content Include="Content\kendo\BlueOpal\sprite.png" />
+    <Content Include="Content\kendo\BlueOpal\sprite_2x.png" />
+    <Content Include="Content\kendo\Bootstrap\editor.png" />
+    <Content Include="Content\kendo\Bootstrap\imagebrowser.png" />
+    <Content Include="Content\kendo\Bootstrap\indeterminate.gif" />
+    <Content Include="Content\kendo\Bootstrap\loading-image.gif" />
+    <Content Include="Content\kendo\Bootstrap\loading.gif" />
+    <Content Include="Content\kendo\Bootstrap\loading_2x.gif" />
+    <Content Include="Content\kendo\Bootstrap\markers.png" />
+    <Content Include="Content\kendo\Bootstrap\markers_2x.png" />
+    <Content Include="Content\kendo\Bootstrap\slider-h.gif" />
+    <Content Include="Content\kendo\Bootstrap\slider-v.gif" />
+    <Content Include="Content\kendo\Bootstrap\sprite.png" />
+    <Content Include="Content\kendo\Bootstrap\sprite_2x.png" />
+    <Content Include="Content\kendo\Default\editor.png" />
+    <Content Include="Content\kendo\Default\imagebrowser.png" />
+    <Content Include="Content\kendo\Default\indeterminate.gif" />
+    <Content Include="Content\kendo\Default\loading-image.gif" />
+    <Content Include="Content\kendo\Default\loading.gif" />
+    <Content Include="Content\kendo\Default\loading_2x.gif" />
+    <Content Include="Content\kendo\Default\markers.png" />
+    <Content Include="Content\kendo\Default\markers_2x.png" />
+    <Content Include="Content\kendo\Default\slider-h.gif" />
+    <Content Include="Content\kendo\Default\slider-v.gif" />
+    <Content Include="Content\kendo\Default\sprite.png" />
+    <Content Include="Content\kendo\Default\sprite_2x.png" />
+    <Content Include="Content\kendo\Flat\editor.png" />
+    <Content Include="Content\kendo\Flat\imagebrowser.png" />
+    <Content Include="Content\kendo\Flat\indeterminate.gif" />
+    <Content Include="Content\kendo\Flat\loading-image.gif" />
+    <Content Include="Content\kendo\Flat\loading.gif" />
+    <Content Include="Content\kendo\Flat\loading_2x.gif" />
+    <Content Include="Content\kendo\Flat\markers.png" />
+    <Content Include="Content\kendo\Flat\markers_2x.png" />
+    <Content Include="Content\kendo\Flat\slider-h.gif" />
+    <Content Include="Content\kendo\Flat\slider-v.gif" />
+    <Content Include="Content\kendo\Flat\sprite.png" />
+    <Content Include="Content\kendo\Flat\sprite_2x.png" />
+    <Content Include="Content\kendo\HighContrast\editor.png" />
+    <Content Include="Content\kendo\HighContrast\imagebrowser.png" />
+    <Content Include="Content\kendo\HighContrast\indeterminate.gif" />
+    <Content Include="Content\kendo\HighContrast\loading-image.gif" />
+    <Content Include="Content\kendo\HighContrast\loading.gif" />
+    <Content Include="Content\kendo\HighContrast\loading_2x.gif" />
+    <Content Include="Content\kendo\HighContrast\markers.png" />
+    <Content Include="Content\kendo\HighContrast\markers_2x.png" />
+    <Content Include="Content\kendo\HighContrast\slider-h.gif" />
+    <Content Include="Content\kendo\HighContrast\slider-v.gif" />
+    <Content Include="Content\kendo\HighContrast\sprite.png" />
+    <Content Include="Content\kendo\HighContrast\sprite_2x.png" />
+    <Content Include="Content\kendo\images\back.png" />
+    <Content Include="Content\kendo\images\kendoui.svg" />
+    <Content Include="Content\kendo\images\wp8_icons.png" />
+    <Content Include="Content\kendo\images\wp8_inverseicons.png" />
+    <Content Include="Content\kendo\kendo.black.min.css" />
+    <Content Include="Content\kendo\kendo.black.mobile.min.css" />
+    <Content Include="Content\kendo\kendo.blueopal.min.css" />
+    <Content Include="Content\kendo\kendo.blueopal.mobile.min.css" />
+    <Content Include="Content\kendo\kendo.bootstrap.min.css" />
+    <Content Include="Content\kendo\kendo.bootstrap.mobile.min.css" />
+    <Content Include="Content\kendo\kendo.common-bootstrap.core.min.css" />
+    <Content Include="Content\kendo\kendo.common-bootstrap.min.css" />
+    <Content Include="Content\kendo\kendo.common.core.min.css" />
+    <Content Include="Content\kendo\kendo.common.min.css" />
+    <Content Include="Content\kendo\kendo.dataviz.black.min.css" />
+    <Content Include="Content\kendo\kendo.dataviz.blueopal.min.css" />
+    <Content Include="Content\kendo\kendo.dataviz.bootstrap.min.css" />
+    <Content Include="Content\kendo\kendo.dataviz.default.min.css" />
+    <Content Include="Content\kendo\kendo.dataviz.flat.min.css" />
+    <Content Include="Content\kendo\kendo.dataviz.highcontrast.min.css" />
+    <Content Include="Content\kendo\kendo.dataviz.metro.min.css" />
+    <Content Include="Content\kendo\kendo.dataviz.metroblack.min.css" />
+    <Content Include="Content\kendo\kendo.dataviz.min.css" />
+    <Content Include="Content\kendo\kendo.dataviz.mobile.min.css" />
+    <Content Include="Content\kendo\kendo.dataviz.moonlight.min.css" />
+    <Content Include="Content\kendo\kendo.dataviz.silver.min.css" />
+    <Content Include="Content\kendo\kendo.dataviz.uniform.min.css" />
+    <Content Include="Content\kendo\kendo.default.min.css" />
+    <Content Include="Content\kendo\kendo.default.mobile.min.css" />
+    <Content Include="Content\kendo\kendo.flat.min.css" />
+    <Content Include="Content\kendo\kendo.flat.mobile.min.css" />
+    <Content Include="Content\kendo\kendo.highcontrast.min.css" />
+    <Content Include="Content\kendo\kendo.highcontrast.mobile.min.css" />
+    <Content Include="Content\kendo\kendo.metro.min.css" />
+    <Content Include="Content\kendo\kendo.metro.mobile.min.css" />
+    <Content Include="Content\kendo\kendo.metroblack.min.css" />
+    <Content Include="Content\kendo\kendo.metroblack.mobile.min.css" />
+    <Content Include="Content\kendo\kendo.mobile.all.min.css" />
+    <Content Include="Content\kendo\kendo.mobile.android.dark.min.css" />
+    <Content Include="Content\kendo\kendo.mobile.android.light.min.css" />
+    <Content Include="Content\kendo\kendo.mobile.blackberry.min.css" />
+    <Content Include="Content\kendo\kendo.mobile.common.min.css" />
+    <Content Include="Content\kendo\kendo.mobile.flat.min.css" />
+    <Content Include="Content\kendo\kendo.mobile.ios.min.css" />
+    <Content Include="Content\kendo\kendo.mobile.meego.min.css" />
+    <Content Include="Content\kendo\kendo.mobile.wp8.min.css" />
+    <Content Include="Content\kendo\kendo.moonlight.min.css" />
+    <Content Include="Content\kendo\kendo.moonlight.mobile.min.css" />
+    <Content Include="Content\kendo\kendo.rtl.min.css" />
+    <Content Include="Content\kendo\kendo.silver.min.css" />
+    <Content Include="Content\kendo\kendo.silver.mobile.min.css" />
+    <Content Include="Content\kendo\kendo.uniform.min.css" />
+    <Content Include="Content\kendo\kendo.uniform.mobile.min.css" />
+    <Content Include="Content\kendo\MetroBlack\editor.png" />
+    <Content Include="Content\kendo\MetroBlack\imagebrowser.png" />
+    <Content Include="Content\kendo\MetroBlack\indeterminate.gif" />
+    <Content Include="Content\kendo\MetroBlack\loading-image.gif" />
+    <Content Include="Content\kendo\MetroBlack\loading.gif" />
+    <Content Include="Content\kendo\MetroBlack\loading_2x.gif" />
+    <Content Include="Content\kendo\MetroBlack\markers.png" />
+    <Content Include="Content\kendo\MetroBlack\markers_2x.png" />
+    <Content Include="Content\kendo\MetroBlack\slider-h.gif" />
+    <Content Include="Content\kendo\MetroBlack\slider-v.gif" />
+    <Content Include="Content\kendo\MetroBlack\sprite.png" />
+    <Content Include="Content\kendo\MetroBlack\sprite_2x.png" />
+    <Content Include="Content\kendo\Metro\editor.png" />
+    <Content Include="Content\kendo\Metro\imagebrowser.png" />
+    <Content Include="Content\kendo\Metro\indeterminate.gif" />
+    <Content Include="Content\kendo\Metro\loading-image.gif" />
+    <Content Include="Content\kendo\Metro\loading.gif" />
+    <Content Include="Content\kendo\Metro\loading_2x.gif" />
+    <Content Include="Content\kendo\Metro\markers.png" />
+    <Content Include="Content\kendo\Metro\markers_2x.png" />
+    <Content Include="Content\kendo\Metro\slider-h.gif" />
+    <Content Include="Content\kendo\Metro\slider-v.gif" />
+    <Content Include="Content\kendo\Metro\sprite.png" />
+    <Content Include="Content\kendo\Metro\sprite_2x.png" />
+    <Content Include="Content\kendo\Moonlight\editor.png" />
+    <Content Include="Content\kendo\Moonlight\imagebrowser.png" />
+    <Content Include="Content\kendo\Moonlight\indeterminate.gif" />
+    <Content Include="Content\kendo\Moonlight\loading-image.gif" />
+    <Content Include="Content\kendo\Moonlight\loading.gif" />
+    <Content Include="Content\kendo\Moonlight\loading_2x.gif" />
+    <Content Include="Content\kendo\Moonlight\markers.png" />
+    <Content Include="Content\kendo\Moonlight\markers_2x.png" />
+    <Content Include="Content\kendo\Moonlight\slider-h.gif" />
+    <Content Include="Content\kendo\Moonlight\slider-v.gif" />
+    <Content Include="Content\kendo\Moonlight\sprite.png" />
+    <Content Include="Content\kendo\Moonlight\sprite_2x.png" />
+    <Content Include="Content\kendo\Silver\editor.png" />
+    <Content Include="Content\kendo\Silver\imagebrowser.png" />
+    <Content Include="Content\kendo\Silver\indeterminate.gif" />
+    <Content Include="Content\kendo\Silver\loading-image.gif" />
+    <Content Include="Content\kendo\Silver\loading.gif" />
+    <Content Include="Content\kendo\Silver\loading_2x.gif" />
+    <Content Include="Content\kendo\Silver\markers.png" />
+    <Content Include="Content\kendo\Silver\markers_2x.png" />
+    <Content Include="Content\kendo\Silver\slider-h.gif" />
+    <Content Include="Content\kendo\Silver\slider-v.gif" />
+    <Content Include="Content\kendo\Silver\sprite.png" />
+    <Content Include="Content\kendo\Silver\sprite_2x.png" />
+    <Content Include="Content\kendo\textures\brushed-metal.png" />
+    <Content Include="Content\kendo\textures\dots1.png" />
+    <Content Include="Content\kendo\textures\dots10.png" />
+    <Content Include="Content\kendo\textures\dots11.png" />
+    <Content Include="Content\kendo\textures\dots12.png" />
+    <Content Include="Content\kendo\textures\dots13.png" />
+    <Content Include="Content\kendo\textures\dots2.png" />
+    <Content Include="Content\kendo\textures\dots3.png" />
+    <Content Include="Content\kendo\textures\dots4.png" />
+    <Content Include="Content\kendo\textures\dots5.png" />
+    <Content Include="Content\kendo\textures\dots6.png" />
+    <Content Include="Content\kendo\textures\dots7.png" />
+    <Content Include="Content\kendo\textures\dots8.png" />
+    <Content Include="Content\kendo\textures\dots9.png" />
+    <Content Include="Content\kendo\textures\glass-lighter.png" />
+    <Content Include="Content\kendo\textures\glass.png" />
+    <Content Include="Content\kendo\textures\highlight.png" />
+    <Content Include="Content\kendo\textures\hsv-gradient.png" />
+    <Content Include="Content\kendo\textures\hue.png" />
+    <Content Include="Content\kendo\textures\leather1.png" />
+    <Content Include="Content\kendo\textures\leather2.png" />
+    <Content Include="Content\kendo\textures\noise.png" />
+    <Content Include="Content\kendo\textures\stripe1.png" />
+    <Content Include="Content\kendo\textures\stripe2.png" />
+    <Content Include="Content\kendo\textures\stripe3.png" />
+    <Content Include="Content\kendo\textures\stripe4.png" />
+    <Content Include="Content\kendo\textures\stripe5.png" />
+    <Content Include="Content\kendo\textures\stripe6.png" />
+    <Content Include="Content\kendo\textures\transparency.png" />
+    <Content Include="Content\kendo\textures\transtexture.png" />
+    <Content Include="Content\kendo\Uniform\editor.png" />
+    <Content Include="Content\kendo\Uniform\imagebrowser.png" />
+    <Content Include="Content\kendo\Uniform\indeterminate.gif" />
+    <Content Include="Content\kendo\Uniform\loading-image.gif" />
+    <Content Include="Content\kendo\Uniform\loading.gif" />
+    <Content Include="Content\kendo\Uniform\loading_2x.gif" />
+    <Content Include="Content\kendo\Uniform\markers.png" />
+    <Content Include="Content\kendo\Uniform\markers_2x.png" />
+    <Content Include="Content\kendo\Uniform\slider-h.gif" />
+    <Content Include="Content\kendo\Uniform\slider-v.gif" />
+    <Content Include="Content\kendo\Uniform\sprite.png" />
+    <Content Include="Content\kendo\Uniform\sprite_2x.png" />
+    <Content Include="Content\themes\base\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.menu.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.spinner.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\jquery.ui.tooltip.css" />
+    <Content Include="Content\themes\base\minified\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.menu.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.spinner.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Images\any_icon.png" />
+    <Content Include="Content\Images\any_none_icon.png" />
+    <Content Include="Content\Images\btn_red_check.png" />
+    <Content Include="Content\Images\bttn_back.gif" />
+    <Content Include="Content\Images\bttn_blue_sml.gif" />
+    <Content Include="Content\Images\bttn_grnblue_sml.gif" />
+    <Content Include="Content\Images\bttn_orenge_sml.gif" />
+    <Content Include="Content\Images\bttn_red_sml.gif" />
+    <Content Include="Content\Images\calendar_icon.png" />
+    <Content Include="Content\Images\calndr.gif" />
+    <Content Include="Content\Images\code_search.png" />
+    <Content Include="Content\Images\dipCXL.gif" />
+    <Content Include="Content\Images\dipCXL2.gif" />
+    <Content Include="Content\Images\dipCXLRQ.gif" />
+    <Content Include="Content\Images\dipCXLRQ2.gif" />
+    <Content Include="Content\Images\dipCXLRQtr.gif" />
+    <Content Include="Content\Images\dipCXLtr.gif" />
+    <Content Include="Content\Images\dipNG.gif" />
+    <Content Include="Content\Images\dipNGtr.gif" />
+    <Content Include="Content\Images\dipOK.gif" />
+    <Content Include="Content\Images\dipOK2.gif" />
+    <Content Include="Content\Images\dipOKtr.gif" />
+    <Content Include="Content\Images\dipRQ2.gif" />
+    <Content Include="Content\Images\dipRQtr.gif" />
+    <Content Include="Content\Images\dspConfirm.gif" />
+    <Content Include="Content\Images\dspConfirm_eng.gif" />
+    <Content Include="Content\Images\dspCxl_eng.gif" />
+    <Content Include="Content\Images\dspHistory.gif" />
+    <Content Include="Content\Images\dspHistory_eng.gif" />
+    <Content Include="Content\Images\dspOK.gif" />
+    <Content Include="Content\Images\dspOK_eng.gif" />
+    <Content Include="Content\Images\dspRequest.gif" />
+    <Content Include="Content\Images\generalFile.png" />
+    <Content Include="Content\Images\glyphicons-halflings-white.png" />
+    <Content Include="Content\Images\indicator.gif" />
+    <Content Include="Content\Images\indicator1.gif" />
+    <Content Include="Content\Images\list.gif" />
+    <Content Include="Content\Images\list_r.gif" />
+    <Content Include="Content\Images\loading.gif" />
+    <Content Include="Content\Images\menu_icon.png" />
+    <Content Include="Content\Images\msg.gif" />
+    <Content Include="Content\Images\NOTEBOOK.BMP" />
+    <Content Include="Content\Images\NOTEBOOK2.bmp" />
+    <Content Include="Content\Images\note_icon.png" />
+    <Content Include="Content\Images\phone.png" />
+    <Content Include="Content\Images\progressbar.gif" />
+    <Content Include="Content\Images\Mauloa_logo.png" />
+    <Content Include="Content\Images\ptree.gif" />
+    <Content Include="Content\Images\refresh.gif" />
+    <Content Include="Content\Images\reserved.gif" />
+    <Content Include="Content\Images\tel.gif" />
+    <Content Include="Content\Images\wait3.gif" />
+    <Content Include="Content\Images\wait_bar.gif" />
+    <Content Include="Content\Images\wait_circle.gif" />
+    <Content Include="Content\Images\wink_note_icon.png" />
+    <Content Include="Content\Images\wink_note_none_icon.png" />
+    <Content Include="Content\jquery.contextMenu.css" />
+    <Content Include="Content\Login.css" />
+    <Content Include="Content\Site.Mobile.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="ErrorLast.html" />
+    <Content Include="Global.asax" />
+    <Content Include="51Degrees.mobi.config" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Masters\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Masters\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Masters\Views\Web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Web.config" />
+    <Content Include="Areas\Reports\Views\web.config" />
+    <Content Include="Areas\Reports\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Reports\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Accounting\Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\Accounting\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Accounting\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Customers\Views\web.config" />
+    <Content Include="Areas\Customers\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Customers\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Customers\Views\Home\Edit.cshtml" />
+    <Content Include="Areas\Customers\Views\Home\PlanSearchDialog.cshtml" />
+    <Content Include="Areas\Customers\Views\Home\OptionDetailDialog.cshtml" />
+    <Content Include="Areas\Customers\Views\Home\CustomerInfoPartial.cshtml" />
+    <Content Include="Areas\Customers\Views\Home\PhotoPlansPartial.cshtml" />
+    <Content Include="Areas\Customers\Views\Home\WeddingPlansPartial.cshtml" />
+    <Content Include="Areas\Customers\Views\Home\OptionsPartial.cshtml" />
+    <Content Include="Areas\Customers\Views\Home\AddressInfoDialog.cshtml" />
+    <Content Include="Areas\Reports\Views\Shared\ComboListEditPartial.cshtml" />
+    <Content Include="Areas\Reports\Views\Shared\MgmReportEditPartial.cshtml" />
+    <Content Include="Areas\Reports\Views\Home\ManageReports.cshtml" />
+    <Content Include="Areas\Reports\Views\Home\Report.cshtml" />
+    <Content Include="Areas\Reports\Views\Home\ExecuteReport.cshtml" />
+    <Content Include="Content\kendo\images\kendoui.ttf" />
+    <Content Include="Content\kendo\images\kendoui.woff" />
+    <Content Include="Areas\Reports\Views\VendorConfirmation\index.cshtml" />
+    <Content Include="Areas\Reports\Views\BookingReport\index.cshtml" />
+    <Content Include="Areas\Reports\Views\Home\DailyMovementDialog.cshtml" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
+    <None Include="Properties\PublishProfiles\Local PROD.pubxml" />
+    <None Include="Properties\PublishProfiles\Local Test.pubxml" />
+    <Content Include="robots.txt" />
+    <Content Include="Scripts\alertify\alertify.js" />
+    <Content Include="Scripts\alertify\alertify.min.js" />
+    <TypeScriptCompile Include="Scripts\App\application.ts" />
+    <Content Include="Scripts\App\calendar.js" />
+    <Content Include="Scripts\App\calendar_edit_view.js" />
+    <Content Include="Scripts\App\calendar_edit_viewmodel.js" />
+    <TypeScriptCompile Include="Scripts\App\customer_cosinfodetail.ts" />
+    <TypeScriptCompile Include="Scripts\App\customer_folder.ts" />
+    <TypeScriptCompile Include="Scripts\App\customer_edit.ts" />
+    <TypeScriptCompile Include="Scripts\App\customer_addressinfodetail.ts" />
+    <TypeScriptCompile Include="Scripts\App\customer_optiondetail.ts" />
+    <TypeScriptCompile Include="Scripts\App\customer_plansearch.ts" />
+    <Content Include="Scripts\App\customer_search.js" />
+    <TypeScriptCompile Include="Scripts\App\calendar.ts" />
+    <TypeScriptCompile Include="Scripts\App\calendar_edit_view.ts" />
+    <TypeScriptCompile Include="Scripts\App\calendar_edit_viewmodel.ts" />
+    <TypeScriptCompile Include="Scripts\App\customer_file.ts" />
+    <TypeScriptCompile Include="Scripts\App\customer_search.ts" />
+    <TypeScriptCompile Include="Scripts\App\models\cos_info.ts" />
+    <TypeScriptCompile Include="Scripts\App\models\address_info.ts" />
+    <TypeScriptCompile Include="Scripts\App\models\arrangement.ts" />
+    <TypeScriptCompile Include="Scripts\App\models\church_block.ts" />
+    <TypeScriptCompile Include="Scripts\App\models\customer.ts" />
+    <TypeScriptCompile Include="Scripts\App\models\customerlistitem.ts" />
+    <TypeScriptCompile Include="Scripts\App\models\delivery_info.ts" />
+    <TypeScriptCompile Include="Scripts\App\models\pickupplace.ts" />
+    <TypeScriptCompile Include="Scripts\App\models\itemwithprice.ts" />
+    <TypeScriptCompile Include="Scripts\App\models\planlistitem.ts" />
+    <TypeScriptCompile Include="Scripts\App\models\make_info.ts" />
+    <TypeScriptCompile Include="Scripts\App\models\reception_info.ts" />
+    <TypeScriptCompile Include="Scripts\App\models\sales.ts" />
+    <TypeScriptCompile Include="Scripts\App\models\schedule_note_template.ts" />
+    <TypeScriptCompile Include="Scripts\App\models\schedule_pattern_note.ts" />
+    <TypeScriptCompile Include="Scripts\App\models\schedule_note.ts" />
+    <TypeScriptCompile Include="Scripts\App\models\shoot_info.ts" />
+    <TypeScriptCompile Include="Scripts\App\models\trans_info.ts" />
+    <TypeScriptCompile Include="Scripts\App\models\user_profile.ts" />
+    <TypeScriptCompile Include="Scripts\App\models\weddingplan.ts" />
+    <Content Include="Scripts\App\user_profile_edit_view.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <TypeScriptCompile Include="Scripts\App\common.ts" />
+    <None Include="Properties\PublishProfiles\projectm %282%29.pubxml" />
+    <Content Include="region.config" />
+    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Scripts\jquery-ui-1.10.4.js" />
+    <Content Include="Scripts\jquery-ui-1.10.4.min.js" />
+    <Content Include="Scripts\jquery.contextMenu.js" />
+    <Content Include="Scripts\jquery.signalR-2.1.1.js" />
+    <Content Include="Scripts\jquery.signalR-2.1.1.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\kendo.modernizr.custom.js" />
+    <Content Include="Scripts\kendo\cultures\kendo.culture.en-US.min.js" />
+    <Content Include="Scripts\kendo\cultures\kendo.culture.en.min.js" />
+    <Content Include="Scripts\kendo\cultures\kendo.culture.ja-JP.min.js" />
+    <Content Include="Scripts\kendo\cultures\kendo.culture.ja.min.js" />
+    <Content Include="Scripts\kendo\kendo.all.js" />
+    <Content Include="Scripts\kendo\kendo.all.min.js" />
+    <Content Include="Scripts\kendo\kendo.aspnetmvc.js" />
+    <Content Include="Scripts\kendo\kendo.aspnetmvc.min.js" />
+    <Content Include="Scripts\kendo\messages\kendo.messages.en-US.min.js" />
+    <None Include="Scripts\kendo\vsdoc\kendo.all-vsdoc.js" />
+    <None Include="Scripts\kendo\vsdoc\kendo.all.min.intellisense.js" />
+    <None Include="Scripts\kendo\vsdoc\kendo.dataviz-vsdoc.js" />
+    <None Include="Scripts\kendo\vsdoc\kendo.dataviz.min.intellisense.js" />
+    <None Include="Scripts\kendo\vsdoc\kendo.mobile-vsdoc.js" />
+    <None Include="Scripts\kendo\vsdoc\kendo.mobile.min.intellisense.js" />
+    <None Include="Scripts\kendo\vsdoc\kendo.web-vsdoc.js" />
+    <None Include="Scripts\kendo\vsdoc\kendo.web.min.intellisense.js" />
+    <Content Include="Scripts\App\persist-local.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Shared\_Footer.Mobile.cshtml" />
+    <Content Include="Views\Shared\ViewSwitcher.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Shared\_SelectArea.cshtml" />
+    <Content Include="Views\Shared\_SelectAgent.cshtml" />
+    <Content Include="Views\Calendar\Index.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Notice\Index.cshtml" />
+    <None Include="Web.config">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Views\Calendar\CalendarSelectDialog.cshtml" />
+    <Content Include="Views\Account\UserProfile.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\ErrorAccessLevel.cshtml" />
+    <Content Include="Views\Shared\ErrorCustomerNotFound.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_HorizontalMenu.cshtml" />
+    <Content Include="Views\Shared\_LoginUser.cshtml" />
+    <TypeScriptCompile Include="Scripts\App\customer_schedule.ts" />
+    <TypeScriptCompile Include="Scripts\App\models\schedule_pattern.ts" />
+    <TypeScriptCompile Include="Scripts\App\models\schedule_pattern_item.ts" />
+    <TypeScriptCompile Include="Scripts\App\models\schedule_pattern_line.ts" />
+    <TypeScriptCompile Include="Scripts\App\models\schedule_phrase.ts" />
+    <TypeScriptCompile Include="Scripts\App\notice_list.ts" />
+    <TypeScriptCompile Include="Scripts\App\persist-local.ts" />
+    <TypeScriptCompile Include="Scripts\App\user_profile_edit_view.ts" />
+    <TypeScriptCompile Include="Scripts\typings\alertify\alertify.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\bootstrap\bootstrap.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jqueryui\jqueryui.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\kendo\kendo.all.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\moment\moment.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\require\require.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\toastr\toastr.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\underscore\underscore.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Accounting\Views\Shared\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\Masters\Views\BaseMaster\" />
+    <Folder Include="Areas\Masters\Views\Shared\" />
+    <Folder Include="Resources\Areas\Reservation\Views\" />
+    <Folder Include="Resources\Controllers\" />
+    <Folder Include="Resources\Views\" />
+    <Folder Include="Views\Home\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MauloaDemo.Models\MauloaDemo.Models.csproj">
+      <Project>{cb262ae1-41a4-47d0-9669-9d0a19002845}</Project>
+      <Name>MauloaDemo.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MauloaDemo.Reports\MauloaDemo.Reports.csproj">
+      <Project>{cd6bf7c4-8ca0-4fee-94c0-658d23a105fa}</Project>
+      <Name>MauloaDemo.Reports</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MauloaDemo.Repository\MauloaDemo.Repository.csproj">
+      <Project>{97799b02-2cee-4e7e-a64a-5fe3ea6870e6}</Project>
+      <Name>MauloaDemo.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Resources\Shared.ja.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Shared.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>57826</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:49734/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

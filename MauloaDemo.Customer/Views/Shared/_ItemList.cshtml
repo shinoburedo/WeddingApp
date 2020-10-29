@@ -1,0 +1,383 @@
+﻿@using PagedList.Mvc;
+@using MauloaDemo.Models.Combined;
+@model PagedList.IPagedList<CustomerItem>
+@{
+    var picture_lang = Lang.isJPN() ? "jpn" : "eng";
+    var region_cd = ViewBag.CurrentRegionInfo.CurrentDestination;
+    var area_cd = ViewBag.CurrentSelectItem.area_cd;
+    var str_wed_date = ViewBag.CurrentSelectItem.str_wed_date;
+    var CurFmtJpn = "#,0";
+}
+@if (Model == null || Model.Count() == 0)
+{
+    <div class="itemBlockArea">
+        <p style="padding: 20px 0 0 0;font-size: 1.5em;color: navy;">@Lang.L("該当する商品はありません。", "No results were found.")</p>
+    </div>
+}
+
+<div id="ptlItemList">
+        @foreach (var item in Model)
+        {
+            <div class="itemBlockArea">
+                <div class="titleBlock">
+                    <div class="itemNameArea">
+                        <h2><span>@item.item_cd　　@item.item_name</span></h2>
+                    </div>
+
+                    <div class="photoArea">
+                        @if (item.cnt_picture_s > 0)
+                {
+                    var index = 1;
+                    while (index <= item.cnt_picture_s)
+                    {
+                                <a href="@Url.Action("Modal", "Home", new { item_type = item.item_type, item_cd = item.item_cd, selected_photo_no = index, image_upload_date = item.image_upload_date, cnt_pic = item.cnt_picture_s })" class="ajax afade">
+                                    <img src="@(ImageHelper.GetItemImageUrl(item.item_type, item.item_cd, index, "M", item.image_upload_date))" id="detail@(index)" alt="@(item.item_cd)" width="180" />
+                                </a>
+                                <img src="@(ImageHelper.GetItemImageUrl(item.item_type, item.item_cd, index, "L", item.image_upload_date))" id="detailL@(index)" alt="@(item.item_cd)" />
+                                index++;
+                            }
+                        }
+                        else
+                        {
+                            <img src="@Url.Content("~/common/img/no_img.png")" style="width: 180px;" alt="no image">
+                        }
+                    </div><!-- /photoArea -->
+
+                    <div class="smallphotoArea">
+                        <ul>
+                            @if (item.cnt_picture_s > 0)
+                {
+                    var index = 1;
+                    while (index <= item.cnt_picture_s)
+                    {
+                                    <li>
+                                        <a onmouseover="changeMediumPicture(@(index))" class="afade">
+                                            <img src="@(ImageHelper.GetItemImageUrl(item.item_type, item.item_cd, index, "S", item.image_upload_date))" alt="@(index)" width="55" />
+                                            @*<img src="@Url.Content("~/Photo/")@(region_cd)/@Model.trf_type/@(Model.trf_item_cd)/@(index)/S" alt="@(index)" width="49">*@
+                                        </a>
+                                    </li>
+                                    index++;
+                                }
+                            }
+                        </ul>
+                    </div><!-- /photoArea -->
+
+                    <div class="txtArea">
+                        <p>@Html.Raw(item.item_info)</p>
+
+                        <div class="priceArea">
+                            <p>
+                                @if (item.price == 0)
+                                {
+                                    <span class="price">
+                                        TBA
+                                    </span>
+                                }
+                                else
+                                {
+                                    //現地通貨表記
+                                    <span class="price">
+                                        @(String.Format("{0:" + ViewBag.CurrentRegionInfo.CurrencyFormatWithSymbol + "}", item.d_net))
+                                    </span>
+                                }
+                            </p>
+                        </div><!-- /priceArea -->
+
+                        <div class="boxTypeA">
+                            <div class="selectArea">
+
+                                <div class="wrap">
+                                    <div class="btnBack"><a class="btn btn-lg btn-default" onclick="cart('@item.item_cd');">カートに入れる</a></div>
+
+                                </div>
+                                <div class="linkDetail">
+                                    <p><a class="opendetail" onclick="openDetail(this);">詳細をみる</a></p>
+                                </div><!-- /priceArea -->
+                            </div><!-- /selectArea -->
+                        </div><!-- /boxTypeA -->
+                    </div><!-- /txtArea -->
+
+                </div><!-- titleBlock end -->
+
+                <div class="detailBlock">
+                    @if (!String.IsNullOrEmpty(item.movie_url))
+                    {
+                        <div class="detailBlockOption">
+                            <dl class="youtubeArea">
+                                <dt></dt>
+                                <dd>
+                                    @*<iframe width="560" height="315" src="@item.movie_url" frameborder="0" allowfullscreen></iframe>*@
+                                </dd>
+                            </dl>
+                        </div>
+                    }
+                    <div class="detailBlockOption">
+                        <dl>
+                            <dt class="tabProduct_jpn">@Lang.L("商品詳細", "Product Detail")</dt>
+                            <dd>
+                                @Html.Raw(item.product_detail)
+                            </dd>
+                        </dl>
+                        @if (@item.item_type == "PKG")
+                        {
+
+                            <dl class="tabPlan_jpn">
+                                <dt>@Lang.L("プラン詳細", "Plan Detail")</dt>
+                                <dd>
+                                    @if (Lang.isJPN())
+                                    {
+                                        @Html.Raw(item.item_name + "に含まれるもの")<br />
+                                    }
+                                    else
+                                    {
+                                        @Html.Raw("Contents of " + item.item_name)<br />
+                                    }
+                                    @*@foreach (var item in item.pkg_info)
+                                        {
+                                            @Html.Raw(item.trf_item_name)<br />
+                                        }*@
+                                </dd>
+                            </dl>
+                        }
+                        <dl class="tabReview_jpn">
+                            <dt>@Lang.L("レビュー", "Review")</dt>
+                            <dd>
+                                review
+                                <div style="width:100%;">
+                                    <div id="lvReview"
+                                         data-role="listview"
+                                         data-template="param-review-template" style="border:none;"></div>
+                                </div>
+                                <script id="param-review-template" type="text/x-kendo-template">
+                                    <div style="width:100%;">
+                                        【#: kendo.toString(kendo.parseDate(data.str_create_date, "yyyyMMdd"), App.Config.DateFormat) #
+                                        #=data.nickname #】@Lang.L("　評価：", "  Rating:")@*#=data.star_disp #*@
+                                        <img src="@Url.Content("~/Content/img/rate#=data.star #.png")" alt="rate">
+                                    </div>
+                                    <div style="width:100%;padding-bottom:10px;">
+                                        #=data.review #
+                                    </div>
+                                </script>
+                            </dd>
+                        </dl>
+                    </div>
+
+                    <div class="linkDetail">
+                        <p><a class="close" onclick="closeDetail(this);">閉じる</a></p>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+                <div id="itempagination">
+                    @if (Model.HasPreviousPage)
+                    {
+                        <a onclick="ClickPageNo('1');" class="itempagination">&#x3C;&#x3C;</a>
+                        @Html.Raw(" ");
+                        <a onclick="ClickPageNo((@(Model.PageNumber) - 1));" class="itempagination">&#x3C; Prev</a>
+                    }
+                    else
+                    {
+                        @:<<
+                        @Html.Raw(" ");
+                        @:< Prev
+        }
+                    @if (Model.HasNextPage)
+                    {
+                        <a onclick="ClickPageNo((@(Model.PageNumber) + 1));" class="itempagination">Next &#x3E;</a>
+                        @Html.Raw(" ");
+                        <a onclick="ClickPageNo(@(Model.PageCount));" class="itempagination">&#x3E;&#x3E;</a>
+                    }
+                    else
+                    {
+                        @:Next >
+                        @Html.Raw(" ")
+                        @:>>
+        }
+                    <div style="float:right;padding-right:30px;">
+                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                    </div>
+                </div>
+
+                <script id="template_trf_price_note" type="text/x-kendo-template">
+                    <div style="width:385px;height:195px;overflow-y:auto;">
+                        <p>#=target.data('title')#</p>
+                    </div>
+                </script>
+            </div>
+
+            <script>
+                $(function () {
+                    $("li[id^='product']").kendoTooltip({
+                        filter: "a",
+                        content: kendo.template($("#template_trf_price_note").html()),
+                        width: 400,
+                        height: 200,
+                        position: "bottom",
+                        autoHide: false,
+                        showOn: "click"
+                    });
+
+                    $("#trf_price_note").find("a").click(false);
+                });
+
+                function ClickPageNo(page) {
+                    $.ajax({
+                        url: "@(Url.Action("ItemList", "Home"))",
+                        data: {
+                            page: page
+                        },
+                        type: 'GET',
+                        cache: false,
+                        success: function (result) {
+                            // refresh the contents of some container div for the partial
+                            // make sure you use the correct selector here
+                            $('#ptlItemList').html(result);
+                            $("html,body").animate({ scrollTop: 0 }, "fast");
+                            $("div[class='detailBlock']").css("display", "none");
+                        }
+                    });
+
+                    // cancel the default action which is a redirect
+                    return false;
+                }
+
+                function expandButtonClick(that) {
+                    var textClose = App.L("▲閉じる", "▲Close");
+                    var textOpen = App.L("▼続きを読む", "▼See more");
+
+                    if (!$(that).attr("expanded")) {
+                        $(that).text(textClose);
+                        var e = $(that.parentElement.getElementsByClassName("with-height-limit"));
+                        e.css("height", "auto");
+                        $(that).attr("expanded", "Yes");
+                    } else {
+                        $(that).text(textOpen);
+                        var e = $(that.parentElement.getElementsByClassName("with-height-limit"));
+                        e.css("height", "");
+                        $(that).attr("expanded", null);
+                    }
+                }
+
+                $(function () {
+                    $('.with-height-limit').each(function (index, node) {
+                        var $outer = $(this);
+
+                        // wrap all children
+                        $outer.wrapInner('<div />');
+                        var $inner = $outer.children();
+
+                        // get heights of them
+                        var outerHeight = $outer.height();
+                        var innerHeight = $inner.height();
+
+                        // show ellipsis if inner block is higher than outer
+                        if (innerHeight > outerHeight) {
+                            var textOpen = App.L("▼続きを読む", "▼See more");
+
+                            $('<a />', {
+                                id: 'expand-button',
+                                onclick: 'expandButtonClick(this);',
+                                text: textOpen
+                            }).insertAfter($outer);
+                        }
+                    });
+                });
+
+            </script>
+
+            <style>
+                .with-height-limit {
+                    height: 13.5em;
+                    font-size: 14px;
+                    line-height: 1.5;
+                    /*margin-top: 15px;*/
+                }
+
+                .text-overflow2 {
+                    overflow: hidden;
+                    position: relative;
+                }
+
+                #itempagination {
+                    font-size: larger;
+                    text-align: center;
+                    width: 100%;
+                    padding-top: 20px;
+                    padding-bottom: 20px;
+                }
+
+                .itempagination:link {
+                    color: #666666;
+                    text-decoration: none;
+                }
+
+                .itempagination:visited {
+                    color: #666666;
+                    text-decoration: none;
+                }
+
+                .itempagination:hover {
+                    color: #e62e8b;
+                    cursor: pointer;
+                }
+
+                .itempagination:active {
+                    color: #666666;
+                    text-decoration: none;
+                }
+
+
+                #expand-button {
+                    color: navy !important;
+                }
+
+                    #expand-button:hover {
+                        cursor: pointer;
+                    }
+
+                .hidden {
+                    /*display:none;*/
+                    opacity: 0;
+                    -webkit-transition-property: opacity;
+                    -webkit-transition-duration: 0.4s;
+                    -webkit-transition-timing-function: linear;
+                    -webkit-transition-delay: 0.1s;
+                    transition-duration: 0.4s;
+                }
+
+                .shown {
+                    /*display: inline-block;*/
+                    opacity: 1.0;
+                    -webkit-transition-property: opacity;
+                    -webkit-transition-duration: 0.4s;
+                    -webkit-transition-timing-function: linear;
+                    -webkit-transition-delay: 0.1s;
+                    transition-duration: 0.4s;
+                }
+
+                #trf_price_note_tt_active {
+                    background-color: #FFFFE0;
+                    border: none;
+                    box-shadow: none;
+                }
+
+                .k-callout {
+                    border: none;
+                }
+
+                .k-tooltip-content {
+                    vertical-align: middle;
+                    background-color: #FFFFE0;
+                }
+
+                    .k-tooltip-content p {
+                        float: left;
+                        padding: 10px;
+                        text-align: left;
+                        color: gray;
+                    }
+            </style>
+
+

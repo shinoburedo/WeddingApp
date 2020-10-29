@@ -1,0 +1,136 @@
+﻿@using System.Configuration;
+@using MauloaDemo.Models;
+@using MauloaDemo.Web.ViewModels;
+@{
+    LoginUser user = ViewBag.CurrentLoginUser;
+    var user_id = user != null ? user.login_id : "";
+    var user_name = user != null ? user.UserName : "";
+    var user_area_cd = user != null ? user.area_cd: "";
+    var user_agent_cd = user != null ? user.agent_cd : "";
+    var user_sub_agent_cd = user != null ? user.sub_agent_cd : "";
+    var user_is_agent = user != null ? (user.IsAgent() ? "1" : "") : "";        //"0"はJavascriptでは真と評価されるので注意。
+    var user_has_child_agent = user != null ? (user.HasChildAgents ? "1" : "") : "";   //"0"はJavascriptでは真と評価されるので注意。
+    var user_access_level = user != null ? user.access_level : 0;
+    var staff_required = user != null ? (user.staff_required ? "1" : "") : "";      //"0"はJavascriptでは真と評価されるので注意。
+    var branch_staff_required = user != null ? (user.branch_staff_required ? "1" : "") : "";      //"0"はJavascriptでは真と評価されるので注意。
+    var culture_name = user != null ? user.culture_name : "en-US";
+    var lang = user != null ? user.Language : "ja";
+    var date_format = user != null ? user.date_format : "MM/dd/yyyy";
+    var time_format = user != null ? user.time_format : "hh:mm tt";
+    var time_zone = ((RegionInfo)ViewBag.CurrentRegionInfo).TimeDiffFromUTC; 
+    var min_wed_date = Calendar.GetMinWedDate();
+    var Photo_RQ_LimitDays = TypeHelper.GetInt(ConfigurationManager.AppSettings["Photo_RQ_LimitDays"]);
+    var Photo_RQ_Places = TypeHelper.GetStr(ConfigurationManager.AppSettings["Photo_RQ_Places"]);
+
+    //ブラウザのタイトルの先頭にC#を付加。
+    string c_num = TypeHelper.GetStrTrim(Request.QueryString["c_num"]);
+    if (!String.IsNullOrEmpty(c_num)) {
+        ViewBag.Title = string.Format("#{0} {1}", c_num, ViewBag.Title);
+    }
+
+    var IsTest = TypeHelper.GetBool(ConfigurationManager.AppSettings["IsTest"]);
+    var api_path = TypeHelper.GetStrTrim(ConfigurationManager.AppSettings["ApiPath"]);
+    var SunsetBlockTime = TypeHelper.GetStrTrim(ConfigurationManager.AppSettings["SunsetBlockTime"]);
+
+    var bg_class = ViewData["bg_class"] as string ?? "bg_gradient";
+    
+//下の「}」の後に改行を入れない事。(入れるとHTMLの1行目が空行になる。)
+}<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <!-- IE8のコンパティビリティモードを使用させない様にする。（IE6/7互換モードだとJSONのエラーが出るため。） -->
+    <meta http-equiv="X-UA-Compatible" content="IE=100" />
+
+    <title>@ViewBag.Title</title>
+
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/bootstrap-theme")
+    @Styles.Render("~/Content/alertifycss")
+    @Styles.Render("~/Content/toastrcss")
+    @Styles.Render("~/Content/stylesheet")
+
+    @Styles.Render("~/Content/kendo/kendocss")
+@*
+    <link href="//cdn.kendostatic.com/2014.2.716/styles/kendo.common.min.css" rel="stylesheet" type="text/css" />
+    <link href="//cdn.kendostatic.com/2014.2.716/styles/kendo.uniform.min.css" rel="stylesheet" type="text/css" />
+*@
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/underscore")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/kendo/kendoui")
+    <script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
+    <script> kendo.culture("@(culture_name)"); </script>
+
+    @Scripts.Render("~/bundles/alertify")
+    @Scripts.Render("~/bundles/toastr")
+    @Scripts.Render("~/bundles/moment")
+
+    @RenderSection("head", required: false)
+</head>
+<body @if (IsTest) { <text>class='testsite'</text> } >
+    @Html.Partial("_Header", ViewData)
+
+    <div id="wrapper" class="container-fluid main">
+        @Html.Partial("ViewSwitcher")
+        @RenderBody()
+    </div>
+
+    @Html.Partial("_Footer", ViewData)
+
+    @*Loading表示用DIV*@
+    <div id="_loading" style="display:none">
+        <img src="@Url.Content("~/Content/Images/loading.gif")" />
+    </div>
+
+    @* クライアントサイドのJavaScriptでグローバルに使用するAppオブジェクトを定義 *@
+    <script>
+    var App = window.App || {};
+    App.User = {
+        UserId: "@(user_id)",
+        UserName: "@(user_name)",
+        AreaCd: "@(user_area_cd)",
+        AgentCd: "@(user_agent_cd)",
+        SubAgentCd: "@(user_sub_agent_cd)",
+        IsAgent: !!("@(user_is_agent)"),
+        IsStaff: !("@(user_is_agent)"),
+        HasChildAgents: !!("@(user_has_child_agent)"),
+        AccessLevel: kendo.parseInt("@(user_access_level)"),
+        StaffRequired: !!("@(staff_required)"),
+        BranchStaffRequired: !!("@(branch_staff_required)")
+    };
+    App.Config = {
+        CultureName: "@(culture_name)",
+        Lang: "@(lang)",
+        DateFormat: "@(date_format)",
+        TimeFormat: "@(time_format)",
+        TimeZone: "@(time_zone)" | 0,
+        ApiPath: "@(api_path)",
+        BaseUrl: "@(Url.Action("Index", "Notice", new { area = "" }))",
+        SunsetBlockTime: "@(SunsetBlockTime)",
+        MinWedDate: moment("@(min_wed_date.ToString("yyyy/MM/dd"))", "YYYY/MM/DD").toDate(),
+        Photo_RQ_LimitDays: "@(Photo_RQ_LimitDays)" | 0,
+        Photo_RQ_Places: "@(Photo_RQ_Places)",
+        IsTest: !!"@(IsTest ? "1": "")"
+    };
+    App.Utils = {};     //ユーティリティ関数をApp/common.jsで定義。
+
+    //Kendo UIの初期化。(data-role属性を適用。)
+    kendo.init($(document.body));
+</script>
+    <script src="@Url.Content("~/Scripts/App/common.js")"></script>
+    <script src="@Url.Content("~/Scripts/App/application.js")"></script>
+
+    <script>
+        // JavaScriptファイルをキャッシュしない様にする。（デバッグ中は毎回、本番は1時間毎に再取得。）
+        var urlArgs = 'bust=' +
+            (App.Config.IsTest ? (new Date()).getTime() : moment().format('YYYYMMDDHH'));
+        var require = { urlArgs: urlArgs };
+    </script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

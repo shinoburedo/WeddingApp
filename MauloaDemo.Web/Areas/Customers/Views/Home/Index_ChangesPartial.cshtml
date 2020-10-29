@@ -1,0 +1,191 @@
+﻿@using MauloaDemo.Models
+@using MauloaDemo.Models.Combined
+@model MauloaDemo.Repository.CustomerRepository.SearchParams
+
+@* Changes Tab *@
+<div class="tab-pane clearfix active" id="panChanges">
+    @using (Html.BeginForm("Index", "Home", new { area = "Customers" }, FormMethod.Post,
+        new { @id = "frmSearchChange", role = "form", @class = "form-horizontal" })) {
+
+        <div class="form-group">
+            <label for="custName" class="col-sm-1 control-label">Name</label>
+            <div class="col-sm-2">
+                @Html.TextBoxFor(m => m.cust_name, new {
+                                                    @id = "custName",
+                                                    @class = "form-control input-sm k-input k-textbox w100 toupper tohankaku custname", 
+                                                    maxlength = "30",
+                                                    //@data_value_update = "keyup",
+                                                    @data_bind = "value: cust_name, events: {change: DoSearchChanges}"
+                                })
+            </div>
+
+            <label for="ChangesCustNum" class="col-sm-2 control-label">Customer #</label>
+            <div class="col-sm-1">
+                @Html.TextBoxFor(m => m.c_num, new { 
+                                                    @id = "ChangesCustNum",
+                                                    @class = "form-control input-sm k-input k-textbox w100 tohankaku custnum", 
+                                                    @style="width: 90px !important",
+                                                    maxlength = "7", 
+                                                    //@data_value_update = "keyup",
+                                                    @data_bind = "value: c_num, events: {change: DoSearchChanges}"
+                                })
+            </div>
+
+            <div class="col-sm-4" style="text-align:right">
+                <input type="checkbox"
+                        id="includeArchived"
+                        data-bind="checked: include_archived, events:{ change: DoSearchChanges} " >                                
+                <label for="includeArchived" style="cursor:pointer;" >Include Archived</label>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label for="churchCd" class="col-sm-1 control-label">Church</label>
+            <div class="col-sm-2">
+                @Html.TextBoxFor(m => m.church_cd,
+                        new {
+                            @id="churchCd",
+                            type = "text",
+                            @class = "form-control input-sm select-church toupper tohankaku",
+                            @style = "width: 90px;",
+                            maxlength = "5",
+                            @data_bind = "value: church_cd, events: {change: DoSearchChanges}"
+                        })
+            </div>
+
+            <label for="agentCd" class="col-sm-2 control-label" data-bind="visible:isSubAgentVisible">Agent</label>
+            <div class="dummy col-sm-2" data-bind="invisible:isSubAgentVisible">&nbsp;</div>
+            <div class="col-sm-2">
+                @Html.TextBoxFor(m => m.sub_agent_cd,
+                        new {
+                            @id = "agentCd", 
+                            type = "text",
+                            @class = "form-control input-sm select-subagent toupper tohankaku",
+                            @style = "width: 90px;",
+                            maxlength = "6",
+                            @data_bind = "value: sub_agent_cd, events: {change: DoSearchChanges}, visible:isSubAgentVisible",
+                        })
+            </div>
+
+            <div class="col-sm-offset-4 col-sm-2">
+                <button type="button" class="btn btn-primary search-button"
+                        data-bind="events:{ click: DoSearchChanges}">
+                    Search
+                </button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="drpAction" class="col-sm-1 control-label">Action</label>
+            <div class="col-sm-2">
+                <select name="drpAction" class="form-control input-sm"
+                        style="width: 90px;"
+                        data-role="dropdownlist"
+                        data-bind="value: action, events: {change: DoSearchChanges}">
+                    @* I=New, U=Update, D=Delete *@
+                    <option value="" selected>All</option>
+                    <option value="I">New</option>
+                    <option value="U">Update</option>
+                    <option value="D">Delete</option>
+                </select>
+            </div>
+            <label for="itemType" class="col-sm-2 control-label">Item Type</label>
+            <div class="col-sm-2">
+                @Html.TextBoxFor(m => m.item_type,
+                            new {
+                                @id = "itemType",
+                                type = "text",
+                                @class = "form-control input-sm select-itemtype toupper tohankaku",
+                                @style = "width: 90px;",
+                                maxlength = "3",
+                                data_addpkgopt="true",
+                                @data_bind = "value: item_type, events: {change: changeItemType }"
+                            })
+            </div>
+
+            <label for="itemCd" class="col-sm-1 control-label">Item Cd</label>
+            <div class="col-sm-2">
+                <select name="itemCd"
+                        maxlength="15"
+                        class="form-control input-sm toupper tohankaku "
+                        data-height="400"
+                        data-role="combobox"
+                        data-value-field="item_cd"
+                        data-text-field="item_cd"
+                        data-value-primitive="true"
+                        data-cascade-from="txtItemType"
+                        data-cascade-from-field="item_type"
+                        data-bind="value: item_cd, source: itemList, events: {change: DoSearchChanges}"
+                        data-template="itemCdComboTemplate"></select>
+            </div>
+
+            <div class="col-sm-offset-1 col-sm-2">
+                <span data-bind="text: countChanges"></span> records found.
+            </div>
+
+            <div class="col-sm-offset-2 col-sm-1">
+                <button type="button" 
+                        class="btn btn-default"
+                        data-bind="events:{ click: onSaveArchived}">
+                    Save 
+                </button>
+            </div>
+
+        </div>
+    }
+
+    <div id="grdChanges"
+            data-role="grid"
+            data-auto-bind="true"
+            data-bind="source: listChanges"
+            data-sortable="true"
+            data-resizable="true"
+            data-selectable="true"
+            data-scrollable="true"
+            data-groupable="false"
+            data-navigatable="false"
+            data-pageable="{ pageSize: 50, pageSizes: [10, 25, 50, 100], refresh: true }"
+            data-height="600"
+            data-columns="[ {field: 'c_num', title: 'Cust #', width: 60 }
+                        , {field: 'wed_time', title: 'Wed Date/Time', type:'date', width: 120 }
+                        , {field: 'cust_name', title: 'Customer Name', width: 160 }
+                        , {field: 'sub_agent_cd', title: 'Agent', width: 80 }
+                        , {field: 'church_cd', title: 'Church', width: 70 }
+                        , {field: 'changes', title: 'Changes' }
+                        , {field: 'BookStatus', title: 'Status', width: 70 }
+                        , {field: 'log_by', title: 'Changed By', width: 100 }
+                        , {field: 'log_datetime', title: 'Changed At', width: 120 }
+                        , {field: 'archived', title:'Archived', width:90, headerTemplate:kendo.template($('#template_archived_header').html()) }
+                    ]"
+         data-row-template="tpl_changes_row">
+    </div>
+
+    <script id="tpl_changes_row" type="text/k-kendo-tmpl">
+        <tr data-uid="#: uid #" class="#if (action=='I'){# action-new #}# #if (IsConfirmed){# status-confirmed #}#  #if (IsDropped){# status-dropped #}#">
+            <td><a href="home/edit/#: c_num #" target="_blank">#: c_num #</a></td>
+            <td>#: wed_time ? kendo.toString(wed_time, App.Config.DateFormat) + ' ' + wed_date_s : '' #</td>
+            <td class="text-small">#: cust_name #</td>
+            <td>#: sub_agent_cd || '' #</td>
+            <td>#: church_cd || '' #</td>
+            @*<td >#: table_name #</td>*@
+            <td class="text-small">#= (App.User.IsStaff ? data.ChangesStrForStaff : data.ChangesStrForAgent) #</td>
+            <td>#: BookStatus #</td>
+            <td>#: log_by_sub_agent_cd # (#: log_by #)</td>
+            <td>#: kendo.toString(log_datetime, App.Config.DateFormat + ' ' + App.Config.TimeFormat) #</td>
+            <td class="centered"><input type="checkbox" data-bind="checked:archived, events: { change: onChangeArchived }"></td>
+        </tr>
+    </script>
+
+    <script id="template_archived_header" type="text/x-kendo-tmpl">
+        <span>Archived</span>
+        <div>
+            <button type="button" class="btn_check_on" style="font-size: xx-small;">On</button>
+            <button type="button" class="btn_check_off" style="font-size: xx-small;">Off</button>
+        </div>
+    </script> 
+
+    @*<script id="template_archived" type="text/x-kendo-tmpl">
+        <input type="checkbox" data-bind="checked: archived, events: { change: onChangeArchived }" />
+    </script>*@ 
+</div>

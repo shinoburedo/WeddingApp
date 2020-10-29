@@ -1,0 +1,42 @@
+﻿@using MauloaDemo.Web.Controllers
+
+@{
+    string c_num = TypeHelper.GetStrTrim(Request.QueryString["c_num"]);
+    var loginUser = UserHelper.LoginUser;
+}
+
+<ul class="horizontal_menu">
+    @if (loginUser != null) {
+        <li>@Html.ActionLink("Home", "Index", "Notice", new { area = "" }, null)</li>
+
+        <li> | @Html.ActionLink("Calendar", "Index", "Calendar", new { area = "" }, null)</li>
+        
+        if (loginUser.access_level >= 2) {
+            <li> | @Html.ActionLink("Search", "Index", "Home", new { area = "Customers"}, null)</li>
+        }
+
+        if (loginUser.IsStaff()) {
+            if (loginUser.access_level >= 3) { 
+                <li> | @Html.ActionLink("New Order", "Create", "Home", new { area = "Customers" }, null)</li>
+            }
+
+            if (loginUser.access_level >= 4) {
+                <li> | @Html.ActionLink("Masters", "Index", "Home", new { area = "Masters" }, null)</li>
+            }
+            
+            if (loginUser.access_level >= 3) {
+                <li> | @Html.ActionLink("Reports", "Index", "Home", new { area = "Reports" }, null)</li>
+            }
+            
+            @*if (loginUser.access_level >= 4) { 
+                <li> | @Html.ActionLink("Accounting", "Index", "Home", new { area = "Accounting" }, null)</li>
+            }*@
+        }
+
+        if (loginUser.access_level >= 2) {
+            <li class="cust_num">
+                | <label>Customer # <input type="text" class="tohankaku" maxlength="7" /></label>
+            </li>
+        }
+    }
+</ul>

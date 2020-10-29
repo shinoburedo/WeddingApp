@@ -1,0 +1,62 @@
+﻿@using MauloaDemo.Web.ViewModels
+@model MauloaDemo.Web.ViewModels.AccountLogin
+
+@{
+    ViewBag.Title = "Please login";
+}
+@section head{
+    <link href="@Url.Content("~/Content/Login.css")" rel="stylesheet" type="text/css" />
+}
+
+<h2 >@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Login", "Account",
+                new { ReturnUrl = Request.QueryString["ReturnUrl"], rgn = Request.QueryString["rgn"] },
+                FormMethod.Post,
+                new { @class = "form-1" })) {
+    @Html.AntiForgeryToken()
+
+    <p class="field">
+        <input id="login_id" name="login_id" type="text" value=""
+               placeholder="Login id"
+               class="text-box single-line"
+               data-val="true"
+               data-val-length="The field staff_cd must be a string with a maximum length of 12."
+               data-val-length-max="12"
+               data-val-required="Login id is required." />
+        <i class="icon-user icon-large"></i>
+        @*@Html.ValidationMessageFor(m => m.staff_cd)*@
+    </p>
+
+    <p class="field">
+        <input id="password" name="password" type="password" value=""
+               placeholder="Password"
+               class="text-box single-line password"
+               data-val="true"
+               data-val-length="Password must be a string with a maximum length of 20."
+               data-val-length-max="20"
+               data-val-required="Password is required." />
+        <i class="icon-lock icon-large"></i>
+        @*@Html.ValidationMessageFor(m => m.password)*@
+    </p>
+    @Html.ValidationSummary(false)
+
+    <p class="submit">
+        <button type="submit" name="submit" class="btn btn-primary btn-lg" >Login</button>
+    </p>
+}
+
+@section scripts{
+<script>
+    $(function () {
+        $("#login_id").focus();
+
+        $(".form-1 .submit").on("click", function () {
+            //jQuery UIのValidationチェック
+            if (!$(".form-1").valid()) return;
+
+            $(".form-1").submit();
+        });
+    });
+</script>
+}

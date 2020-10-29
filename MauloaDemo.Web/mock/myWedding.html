@@ -1,0 +1,602 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="keywords" content="Mauloa.COM" />
+<meta name="description" content="Mauloa.COM" />
+<title>Mauloa.COM</title>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
+<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
+<link rel="shortcut icon" href="./favicon.ico" />
+<link href="./common/css/normalize.css" rel="stylesheet" type="text/css" media="all" charset="utf-8" />
+<link href="./common/css/common.css" rel="stylesheet" type="text/css" media="all" charset="utf-8" />
+<link href="./common/css/myWedding.css" rel="stylesheet" type="text/css" media="all" charset="utf-8" />
+<link href="./common/css/jquery.bxslider.css" rel="stylesheet" type="text/css" media="all" charset="utf-8" />
+<link rel="stylesheet" href="./common/css/jquery-ui.css" >
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
+<script type="text/javascript" src="./common/js/common.js"></script>
+<script type="text/javascript" src="./common/js/jquery.bxslider.min.js"></script>
+<script>
+  $(function() {
+  });
+</script>
+</head>
+<body>
+
+<a name="top" id="top"></a>
+
+
+
+<div id="ContentWrapper">
+
+    <div id="header">
+        <!--    <p class="logo"><a href="/"><img src="common/img/Watabe Wedding header_logo.png" alt="その日は消えないMauloa WEDDING Mauloa"/></a></p>-->
+        <p class="logo"><a href="/"><img src="common/img/header_logo2.png" width="190" alt="Mauloa" /></a></p>
+        <div class="headerContentList">
+            <ul>
+                <!--<li><div class="head_top_tempo"><a href="/login/"><img src="common/img/btn_login.png" width="112" height="31" alt="ログイン/登録"/></a></div></li>
+                <li><div class="my_page"><a href="/mywedding/"><img src="common/img/btn_mypage.png" width="112" height="31" alt="My Wedding"/></a></div></li>-->
+                <li><div class="btn_black"><a href="login.html">ログイン/登録</a></div></li>
+                <li><div class="btn_black"><a href="myWedding.html">My Wedding</a></div></li>
+            </ul>
+            <ul>
+                <li><div id="help" data-role="tooltip"><a id="a_help"><img src="common/img/icon_question.png" width="30" height="32" alt="" /><span>ヘルプ</span></a></div></li>
+                <li><div class="head_top_camp"><a href="cart.html"><img src="common/img/icon_cart.png" width="30" height="30" alt="" /><span>カート</span></a></div></li>
+            </ul>
+            <!--<ul>
+                <li><div class="head_top_f"><a href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Fmauloa.com%2F&amp;ref_src=twsrc%5Etfw&amp;text=Mauloa%20%E3%82%AA%E3%82%A2%E3%83%95%E5%B3%B6%2F%E4%BB%96%E5%B3%B6&amp;tw_p=tweetbutton&amp;url=https%3A%2F%2Fmauloa.com%2F" class="btn" id="b"><img src="common/img/icon_twitter.png"  width="31" height="30" alt=""/></a></div></li>
+                <li><div class="head_top_f"><a href="http://www.facebook.com/mauloawedding.japan" target="_blank"><img src="common/img/icon_facebook.png" width="30" height="30" alt=""/></a></div></li>
+                <li><div class="fbShare"><a class="_2vmz" href="/sharer/sharer.php?u=https%3A%2F%2Fwww.mauloa.com%2FHome%2FIndex%2FHWI%2FHNL%3Flang%3DJ&amp;display=popup&amp;ref=plugin&amp;src=like&amp;app_id=450836918428884" target="_blank" id="u_0_2"><img src="common/img/icon_facebook_share.png" width="55" height="21" alt="share"/></a></div></li>
+            </ul>-->
+            <!--<ul>
+                <li>
+                  <div class="language"><a class="select_lang_j" data-lang="J" href="/home/selectlanguage/?language=J"><img src="common/img/btn_japanese.png" width="62" height="19" alt="日本語"></a></div>
+                </li>
+                <li>
+                  <div class="language"><a class="select_lang_e" data-lang="E" href="/home/selectlanguage/?language=E"><img src="common/img/btn_english.png" width="62" height="19" alt="英語"></a></div>
+                </li>
+            </ul>-->
+        </div><!-- headerContentList -->
+    </div><!-- header -->
+
+  <div id="contents">
+
+    <div class="ttlArea">
+      <p>My Wedding</p>
+    </div>
+
+    <div class="myWeddingArea">
+
+
+        <table class="weddingPlanArea">
+            <tbody><tr>
+                <th></th>
+                <td></td>
+                <td class="tar">
+                  <div>お客様番号：<span>100</span></div>
+                  <div class="btnConfirm">スケジュール</div>
+                </td>
+            </tr>
+        </tbody></table>
+
+        <div class="myWeddingPlanTtlsub mt0">お申込み済の商品</div>
+        <div class="checkRadio_wrap checkCancel">
+          <input type="checkbox" value="削除" id="1">
+          <label for="1">キャンセル済みを表示する</label>
+        </div>
+        <table class="orderPlanDetail">
+            <tr>
+                <th class="tdPicture th_header"></th>
+                <th class="tdDescription th_header">商品</th>
+                <th class="th_header">価格</th>
+                <th class="th_header">数量</th>
+                <th class="th_header">小計</th>
+                <th class="th_header">ステータス</th>
+            </tr>
+
+            <tr>
+                <td class="tdPicture">
+                    <div id="list_content">
+                        <a href="" class="afade">
+                            <img src="common/img/H1V2_1_m.jpg" class="shown" width="198" />
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    <strong>商品名</strong>
+                    <span>2016/09/11</span>
+                </td>
+                <td class="tar">
+                    ¥202,000
+                </td>
+                <td class="tar">
+                    1
+                </td>
+                <td class="tar">
+                    ¥202,000
+                </td>
+                <td class="tac">
+                    <ul class="statusIcon">
+                      <li class="listIcon01">確定</li>
+                      <li class="listIcon02">お支払い済</li>
+                    </ul>
+                    <div class="btnCancel"><a href="#">キャンセル</a></div>
+                </td>
+            </tr>
+        </table>
+        <div class="myWeddingPlanTtlsub">基本情報</div>
+        <table class="myWeddingPlanTable">
+            <tbody>
+            <tr>
+                <th class="th_header" rowspan="2">
+                </th>
+                <th class="th_header tac" colspan="2">
+                  新　郎
+                </th>
+                <th class="th_header" rowspan="2">
+                </th>
+                <th class="th_header tac" colspan="2">
+                  新　婦
+                </th>
+            </tr>
+            <tr>
+                <th class="th_header">
+                  姓
+                </th>
+                <th class="th_header">
+                  名
+                </th>
+                <th class="th_header">
+                  姓
+                </th>
+                <th class="th_header">
+                  名
+                </th>
+            </tr>
+            <tr>
+                <th class="th_header">
+                  フリガナ
+                </th>
+                <td>
+                  ヤマダ
+                </td>
+                <td>
+                  タロウ
+                </td>
+                <th class="th_header">
+                  フリガナ
+                </th>
+                <td>
+                  サトウ
+                </td>
+                <td>
+                  ハナコ
+                </td>
+            </tr>
+            <tr>
+                <th class="th_header">
+                  漢字
+                </th>
+                <td>
+                  山田
+                </td>
+                <td>
+                  太郎
+                </td>
+                <th class="th_header">
+                  漢字
+                </th>
+                <td>
+                  佐藤
+                </td>
+                <td>
+                  花子
+                </td>
+            </tr>
+            <tr>
+                <th class="th_header">
+                  ローマ字
+                </th>
+                <td>
+                  YAMADA
+                </td>
+                <td>
+                  TARO
+                </td>
+                <th class="th_header">
+                  ローマ字
+                </th>
+                <td>
+                  SATO
+                </td>
+                <td>
+                  HANAKO
+                </td>
+            </tr>
+        </tbody></table>
+
+        <table class="myWeddingPlanTable">
+            <tbody>
+            <tr>
+                <th class="th_header">
+                  郵便番号
+                </th>
+                <td>
+                  100-0005
+                </td>
+            </tr>
+            <tr>
+                <th class="th_header">
+                  住所1(漢字)
+                </th>
+                <td>
+                  東京都中央区八重洲1-7-20
+                </td>
+            </tr>
+
+            <tr>
+                <th class="th_header">
+                  住所2(漢字)
+                </th>
+                <td>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="th_header">
+                  住所1(カナ)
+                </th>
+                <td>
+                  トウキョウトチュウオウクヤエス
+                </td>
+            </tr>
+
+            <tr>
+                <th class="th_header">
+                  住所2(カナ)
+                </th>
+                <td>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="th_header">
+                  電話番号(ご自宅)
+                </th>
+                <td>
+                  0311112222
+                </td>
+            </tr>
+
+            <tr>
+                <th class="th_header">
+                  電話番号(お勤め先)
+                </th>
+                <td>
+                </td>
+            </tr>
+
+        </tbody></table>
+
+        <table class="myWeddingPlanTable" style="max-width:600px;">
+            <tbody>
+            <tr>
+                <th class="th_header">
+                  ご入籍後の姓
+                </th>
+                <td>
+                  
+                </td>
+            </tr>
+        </tbody></table>
+
+        <div class="myWeddingPlanTtlsub">挙式</div>
+        <table class="myWeddingPlanTable">
+            <tbody>
+            <tr>
+                <th class="th_header" rowspan="2">
+                  ご列席人数<span class="personArea">0名</span>
+                </th>
+                <th class="th_header">
+                  新郎側
+                </th>
+                <td>
+                  <label for="2">父親</label>
+                  <div class="checkRadio_wrap">
+                    <input type="checkbox" value="削除" id="2">
+                    <label for="2"></label>
+                  </div>
+                </td>
+                <td>
+                  <label for="3">母親</label>
+                  <div class="checkRadio_wrap">
+                    <input type="checkbox" value="削除" id="3">
+                    <label for="3"></label>
+                  </div>
+                </td>
+                <td>
+                  兄弟姉妹<span class="personArea">0名</span>
+                </td>
+                <td>
+                  親族<span class="personArea">0名</span>
+                </td>
+                <td>
+                  友人<span class="personArea">0名</span>
+                </td>
+            </tr>
+            <tr>
+                <th class="th_header">
+                  新婦側
+                </th>
+                <td>
+                  <label for="4">父親</label>
+                  <div class="checkRadio_wrap">
+                    <input type="checkbox" value="削除" id="4">
+                    <label for="4"></label>
+                  </div>
+                </td>
+                <td>
+                  <label for="5">母親</label>
+                  <div class="checkRadio_wrap">
+                    <input type="checkbox" value="削除" id="5">
+                    <label for="5"></label>
+                  </div>
+                </td>
+                <td>
+                  兄弟姉妹<span class="personArea">0名</span>
+                </td>
+                <td>
+                  親族<span class="personArea">0名</span>
+                </td>
+                <td>
+                  友人<span class="personArea">0名</span>
+                </td>
+            </tr>
+        </tbody></table>
+
+        <table class="myWeddingPlanTable solemnizationArea">
+            <tbody>
+            <tr>
+                <th class="th_header">
+                  入場時エスコート者
+                </th>
+                <td style="width:20%;">
+                  様
+                </td>
+                <td colspan="2">
+                  新婦様との続柄：
+                </td>
+            </tr>
+            <tr>
+                <th class="th_header" rowspan="4">
+                  結婚証明書 署名者
+                </th>
+                <td>
+                  様
+                </td>
+                <td>
+                  <div class="custom-selectbox">
+                      <div class="custom-inner"><span>新郎側</span></div>
+                      <select>
+                        <option value="6">新郎側</option>
+                        <option value="6-1">新婦側</option>
+                      </select>
+                  </div>
+                </td>
+                <td>
+                  続柄：
+                </td>
+            </tr>
+            <tr>
+                <td>
+                  様
+                </td>
+                <td>
+                  <div class="custom-selectbox">
+                      <div class="custom-inner"><span>新郎側</span></div>
+                      <select>
+                        <option value="7">新郎側</option>
+                        <option value="7-1">新婦側</option>
+                      </select>
+                  </div>
+                </td>
+                <td>
+                  続柄：
+                </td>
+            </tr>
+            <tr>
+                <td>
+                  様
+                </td>
+                <td>
+                  <div class="custom-selectbox">
+                      <div class="custom-inner"><span>新郎側</span></div>
+                      <select>
+                        <option value="8">新郎側</option>
+                        <option value="8-1">新婦側</option>
+                      </select>
+                  </div>
+                </td>
+                <td>
+                  続柄：
+                </td>
+            </tr>
+            <tr>
+                <td>
+                  様
+                </td>
+                <td>
+                  <div class="custom-selectbox">
+                      <div class="custom-inner"><span>新郎側</span></div>
+                      <select>
+                        <option value="9">新郎側</option>
+                        <option value="9-1">新婦側</option>
+                      </select>
+                  </div>
+                </td>
+                <td>
+                  続柄：
+                </td>
+            </tr>
+
+        </tbody></table>
+
+        <div class="myWeddingPlanTtlsub">フライト</div>
+        <table class="myWeddingPlanTable">
+            <tbody>
+            <tr>
+                <th class="th_header" rowspan="2">
+                  往路
+                </th>
+                <th class="th_header">
+                  出発日
+                </th>
+                <th class="th_header">
+                  出発時刻
+                </th>
+                <th class="th_header">
+                  出発空港
+                </th>
+                <th class="th_header">
+                  フライトNo.
+                </th>
+                <th class="th_header">
+                  到着日
+                </th>
+                <th class="th_header">
+                  到着時刻
+                </th>
+                <th class="th_header">
+                  到着空港
+                </th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                  <div class="custom-selectbox">
+                      <div class="custom-inner"><span>未選択</span></div>
+                      <select>
+                      <option value="10">未選択</option>
+                      </select>
+                  </div>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                  <div class="custom-selectbox">
+                      <div class="custom-inner"><span>未選択</span></div>
+                      <select>
+                      <option value="11">未選択</option>
+                      </select>
+                  </div>
+                </td>
+            </tr>
+            <tr>
+                <th class="th_header" rowspan="2">
+                  復路
+                </th>
+                <th class="th_header">
+                  出発日
+                </th>
+                <th class="th_header">
+                  出発時刻
+                </th>
+                <th class="th_header">
+                  出発空港
+                </th>
+                <th class="th_header">
+                  フライトNo.
+                </th>
+                <th class="th_header">
+                  到着日
+                </th>
+                <th class="th_header">
+                  到着時刻
+                </th>
+                <th class="th_header">
+                  到着空港
+                </th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                  <div class="custom-selectbox">
+                      <div class="custom-inner"><span>未選択</span></div>
+                      <select>
+                      <option value="12">未選択</option>
+                      </select>
+                  </div>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                  <div class="custom-selectbox">
+                      <div class="custom-inner"><span>未選択</span></div>
+                      <select>
+                      <option value="13">未選択</option>
+                      </select>
+                  </div>
+                </td>
+            </tr>
+        </tbody></table>
+
+
+
+        <div class="myWeddingPlanTtlsub">ご滞在先</div>
+        <table class="myWeddingPlanTable">
+            <tbody>
+            <tr>
+                <th class="th_header">
+                  ホテル名
+                </th>
+                <td>
+                  
+                </td>
+            </tr>
+        </tbody></table>
+
+
+
+
+        <ul class="btnList">
+          <li>
+            <input type="submit" name="edit" value="編 集" class="btn btn-lg btn-primary">
+          </li>
+        </ul>
+
+    </div>
+
+</div><!-- contents -->
+
+  <div id="footer">
+    <ul id="footer_link">
+      <li><a target="_blank" href="">会社概要</a></li>
+      <li><a target="_blank" href="">ご利用ガイド</a></li>
+      <li><a target="_blank" href="">サイト利用規約</a></li>
+      <li><a target="_blank" href="">プライバシー規定</a></li>
+      <li><a target="_blank" href="">ご注意事項</a></li>
+      <li>
+      <a href="/home/faq/">よくある質問</a>
+      </li>
+      <li>
+      <a href="/home/contact/">お問合せ</a>
+      </li>
+    </ul>
+    <div class="flogo"><a href="/"><img src="common/img/header_logo1.png" alt="Mauloa" /></a></div>
+    <div class="copyright">Copyright(C) Visual Systems, Inc. All Rights Reserved.</div>
+  </div><!-- footer -->
+
+</div><!-- /ContentWrapper -->
+
+</body>
+</html>

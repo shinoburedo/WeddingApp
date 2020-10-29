@@ -1,0 +1,186 @@
+﻿<div class="plan-dialog">
+
+    <style scoped>
+        td[role='gridcell'] {
+            font-size:86%;
+        }
+
+        .lbl_irregular_time {
+            margin-left: 180px;
+            cursor: pointer;
+        }
+
+        .blocks-wrapper {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .blocks_item {
+            width: 60px;
+            height: 34px;
+            float: left;
+            text-align:center;
+            border: solid 1px pink;
+            cursor: pointer;
+        }
+
+            .blocks_item.closed {
+                border: solid 1px gray;
+                background-color: #cccccc;
+                cursor: default;
+            }
+            .blocks_item.booked {
+                border: solid 1px red;
+                background-color: #ffaaaa;
+                cursor: default;
+            }
+            .blocks_item.self {
+                border: solid 1px blue;
+                color: blue;
+                background-color: #aaaaff;
+                cursor: default;
+            }
+
+        .bottom-buttons {
+            clear: both;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+
+    <script type="text/template" id="churchComboTemplate">
+        <dl><dt style='width:60px;'>${ data.church_cd }</dt><dd>${ data.church_name_jpn }</dd></dl>
+    </script>
+
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="txtChurchCd" class="col-sm-2 control-label" data-bind="text: church_label">Church</label>
+            <div class="col-sm-2">
+                <select id="txtChurchCd"
+                       maxlength="5"
+                       placeholder=""
+                       class="form-control input-sm toupper tohankaku "
+                       style="width:95%;"
+                       data-role="combobox"
+                       data-value-primitive="true"
+                       data-value-field="church_cd"
+                       data-text-field="church_cd"
+                       data-height="300"
+                       data-bind="value: search.church_cd, events: {change: doSearch }"
+                       data-template="churchComboTemplate" ></select>
+            </div>
+
+            <label for="txtItemCd" class="col-sm-1 control-label">Code</label>
+            <div class="col-sm-2">
+                <input id="txtItemCd"
+                       type="text"
+                       maxlength="15"
+                       placeholder=""
+                       class="form-control input-sm k-textbox w100 toupper tohankaku"
+                       data-bind="value: search.item_cd, events: {change: doSearch }" />
+            </div>
+
+            <label for="txtItemName" class="col-sm-1 control-label">Name</label>
+            <div class="col-sm-4">
+                <input id="txtItemName"
+                       type="text"
+                       maxlength="50"
+                       placeholder=""
+                       class="form-control input-sm k-input k-textbox w100 toupper tohankaku"
+                       data-bind="value: search.item_name, events: {change: doSearch }" />
+            </div>
+
+            <div class="col-sm-offset-1 col-sm-2">
+                <button type="button" class="btn btn-default search-button"
+                        data-bind="events:{ click: doSearch }">
+                    Search
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <div id="grdPlanSearch"
+         data-role="grid"
+         data-auto-bind="true"
+         data-bind="source: planList, events: { change: selectionChanged } "
+         data-sortable="true"
+         data-resizable="true"
+         data-selectable="true"
+         data-scrollable="true"
+         data-groupable="false"
+         data-navigatable="false"
+         data-columns="[  {field: 'item_cd', title: 'Item Code', width: 140, attributes: ' style=\'font-size:x-small;\'' }
+                        , {field: 'item_name_jpn', title: 'プラン名' }
+                        , {field: 'item_name', title: 'Plan Name' }
+                        , {field: 'gross', title: 'Price(gross)', width: 76, format: '{0:N2}', attributes: {'class':'col_numeric'}, headerAttributes: {'class':'col_numeric'} }
+                        , {field: 'd_net', title: 'Price(d_net)', width: 76, format: '{0:N2}', attributes: {'class':'col_numeric'}, headerAttributes: {'class':'col_numeric'} }
+                    ]"
+         style="height:360px;">
+    </div>
+
+    <form class="form-horizontal" style="margin-top: 10px;">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Location: </label>
+            <div class="col-sm-2">
+                <input type="text" 
+                       class="form-control input-sm k-textbox toupper tohankaku"
+                       style="width: 80px;" 
+                       data-bind="value: selectedItem.church_cd" 
+                       readonly />
+            </div>
+
+            <label class="col-sm-1 control-label">Date: </label>
+            <div class="col-sm-2">
+                <input type="text" 
+                        class="form-control input-sm todate"
+                        maxlength="10"
+                        style="width: 120px;"
+                        data-role="datepicker"
+                        data-bind="value: wed_date, events: {change: wedDateChanged }" />
+            </div>
+
+            <div data-bind="visible: canEnterIrregularTime">
+                <label class="col-sm-2 lbl_irregular_time">
+                    Irregular Time:
+                    <input type="checkbox" data-bind="checked: is_irregular_time" />
+                </label>
+                <div class="col-sm-2" style="margin-left:10px;">
+                    <input type="text"
+                           class="form-control input-sm k-textbox totime"
+                           placeholder="hh:mm"
+                           maxlength="5"
+                           style="width: 60px;"
+                           data-bind="value: irregular_time, visible: is_irregular_time" />
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="blocks-wrapper">
+        @*Blocks: <span data-bind="text: blocks.length"></span>*@
+        <div id="blocksList"
+             data-role="listview"
+             data-bind="source: blocks"
+             data-template="blocks_item"
+             data-selectable="true"></div>
+        <script id="blocks_item" type="text/x-kendo-template">
+            <div class="blocks_item 
+                    #if (block_status === 'X'){ # closed # } 
+                    else if (block_status === '*SELF*') { # self # }
+                    else if (block_status){ # booked # } #" 
+                 >#:start_time_s #<br />#if (block_status){ # #:block_status#  # } #</div>
+        </script>
+        <div style="clear:both;"></div>
+    </div>
+
+    <div class="bottom-buttons">
+        <input type="button" value=" O K " 
+               class="btn btn-primary" style="width:100px;" 
+               data-bind="click: selectPlan" />
+        <input type="button" value="Close"
+               class="btn btn-default" style="width:100px; margin-left: 100px;"
+               data-bind="click: closeDialog" />
+    </div>
+    
+</div>
+

@@ -1,0 +1,100 @@
+﻿<div class="duplist-dialog">
+    <style scoped>
+        td[role='gridcell'] {
+            font-size:86%;
+        }
+
+        #grdDupList .k-grid-content {
+            height: 268px;
+        }
+
+        .bottom-buttons {
+            margin-bottom: 14px;
+        }
+    </style>
+
+    <form class="form-horizontal" >
+        <div class="form-group">
+            <label for="txtEditGLast" class="w-1 control-label">Groom</label>
+            <div class="w-2">
+                <input type="text" id="txtEditGLast" name="Lastname"
+                        maxlength="20" readonly
+                        class="form-control input-sm k-input k-textbox w100 toupper tohankaku"
+                        data-bind="value: customer.g_last" />
+            </div>
+            <div class="w-2">
+                <input type="text" id="txtEditGFirst"
+                       maxlength="20" readonly
+                       class="form-control input-sm k-input k-textbox w100 toupper tohankaku"
+                       data-bind="value: customer.g_first" />
+            </div>
+            <label for="txtEditGLast" class="w-1 control-label">Bride</label>
+            <div class="w-2">
+                <input type="text" id="txtEditBLast"
+                       maxlength="20" readonly
+                       class="form-control input-sm k-input k-textbox w100 toupper tohankaku"
+                       data-bind="value: customer.b_last" />
+            </div>
+            <div class="w-2">
+                <input type="text" id="txtEditBFirst"
+                       maxlength="20" readonly
+                       class="form-control input-sm k-input k-textbox w100 toupper tohankaku"
+                       data-bind="value: customer.b_first" />
+            </div>
+        </div>
+
+        <div id="grdDupList"
+            data-role="grid"
+            data-auto-bind="true"
+            data-bind="source: dupList"
+            data-sortable="true"
+            data-resizable="true"
+            data-selectable="true"
+            data-scrollable="true"
+            data-groupable="false"
+            data-navigatable="false"
+            data-height="300"
+            data-columns="[ {field: 'c_num', title: 'Cust #', width: 70 }
+                        , {field: 'g_last', title: 'Groom', width: 100 }
+                        , {field: 'g_first', title: ' ' }
+                        , {field: 'b_last', title: 'Bride' }
+                        , {field: 'b_first', title: ' ' }
+                        , {field: 'church_cd', title: 'Church', width: 100 }
+                        , {field: 'wed_date', title: 'Wed Date', width: 120 }
+                        , {field: 'c_num', title: ' ', width: 100 } ]"
+            data-row-template="tpl_duplist_row">
+        </div>
+
+        <div class="bottom-buttons">
+            <input type="button" value=" 無視して続行する... "
+                   class="btn btn-warning" style="width:240px;"
+                   data-bind="click: onOkClick, visible: isJPN" />
+
+            <input type="button" value=" Ignore and Continue... "
+                   class="btn btn-warning" style="width:240px;"
+                   data-bind="click: onOkClick, invisible: isJPN" />
+
+            <input id="btnClose" type="button" value="Close"
+                   class="btn btn-default" style="width:100px; margin-left: 100px;"
+                   data-bind="click: closeDialog" />
+        </div>
+    </form>
+</div>
+
+<script id="tpl_duplist_row" type="text/k-kendo-tmpl">
+    <tr data-uid="#: uid #" >
+        <td >#: c_num #</td>
+        <td >#: g_last #</td>
+        <td >#: g_first || '' #</td>
+        <td >#: b_last || '' #</td>
+        <td >#: b_first || '' #</td>
+        <td >#: church_cd || '' #</td>
+        <td >#: wed_date ? kendo.toString(wed_date, App.Config.DateFormat) : '' #</td>
+        <td class="col_edit">
+            <a data-cnum='#= c_num #' class='btn btn-sm btn-default' data-bind='click:selectCustomer'>#: App.L(" 表 示 ", " Open ")#</a>
+        </td>
+    </tr>
+</script>
+
+
+

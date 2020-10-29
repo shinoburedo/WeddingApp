@@ -1,0 +1,173 @@
+﻿<div id="editWindow"
+     data-role="window"
+     data-visible="false"
+     data-modal="true"
+     data-min-width="500"
+     data-width="600"
+     data-min-height="400"
+     data-height="500"
+     style="display:none;">
+
+    <style scoped>
+        .lbl_new_pwd {
+            display: block;
+            width: 200px;
+            height: 2em;
+            background-color: #ffc;
+            padding: 4px;
+            padding-top: 8px;
+            text-align:center;
+            font-size: 120%;
+            font-weight: bold;
+        }
+
+        .msg_new_pwd {
+            color: red;
+        }
+    </style>
+
+    <div id="editDiv">
+        <form class="form-horizontal" data-role="validator">
+            <div class="form-group">
+                <label for="login_id" class="col-sm-3 control-label required">Login Id</label>
+                <div class="col-sm-4">
+                    <input name="login_id" type="text" data-bind="value: model.login_id, enabled: isCodeEditable"
+                           maxlength="15" required
+                           class="form-control input-sm k-input k-textbox toupper tohankaku" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="e_last_name" class="col-sm-3 control-label">Name</label>
+                <div class="col-sm-4">
+                    <input name="e_last_name" type="text" data-bind="value: model.e_last_name" maxlength="30" 
+                           class="form-control input-sm k-input k-textbox toupper tohankaku" />
+                </div>
+                <div class="col-sm-4">
+                    <input name="e_first_name" type="text" data-bind="value: model.e_first_name" maxlength="30"
+                           class="form-control input-sm k-input k-textbox toupper tohankaku" />
+                </div>
+                <div class="col-sm-2">(Last/First)</div>
+            </div>
+
+            <div class="form-group">
+                <label for="j_last_name" class="col-sm-3 control-label">氏名</label>
+                <div class="col-sm-4">
+                    <input name="j_last_name" type="text" data-bind="value: model.j_last_name" maxlength="30" 
+                           class="form-control input-sm k-input k-textbox" />
+                </div>
+                <div class="col-sm-4">
+                    <input name="j_first_name" type="text" data-bind="value: model.j_first_name" maxlength="30"
+                           class="form-control input-sm k-input k-textbox" />
+                </div>
+                <div class="col-sm-2">(姓/名)</div>
+            </div>
+
+            <div class="form-group">
+                <label for="area_cd" class="col-sm-3 control-label">Area</label>
+                <div class="col-sm-3">
+                    <input name="area_cd" type="text" 
+                           data-bind="value: model.area_cd" 
+                           maxlength="3"
+                           class="form-control input-sm select-area toupper"
+                           style="width:70px;" />
+                </div>
+                <label for="sub_agent_cd" class="col-sm-2 control-label">Agent</label>
+                <div class="col-sm-3">
+                    <input name="sub_agent_cd" type="text" 
+                           data-bind="value: model.sub_agent_cd" 
+                           maxlength="6"
+                           class="form-control input-sm select-subagent toupper"
+                           style="width:100px;" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="e-mail" class="col-sm-3 control-label">Email</label>
+                <div class="col-sm-8">
+                    <input name="e-mail" type="text" data-bind="value: model.e_mail" maxlength="50" 
+                           class="form-control input-sm k-input k-textbox tohankaku " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone" class="col-sm-3 control-label">Phone</label>
+                <div class="col-sm-8">
+                    <input name="phone" type="text" data-bind="value: model.phone" maxlength="20"
+                           class="form-control input-sm k-input k-textbox tohankaku " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone" class="col-sm-3 control-label">Access Level</label>
+                <div class="col-sm-7">
+                    <input name="access_level" type="text"
+                           data-role="dropdownlist"
+                           data-bind="value: model.access_level, source: accessLevelList"
+                           data-value-primitive="true"
+                           data-value-field="value"
+                           data-text-field="text"
+                           class="form-control input-sm w100"  />
+                </div>
+            </div>
+
+            <br />
+            <div class="form-group">
+                <label for="eff_from_pass" class="col-sm-4 control-label">Password Effective</label>
+                <div class="col-sm-3">
+                    <input name="eff_from_pass" type="text"
+                           data-role="datepicker"
+                           data-bind="value: model.eff_from_pass"
+                           class="form-control input-sm tohankaku "
+                           style="width:100px;" />
+                </div>
+                <label for="eff_from_to" class="col-sm-1 control-label">To</label>
+                <div class="col-sm-3">
+                    <input name="eff_to_pass" type="text"
+                           data-role="datepicker"
+                           data-bind="value: model.eff_to_pass"
+                           class="form-control input-sm tohankaku "
+                           style="width:100px;" />
+                </div>
+            </div>
+
+
+            @* Saveボタン、Closeボタン *@
+            <div class="buttons">
+                <input id="btnEditSave" type="button" value="Save" data-bind="click:onSave" class="btn btn-primary btn-save" />
+                <input id="btnEditClose" type="button" value="Close" data-bind="click: onClose" class="btn btn-default btn-close" />
+            </div>
+
+            <div data-bind="invisible: model.isNew">
+                <hr />
+                <div class="form-group" style="text-align:center;">
+                    <button type="button" id="btnResetPassword"
+                            data-bind="click: onResetPassword"
+                            class="btn btn-small btn-danger "
+                            style="width: 160px;">
+                        Reset Password
+                    </button>
+                </div>
+                <div class="form-group" data-bind="visible: model.new_password">
+                    <label class="col-sm-5 control-label">New Password</label>
+                    <div class="col-sm-8">
+                        <span class="lbl_new_pwd"
+                              data-bind="text: model.new_password"></span>
+                        @*
+                    <br />
+                    <span class="msg_new_pwd" >
+                        新しいパスワードを記憶するかメモして安全な場所に保管して下さい。<br />
+                        一旦この画面を閉じるとパスワードの再表示は出来ません。
+                        <br /><br />
+                        Please remember or save this new password in a safe place,
+                        because it will not be displayed again once you close this screen.
+                    </span>
+                        *@
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div> @* End of editWindow *@
+

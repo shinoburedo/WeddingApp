@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Combo Lists";
+}
+
+@section head{
+<link href="@Url.Content("~/Areas/Reports/Content/MgmReport.css")" rel="stylesheet" type="text/css" />
+}
+
+<div class="app_wrapper">
+    <h3>@ViewBag.Title</h3>
+    <div id="app">
+        <div class="search clearfix">
+            <div style="width:180px;">
+                Code <input type="text" data-bind="value: search.list_cd, events: {change: refreshList }" class="k-input k-textbox" style="width: 110px;" />
+            </div>
+            <div style="width:300px;">
+                Description <input type="text" data-bind="value: search.description, events: { change: refreshList }" class="k-input k-textbox" style="width:200px;" />
+            </div>
+        </div>
+        <div id="grd"
+             data-role="grid"
+             data-bind="source: list"
+             data-toolbar="[{name:'create', text:'Create New'}, {name:'copy', text:'Copy'}, {name:'destroy', text:'Delete' }, {name: 'refresh', text:'Refresh'}]"
+             data-selectable="true"
+             data-sortable="true"
+             data-resizable="true"
+             data-scrollable="true"
+             data-height="560"
+             data-columns="[  {field: 'list_cd', title: 'Code', width: 150}
+                            , {field: 'description', title: 'Description'}
+                            , {field: 'last_person', title: 'Last person', width:80}
+                            , {field: 'update_date', title: 'Updated', width:160, format: '{0:MM/dd/yyyy HH:mm:ss}' }
+                            , {field: 'list_cd', title: ' ', width: 60, template: '<a data-listcd=\'#=list_cd#\' class=\'btn btn-sm btn-default grid_edit_button\' data-bind=\'click:editItem\'><span class=\'k-icon k-edit\'><\/span><\/a>'}
+                        ]"></div>
+    </div>
+
+    <div style="margin:16px;">
+        <a href="@Url.Action("ManageReports", "Home" )">Manage Reports...</a>
+    </div>
+
+    @Html.Partial("ComboListEditPartial")
+</div>
+
+@section scripts {
+<script src="@Url.Content("~/Scripts/require.min.js")"
+            data-main="@Url.Content("~/Areas/Reports/Scripts/ComboListIndexView")"></script>
+}

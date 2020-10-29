@@ -1,0 +1,30 @@
+﻿@using System.Configuration;
+@using MauloaDemo.Models
+@using MauloaDemo.Web.Controllers
+
+@{
+    LoginUser cur_user = UserHelper.LoginUser;
+    var dbname = "";
+    var dummyRepo = MauloaDemo.Repository.ProjMEntities.Create();
+    dbname = dummyRepo.Database.Connection.Database;
+
+    var bg_class = ViewData["bg_class_FT"] as string ?? "bg_gradient_FT";
+}
+
+<footer class="@bg_class">
+    Copyright(C) Visual Systems, Inc. All Rights Reserved.
+
+    <span style="margin-left: 40px;">
+        @if (cur_user != null) {
+            @cur_user.date_format<span>&nbsp;</span>
+            @TemplateInfo.Resource("LBL_LANG_NAME")<span>&nbsp;</span>
+        }
+        @dbname
+    </span>
+
+    @*<div style="text-align: left; font-size:80%;">
+        Server = @ViewContext.RequestContext.HttpContext.Server.MachineName (@ViewContext.RequestContext.HttpContext.Request.ServerVariables["LOCAL_ADDR"])<br />
+        Client = @ViewContext.RequestContext.HttpContext.Request.UserHostName (@ViewContext.RequestContext.HttpContext.Request.UserHostAddress) <br />
+        Path = @ViewContext.CurrentActionPath()<br />
+    </div>*@
+</footer>

@@ -1,0 +1,657 @@
+﻿<style scoped>
+
+    .buttons-arrangement {
+        margin-top:20px;
+        margin-bottom: 4px;
+    }
+
+    .bottom-buttons {
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 14px;
+    }
+
+    .section-info {
+        margin: 10px 16px 10px 20px;
+    }
+
+    .nav-tabs-info li {
+        width: 18%;
+        min-width: 140px;
+    }
+
+    .nav-tabs-info > li > a {
+        height: 28px;
+        padding: 0; /*4px 4px 4px 4px;*/
+    }
+
+    .tab-pane {
+        min-height: 40px;
+    }
+
+    #txtItemCd_listbox dt {
+        float:left;
+        font-size:90%;
+    }
+
+    #txtItemCd_listbox dd {
+        float:left;
+        overflow:hidden;
+        text-wrap:none;
+        font-size:90%;
+    }
+
+    /*#txtItemCd_listbox.k-list .k-item dt {
+        font-size:90%;
+    }
+
+    #txtItemCd_listbox.k-list .k-item dd {
+        overflow:hidden;
+        text-wrap:none;
+        font-size:90%;
+    }*/
+
+    .price_changed {
+        background-color: #fcc;
+    }
+
+    textarea {
+        width: 95%;
+    }
+</style>
+
+<div class="optiondetail-dialog">
+
+    <form class="form-horizontal" data-role="validator">
+
+        <input type="hidden" data-bind="value: sales.op_seq" name="op_seq" id="hdnOpseq" />
+
+        <div class="form-group">
+            <label for="txtItemType" class="col-sm-2 control-label">Type</label>
+            <div class="col-sm-2">
+                <input type="text" id="txtItemType" name="item_type"
+                       maxlength="3" required 
+                       placeholder=""
+                       class="form-control input-sm toupper tohankaku select-itemtype"
+                       style="width:95%;"
+                       data-height="300"
+                       data-bind="value: sales.item_type, enabled:sales.isNew"
+                       data-plantype="O" />
+            </div>
+
+            <label for="txtItemCd" class="col-sm-1 control-label">Code</label>
+            <div class="col-sm-3">
+                <select id="txtItemCd" name="item_cd"
+                       maxlength="15" required
+                       class="form-control input-sm toupper tohankaku "
+                       data-height="400"
+                       data-role="combobox"
+                       data-value-field="item_cd"
+                       data-text-field="item_cd"
+                       data-value-primitive="true"
+                       data-cascade-from="txtItemType"
+                       data-cascade-from-field="item_type"
+                       data-bind="value: sales.item_cd, source: itemList, enabled:sales.isNew"
+                       data-template="itemCdComboTemplate" 
+                       data-header-template="itemCdComboHeaderTemplate"
+                ></select>
+
+                <script type="text/template" id="itemCdComboTemplate">
+                    <dl>
+                    # if (App.User.IsStaff) {#
+                        <dt style="width:17%;">${ data.item_cd }</dt>
+                        <dd style="width:67%;">${ App.L(data.item_name_jpn, data.item_name) }</dd>
+                        <dd style="width:7%;text-align:right;float:right;">$${ data.d_net }</dd>
+                        <dd style="width:7%;text-align:right;float:right;">$${ data.gross }</dd>
+                    # } else if (App.User.AgentCd === "JTBO"){ #
+                        <dt style="width:17%;">${ data.item_cd }</dt>
+                        <dd style="width:67%;">${ App.L(data.item_name_jpn, data.item_name) }</dd>
+                        <dd style="width:7%;text-align:right;float:right;">$${ data.d_net }</dd>
+                        <dd style="width:7%;text-align:right;float:right;">$${ data.gross }</dd>
+                    # } else { #
+                        <dt style="width:17%;">${ data.item_cd }</dt>
+                        <dd style="width:74%;">${ App.L(data.item_name_jpn, data.item_name) }</dd>
+                        <dd style="width:7%;text-align:right;float:right;">$${ data.d_net }</dd>
+                    # } #
+                    </dl>
+                </script>
+
+                <script type="text/template" id="itemCdComboHeaderTemplate">
+                # if (App.User.IsStaff) {#
+                    <div class="clearfix">
+                        <dl>
+                            <dt style="width:17%;"></dt>
+                            <dd style="width:67%;"></dd>
+                            <dd style="width:7%;text-align:right;float:right;">Net</dd>
+                            <dd style="width:7%;text-align:right;float:right;">Gross</dd>
+                        </dl>
+                    </div>
+                # } else if (App.User.AgentCd === "JTBO"){ #
+                    <div class="clearfix">
+                        <dl>
+                            <dt style="width:17%;"></dt>
+                            <dd style="width:67%;"></dd>
+                            <dd style="width:7%;text-align:right;float:right;margin-right: 16px;">Net</dd>
+                            <dd style="width:7%;text-align:right;float:right;">Gross</dd>
+                        </dl>
+                    </div>
+                # } #
+                </script>
+            </div>
+
+            @*<label for="" class="col-sm-1 col-sm-offset-1 control-label">Payment</label>
+            <div class="col-sm-1">
+                <select class="form-control input-sm"
+                        style="width:80px;"
+                        data-role="dropdownlist"
+                        data-value-field="value"
+                        data-text-field="text"
+                        data-value-primitive="true"
+                        data-bind="value: sales.cust_collect, source: sales.PaymentList"></select>
+            </div>*@
+
+            <label for="" class="col-sm-1 col-sm-offset-4 control-label">Status</label>
+            <div class="col-sm-1">
+                <select class="form-control input-sm"
+                        style="width:80px;"
+                        data-role="dropdownlist"
+                        data-value-field="value"
+                        data-text-field="text"
+                        data-value-primitive="true"
+                        data-bind="value: sales.book_status, source: sales.StatusList, disabled: isCanceledOrFinalized"></select>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label for="txtItemName" class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-13">
+                <input type="text" readonly
+                       class="form-control input-sm k-input k-textbox w100"
+                       data-bind="value: item_name_jpn, visible: isJapan" />
+                <input type="text" readonly
+                       class="form-control input-sm k-input k-textbox w100 " 
+                       data-bind="value: item_name, invisible: isJapan" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="txtQty" class="col-sm-2 control-label">Qty</label>
+            <div class="col-sm-1">
+                <input type="text" id="txtQty" name="quantity" required
+                       data-role="numerictextbox"
+                       data-spinners="false"
+                       data-decimals="0"
+                       data-format="n0"
+                       data-max="9999"
+                       data-min="1"
+                       maxlength="4"
+                       class="input-sm numeric"
+                       style="width:100%;"
+                       data-bind="value: sales.quantity, disabled: isCanceledOrFinalized" />
+            </div>
+
+            <label for="txtPrice" class="col-sm-2 control-label" ><span data-bind="invisible: sales.isNew">Price</span></label>
+            <div class="col-sm-2 div_txt_price">
+                <input type="text" id="txtPrice" name="price"
+                       data-role="numerictextbox"
+                       data-spinners="false"
+                       data-decimals="2"
+                       data-format="n2"
+                       maxlength="10"
+                       class="input-sm numeric"
+                       style="width:100%;"
+                       data-bind="value: sales.price, enabled: isPriceEditable, invisible: sales.isNew" />
+            </div>
+
+            <label for="txtAmount" class="col-sm-2 control-label"><span data-bind="invisible: sales.isNew">Amount</span></label>
+            <div class="col-sm-2">
+                <input type="text" id="txtAmount"
+                       data-role="numerictextbox"
+                       data-spinners="false"
+                       data-decimals="2"
+                       data-format="n2"
+                       maxlength="10"
+                       readonly
+                       class="input-sm numeric"
+                       style="width:100%;"
+                       data-bind="value: sales.amount, invisible: sales.isNew" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="txtSubAgent" class="col-sm-2 control-label">Agent</label>
+            <div class="col-sm-2">
+                <input type="text" id="txtSubAgent" name="sub_agent_cd" required maxlength="6"
+                       class="form-control input-sm select-subagent toupper tohankaku"
+                       style="width:80px"
+                       data-bind="value: sales.sub_agent_cd, disabled: isCanceledOrFinalized" />
+            </div>
+
+            <label for="txtInvAgent" class="col-sm-1 control-label">Invoice</label>
+            <div class="col-sm-2" style="padding-left: 4px;">
+                <input type="text" id="txtInvAgent" name="inv_agent" required maxlength="6"
+                       class="form-control input-sm select-invagent toupper tohankaku"
+                       style="width:80px;"
+                       data-bind="value: sales.inv_agent, disabled: isCanceledOrFinalized" />
+            </div>
+
+            <label for="txtPriceChangeReason"
+                   class="col-sm-2 control-label" style="display:none;"
+                   data-bind="visible: sales.price_changed">Reason</label>
+            <div class="col-sm-3">
+                <input type="text" id="txtPriceChangeReason"
+                       maxlength="200"
+                       class="form-control input-sm k-input k-textbox"
+                       style="width:100%;"
+                       data-bind="value: sales.price_change_reason, visible: sales.price_changed, enabled: isPriceChangeReasonEditable" />
+            </div>
+
+            <div class="col-sm-4 created_by pull-right">
+                <table>
+                    <tr>
+                        <td>Created: </td>
+                        <td>
+                            <span data-bind="text: sales.create_by"></span>
+                            (<span data-bind="text: sales.create_date_s"></span>)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Updated: </td>
+                        <td>
+                            <span data-bind="text: sales.last_person"></span>
+                            (<span data-bind="text: sales.update_date_s"></span>)
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-8 pull-right">
+                <label class="col-sm-3 control-label">Staff</label>
+                <div class="col-sm-4">
+                    <input type="text" name="Staff" required maxlength="50"
+                           class="form-control input-sm k-input k-textbox toupper tohankaku"
+                           style="width:100%;"
+                           data-bind="value: sales.staff, disabled: isCanceledOrFinalized" />
+                </div>
+
+                <label class="col-sm-3 control-label" data-bind="visible: isBranchStaffVisible">店舗担当者</label>
+                <div class="col-sm-4">
+                    <input type="text" name="Branch Staff" maxlength="50"
+                           class="branch_staff form-control input-sm k-input k-textbox toupper tohankaku"
+                           style="width:100%;"
+                           data-bind="value: sales.branch_staff, visible: isBranchStaffVisible, disabled: isCanceledOrFinalized" />
+                </div>
+            </div>
+        </div>
+
+
+        @* Info Section *@
+        <section class="section-info clearfix">
+            <ul class="nav nav-tabs nav-tabs-info">
+                <li data-bind="visible: visibleDLV" class="active"><a href="#panDLV" data-toggle="tab">Delivery</a></li>
+                <li data-bind="visible: visibleMKS" class="active"><a href="#panMKS" data-toggle="tab">Make Up/Aesthe</a></li>
+                <li data-bind="visible: visibleSHT" class="active"><a href="#panSHT" data-toggle="tab">Photo Shooting</a></li>
+                <li data-bind="visible: visibleRCP" class="active"><a href="#panRCP" data-toggle="tab">Reception</a></li>
+                <li data-bind="visible: visibleTRN" class="active"><a href="#panTRN" data-toggle="tab">Transportation</a></li>
+                <li data-bind="visible: visibleOthers" class="active"><a href="#panOthers" data-toggle="tab">Others</a></li>
+            </ul>
+
+            <div class="tab-content">
+                @* DLV *@
+                <div class="tab-pane active" id="panDLV"
+                     data-bind="visible: visibleDLV">
+                    <div class="form-group">
+                        <label for="" class="col-sm-1 control-label">Date</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control input-sm todate"
+                                   maxlength="10"
+                                   style="width:100px;"
+                                   data-role="datepicker"
+                                   data-bind="value: sales.DeliveryInfo.delivery_date, disabled: isCanceledOrFinalized" />
+                        </div>
+
+                        <label for="" class="col-sm-1 control-label">Time</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control input-sm k-input k-textbox totime"
+                                   maxlength="5"
+                                   placeholder="hh:mm"
+                                   data-bind="value: sales.DeliveryInfo.delivery_time_s, disabled: isCanceledOrFinalized" />
+                        </div>
+
+                        <label for="" class="col-sm-1 control-label">Place</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control input-sm k-input k-textbox"
+                                   maxlength="50"
+                                   data-bind="value: sales.DeliveryInfo.delivery_place, disabled: isCanceledOrFinalized" />
+                        </div>
+                    </div>
+
+                    @*<div class="form-group">
+                        <label for="" class="col-sm-1 control-label">Note</label>
+                        <div class="col-sm-12">
+                            <textarea class="form-control input-sm k-input k-textbox w100"
+                                      data-bind="value: sales.DeliveryInfo.note, disabled: isCanceledOrFinalized"></textarea>
+                        </div>
+                    </div>*@
+                </div>
+
+                @* MKS *@
+                <div class="tab-pane active" id="panMKS"
+                     data-bind="visible: visibleMKS">
+                    <div class="form-group">
+                        <label for="" class="col-sm-1 control-label">Date</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control input-sm todate"
+                                   maxlength="10"
+                                   style="width:100px;"
+                                   data-role="datepicker"
+                                   data-bind="value: sales.MakeInfo.make_date, disabled: isCanceledOrFinalized" />
+                        </div>
+
+                        <label for="" class="col-sm-1 control-label">Time</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control input-sm k-input k-textbox totime"
+                                   maxlength="5"
+                                   placeholder="hh:mm"
+                                   data-bind="value: sales.MakeInfo.make_time_s, disabled: isCanceledOrFinalized" />
+                        </div>
+
+                        <label for="" class="col-sm-1 control-label">Place</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control input-sm k-input k-textbox"
+                                   maxlength="50"
+                                   data-bind="value: sales.MakeInfo.make_place, disabled: isCanceledOrFinalized" />
+                        </div>
+                    </div>
+
+                    @*<div class="form-group">
+                        <label for="" class="col-sm-1 control-label">Note</label>
+                        <div class="col-sm-12">
+                            <textarea class="form-control input-sm k-input k-textbox w100"
+                                      data-bind="value: sales.MakeInfo.note, disabled: isCanceledOrFinalized"></textarea>
+                        </div>
+                    </div>*@
+                </div>
+
+                @* SHT *@
+                <div class="tab-pane active" id="panSHT"
+                     data-bind="visible: visibleSHT">
+                    <div class="form-group">
+                        <label for="" class="col-sm-1 control-label">Date</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control input-sm todate"
+                                   maxlength="10"
+                                   style="width:100px;"
+                                   data-role="datepicker"
+                                   data-bind="value: sales.ShootInfo.shoot_date, disabled: isCanceledOrFinalized" />
+                        </div>
+
+                        <label for="" class="col-sm-1 control-label">Time</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control input-sm k-input k-textbox totime"
+                                   maxlength="5"
+                                   placeholder="hh:mm"
+                                   data-bind="value: sales.ShootInfo.shoot_time_s, disabled: isCanceledOrFinalized" />
+                        </div>
+
+                        <label for="" class="col-sm-1 control-label">Place</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control input-sm k-input k-textbox"
+                                   maxlength="50"
+                                   data-bind="value: sales.ShootInfo.shoot_place, disabled: isCanceledOrFinalized" />
+                        </div>
+                    </div>
+
+                    @*<div class="form-group">
+                        <label for="" class="col-sm-1 control-label">Note</label>
+                        <div class="col-sm-12">
+                            <textarea class="form-control input-sm k-input k-textbox w100"
+                                      data-bind="value: sales.ShootInfo.note, disabled: isCanceledOrFinalized"></textarea>
+                        </div>
+                    </div>*@
+                </div>
+
+                @* RCP *@
+                <div class="tab-pane active" id="panRCP"
+                     data-bind="visible: visibleRCP">
+                    <div class="form-group">
+                        <label for="" class="col-sm-1 control-label">Date</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control input-sm todate"
+                                   maxlength="10"
+                                   style="width:100px;"
+                                   data-role="datepicker"
+                                   data-bind="value: sales.ReceptionInfo.party_date, disabled: isCanceledOrFinalized" />
+                        </div>
+
+                        <label for="" class="col-sm-1 control-label">Time</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control input-sm k-input k-textbox totime"
+                                   maxlength="5"
+                                   placeholder="hh:mm"
+                                   data-bind="value: sales.ReceptionInfo.party_time_s, disabled: isCanceledOrFinalized" />
+                        </div>
+
+                        <label for="" class="col-sm-1 control-label">Place</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control input-sm k-input k-textbox"
+                                   maxlength="100"
+                                   data-bind="value: sales.ReceptionInfo.rest_cd, disabled: isCanceledOrFinalized" />
+                        </div>
+                    </div>
+
+                    @*<div class="form-group">
+                        <label for="" class="col-sm-1 control-label">Note</label>
+                        <div class="col-sm-12">
+                            <textarea class="form-control input-sm k-input k-textbox w100"
+                                      data-bind="value: sales.ReceptionInfo.note, disabled: isCanceledOrFinalized"></textarea>
+                        </div>
+                    </div>*@
+                </div>
+
+                @* TRN *@
+                <div class="tab-pane active" id="panTRN"
+                     data-bind="visible: visibleTRN">
+                    <div class="form-group">
+                        <label for="" class="col-sm-1 control-label">Date</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control input-sm todate"
+                                   maxlength="10"
+                                   style="width:100px;"
+                                   data-role="datepicker"
+                                   data-bind="value: sales.TransInfo.pickup_date, disabled: isCanceledOrFinalized" />
+                        </div>
+
+                        <label for="" class="col-sm-2 control-label">Pick Up</label>
+                        <div class="col-sm-1">
+                            <input type="text" class="form-control input-sm k-input k-textbox totime"
+                                   maxlength="5"
+                                   placeholder="hh:mm"
+                                   data-bind="value: sales.TransInfo.pickup_time_s, disabled: isCanceledOrFinalized" />
+                        </div>
+
+                        <label for="" class="col-sm-1 control-label">Hotel</label>
+                        <div class="col-sm-2">
+                            <input id="cmbPickupHotel"
+                                   class="form-control input-sm select-hotel "
+                                   style="width: 100px"
+                                   maxlength="3"
+                                   data-bind="value: sales.TransInfo.pickup_hotel, events: {change: onPickupHotelChanged}, disabled: isCanceledOrFinalized"></input>
+                        </div>
+                        <label for="" class="col-sm-1 control-label">Place</label>
+                        <div class="col-sm-3">
+                            <select class="form-control input-sm "
+                                    maxlength="50"
+                                    data-role="combobox"
+                                    data-height="300"
+                                    data-value-field="place_name"
+                                    data-text-field="place_name"
+                                    data-value-primitive="true"
+                                    data-bind="value: sales.TransInfo.pickup_place, source: pickupPlaceList, disabled: isCanceledOrFinalized"
+                                    data-template="pickupPlaceComboTemplate"></select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="col-sm-1 control-label"></label>
+                        <div class="col-sm-3">
+                        </div>
+
+                        <label for="" class="col-sm-2 control-label">Drop Off</label>
+                        <div class="col-sm-1">
+                            <input type="text" class="form-control input-sm k-input k-textbox totime"
+                                   maxlength="5"
+                                   placeholder="hh:mm"
+                                   data-bind="value: sales.TransInfo.dropoff_time_s, disabled: isCanceledOrFinalized" />
+                        </div>
+                        <label for="" class="col-sm-1 control-label">Hotel</label>
+                        <div class="col-sm-2">
+                            <input id="cmbDropoffHotel"
+                                   class="form-control input-sm select-hotel "
+                                   style="width: 100px"
+                                   maxlength="3"
+                                   data-bind="value: sales.TransInfo.dropoff_hotel, events: {change: onDropoffHotelChanged}, disabled: isCanceledOrFinalized"></input>
+                        </div>
+                        <label for="" class="col-sm-1 control-label">Place</label>
+                        <div class="col-sm-3">
+                            <select class="form-control input-sm "
+                                    maxlength="50"
+                                    data-role="combobox"
+                                    data-height="300"
+                                    data-value-field="place_name"
+                                    data-text-field="place_name"
+                                    data-value-primitive="true"
+                                    data-bind="value: sales.TransInfo.dropoff_place, source: dropoffPlaceList, disabled: isCanceledOrFinalized"
+                                    data-template="pickupPlaceComboTemplate"></select>
+                        </div>
+                    </div>
+
+                    @*<div class="form-group">
+                        <label for="" class="col-sm-1 control-label">Note</label>
+                        <div class="col-sm-12">
+                            <textarea class="form-control input-sm k-input k-textbox w100"
+                                      data-bind="value: sales.TransInfo.note, disabled: isCanceledOrFinalized"></textarea>
+                        </div>
+                    </div>*@
+
+                    <script type="text/template" id="pickupPlaceComboTemplate">
+                        <dl>
+                            <dd style="overflow:hidden;text-wrap:none;">${ data.place_name }</dd>
+                        </dl>
+                    </script>
+                </div>
+
+                @* Others *@
+                <div class="tab-pane active" id="panOthers"
+                     data-bind="visible: visibleOthers">
+                    @*<div class="form-group">
+                        <label for="" class="col-sm-1 control-label">Note</label>
+                        <div class="col-sm-12">
+                            <textarea class="form-control input-sm k-input k-textbox w100"
+                                      style="width:100%;height:120px;"
+                                      data-bind="value: sales.note, disabled: isCanceledOrFinalized"></textarea>
+                        </div>
+                    </div>*@
+                </div>
+            </div>
+        </section>
+
+        <section class="section-arrangement" data-bind="visible: isArrangementVisible">
+            <div class="buttons-arrangement clearfix">
+                <div class="pull-left" style="margin-left:60px;">
+                    <button id="btnAddArrangement" type="button"
+                            data-bind="click:onAddArrangement, disabled: isCanceledOrFinalized, visible: isSaveButtonVisible"
+                            class="btn btn-primary">
+                        <span class="glyphicon glyphicon-plus"></span> Add Vendor
+                    </button>
+                </div>
+
+                <div class="pull-right" style="margin-right: 100px;">
+                    <button type="button" class="btn btn-primary"
+                            data-contenturl='@Url.Action("PreviewVendorOrderSheet")'
+                            data-bind="events: {click: onOrderSheetClick}, disabled: isCanceledOrFinalized">
+                        Order Sheet
+                    </button>
+                </div>
+            </div>
+
+            <div id="grdArrangement"
+                 data-role="grid"
+                 data-auto-bind="true"
+                 data-bind="source: Arrangements"
+                 data-editable="{mode: 'incell', createAt:'bottom'}"
+                 data-sortable="false"
+                 data-resizable="true"
+                 data-selectable="true"
+                 data-scrollable="true"
+                 data-groupable="false"
+                 data-navigatable="false"
+                 data-height="180"
+                 data-columns="[ {field: 'vendor_cd', title: 'Vendor', width: 70, editor: vendorEditor  }, {field: 'cfmd', title: 'Cfmd', width: 50, template: '<input type=\'checkbox\' data-bind=\'checked: cfmd\' \/>', attributes: ' class=\'centered\'' }, {field: 'cfmd_by', title: 'By', width: 60 }, {field: 'cfmd_date', title: 'Cfmd Date', width: 100, format:'{0:MM/dd/yyyy}'}, {field: 'cxl', title: 'CXL', width: 50, template: '<input type=\'checkbox\' data-bind=\'checked: cxl\' \/>', attributes: ' class=\'centered\'' }, {field: 'cxl_vend_by', title: 'By', width: 60, editor: personEditor }, {field: 'cxl_date', title: 'Cxl Date', width: 100, format:'{0:MM/dd/yyyy}'}, {field: 'note', title: 'Note', editor: noteEditor}, {field: 'quantity', title: 'Qty', width: 40, hidden:true, attributes: ' class=\'col_numeric\'', headerAttributes: ' class=\'col_numeric\'' }, {field: 'cost', title: 'Cost', width: 60, hidden:true, format: '{0:0.00}', attributes: ' class=\'col_numeric\'', headerAttributes: ' class=\' col_numeric\'' } ]">
+            </div>
+        </section>
+
+        <div class="bottom-buttons clearfix">
+            <input type="button" value=" SAVE "
+                   class="btn btn-danger" style="width:100px;display:none;"
+                   data-bind="click: onOkClick, disabled: isCanceledOrFinalized, visible: isSaveButtonVisible" />
+            <input type="button" value="Close"
+                   class="btn btn-default" style="width:100px; margin-left: 100px;"
+                   data-bind="click: closeDialog" />
+        </div>
+    </form>
+</div>
+
+<script>
+
+    function vendorEditor(container, options) {
+        var item_cd = App.optionDetailViewModel.get("sales.item_cd");
+        var data = { item_cd: item_cd };
+
+        var input = $("<input/>");
+        input.attr("name", options.field);
+        input.appendTo(container);
+        input.kendoComboBox({
+            valuePrimitive: true,
+            dataValueField: "vendor_cd",
+            dataTextField: "vendor_cd",
+            dataSource: App.data.get("vendorList")(data),
+            template: "<dl><dt>${ data.vendor_cd }</dt><dd>${ data.vendor_name }</dd></dl>",
+        });
+        input.data("kendoComboBox").list.width("400");
+    }
+
+    function noteEditor(container, options) {
+        var input = $('<textarea data-bind="value:' + options.field + '" />');
+        input.appendTo(container);
+    }
+
+    
+
+    function personEditor(container, options) {
+        var input = $("<input/>");
+        input.attr("name", options.field);
+        input.appendTo(container);
+        input.kendoComboBox({
+            valuePrimitive: true,
+            dataValueField: "login_id",
+            dataTextField: "login_id",
+            dataSource: new kendo.data.DataSource({
+                transport: {
+                    read: {
+                        url: App.getApiPath("LoginUsers/GetList"),
+                        dataType: "json"
+                    }
+                }
+            }),
+            template: "<dl><dt style='width:120px;'>${ data.login_id }</dt><dd>${ (data.e_last_name || '') + ' ' + (data.e_first_name || '') }</dd></dl>",
+        });
+        input.data("kendoComboBox").list.width("460");
+    }
+</script>
+
+
+

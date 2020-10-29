@@ -1,0 +1,239 @@
+﻿<style scoped>
+    #editDiv {
+        width: 100% !important;
+    }
+
+    .k-grid tbody .k-button, .k-ie8 .k-grid tbody button.k-button {
+        min-width: 23px;
+    }
+</style>
+
+<div id="editWindow"
+     data-role="window"
+     data-visible="false"
+     data-modal="true"
+     data-min-width="900"
+     data-width="1200"
+     data-min-height="600"
+     data-height="600"
+     style="display:none;">
+
+    <div id="editDiv">
+        <form class="form-horizontal" data-role="validator">
+
+            <div class="form-group">
+                <label for="description" class="col-sm-2 control-label required">Description</label>
+                <div class="col-sm-12">
+                    <input name="description" type="text" data-bind="value: model.description" maxlength="100"
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h4>Lines</h4>
+                <section class="section-arrangement">
+                    <div id="grdLine"
+                         data-role="grid"
+                         data-auto-bind="true"
+                         data-bind="source: model.Lines"
+                         data-editable="{mode: 'incell', createAt:'bottom'}"
+                         data-toolbar="[{name:'create', text:'Create New'}]"
+                         data-sortable="false"
+                         data-resizable="true"
+                         data-selectable="true"
+                         data-scrollable="true"
+                         data-groupable="false"
+                         data-navigatable="false"
+                         data-height="200"
+                         data-columns="[ {field: 'min_offset', title: 'Offset', width: 60  }, {field: 'title', title: 'TitleJpn' },  {field: 'title_eng', title: 'TitleEng'},  {field: 'description', title: 'DescriptionJpn'},  {field: 'description_eng', title: 'DescriptionEng'}, {field: 'item_type', title: 'Type', width: 80, editor: itemTypeEditor  },
+                                            { command: [{ name: 'destroy', text: '', attributes:'style=\'width:25px; min-width:12px;\'' }], width: 45 } ]">
+                    </div>
+                </section>
+            </div>
+
+            <div class="form-group">
+                <div style="width:50%;float:left;">
+                    <h4>Items</h4>
+                    <div id="grdItem"
+                         data-role="grid"
+                         data-auto-bind="true"
+                         data-bind="source: items"
+                         data-editable="{mode: 'incell', createAt:'bottom'}"
+                         data-toolbar="[{name:'create', text:'Create New'}]"
+                         data-sortable="false"
+                         data-resizable="true"
+                         data-selectable="true"
+                         data-scrollable="true"
+                         data-groupable="false"
+                         data-navigatable="false"
+                         data-height="200"
+                         data-columns="[ {field: 'item_type', title: 'Type', width: 80, editor: itemTypeForItemEditor }, {field: 'item_cd', title: 'Code', width: 160, editor: itemCdEditor },  {field: 'item_name', title: 'Name'},
+                                            { command: [{ name: 'destroy', text: '', attributes:'style=\'width:25px; min-width:12px;\'' }], width: 45 } ]">
+                    </div>
+                </div>
+                <div style="width:50%;float:right;">
+                    <h4>Notes</h4>
+                    <div id="grdNote"
+                         data-role="grid"
+                         data-auto-bind="true"
+                         data-bind="source: notes"
+                         data-editable="{mode: 'incell', createAt:'bottom'}"
+                         data-toolbar="[{name:'create', text:'Create New'}]"
+                         data-sortable="false"
+                         data-resizable="true"
+                         data-selectable="true"
+                         data-scrollable="true"
+                         data-groupable="false"
+                         data-navigatable="false"
+                         data-height="200"
+                         data-columns="[ {field: 'template_cd', title: 'TemplateCd', width: 150, editor: templateCdEditor }, {field: 'disp_seq', title: 'SEQ', width: 60 },  {field: 'note_jpn', title: 'Note'},
+                                            { command: [{ name: 'destroy', text: '', attributes:'style=\'width:25px; min-width:12px;\'' }], width: 45 } ]">
+                    </div>
+                </div>
+            </div>
+
+                @* Saveボタン、Closeボタン *@
+                <div class="buttons">
+                    <input id="btnEditSave" type="button" value="Save" data-bind="click:onSave" class="btn btn-primary btn-save" />
+                    <input id="btnEditClose" type="button" value="Close" data-bind="click: onClose" class="btn btn-default btn-close" />
+                </div>
+</form>
+    </div>
+
+</div> @* End of editWindow *@
+
+
+<script>
+    
+    function itemTypeEditor(container, options) {
+        var input = $("<input/>");
+        input.attr("name", options.field);
+        input.appendTo(container);
+        input.kendoComboBox({
+            valuePrimitive: true,
+            dataValueField: "item_type",
+            dataTextField: "item_type",
+            dataSource: new kendo.data.DataSource({
+                transport: {
+                    read: {
+                        url: App.getApiPath("ItemTypes/search"),
+                        type: "POST",
+                        dataType: "json"
+                    }
+                }
+            }),
+            template: "<dl><dt>${ data.item_type }</dt><dd>${ data.desc_eng }</dd></dl>",
+        });
+        input.data("kendoComboBox").list.width("400");
+    }
+
+    function itemTypeForItemEditor(container, options) {
+        var input = $("<input/>");
+        input.attr("name", options.field);
+        input.appendTo(container);
+        input.kendoComboBox({
+            valuePrimitive: true,
+            dataValueField: "item_type",
+            dataTextField: "item_type",
+            dataSource: [{ desc_eng: '', item_type: '' },
+                                            { desc_eng: 'PHP', item_type: 'PHP' },
+                                            { desc_eng: 'PKG', item_type: 'PKG' }],
+            template: "<dl><dt>${ data.item_type }</dt><dd>${ data.desc_eng }</dd></dl>",
+        });
+        input.data("kendoComboBox").list.width("150");
+    }
+
+    function itemCdEditor(container, options) {
+        var input = $("<input/>");
+        input.attr("name", options.field);
+        input.appendTo(container);
+        var grid = $("#grdItem").data("kendoGrid");
+        var item = grid.dataItem(container.parent());
+        var item_type = item.item_type;
+        input.kendoComboBox({
+            valuePrimitive: true,
+            dataValueField: "item_cd",
+            dataTextField: "item_cd",
+            dataSource: new kendo.data.DataSource({
+                transport: {
+                    read: {
+                        url: App.getApiPath("Items/search"),
+                        type: "POST",
+                        dataType: "json",
+                        data: function () {
+                            return {
+                                item_type: item_type
+                            };
+                        }
+                    }
+                }
+            }),
+            change: function (e) {
+                changeItemCd(container, this.value());
+            },
+            template: "<dl><dt style='width:200px;'>${ data.item_cd }</dt><dd>${ data.item_name_jpn }</dd></dl>",
+        });
+        input.data("kendoComboBox").list.width("800");
+    }
+
+    function changeItemCd(container, item_cd) {
+        var cmb = container.parent().find('input[name="item_cd"]').data("kendoComboBox");
+        var selectedIndex = cmb.selectedIndex;
+        var item_name = "";
+        if (selectedIndex >= 0) {
+            item_name = cmb.dataItem(selectedIndex).item_name_jpn;
+        }
+        var grid = $("#grdItem").data("kendoGrid");
+        var item = grid.dataItem(container.parent());
+        item.item_name = item_name;
+        var column = grid.columns[2];
+        var cell = container.parent().children("td:not(.k-group-cell,.k-hierarchy-cell)").eq(2);
+        grid._displayCell(cell, column, item);
+    }
+
+    function templateCdEditor(container, options) {
+        var input = $("<input/>");
+        input.attr("name", options.field);
+        input.appendTo(container);
+        input.kendoComboBox({
+            valuePrimitive: true,
+            dataValueField: "template_cd",
+            dataTextField: "template_cd",
+            dataSource: new kendo.data.DataSource({
+                transport: {
+                    read: {
+                        url: App.getApiPath("ScheduleNoteTemplates/SearchPost"),
+                        type: "POST",
+                        dataType: "json"
+                    }
+                }
+            }),
+            change: function (e) {
+                changeTemplateCd(container, this.value());
+            },
+            template: "<dl><dt style='width:200px;'>${ data.template_cd }</dt><dd>${ data.title_jpn }</dd></dl>",
+        });
+        input.data("kendoComboBox").list.width("500");
+    }
+
+    function changeTemplateCd(container, template_cd) {
+        var cmb = container.parent().find('input[name="template_cd"]').data("kendoComboBox");
+        var selectedIndex = cmb.selectedIndex;
+        var new_name = "";
+        if (selectedIndex >= 0) {
+            new_name = cmb.dataItem(selectedIndex).note_jpn;
+            if (new_name.length > 20) {
+                new_name = new_name.substring(0, 20);
+            }
+        }
+        var grid = $("#grdNote").data("kendoGrid");
+        var item = grid.dataItem(container.parent());
+        item.note_jpn = new_name;
+        var column = grid.columns[2];
+        var cell = container.parent().children("td:not(.k-group-cell,.k-hierarchy-cell)").eq(2);
+        grid._displayCell(cell, column, item);
+    }
+
+
+</script>
+

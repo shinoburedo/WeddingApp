@@ -1,0 +1,103 @@
+﻿@using System.Configuration;
+@using ProjectM.Models;
+@using ProjectM.Web.ViewModels;
+
+
+@{
+    LoginUser cur_user = ViewBag.CurrentLoginUser;
+    var time_format = cur_user != null ? cur_user.time_format : "hh:mm tt";
+
+    //ブラウザのタイトルの先頭にC#を付加。
+    string c_num = TypeHelper.GetStrTrim(Request.QueryString["c_num"]);
+    if (!String.IsNullOrEmpty(c_num)) {
+        ViewBag.Title = string.Format("#{0} {1}", c_num, ViewBag.Title);
+    }
+
+    var IsTest = TypeHelper.GetBool(ConfigurationManager.AppSettings["IsTest"]);
+
+    var bg_class = ViewData["bg_class"] as string ?? "bg_gradient";
+}
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>@ViewBag.Title</title>
+
+    @*<link href="css/kendo.mobile.all.min.css" rel="stylesheet" />*@
+    <link href="http://cdn.kendostatic.com/2013.2.918/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Site.Mobile.css")" rel="stylesheet" type="text/css" />
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="http://cdn.kendostatic.com/2013.2.918/js/kendo.all.min.js"></script>
+    <script src="http://cdn.kendostatic.com/2013.2.918/js/kendo.aspnetmvc.min.js"></script>
+    <script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
+    @*@if (UserHelper.LoginUser != null) {
+                <script> kendo.culture("@UserHelper.LoginUser.culture_name"); </script>
+        }*@
+    <script src="@Url.Content("~/Scripts/moment.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/common.js?v=20130607")"></script>
+
+    @RenderSection("head", required: false)
+</head>
+<body>
+    <div id="home" data-role="view" data-layout="default">
+        @RenderBody()
+    </div>
+
+    <section data-role="layout" data-id="default">
+        <header data-role="header">
+            <div data-role="navbar">Project M</div>
+        </header>
+
+
+        <!--View content will render here-->
+
+
+        <footer data-role="footer">
+            <div data-role="tabstrip">
+                <a href="#home">Home</a>
+            </div>
+        </footer>
+    </section>
+
+    <script>
+        $(function () {
+            //totimeクラスの付いたTextBoxの内容をOnBlurイベントで時間に変換する。
+            $(document).on("blur", "input.totime", function () {
+                var e = $(this);
+                var s = e.val();
+                if (s != null && s != "") {
+                    var valid = moment(s, "hh:mm").isValid();
+                    if (valid) {
+                        // momentのAM,PMフォーマット「A」がないと午前か午後か区別ができない。
+                        var time = moment(s, "HH:mm A").toDate();
+
+                        // 「HH:mm A」のフォーマットだと午前12時と午後12時の区別ができないため、
+                        // 午後12時の場合は「HH:mm」のフォーマットを使用する。
+                        if (s.match(/^12/) && s.match(/[AM]$/) == null) {
+                            time = moment(s, "HH:mm").toDate();
+                        }
+
+                        e.val(kendo.toString(time, "@(time_format)"));
+                    }
+                    else {
+                        e.val("");
+                    }
+                }
+            });
+        });
+    </script>
+
+    @RenderSection("scripts", required: false)
+
+    <script>
+        var app = new kendo.mobile.Application();
+    </script>
+</body>
+</html>
+
+
+

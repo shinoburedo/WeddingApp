@@ -1,0 +1,20 @@
+﻿@using System.Configuration;
+@using MauloaDemo.Models
+@using MauloaDemo.Web.Controllers
+
+@{
+    LoginUser cur_user = UserHelper.LoginUser;
+    var IsTest = TypeHelper.GetBool(ConfigurationManager.AppSettings["IsTest"]);
+    var bg_class = ViewData["bg_class"] as string ?? "bg_gradient";
+}
+
+<header class="@bg_class">
+    <a href="@Url.Action("Index", "Home", new { area = "" })"><img src="~/Content/Images/Mauloa_logo.png" id="logo" alt="Logo" /></a>
+        
+    @Html.Action("HorizontalMenu", "Home", new { area = "" })
+    @Html.Action("LoginUser", "Home", new { area = "" })
+
+    @*@if (IsTest) {
+        <div class="test_flag">TEST</div>
+    }*@
+</header>

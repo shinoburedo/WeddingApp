@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Masters";
+}
+
+<style scoped>
+    .menu_box {
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+</style>
+
+<h3>@ViewBag.Title</h3>
+
+<div class="menu_box clearfix">
+    <ul>
+        <li> <a class="btn btn-primary " href="@Url.Action("Index", "Item")">Item</a> </li>
+        <li> <a class="btn btn-primary " href="@Url.Action("Index", "Church")">Church</a> </li>
+        <li> <a class="btn btn-primary" href="@Url.Action("Index", "PickupPlace")">Pickup Place</a> </li>
+        <li> <a class="btn btn-primary" href="@Url.Action("Index", "ItemGrouping")">Item Grouping</a> </li>
+        <li> <a class="btn btn-primary " href="@Url.Action("Index", "ChurchBlock")">Church Block</a> </li>
+        <li> <a class="btn btn-primary" href="@Url.Action("Index", "ScheduleNoteTemplate")">Schedule Note Template</a> </li>
+        <li> <a class="btn btn-primary" href="@Url.Action("Index", "ItemType")">Item Type</a> </li>
+        <li> <a class="btn btn-primary " href="@Url.Action("Index", "ChurchTime")">Church Time</a> </li>
+        <li> <a class="btn btn-primary" href="@Url.Action("Index", "LoginUser")">User</a> </li>
+        <li> <a class="btn btn-primary " href="@Url.Action("Index", "Agent")">Agent</a> </li>
+        <li> <a class="btn btn-primary" href="@Url.Action("Index", "Vendor")">Vendor</a> </li>
+        <li> <a class="btn btn-primary " href="@Url.Action("Index", "Holiday")">Holiday</a> </li>
+        <li> <a class="btn btn-primary" href="@Url.Action("Index", "SubAgent")">Sub Agent</a> </li>
+        <li> <a class="btn btn-primary " href="@Url.Action("Index", "Hotel")">Hotel</a> </li>
+        <li> <a class="btn btn-primary " href="@Url.Action("Index", "Area")">Area</a> </li>
+        <li> <a class="btn btn-primary " href="@Url.Action("Index", "Notice")">Notice</a> </li>
+        <li> <a class="btn btn-primary " href="@Url.Action("Index", "SchedulePattern")">Schedule Pattern</a> </li>
+    </ul>
+</div>

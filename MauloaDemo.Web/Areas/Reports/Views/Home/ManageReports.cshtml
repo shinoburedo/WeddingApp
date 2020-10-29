@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Manage Reports";
+}
+
+@section head{
+    <link href="@Url.Content("~/Areas/Reports/Content/MgmReport.css")" rel="stylesheet" type="text/css" />
+}
+
+<div class="app_wrapper">
+    <h3>@ViewBag.Title</h3>
+    <div id="app">
+        <div class="search clearfix">
+            <div style="width:240px;">
+                Menu <select 
+                            data-role="combobox"
+                            data-bind="value: search.menu_cd, source: menuCdList, events: { change: refreshList }" ></select>
+            </div>
+            <div style="width:180px;">
+                Code <input type="text" data-bind="value: search.rep_cd, events: {change: refreshList }" class="k-input k-textbox" style="width: 110px;" />
+            </div>
+            <div style="width:240px;">
+                Name <input type="text" data-bind="value: search.rep_name, events: { change: refreshList }" class="k-input k-textbox" style="width:200px;" />
+            </div>
+        </div>
+        <div id="grd"
+             data-role="grid"
+             data-bind="source: list"
+             data-toolbar="[{name:'create', text:'Create New'}, {name:'copy', text:'Copy'}, {name:'destroy', text:'Delete' }, {name:'refresh', text:'Refresh'}]"
+             data-selectable="true"
+             data-sortable="true"
+             data-resizable="true"
+             data-scrollable="true"
+             data-height="560"
+             data-columns="[{field: 'rep_seq', title: 'Seq#', width: 60}, {field: 'menu_cd', title: 'menu', width: 110}, {field: 'rep_cd', title: 'Code', width: 150, template:'<span class=\'# if (hidden) { # report-hidden # } # \'>#=rep_cd#<\/span> <a href=\'@Url.Action("Report")?cd=#=rep_cd#\' target=\'_blank\'>(Open)<\/a>'}, {field: 'rep_name',  title: 'Name', template:'<span class=\'# if (hidden) { # report-hidden # } # \'>#=rep_name#<\/span>'}, {field: 'description', title: 'Description'}, {field: 'last_person', title: 'Last person', width:80}, {field: 'update_date', title: 'Updated', width:160, format: '{0:MM/dd/yyyy HH:mm:ss}' }, {field: 'rep_cd',      title: ' ', width: 60, template: '<a data-repcd=\'#=rep_cd#\' class=\'btn btn-sm btn-default grid_edit_button\' data-bind=\'click:editItem\'><span class=\'k-icon k-edit\'><\/span><\/a>'}]">
+        </div>
+    </div>
+
+    <div style="margin:16px;">
+        <a href='@Url.Action("Index", "ComboList")'>Manage Combo Lists...</a>
+    </div>
+
+    @Html.Partial("MgmReportEditPartial")
+</div>
+
+@section scripts {
+    <script src='@Url.Content("~/Scripts/require.min.js")' data-main='@Url.Content("~/Areas/Reports/Scripts/ReportListView")'></script>
+}

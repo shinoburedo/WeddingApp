@@ -1,0 +1,41 @@
+﻿@model IEnumerable<WtbApi.Data.Models.Region>
+@{
+    var picture_lang = Lang.isJPN() ? "jpn" : "eng";
+}
+<script>
+    function changeRegion(region_cd, area_cd) {
+        $(".sidebarMenuArea").find('dd').slideUp('normal');
+        $("#dtregion_" + region_cd).children('dd').slideDown("normal");
+
+        @*var weddingDate = kendo.toString($("#datepicker").val(), "yyyy/MM/dd");
+        window.location.href = "@(Url.Action("SelectWeddingDate", "Home"))" + "?wed_date=" + weddingDate + "&region_cd=" + region_cd + "&area_cd=" + area_cd + "&type_list_display=true";*@
+    }
+</script>
+
+<div class="bg_overlay_area"></div>
+<div class="sidebar sidebarMenuArea">
+    <div class="btn_Menu_area"><img src="@Url.Content("~/common/img/btn_areamenu_" + picture_lang + ".png")" width="24" alt="" /></div>
+
+        @foreach (var region in Model) {
+            <dl id="dtregion_@region.region_cd">
+                <dt>
+                    <a onclick="changeRegion('@region.region_cd', '@region.areas[0].area_cd');"><span>@region.region_name_dis</span></a>
+                </dt>
+                @foreach (var area in region.areas) {
+                    <dd @if (ViewBag.CurrentRegionInfo.CurrentDestination != @region.region_cd) { <text> style="display:none;" </text>      }>
+                        @if (ViewBag.CurrentSelectItem.area_cd == @area.area_cd) {
+                            <a href="~/Types/@region.region_cd/@area.area_cd" class="selected">
+                                @*<a onclick="changeArea('@region.region_cd', '@area.area_cd');" class="selected">*@
+                                @area.area_name_dis
+                            </a>
+                        } else {
+                            <a href="~/Types/@region.region_cd/@area.area_cd">
+                                @*<a onclick="changeArea('@region.region_cd', '@area.area_cd');">*@
+                                @area.area_name_dis
+                            </a>
+                        }
+                    </dd>
+                }
+            </dl>
+        }
+    </div>    

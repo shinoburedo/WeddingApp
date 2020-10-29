@@ -1,0 +1,226 @@
+﻿@using System.Configuration;
+@using MauloaDemo.Models;
+@using MauloaDemo.Web.ViewModels;
+@{
+    LoginUser user = ViewBag.CurrentLoginUser;
+}
+<div class="form-group">
+    <label for="" class="w-1 control-label"></label>
+    <div class="w-2">
+        <input type="text" id="drpWedPlan"
+               class="form-control input""
+               data-role="dropdownlist"
+               data-bind="source: WeddingPlans, value: CurrentWeddingPlan"
+               data-template="wedplan_item"
+               data-value-field="op_seq"
+               data-text-field="text"
+               style="width:96%;" />
+        <script id="wedplan_item" type="text/x-kendo-template">
+            #:text #
+        </script>
+    </div>
+
+    <div class="w-1">
+        <button type="button" class="btn btn-primary plan-add"
+                data-bind="click: addWeddingPlan, visible:weddingPlanAddVisible, enabled: weddingPlanAddEnabled">
+            Add
+        </button>
+        <button type="button" class="btn btn-warning" style="width: 70px; display: none;"
+                data-bind="click: removeWeddingPlan, invisible:weddingPlanAddVisible">
+            Remove
+        </button>
+    </div>
+
+    <label for="" class="w-1 control-label" data-bind="visible:isWeddingPlanStatusVisible">Status</label>
+    <div class="w-1">
+        <select class="form-control input"
+                style="width:80px; "
+                data-role="dropdownlist"
+                data-value-field="value"
+                data-text-field="text"
+                data-value-primitive="true"
+                data-bind="value: CurrentWeddingPlan.book_status, source:CurrentWeddingPlan.StatusList, visible:isWeddingPlanStatusVisible, disabled: isFinalized"></select>
+    </div>
+
+    <label for="txtStaff" class="w-1 control-label">Staff</label>
+    <div class="w-2">
+        <input type="text" name="Staff" required maxlength="50"
+               class="form-control input-sm k-input k-textbox toupper tohankaku"
+               style="width:100%;"
+               data-bind="value: CurrentWeddingPlan.staff, disabled: weddingPlanReadOnly" @*data-value-update="keyup"*@ />
+    </div>
+
+    <label class="w-1 control-label" data-bind="visible: isBranchStaffVisible">店舗担当者</label>
+    <div class="w-2">
+        <input type="text" name="Branch Staff" maxlength="50"
+               class="branch_staff form-control input-sm k-input k-textbox toupper tohankaku"
+               style="width:100%;"
+               data-bind="value: CurrentWeddingPlan.branch_staff, disabled: weddingPlanReadOnly, visible: isBranchStaffVisible" />
+    </div>
+
+    <div class="w-off-1 w-2">
+        <button type="button" class="btn btn-danger save-button"
+                data-bind="events: {click: onWeddingPlanSaveClick}, enabled: saveWeddingPlanEnabled">
+            SAVE
+        </button>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="" class="w-1 control-label">Plan</label>
+    <div class="w-9">
+        <input type="text" class="form-control input-sm k-input k-textbox w100 " readonly
+               data-bind="value: CurrentWeddingPlan.item_name_jpn, visible: isJapan" />
+        <input type="text" class="form-control input-sm k-input k-textbox w100 " readonly
+               data-bind="value: CurrentWeddingPlan.item_name, invisible: isJapan" />
+    </div>
+    <div class="w-2">
+        <input type="text" class="form-control input-sm k-input k-textbox w100" readonly
+               data-bind="value: CurrentWeddingPlan.item_cd" />
+    </div>
+    <div class="w-off-1 w-2">
+        <button type="button"
+                class="btn btn-primary btn-sm button-report"
+                data-contenturl='@Url.Action("PreviewChurchOrderSheet")'
+                data-bind="events: {click: onChurchOrderClick}, enabled: CurrentWeddingPlan, visible: isChurchOrderVisible">
+            Church Order
+        </button>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="" class="w-1 control-label">Date</label>
+    <div class="w-2">
+        <input type="text" class="form-control input-sm todate"
+               maxlength="10"
+               style="width:100px;"
+               data-role="datepicker"
+               readonly
+               data-bind="value: CurrentWeddingPlan.req_wed_date" />
+    </div>
+
+    <label for="" class="w-1 control-label">Time</label>
+    <div class="w-1">
+        <input type="text" class="form-control input-sm k-input k-textbox totime"
+               maxlength="5"
+               placeholder="hh:mm"
+               readonly
+               data-bind="value: CurrentWeddingPlan.req_wed_time_s" />
+    </div>
+
+    <label for="txtSubAgent" class="w-2 control-label">Agent</label>
+    <div class="w-2">
+        <input type="text" id="txtSubAgent"
+               maxlength="6"
+               class="form-control input-sm select-subagent toupper tohankaku"
+               style="width:90px;"
+               data-bind="value: CurrentWeddingPlan.sub_agent_cd, enabled: isWeddingPlanAgentEnabled" />
+    </div>
+
+    <label for="txtInvAgent" class="w-1 control-label">Invoice</label>
+    <div class="w-2">
+        <input type="text" id="txtInvAgent"
+               maxlength="6"
+               class="form-control input-sm select-invagent toupper tohankaku"
+               style="width:90px;"
+               data-bind="value: CurrentWeddingPlan.inv_agent, enabled: isWeddingPlanAgentEnabled" />
+    </div>
+
+    <div class="w-3 created_by">
+        <table>
+            <tr>
+                <td>Created: </td>
+                <td>
+                    <span data-bind="text: CurrentWeddingPlan.create_by"></span>
+                    (<span data-bind="text: CurrentWeddingPlan.create_date_s"></span>)
+                </td>
+            </tr>
+            <tr>
+                <td>Updated: </td>
+                <td>
+                    <span data-bind="text: CurrentWeddingPlan.last_person"></span>
+                    (<span data-bind="text: CurrentWeddingPlan.update_date_s"></span>)
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="" class="w-1 control-label">Note</label>
+    <div class="w-8">
+        <textarea class="form-control input-sm k-input k-textbox w100 "
+                  data-bind="value: CurrentWeddingPlan.note, enabled: isWeddingPlanAgentEnabled"></textarea>
+    </div>
+
+    <label for="" class="w-1 control-label">Price</label>
+    <div class="w-2">
+        <input type="text" 
+               data-role="numerictextbox"
+               data-spinners="false"
+               data-decimals="2"
+               data-format="n2"
+               maxlength="10"
+               readonly
+               class="numeric"
+               style="width:100%;font-size:120%;"
+               data-bind="value: CurrentWeddingPlan.amount" />
+    </div>
+</div>
+
+@*<h4>Included Items</h4>*@
+<div id="grdWeddingPlanItems"
+     data-role="grid"
+     data-auto-bind="true"
+     data-bind="source: CurrentWeddingPlan.PlanItems, events: {dataBound: onPlanItemsDataBound}"
+     data-sortable="true"
+     data-resizable="true"
+     data-selectable="true"
+     data-scrollable="true"
+     data-groupable="false"
+     data-navigatable="false"
+     data-height="240"
+     @if (user.IsStaff()) { <text>
+     data-columns="[  {field: 'item_type', title: 'Type', width: 50 }
+                    , {field: 'item_cd', title: 'Code', width: 100 }
+                    , {field: 'item_name', title: 'Name' }
+                    , {field: 'quantity', title: 'Qty', width: 40, attributes: ' class=\'col_numeric\'', headerAttributes: ' class=\'col_numeric\'' }
+                    , {field: 'BookStatus', title: 'Status', width: 70, attributes: ' class=\'centered\'', headerAttributes: ' class=\'centered\''  }
+                    , {field: 'vendor_cd' , title: 'Vendor' , width: 80 }
+                    , {field: 'cfmd', title: 'Cfmd', width: 60, headerAttributes: ' class=\'centered\''  }
+                    , {field: 'op_seq', title: ' ', width: 40}
+                  ]"
+     </text>         } else {   <text>
+     data-columns="[  {field: 'item_type', title: 'Type', width: 50 }
+                    , {field: 'item_cd', title: 'Code', width: 100 }
+                    , {field: 'item_name', title: 'Name' }
+                    , {field: 'quantity', title: 'Qty', width: 40, attributes: ' class=\'col_numeric\'', headerAttributes: ' class=\'col_numeric\'' }
+                    , {field: 'BookStatus', title: 'Status', width: 70, attributes: ' class=\'centered\'', headerAttributes: ' class=\'centered\''  }
+                    , {field: 'op_seq', title: ' ', width: 40}
+                  ]"
+     </text>      }
+     data-row-template="tpl_weddingplan_row">
+</div>
+
+<script id="tpl_weddingplan_row" type="text/k-kendo-tmpl">
+    <tr data-uid="#: uid #" class="#if (book_status=='Q'){# status-rq #}# #if (book_status=='K'){# status-ok #}# #if (book_status=='N'){# status-ng #}# #if (book_status=='X'){# status-cxlrq #}# #if (book_status=='C'){# status-cxl #}# ">
+        <td>#: item_type #</td>
+        <td>#: item_cd #</td>
+        <td>#: App.L(item_name_jpn, item_name) #</td>
+        <td class="col_numeric">#: quantity #</td>
+        <td class="centered">#: BookStatus #</td>
+    @if (user.IsStaff()) {
+        <td>#: vendor_cd || '' #</td>
+        <td class="centered">
+            <input type="checkbox" data-bind='checked: cfmd' disabled />
+        </td>
+    }
+        <td class="col_edit">
+            <a data-opseq='#=op_seq#' class='btn btn-sm btn-default' data-bind='click:onPlanItemEdit'><span class='k-icon k-edit'></span></a>
+        </td>
+    </tr>
+</script>
+
+
+
+

@@ -1,0 +1,119 @@
+﻿@using System.Configuration;
+@using MauloaDemo.Utilities;
+
+@{
+    Layout = null;
+    
+    var region_cd = ViewBag.CurrentRegionInfo.CurrentDestination;
+    var area_cd = ViewBag.CurrentSelectItem.area_cd;
+}
+<meta name="viewport" content="width=device-width">
+<meta name="format-detection" content="telephone=no">
+<link href="@Url.Content("~/Content/modal.css")" rel="stylesheet" type="text/css" />
+<style>
+    /* styles unrelated to zoom */
+    * {
+        border: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* these styles are for the demo, but are not required for the plugin */
+    .zoom {
+        display: inline-block;
+        position: relative;
+    }
+
+    /* magnifying glass icon */
+    .zoom:after {
+        content: '';
+        display: block;
+        width: 33px;
+        height: 33px;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    .zoom img {
+        display: block;
+    }
+
+    .zoom img::selection {
+        background-color: transparent;
+    }
+
+    .clsphoto {
+        position: absolute;
+        -webkit-transition: all 1s ease;
+        -moz-transition: all 1s ease;
+        -o-transition: all 1s ease;
+        transition: all 1s ease;
+    }
+</style>
+<script src='@Url.Content("~/Scripts/jquery.zoom.js")'></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("span[id^='ex']").zoom();
+        $("#btnClose a").click(function(){
+            parent.$.fn.colorbox.close();
+            return false;
+        });
+    });
+</script>
+
+<div id="modal">
+    <div id="modalPhotoArea">
+        @if (ViewBag.CntPicture > 0) {
+            var index = 1;
+            while (index <= ViewBag.CntPicture) {
+                <div class='clsphoto'>
+                    <span id='ex@(index)' class='zoom'>
+                        <img src="@(ImageHelper.GetTrfItemImageUrl(region_cd, ViewBag.CurrentSelectItem.trf_type, ViewBag.TrfItemCd, index, "L", ViewBag.image_upload_date))" id="photo@(index)" alt="@(ViewBag.TrfItemCd)" width="600" />
+                        @*<img src="@Url.Content("~/Photo/")@(region_cd)/@(ViewBag.CurrentSelectItem.trf_type)/@(ViewBag.TrfItemCd)/@(index)/L" id="photo@(index)" alt="" width="600">*@
+                    </span>
+                </div>
+                index++;
+            }
+        }
+    </div>
+
+    <div id="modalMenuArea">
+        <div id="btnClose"><a href="#"><img src="@Url.Content("~/Content/img/btn_close.png")" alt="" width="30" height="31"></a></div>
+        <div id="thumbArea">
+            @if (ViewBag.CntPicture > 0) {
+                var index = 1;
+                while (index <= ViewBag.CntPicture) {
+                    <ul>
+                        <li>
+                            <a onclick="changeLargePicture(@(index))" class="afade">
+                                <img src="@(ImageHelper.GetTrfItemImageUrl(region_cd, ViewBag.CurrentSelectItem.trf_type, ViewBag.TrfItemCd, index, "S", ViewBag.image_upload_date))" alt="" width="49" />
+                                @*<img src="@Url.Content("~/Photo/")@(region_cd)/@(ViewBag.CurrentSelectItem.trf_type)/@(ViewBag.TrfItemCd)/@(index)/S" alt="" width="49">*@
+                            </a>
+                        </li>
+                    </ul>
+                    index++;
+                }
+            }
+
+        </div>
+    </div><!-- /modalMenuArea -->
+
+</div><!-- /modal -->
+
+<script>
+
+    $(function () {
+        $("img[id^='photo']").css("display", "none");
+
+        if (@(ViewBag.CntPicture) > 0) {
+            $("#photo" + @(ViewBag.PhotoNo)).toggle();
+        }
+
+    });
+
+    function changeLargePicture(that) {
+        $("img[id^='photo']").css("display", "none");
+        $("#photo" + that).toggle();
+    }
+</script>

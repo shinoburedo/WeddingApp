@@ -1,0 +1,74 @@
+﻿<style scoped>
+    .bottom-buttons {
+        clear: both;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .section-info {
+        margin: 30px 16px 30px 20px;
+    }
+
+</style>
+
+<div class="itemcost-dialog">
+
+    <form class="form-horizontal">
+
+        <input type="hidden" data-bind="value: item_cost.item_cost_id" name="item_cost_id" />
+        <input type="hidden" data-bind="value: item_cost.item_cd" name="item_cd" />
+        <input type="hidden" data-bind="value: item_cost.vendor_cd" name="vendor_cd" />
+
+        <div class="form-group">
+            <label for="church_cd" class="col-sm-3 control-label">Church Cd</label>
+            <div class="col-sm-4">
+                <input type="text" name="church_cd"
+                       maxlength="5"
+                       placeholder=""
+                       class="form-control input-sm toupper tohankaku select-church"
+                       style="width:95%;"
+                       data-height="300"
+                       data-bind="value: item_cost.church_cd" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="eff_from" class="col-sm-3 control-label">From</label>
+            <div class="col-sm-3">
+                <input name="eff_from" type="text"
+                       style="width:100px;" maxlength="10"
+                       data-role="datepicker"
+                       data-bind="value: item_cost.eff_from"
+                       class="form-control input-sm tohankaku " />
+            </div>
+            <label for="eff_to" class="col-sm-1 control-label">To</label>
+            <div class="col-sm-3">
+                <input name="eff_to" type="text"
+                       style="width:100px;" maxlength="10"
+                       data-role="datepicker"
+                       data-bind="value: item_cost.eff_to"
+                       class="form-control input-sm tohankaku " />
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-top:20px;">
+            <label for="cost" class="col-sm-3 control-label">Cost</label>
+            <div class="col-sm-3">
+                <input name="cost" type="number" data-bind="value: item_cost.cost"
+                       class="form-control input-sm k-input k-textbox numeric" />
+            </div>
+        </div>
+
+        <div class="bottom-buttons" style="margin-top: 20px;">
+            <input type="button" value=" SAVE "
+                    class="btn btn-danger" style="width:100px;"
+                    data-bind="click: onOkClick" />
+            <input type="button" value="Close"
+                    class="btn btn-default" style="width:100px; margin-left: 50px;"
+                    data-bind="click: closeDialog" />
+        </div>
+
+</form>
+</div>
+
+

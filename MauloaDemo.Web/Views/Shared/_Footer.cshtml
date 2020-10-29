@@ -1,0 +1,60 @@
+﻿@using System.Configuration;
+@using MauloaDemo.Models
+@using MauloaDemo.Web.Controllers
+
+@{
+    var IsTest = TypeHelper.GetBool(ConfigurationManager.AppSettings["IsTest"]);
+    LoginUser cur_user = UserHelper.LoginUser;
+
+    var dbname = "";
+    var dummyRepo = MauloaDemo.Repository.ProjMEntities.Create();
+    dbname = dummyRepo.Database.Connection.Database;
+
+    var bg_class = ViewData["bg_class"] as string ?? "bg_gradient_FT";
+
+    string machineName = "";
+    string serverIP = "";
+    string userHostName = "";
+    string userHostAddress = "";
+    string reversedHostName = "";
+    string path = "";
+    
+    if (IsTest) {
+        try {
+            machineName = ViewContext.RequestContext.HttpContext.Server.MachineName;
+            serverIP = ViewContext.RequestContext.HttpContext.Request.ServerVariables["LOCAL_ADDR"];
+            userHostName = ViewContext.RequestContext.HttpContext.Request.UserHostName;
+            userHostAddress = ViewContext.RequestContext.HttpContext.Request.UserHostAddress;
+            path = ViewContext.CurrentActionPath();
+
+            //クライアントのIPアドレスからDNS逆引きでホスト名を取得する。
+            IPAddress addr = IPAddress.Parse(Request.UserHostAddress);
+            reversedHostName = System.Net.Dns.GetHostEntry(addr).HostName; ;
+        } catch (Exception) {
+            //Ignore errors here.
+        }
+    }
+}
+
+<footer class="@bg_class">
+    Copyright(C) Visual Systems, Inc. All Rights Reserved.
+
+    <span style="margin-left: 40px;">
+        @if (cur_user != null) {
+            @cur_user.date_format<span>&nbsp;</span>
+            @TemplateInfo.Resource("LBL_LANG_NAME")<span>&nbsp;</span>
+        }
+        @if (IsTest){
+            @(dbname)
+        }
+    </span>
+
+    @if (IsTest) {
+        <div style="text-align: left; font-size:80%; ">
+            Server=@(machineName) (@(serverIP)) 
+            , Client=@(userHostName) (@(userHostAddress)) 
+            , Reversed=@(reversedHostName)
+            , Path=@(path)
+        </div>
+    }
+</footer>

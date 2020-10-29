@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "Notice";
+}
+
+@section head{
+    <link href="@Url.Content("~/Areas/Masters/Content/masters.css")" rel="stylesheet" type="text/css" />
+}
+
+<div class="app_wrapper">
+    <h3>@ViewBag.Title</h3>
+
+    <div id="app">
+        @* 検索パネル *@
+        <div class="search clearfix">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="" class="col-sm-1 control-label">Date</label>
+                    <div class="col-sm-1">
+                        <input name="date" type="text"
+                               data-role="datepicker"
+                               data-bind="value: search.select_date, events: {change: refreshList }"
+                               class="form-control input-sm tohankaku "
+                               style="width:100px;" />
+                    </div>
+                    <label for="" class="col-sm-2 control-label">Agent Code</label>
+                    <div class="col-sm-2">
+                        <input type="text"
+                               placeholder=""
+                               class="form-control input-sm select-agent "
+                               data-bind="value: search.agent_cd, events: {change: refreshList }" />
+                    </div>
+                    <label for="" class="col-sm-2 control-label">Text</label>
+                    <div class="col-sm-4">
+                        <input type="text" data-bind="value: search.text, events: { change: refreshList }"
+                               maxlength="100"
+                               class="form-control input-sm k-input k-textbox" />
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        @* 検索結果の一覧グリッド *@
+        <div id="grd"
+             data-role="grid"
+             data-bind="source: list"
+             data-toolbar="[{name:'create', text:'Create New'}, {name:'copy', text:'Copy'}, {name:'destroy', text:'Delete' }, {name: 'refresh', text:'Refresh'}]"
+             data-selectable="true"
+             data-sortable="true"
+             data-resizable="true"
+             data-scrollable="true"
+             data-height="560"
+             data-columns="[  {field: 'disp_seq', title: 'Seq', width: 50}
+                            , {field: 'from_date', title: 'From', width:140, format: '{0:MM/dd/yyyy}' }
+                            , {field: 'to_date', title: 'To', width:140, format: '{0:MM/dd/yyyy}' }
+                            , {field: 'agent_cd', title: 'Agent Cd', width: 100}
+                            , {field: 'notice_type', title: 'Type', width: 100}
+                            , {field: 'title_jpn', title: 'Title Jpn'}
+                            , {field: 'title_eng', title: 'Title Eng'}
+                            , {field: 'last_person', title: 'Last person', width:80}
+                            , {field: 'update_date', title: 'Updated', width:160, format: '{0:MM/dd/yyyy HH:mm:ss}' }
+                            , {field: 'notice_id', title: ' ', width: 60, template: '<a data-key=\'#=notice_id#\' class=\'btn btn-sm btn-default grid_edit_button\' data-bind=\'click:editItem\'><span class=\'k-icon k-edit\'><\/span><\/a>'}
+                        ]"></div>
+    </div>
+
+    @* 詳細編集ダイアログ *@
+    @Html.Partial("NoticeEditPartial")
+</div>
+
+@section scripts {
+<script src="@Url.Content("~/Scripts/require.min.js")"
+            data-main="@Url.Content("~/Areas/Masters/Scripts/NoticeIndexView")"></script>
+}

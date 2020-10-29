@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{97799B02-2CEE-4E7E-A64A-5FE3EA6870E6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MauloaDemo.Repository</RootNamespace>
+    <AssemblyName>MauloaDemo.Repository</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=3.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4, Version=3.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="CBAF2013, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\DOTNET\CBAF2013\CBAF2013\bin\Release\CBAF2013.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CBookingRepository.cs" />
+    <Compile Include="ChurchTimeRepository.cs" />
+    <Compile Include="Exceptions.cs" />
+    <Compile Include="CItemRepository.cs" />
+    <Compile Include="NoticeRepository.cs" />
+    <Compile Include="ScheduleNoteTemplateRepository.cs" />
+    <Compile Include="ItemOptionRepository.cs" />
+    <Compile Include="HolidayRepository.cs" />
+    <Compile Include="CosInfoRepository.cs" />
+    <Compile Include="AddressInfoRepository.cs" />
+    <Compile Include="AgentRepository.cs" />
+    <Compile Include="ArrangementRepository.cs" />
+    <Compile Include="ChurchBlockRepository.cs" />
+    <Compile Include="ChurchRepository.cs" />
+    <Compile Include="ItemCostRepository.cs" />
+    <Compile Include="ItemVendorRepository.cs" />
+    <Compile Include="LogActionRepository.cs" />
+    <Compile Include="LogChangeRepository.cs" />
+    <Compile Include="SchedulePatternRepository.cs" />
+    <Compile Include="ScheduleNoteRepository.cs" />
+    <Compile Include="SchedulePhraseRepository.cs" />
+    <Compile Include="ItemPriceRepository.cs" />
+    <Compile Include="VendorRepository.cs" />
+    <Compile Include="HotelRepository.cs" />
+    <Compile Include="ItemRepository.cs" />
+    <Compile Include="MgmReportRepository.cs" />
+    <Compile Include="PickupPlaceRepository.cs" />
+    <Compile Include="ItemTypeRepository.cs" />
+    <Compile Include="SubAgentRepository.cs" />
+    <Compile Include="AreaRepository.cs" />
+    <Compile Include="BaseRepository.cs" />
+    <Compile Include="CustomerRepository.cs" />
+    <Compile Include="DbContextBase.cs" />
+    <Compile Include="IContextHolder.cs" />
+    <Compile Include="IRepository.cs" />
+    <Compile Include="LoginUserRepository.cs" />
+    <Compile Include="ProjMEntities.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegionConfig.cs" />
+    <Compile Include="RegionConfigRepository.cs" />
+    <Compile Include="SalesRepository.cs" />
+    <Compile Include="CAccountRepository.cs" />
+    <Compile Include="WedInfoRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MauloaDemo.Models\MauloaDemo.Models.csproj">
+      <Project>{cb262ae1-41a4-47d0-9669-9d0a19002845}</Project>
+      <Name>MauloaDemo.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{5C9025D3-42A9-4D18-B0F5-B28F34524279}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="SQL\fnc_getBrideName.sql" />
+    <Content Include="SQL\fnc_getCustName.sql" />
+    <Content Include="SQL\fnc_getGroomName.sql" />
+    <Content Include="SQL\fnc_split.sql" />
+    <Content Include="SQL\usp_rpt_dailymovement.sql" />
+    <Content Include="SQL\usp_address_info.sql" />
+    <Content Include="SQL\usp_cos_info.sql" />
+    <Content Include="SQL\usp_create_customer.sql" />
+    <Content Include="SQL\usp_delivery_info.sql" />
+    <Content Include="SQL\usp_dup_check.sql" />
+    <Content Include="SQL\usp_find_cost.sql" />
+    <Content Include="SQL\usp_find_price.sql" />
+    <Content Include="SQL\usp_get_church_blocks.sql" />
+    <Content Include="SQL\usp_get_item_list.sql" />
+    <Content Include="SQL\usp_get_options.sql" />
+    <Content Include="SQL\usp_get_sales_children.sql" />
+    <Content Include="SQL\usp_ins_arrangement.sql" />
+    <Content Include="SQL\usp_ins_plan_sales.sql" />
+    <Content Include="SQL\usp_ins_sales.sql" />
+    <Content Include="SQL\usp_log_archive_off.sql" />
+    <Content Include="SQL\usp_log_archive_on.sql" />
+    <Content Include="SQL\usp_make_info.sql" />
+    <Content Include="SQL\usp_rcp_info.sql" />
+    <Content Include="SQL\usp_rpt_finalinfo_sheet.sql" />
+    <Content Include="SQL\usp_rpt_vendor_confirmation.sql" />
+    <Content Include="SQL\usp_save_customer.sql" />
+    <Content Include="SQL\usp_search_customer.sql" />
+    <Content Include="SQL\usp_search_log_change.sql" />
+    <Content Include="SQL\usp_search_order.sql" />
+    <Content Include="SQL\usp_shoot_info.sql" />
+    <Content Include="SQL\usp_trans_info.sql" />
+    <Content Include="SQL\usp_trunc_table.sql" />
+    <Content Include="SQL\usp_upd_arrangement.sql" />
+    <Content Include="SQL\usp_upd_church_block_holiday.sql" />
+    <Content Include="SQL\usp_upd_church_block_weekdays.sql" />
+    <Content Include="SQL\usp_upd_plan_sales.sql" />
+    <Content Include="SQL\usp_upd_sales.sql" />
+    <Content Include="SQL\usp_c_get_church_avail.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

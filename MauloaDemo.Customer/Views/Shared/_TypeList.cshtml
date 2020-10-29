@@ -1,0 +1,39 @@
+﻿@using System.Configuration;
+@using MauloaDemo.Utilities;
+@model IEnumerable<WtbApi.Data.DTO.Destination.TrfTypeListItem>
+@{
+    var region_cd = TypeHelper.GetStr(ViewBag.CurrentRegionInfo.CurrentDestination);
+    var area_cd = ViewBag.CurrentSelectItem == null ? "" : TypeHelper.GetStr(ViewBag.CurrentSelectItem.area_cd);
+    var str_wed_date = ViewBag.CurrentSelectItem == null ? "" : ViewBag.CurrentSelectItem.str_wed_date;
+}
+
+@if (Model == null || Model.Count() == 0) {
+    <div class="itemBlockArea">
+    <p style="padding: 20px 0 0 0;font-size: 1.5em;color: navy;">@Lang.L("該当する商品はありません。", "No results were found.")</p>
+    </div>
+} else {
+
+    <div class="itemBlockArea">
+        @foreach (var type in Model) {
+        <div class="itemBlockIndex">
+            <div class="thumbArea">
+                <a href="~/@(region_cd)/@(area_cd)/@(str_wed_date)/@(type.trf_kind)/@(type.trf_type)" class="afade">
+                    @ImageHelper.TrfTypeImage(region_cd, area_cd, type.trf_type, type.image_upload_date)
+                    <figcaption>
+                        @*<img src="@Url.Content("~/common/img/ttl_thumbArea_01.png")" alt="" width="320" height="34">*@
+                        <p>@Html.Raw(type.gen_note)</p>
+                    </figcaption>
+                </a>
+            </div>
+            <div class="txtArea">
+                <a href="~/@(region_cd)/@(area_cd)/@(str_wed_date)/@(type.trf_kind)/@(type.trf_type)" class="afade">
+                    <h2>
+                        @(type.typename)
+                    </h2>
+                </a>
+            </div>
+        </div>
+        }
+    </div>
+        }
+

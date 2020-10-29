@@ -1,0 +1,82 @@
+﻿<div id="editWindow"
+     data-role="window"
+     data-visible="false"
+     data-modal="true"
+     data-min-width="500"
+     data-width="600"
+     data-min-height="400"
+     data-height="500"
+     style="display:none;">
+
+    <div id="editDiv">
+        <form class="form-horizontal" data-role="validator">
+            <div class="form-group">
+                <label for="hotel_cd" class="col-sm-4 control-label required">Code</label>
+                <div class="col-sm-2">
+                    <input name="hotel_cd" type="text" data-bind="value: model.hotel_cd, enabled: isCodeEditable"
+                           maxlength="3" required
+                           class="form-control input-sm k-input k-textbox toupper tohankaku" />
+                </div>
+                <label for="sort_order" class="col-sm-offset-2 col-sm-1 control-label">Seq#</label>
+                <div class="col-sm-2">
+                    <input name="sort_order" type="text" data-bind="value: model.sort_order"
+                           maxlength="4"
+                           class="form-control input-sm k-input k-textbox tohankaku numeric" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="hotel_name" class="col-sm-4 control-label">Name Eng</label>
+                <div class="col-sm-9">
+                    <input name="hotel_name" type="text" data-bind="value: model.hotel_name" maxlength="30" 
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="hotel_name_jpn" class="col-sm-4 control-label">Name Jpn</label>
+                <div class="col-sm-9">
+                    <input name="hotel_name_jpn" type="text" data-bind="value: model.hotel_name_jpn" maxlength="30"
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="area_cd" class="col-sm-4 control-label">Area</label>
+                <div class="col-sm-9">
+                    <input name="area_cd" type="text" data-bind="value: model.area_cd" 
+                           maxlength="3"
+                           class="form-control input-sm select-area toupper"
+                           style="width:70px;" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="tel" class="col-sm-4 control-label">Phone</label>
+                <div class="col-sm-4">
+                    <input name="tel" type="text" data-bind="value: model.tel" maxlength="100" 
+                           class="form-control input-sm k-input k-textbox tohankaku " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="discon_date" class="col-sm-4 control-label">Discon Date</label>
+                <div class="col-sm-2">
+                    <input name="discon_date" type="text" 
+                           style="width:100px;" maxlength="10"
+                           data-role="datepicker"
+                           data-bind="value: model.discon_date" 
+                           class="form-control input-sm tohankaku " />
+                </div>
+            </div>
+
+            @* Saveボタン、Closeボタン *@
+            <div class="buttons">
+                <input id="btnEditSave" type="button" value="Save" data-bind="click:onSave" class="btn btn-primary btn-save" />
+                <input id="btnEditClose" type="button" value="Close" data-bind="click: onClose" class="btn btn-default btn-close" />
+            </div>
+        </form>
+    </div>
+
+</div> @* End of editWindow *@
+

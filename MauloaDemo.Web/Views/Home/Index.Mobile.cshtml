@@ -1,0 +1,32 @@
+﻿@{
+}
+
+<div style="margin:100px 20px 20px 20px;">
+@Html.Partial("ViewSwitcher")<br /><br />
+</div>
+
+<span id="count"></span>件のカスタマーが見つかりました。
+<ul id="list"></ul>
+
+
+
+
+
+
+<script>
+    $(function () {
+        
+        $.getJSON("api/customers").done(
+            function (data) {
+                console.log(data);
+                $("#count").html(data.length);
+
+                for (var i = 0; i < data.length; i++) {
+                    var li = $("<li>" + data[i].g_last + ", " + data[i].g_first + "</li>");
+                    $("#list").append(li);
+                }
+            }
+        );
+
+    });
+</script>

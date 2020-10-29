@@ -1,0 +1,107 @@
+﻿<style scoped>
+    .bottom-buttons {
+        clear: both;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .section-info {
+        margin: 30px 16px 30px 20px;
+    }
+
+</style>
+
+<div class="itemprice-dialog">
+
+    <form class="form-horizontal">
+
+        <input type="hidden" data-bind="value: item_price.item_price_id" name="item_price_id" />
+        <input type="hidden" data-bind="value: item_price.item_cd" name="item_cd" />
+
+        <div class="form-group">
+            <label for="drpAgentCd" class="col-sm-3 control-label">Agent Cd</label>
+            <div class="col-sm-3">
+                <input type="text" name="agent_cd"
+                       maxlength="6"
+                       placeholder=""
+                       class="form-control input-sm toupper tohankaku select-agent"
+                       style="width:100%;"
+                       data-height="300"
+                       data-bind="value: item_price.agent_cd" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="txtPlanKind" class="col-sm-3 control-label">Plan Kind</label>
+            <div class="col-sm-3">
+                <input type="text" id="txtPlanKind"
+                       data-role="combobox"
+                       maxlength="1"
+                       class="form-control input-sm toupper tohankaku "
+                       style="width:50px;"
+                       data-bind="value: item_price.plan_kind, source: planKindList" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-3" style="font-size:86%;color:#888;">
+                <strong style="color:#44e;">'P' for Photo Plan only, 'W' for Wedding Plan only, or blank for both.</strong>
+                <ul>
+                <li>'P'の場合はフォトプラン申込み済かまたはオプションオンリーの場合にこの価格が適用されます。</li>
+                <li>'W'の場合はウェディングプラン申込み済かまたはオプションオンリーの場合にこの価格が適用されます。</li>
+                <li>空白の場合はプランに関係なくこの価格が適用されます。(PまたはWが存在する場合はそちらの方が優先されます。)</li>
+                <li>オプションオンリーのカスタマーで、P,W,空白が併存する場合は 空白 → W → P の順に適用されます。</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-top: 20px;">
+            <label for="eff_from" class="col-sm-3 control-label">From</label>
+            <div class="col-sm-3">
+                <input name="eff_from" type="text"
+                       style="width:100px;" maxlength="10"
+                       data-role="datepicker"
+                       data-bind="value: item_price.eff_from"
+                       class="form-control input-sm tohankaku " />
+            </div>
+            <label for="eff_to" class="col-sm-1 control-label">To</label>
+            <div class="col-sm-3">
+                <input name="eff_to" type="text"
+                       style="width:100px;" maxlength="10"
+                       data-role="datepicker"
+                       data-bind="value: item_price.eff_to"
+                       class="form-control input-sm tohankaku " />
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-top: 20px;">
+            <label for="unit" class="col-sm-3 control-label">Gross</label>
+            <div class="col-sm-3">
+                <input name="gross" type="number" data-bind="value: item_price.gross"
+                       class="form-control input-sm k-input k-textbox numeric" />
+            </div>
+            <label for="d_net" class="col-sm-1 control-label">Net</label>
+            <div class="col-sm-3">
+                <input name="d_net" type="number" data-bind="value: item_price.d_net"
+                       class="form-control input-sm k-input k-textbox numeric" />
+            </div>
+            <label for="y_net" class="col-sm-1 control-label">Y Net</label>
+            <div class="col-sm-3">
+                <input name="y_net" type="number" data-bind="value: item_price.y_net"
+                       class="form-control input-sm k-input k-textbox numeric" />
+            </div>
+        </div>
+
+        <div class="bottom-buttons" style="margin-top: 20px;">
+            <input type="button" value=" SAVE "
+                    class="btn btn-danger" style="width:100px;"
+                    data-bind="click: onOkClick" />
+            <input type="button" value="Close"
+                    class="btn btn-default" style="width:100px; margin-left: 20px;"
+                    data-bind="click: closeDialog" />
+        </div>
+
+</form>
+</div>
+
+

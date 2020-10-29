@@ -1,0 +1,54 @@
+﻿@using System.Configuration;
+@using MauloaDemo.Utilities;
+@{
+    var IsTest = MauloaDemo.Utilities.TypeHelper.GetBool(ConfigurationManager.AppSettings["IsTest"]);
+}
+
+<div id="footer">
+
+    <ul id="footer_link">
+        @*@Html.Action("Index", "File")*@
+        <li>
+            <a href="@Url.Action("Faq", "Home")">@Lang.L("会社概要", "About us")</a>
+        </li>
+        <li>
+            <a href="@Url.Action("Faq", "Home")">@Lang.L("ご利用ガイド", "Guide")</a>
+        </li>
+        <li>
+            <a href="@Url.Action("Faq", "Home")">@Lang.L("サイト利用規約", "Site Policy")</a>
+        </li>
+        <li>
+            <a href="@Url.Action("Faq", "Home")">@Lang.L("プライバシー規定", "Privacy Policy")</a>
+        </li>
+        <li>
+            <a href="@Url.Action("Faq", "Home")">@Lang.L("よくある質問", "FAQ")</a>
+        </li>
+        <li>
+            <a href="@Url.Action("Contact", "Home")">@Lang.L("お問合せ", "CONTACT")</a>
+        </li>
+    </ul>
+    <div class="flogo"><a href="/"><img src="@Url.Content("~/common/img/header_logo1.png")" alt="Mauloa" /></a></div>
+    <div class="copyright">Copyright(C) Visual Systems, Inc. All Rights Reserved.
+        &copy; @DateTime.Now.Year - Visual Systems, Inc.
+        @if (IsTest) {
+            var serverName = Server.MachineName;
+            var serverIp = Request.ServerVariables["LOCAL_ADDR"];
+            var clientIp1 = Request.UserHostAddress;
+            var clientIp2 = Request.ServerVariables["REMOTE_ADDR"];
+            var xheaders = "";
+            foreach (var key in Request.Headers.AllKeys) {
+                if (key.StartsWith("X-")) {
+                    xheaders += string.Format(", {0}={1}", key, Request.Headers[key]);
+                }
+            }
+            <text>Client=[@(clientIp1), @(clientIp2)@(xheaders)]</text>
+            <text> Server=[@(serverName) @(serverIp)]</text>
+        }
+    <!--
+        @(ViewBag.ClientIP)    
+    -->
+        </div>
+
+    </div>
+
+

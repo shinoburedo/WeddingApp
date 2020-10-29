@@ -1,0 +1,99 @@
+﻿/* Styles for Management */
+
+.search {
+    margin: 8px;
+    padding: 8px;
+    background-color: white;
+    border-radius: 6px;
+}
+
+.error_msg {
+    color: red;
+    font-weight: bold;
+}
+
+.grid_edit_button {
+    width:25px; 
+    min-width:12px; 
+    max-height:25px; 
+    overflow:hidden;
+    padding: 2px;
+}
+
+.report-hidden {
+    color: #f00;
+}
+
+.report_name {
+    color: #aaa;
+}
+
+.report_description {
+    color: #aaa;
+}
+
+#btnGetParams {
+    /*font-size:smaller;*/
+    margin-left: 20px;
+}
+
+#frmParams .k-listview {
+    background-color: transparent;
+    border:none;
+}
+
+.parameter {
+    width: 200px;
+    height: 60px;
+    float:left;
+    margin: 4px 2px 2px 2px;
+    padding: 2px;
+    /*background-color: azure;*/
+    /*border: 1px solid #ccc;*/
+}
+
+    .parameter .required {
+        color: red;
+        font-size: large;
+        font-weight: bold;
+    }
+
+    .parameter .k-input {
+        width: 80%;
+    }
+
+    .parameter .k-widget  {
+        background-color:transparent;
+    }
+
+    .parameter.break_before {
+        clear:both;
+    }
+
+    .parameter.dummy {
+        display: none;
+    }
+
+    .parameter.hidden {
+        display:none;
+    }
+
+    .parameter input[type=radio] {
+        float:none;
+        margin-left: 12px;
+    }
+
+.div_execute {
+    margin-top: 20px;
+    margin-left: 40px;
+    margin-bottom: 20px;
+    clear:both;
+}
+
+
+div.search {
+    margin: 10px;
+}
+.search div {
+    float:left;
+}

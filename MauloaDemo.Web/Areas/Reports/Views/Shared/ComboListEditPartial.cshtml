@@ -1,0 +1,73 @@
+﻿<div id="editWindow"
+     data-role="window"
+     data-visible="false"
+     data-modal="true"
+     data-min-width="500"
+     data-width="600"
+     data-min-height="300"
+     data-height="400"
+     style="display:none;">
+
+    <style scoped>
+        #editDiv {
+            width: 580px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 98%;
+        }
+
+        .buttons {
+            width: 95%;
+            margin: 10px;
+            padding: 8px;
+            text-align: center;
+        }
+
+        #btnEditClose {
+            margin-left: 40px;
+        }
+    </style>
+
+    <div id="editDiv">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="" class="col-sm-3 control-label">Code</label>
+                <div class="col-sm-3">
+                    <input type="text" data-bind="value: comboList.list_cd, enabled: isListCdEditable"
+                           maxlength="20"
+                           class="form-control input-sm k-input k-textbox toupper tohankaku" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="" class="col-sm-3 control-label">Description</label>
+                <div class="col-sm-11">
+                    <textarea data-bind="value: comboList.description"
+                              maxlength="200"
+                              class="form-control input-sm k-input k-textbox "
+                              style="height:40px;min-height: 30px;"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="" class="col-sm-3 control-label">Query</label>
+                <div class="col-sm-11">
+                    <textarea data-bind="value: comboList.query"
+                              maxlength="4000"
+                              class="form-control input-sm k-input k-textbox "
+                              style="height:230px;min-height: 30px;"></textarea>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <input id="btnEditSave" type="button" value="Save"
+                       data-bind="click:onSave" class="btn btn-primary" style="width:100px;" />
+                <input id="btnEditClose" type="button" value="Close"
+                       data-bind="click: onClose" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+
+</div> @* End of editWindow *@
+

@@ -1,0 +1,707 @@
+﻿@using System.Configuration;
+@using MauloaDemo.Utilities;
+
+@model WtbApi.Data.DTO.Destination.TrfItemInfo
+
+@section head {
+    <link href="@Url.Content("~/common/css/detail.css")" rel="stylesheet" type="text/css" media="all" charset="utf-8" />
+    <link rel="stylesheet" href="@Url.Content("~/common/css/jquery-ui.css")">
+    <link rel="stylesheet" href="@Url.Content("~/common/css/modal.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/colorbox/colorbox.css")">
+    <script type="text/javascript" src="@Url.Content("~/Scripts/tab.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/colorbox/jquery.colorbox-min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/colorbox/setting.js")"></script>
+}
+@{
+    var CurFmtJpn = "#,0";
+    var region_cd = Model == null ? ViewBag.CurrentRegionInfo.CurrentDestination : Model.region_cd;
+    var area_cd = Model == null ? ViewBag.CurrentSelectItem.area_cd : Model.area_cd;
+    var str_wed_date = ViewBag.CurrentSelectItem.str_wed_date;
+    
+    var shopping_enabled = TypeHelper.GetBool(ConfigurationManager.AppSettings["ShoppingEnabled"]);
+    ViewBag.Title = "WATABE.COM " + (Model == null ? "No result" : Model.trf_item_name);
+    var ItemType = Model == null ? "" : Model.item_type;
+    var TrfKind = Model == null ? "" : Model.trf_kind;
+    var TrfItemCd = Model == null ? "" : Model.trf_item_cd;
+    var FixedQty = Model == null ? null : Model.fixed_qty;
+    var IsMediaMot = (Model == null || Model.media_info_mot == null || Model.media_info_mot.Count == 0) ? false : true;
+    var IsMediaCov = (Model == null || Model.media_info_cov == null || Model.media_info_cov.Count == 0) ? false : true;
+    var IsMediaTyp = (Model == null || Model.media_info_typ == null || Model.media_info_typ.Count == 0) ? false : true;
+    var path = Request.Url.AbsoluteUri;
+    var dayClass = "";
+}
+<style scoped>
+#mainVisual{
+	width: 100%;
+	height: 200px;
+	min-height: 200px;
+	text-align: center;
+	display: table;
+    background:url('@(ImageHelper.GetAreaImageUrl(ViewBag.CurrentRegionInfo.CurrentDestination, ViewBag.CurrentSelectItem.area_cd, "L", ViewBag.CurrentSelectItem.image_upload_date))') no-repeat center center;
+	background-size:auto 200px;
+	background-position: center 70%;
+}
+</style>
+
+<a name="top" id="top"></a>
+
+@Html.Partial("_Header")
+<!-- サイドメニュー -->
+@Html.Action("AreaSideMenu", "Home")
+@Html.Action("ItemMenu", "Home")
+<!-- /サイドメニュー -->
+
+<div id="mainVisual">
+    <div class="mainSection">
+    </div><!-- section -->
+</div><!-- mainVisual -->
+
+<div id="contents">
+    <div id="calendarArea">
+        <div class="calendarBox">
+            <div class="inner">
+                <span>@Lang.L("ご希望日", "select the preferred date")</span>
+                <input type="text" id="datepicker">
+            </div>
+        </div>
+    </div>
+
+    <div class="processArea step3">
+        <ul>
+            <li><span>@Lang.L("エリアを選ぶ", "Select the Location")</span></li>
+            <li><span>@Lang.L("プラン・オプションを選ぶ", "Select a Plan/Option")</span></li>
+            <li><span>@Lang.L("商品を選ぶ", "Select an Item")</span></li>
+            <li><span>@Lang.L("ご購入手続きへ", "Proceed to Checkout")</span></li>
+        </ul>
+    </div>
+
+    @if (Model == null) {
+    <p style="padding: 20px 0 0 0;font-size: 1.5em;color: navy;">@Lang.L("該当する商品はありません。", "No results were found.")</p>
+    } else {
+
+        using (Html.BeginForm()) {
+
+    <div class="detailBlock">
+
+        <div class="photoArea">
+            @if (Model.cnt_picture_s > 0) {
+                var index = 1;
+                while (index <= Model.cnt_picture_s) {
+                    <a href="@Url.Action("Modal", "Home", new { region_cd = Model.region_cd, trf_type = Model.trf_type, trf_item_cd = Model.trf_item_cd, selected_photo_no = index, image_upload_date = Model.image_upload_date, cnt_pic = Model.cnt_picture_s })" class="ajax afade">
+                        <img src="@(ImageHelper.GetTrfItemImageUrl(region_cd, Model.trf_type, Model.trf_item_cd, index, "M", Model.image_upload_date))" id="detail@(index)" alt="@(Model.trf_item_cd)" width="366" />
+                    </a>
+                    <img src="@(ImageHelper.GetTrfItemImageUrl(region_cd, Model.trf_type, Model.trf_item_cd, index, "L", Model.image_upload_date))" id="detailL@(index)" alt="@(Model.trf_item_cd)" />
+                    index++;
+                }
+            } else {
+                <img src="@Url.Content("~/Content/img/no_img.png")" alt="no image" width="366">
+            }
+            <ul>
+                @if (Model.cnt_picture_s > 0) {
+                    var index = 1;
+                    while (index <= Model.cnt_picture_s) {
+                        <li>
+                            <a onmouseover="changeMediumPicture(@(index))" class="afade">
+                                <img src="@(ImageHelper.GetTrfItemImageUrl(region_cd, Model.trf_type, Model.trf_item_cd, index, "S", Model.image_upload_date))" alt="@(index)" width="20" />
+                                @*<img src="@Url.Content("~/Photo/")@(region_cd)/@Model.trf_type/@(Model.trf_item_cd)/@(index)/S" alt="@(index)" width="49">*@
+                            </a>
+                        </li>
+                        index++;
+                    }
+                }
+            </ul>
+        </div><!-- /photoArea -->
+
+        <div class="txtArea">
+            <h2><span>@(Model.trf_item_name)</span></h2>
+            <p>@Html.Raw(Model.item_information)</p>
+
+            <div class="priceArea">
+                @if (Model.price == 0) {
+                    <p><span>
+                        TBA
+                    </span></p>
+                } else if ((Model.price_type == 1 || Model.price_type == 2) && (!ViewBag.CurrentRegionInfo.IsPaymentJPY() || Model.is_display_local_cur)) {
+                    //現地通貨表記
+                    <p><span>
+                        @(String.Format("{0:" + ViewBag.CurrentRegionInfo.CurrencyFormatWithSymbol + "}", Model.price))
+                    </span></p>
+                } else {
+                    //日本円表記
+                    <p><span>
+                            &yen;@(String.Format("{0:" + CurFmtJpn + "}", Model.price))
+                    </span></p>
+                }
+            </div><!-- /priceArea -->
+
+            <div class="boxTypeA">
+                <div class="selectArea clearfix">
+                    <h3 class="ttl">@Lang.L("商品情報", "Product Imformation")</h3>
+
+                    <div class="wrap">
+                        <h4>@Lang.L("コード", "Code"): @Model.trf_item_cd</h4>
+                        @if (IsMediaMot) {
+                            <h3>@Lang.L("マウントを選択して下さい", "Select Mount.")</h3>
+                            <select id="media_info_mot" style="width:300px;">
+                                @foreach (var info in Model.media_info_mot) {
+                                    <option value="@info.media_cd">@info.media_name</option>
+                                }
+                            </select>
+                        }
+
+                        @if (IsMediaCov) {
+                            if (Model.trf_type == "DVD") {
+                                <h3>@Lang.L("BGMを選択して下さい", "Select BGM.")</h3>
+                            } else {
+                                <h3>@Lang.L("カバーを選択して下さい", "Select Cover.")</h3>
+                            }
+                            <select id="media_info_cov" style="width:300px;text-align:left;">
+                                @foreach (var info in Model.media_info_cov) {
+                                    <option value="@info.media_cd">@info.media_name</option>
+                                }
+                            </select>
+                        }
+
+                        @if (IsMediaTyp) {
+                            <h3>@Lang.L("タイプを選択して下さい", "Select Type.")</h3>
+                            <select id="media_info_typ">
+                                @foreach (var info in Model.media_info_typ) {
+                                    <option value="@info.media_cd">@info.media_name</option>
+                                }
+                            </select>
+                        }
+
+                        <input type="hidden" id="wed_time" />
+                        <input type="hidden" id="status" />
+
+                        @if ((Model.item_type == "PKG") && Model.church_avail.Count() > 0) {
+
+                            if (Lang.isJPN()) {
+                                <text>
+                                    日付、時間を選択してください。<br />
+                                    <span class="notice">
+                                        ※この商品は本日より５日後以降から選択可能です。<br />
+                                        ※下記以外の日程を選択する場合は、上部のカレンダーからも変更できます。
+                                    </span>
+                                </text>
+                            } else {
+                                <text>
+                                    Select wedding date and time. <br />
+                                    <span class="notice">
+                                        This item is available on or after 5 days from today.
+                                    </span>
+                                </text>
+                            }
+
+                            <div class="selectWedDateArea">
+                                <div class="clsSelectWedDate"></div>
+                                <table id="tblSelectWedDate">
+                                    <tr>
+                                        <td style="border:none;padding:0">
+                                            <div id="prevSelectWedDate">
+                                                @Lang.L("前週を見る", "Previous")                                                
+                                            </div>
+                                        </td>
+
+                                        @foreach (var avail in Model.church_avail) {
+                                            dayClass = "";
+                                            if ((int)avail.block_date.Value.DayOfWeek == 0) {
+                                                dayClass = "thSunday";
+                                            } else if ((int)avail.block_date.Value.DayOfWeek == 6) {
+                                                dayClass = "thSaturday";
+                                            }
+
+                                            <td style="border:none;padding:0">
+                                                <table class="churchAvail">
+                                                    <tr>
+                                                        <th class="@(dayClass)">
+                                                            @(avail.block_date.Value.ToString("MM/dd"))<br />
+                                                            @(Common.GetDayName(avail.block_date.Value, Lang.isJPN()))
+                                                        </th>
+                                                    </tr>
+                                                    @if (Lang.isJPN()) {
+                                                        <tr>
+                                                            <th class="@(dayClass)">@(avail.rokki)</th>
+                                                        </tr>
+                                                    }
+                                                    <tr>
+                                                        <td>
+                                                            @if (@avail.status == "×") {
+                                                                @(avail.status)
+                                                            } else {
+                                                                <a href='javascript:void(0);' onclick='selectChurchDate("@avail.block_date.Value.ToString("yyyy/MM/dd")");'>@(avail.status)</a>
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        }
+                                        <td style="border:none;padding:0">
+                                            <div id="nextSelectWedDate">                                            
+                                                @Lang.L("翌週を見る", "Next")
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+              <!-- /SelectWedDateArea -->
+
+                            <div class="clsSelectWedTime" style="padding-top:0px;"></div>
+                            <div style="width:100%;">
+                                <div id="lvChurchAvail"
+                                     data-role="listview"
+                                     data-template="param-template"></div>
+                            </div>
+                            <script id="param-template" type="text/x-kendo-template">
+                                <div class="time_avail">
+                                    <div class="start_time">
+                                        #: kendo.toString(kendo.parseDate(data.str_start_time, "yyyyMMddHHmm"), "HH:mm") #
+                                        # var select = kendo.toString(kendo.parseDate(data.str_start_time, "yyyyMMddHHmm"), "HH:mm")  #
+                                        # var select_day = kendo.toString(kendo.parseDate(data.str_block_date, "yyyyMMdd"), "yyyy/MM/dd")  #
+                                    </div>
+                                    <div class="status">
+                                        # if (data.status == '×') { #
+                                        #= data.status #
+                                        # } else { #
+                                        <a href='javascript:void(0);' onclick='selectTime("#= select_day #", "#= select #", "#= data.status #");'>#=data.status #</a>
+                                        # } #
+                                    </div>
+                                </div>
+                            </script>
+                            <div class="note" style="width:100%;float:left;">
+                                @if (Lang.isJPN()) {
+                                    <p>○：申込み可　△：リクエスト受付　×：申込み不可</p>
+                                } else {
+                                    <p>○：Available　△：By request　×：Unavailable</p>
+                                }
+                            </div>
+                        }
+
+                        @if (shopping_enabled && Model.price > 0) {
+                            <div class="formArea">
+                                @if (Model.fixed_qty == null || Model.fixed_qty == 1 || Model.fixed_qty == 0) {
+                                    <input type="hidden" value=1 id="quantity" />
+                                } else if (Model.item_type == "PKG") {
+                                    <input type="hidden" value=1 id="quantity" />
+                                } else {
+                                    <input type="hidden" value=@Model.fixed_qty id="quantity" />
+                                }
+
+                                @if (Model.trf_type != "WGR" && Model.trf_type != "TUX") {
+                                    if (Lang.isJPN()) {
+                                        <div class="formAreaBtn"><input type="button" id="btnAddCart" value="カートに入れる" class="btnSubmit afade"></div>
+                                    } else {
+                                        <div class="formAreaBtn"><input type="button" id="btnAddCart" value="Add to Cart" class="btnSubmit afade"></div>
+                                    }
+                                }
+
+                            </div><!-- /formArea -->
+                        }
+                    </div>
+                </div><!-- /selectArea -->
+            </div><!-- /boxTypeA -->
+        </div><!-- /txtArea -->
+    </div><!-- detailBlock end -->
+
+    if (!String.IsNullOrEmpty(@Model.movie_url)) {
+    <div class="detailBlockOption">
+        <dl class="youtubeArea">
+            <dt></dt>
+            <dd>
+                <iframe width="560" height="315" src="@Model.movie_url" frameborder="0" allowfullscreen></iframe>
+            </dd>
+        </dl>
+    </div>
+    }
+    <div class="detailBlockOption">
+        <dl>
+            <dt class="tabProduct_jpn">@Lang.L("商品詳細", "Product Detail")</dt>
+            <dd>
+                @Html.Raw(Model.product_detail)
+            </dd>
+        </dl>
+@if (@Model.item_type == "PKG") {
+
+        <dl class="tabPlan_jpn">
+            <dt>@Lang.L("プラン詳細", "Plan Detail")</dt>
+            <dd>
+                @if (Lang.isJPN()) {
+                    @Html.Raw(Model.trf_item_name + "に含まれるもの")<br />
+                } else {
+                    @Html.Raw("Contents of " + Model.trf_item_name)<br />
+                }
+                @foreach (var item in Model.pkg_info) {
+                    @Html.Raw(item.trf_item_name)<br />
+                }
+            </dd>
+        </dl>
+}
+        <dl class="tabReview_jpn">
+            <dt>@Lang.L("レビュー", "Review")</dt>
+            <dd>
+                <div style="width:100%;">
+                    <div id="lvReview"
+                         data-role="listview"
+                         data-template="param-review-template" style="border:none;"></div>
+                </div>
+                <script id="param-review-template" type="text/x-kendo-template">
+                    <div style="width:100%;">
+                        【#: kendo.toString(kendo.parseDate(data.str_create_date, "yyyyMMdd"), App.Config.DateFormat) #
+                        #=data.nickname #】@Lang.L("　評価：", "  Rating:")@*#=data.star_disp #*@
+                        <img src="@Url.Content("~/Content/img/rate#=data.star #.png")" alt="rate">
+                    </div>
+                    <div style="width:100%;padding-bottom:10px;">
+                        #=data.review #
+                    </div>
+                </script>
+            </dd>
+        </dl>
+    </div>
+        }
+    }
+    <div class="btnBack">
+        <a class="btn"
+           href="~/@(region_cd)/@(area_cd)/@(str_wed_date)/@(ViewBag.CurrentSelectItem.trf_kind)/@(ViewBag.CurrentSelectItem.trf_type)/@(ViewBag.PageNum)">@Lang.L("一覧に戻る", "Back to list")</a>
+    </div>
+</div><!-- contents -->
+
+<script>
+
+    $(function () {
+        $("img[id^='detail']").css("display", "none");
+        $("#detail1").toggle();
+        //$("#lvChurchAvail").hide();
+        $("#btnAddCart").on("click", addCart);
+        $("#prevSelectWedDate").on("click", onClickPrevSelectWedDate);
+        $("#nextSelectWedDate").on("click", onClickNextSelectWedDate);
+
+        var dataSource_review = new kendo.data.DataSource({
+            transport: {
+                read: {
+                    url: "@(Url.Action("GetReviewList"))",
+                    dataType: "json",
+                    data: function () {
+                        return {
+                            region_cd: "@(region_cd)",
+                            area_cd: "@(area_cd)",
+                            trf_kind: "@(ViewBag.CurrentSelectItem.trf_kind)",
+                            trf_type: "@(ViewBag.CurrentSelectItem.trf_type)",
+                            trf_cat: "@(ViewBag.CurrentSelectItem.trf_cat)",
+                            trf_item_cd: "@TrfItemCd"
+                        };
+                    }
+                }
+            }
+        });
+
+        $("#lvReview").each(function (index, el) {
+            $(el).kendoListView({
+                dataSource: dataSource_review,
+                template: kendo.template($("#param-review-template").html())
+            });
+        });
+
+        // 挙式希望日が変更された時の処理
+        function refreshItemList() {
+            var dp = $("#datepicker").data("kendoDatePicker");
+            var weddingDate = kendo.toString(dp.value(), "yyyy/MM/dd");
+            window.location.href = "@(Url.Action("SelectWeddingDate", "Home"))" + "?wed_date=" + weddingDate;
+        }
+        
+        function onClickPrevSelectWedDate() {
+            var dp = $("#datepicker").data("kendoDatePicker");
+            var chg_date = dp.value();
+            chg_date.setDate(chg_date.getDate() - 7);
+            dp.value(chg_date);
+            refreshItemList();
+        }
+
+        function onClickNextSelectWedDate() {
+            var dp = $("#datepicker").data("kendoDatePicker");
+            var chg_date = dp.value();
+            chg_date.setDate(chg_date.getDate() + 7);
+            dp.value(chg_date);
+            refreshItemList();
+        }        
+
+        var min_date = kendo.parseDate("@(ViewBag.CurrentSelectItem.str_min_date)", "yyyyMMdd");
+        var default_date = kendo.parseDate("@(ViewBag.CurrentSelectItem.str_wed_date)", "yyyyMMdd");
+        if (default_date < min_date) default_date = min_date;
+
+        // create DatePicker from input HTML element
+        var date_wedding = $("#datepicker").kendoDatePicker({
+            value: default_date,
+            format: "yyyy/MM/dd",
+            change: refreshItemList,
+            min: min_date
+        });
+
+        if ("@ItemType" == "PKG") {
+            $("div.formAreaBtn").hide();
+        }
+
+        $("#media_info_mot").kendoDropDownList();
+        $("#media_info_cov").kendoDropDownList();
+        $("#media_info_typ").kendoDropDownList();
+    });
+
+    function changeMediumPicture(that) {
+        $("img[id^='detail']").css("display", "none");
+        $("#detail" + that).toggle();
+    }
+
+    function onShow(e) {
+        if (!$("." + e.sender._guid)[1]) {
+            var element = e.element.parent(),
+                eWidth = element.width(),
+                eHeight = element.height(),
+                wWidth = $(window).width(),
+                wHeight = $(window).height(),
+                newTop, newLeft;
+
+            newLeft = Math.floor(wWidth / 2 - eWidth / 2);
+            newTop = Math.floor(wHeight / 2 - eHeight / 2);
+
+            e.element.parent().css({ top: newTop, left: newLeft });
+        }
+    }
+
+    // 挙式希望日が変更された時の処理
+    function changeWedDate() {
+        var weddingDate = kendo.toString($("#datepicker").data("kendoDatePicker").value(), "yyyy/MM/dd");
+        window.location.href = "@(Url.Action("SelectWeddingDate", "Home"))" + "?wed_date=" + weddingDate;
+    }
+
+    function addCart() {
+        var quantity = $("#quantity").val();
+        if (!quantity) return false;
+
+        var wed_date = $("#datepicker").data("kendoDatePicker").value();
+        if (!wed_date) return false;
+
+        var min_date = moment().startOf('day');
+
+        if ("@ItemType" == "PKG") {
+            min_date = min_date.add(5, 'days').toDate();
+            if (wed_date < min_date) {
+                var msg = App.L("ウェディング/フォトプラン商品は本日より5日後以降から購入できます。",
+                                "Wedding/Photo plan items are available after 5 days from today.");
+                alert(msg);
+                return false;
+            }
+        } else {
+            min_date = min_date.add(3, 'days').toDate();
+            if (wed_date < min_date) {
+                var msg = App.L("オプション商品は本日より3日後以降から購入できます。",
+                                "Option items are available after 3 days from today.");
+                alert(msg);
+                return false;
+            }
+        }
+
+        var media_info_mot = "";
+        if ("@IsMediaMot" === "True") {
+            media_info_mot = $("#media_info_mot").data("kendoDropDownList").value();
+            if (!media_info_mot) {
+                var msg = App.L("マウントを選択してください。", "Please select Mount.");
+                alert(msg);
+                return false;
+            }
+        }
+
+        var media_info_cov = "";
+        if ("@IsMediaCov" === "True") {
+            media_info_cov = $("#media_info_cov").data("kendoDropDownList").value();
+            if (!media_info_cov) {
+                var msg = App.L("カバーを選択してください。", "Please select Cover.");
+                alert(msg);
+                return false;
+            }
+        }
+
+        var media_info_typ = "";
+        if ("@IsMediaTyp" === "True") {
+            media_info_typ = $("#media_info_typ").data("kendoDropDownList").value();
+            if (!media_info_typ) {
+                var msg = App.L("タイプを選択してください。", "Please select Type.");
+                alert(msg);
+                return false;
+            }
+        }
+
+        App.Utils.ShowLoading();
+
+        var is_reserve = $("#status").val() === "△";
+
+        var strPrm = JSON.stringify({
+            period_id: "@(ViewBag.CurrentSelectItem.period_id)",
+            trf_kind: "@(ViewBag.CurrentSelectItem.trf_kind)",
+            trf_type: "@(ViewBag.CurrentSelectItem.trf_type)",
+            area_cd: "@(area_cd)",
+            trf_cat: "@(ViewBag.CurrentSelectItem.trf_cat)",
+            trf_item_cd: "@(ViewBag.CurrentSelectItem.trf_item_cd)",
+            quantity: quantity,
+            fixed_qty: '@FixedQty',
+            wed_date: kendo.toString(wed_date, "yyyy/MM/dd"),
+            wed_time: $("#wed_time").val(),
+            is_reserve: is_reserve,
+            alb_mount: media_info_mot,
+            alb_cover: media_info_cov,
+            alb_type: media_info_typ
+        });
+
+        var request = $.ajax({
+            url: "@Url.Action("AddCart", "Cart")",
+            type: "POST",
+            data: strPrm,
+            processData: false,
+            contentType: "application/json; charset=utf-8"
+        })
+        .done(function (data) {
+            if (data.Result === "success" && data.Count > 0) {
+                window.location.href = "@(Url.Action("Index", "Cart"))";
+                var centered = $("#centeredNotification").kendoNotification({
+                    stacking: "down",
+                    show: onShow,
+                    button: false
+                }).data("kendoNotification");
+                var msg = App.L("カートに追加されました。", "Item has been added to cart.");
+                centered.show(msg);
+            } else if (data.Result === "error" && data.Message) {
+                alert(data.Message);
+            } else {
+                $("div.head_middle_cart").text("");
+                $("div.head_middle_cart").removeClass("head_middle_cart_count");
+            }
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            alert("Error: " + errorThrown + "\n\n");
+        })
+        .always(function () {
+            App.Utils.HideLoading(true);
+        });
+    }
+
+    function selectChurchDate(wed_date) {
+        $("div.clsSelectWedDate").text(App.L("【挙式希望日】 ", "【Wedding Date】 ") + wed_date);
+        var link_text = App.L("　日付を変更する", " Change date");
+
+        $('<a />', {
+            id: 'changeWedDate',
+            onclick: 'displayWedDateSelectTable();',
+            text: link_text
+        }).appendTo($("div.clsSelectWedDate"));
+
+        $("div.clsSelectWedDate").show();
+        $("#tblSelectWedDate").hide();
+
+        var dataSource = new kendo.data.DataSource({
+            transport: {
+                read: {
+                    url: "@(Url.Action("GetChurchAvailList"))",
+                    dataType: "json",
+                    data: function () {
+                        return {
+                            trf_kind: "@(ViewBag.CurrentSelectItem.trf_kind)",
+                            trf_type: "@(ViewBag.CurrentSelectItem.trf_type)",
+                            area_cd: "@(area_cd)",
+                            trf_cat: "@(ViewBag.CurrentSelectItem.trf_cat)",
+                            trf_item_cd: "@TrfItemCd",
+                            wed_date: wed_date
+                        };
+                    }
+                }
+            }
+        });
+
+        var listview = $("#lvChurchAvail").kendoListView({
+            dataSource: dataSource,
+            template: kendo.template($("#param-template").html())
+        });
+        $("#lvChurchAvail").show();
+        var date = kendo.parseDate(wed_date, "yyyy/MM/dd");
+        $("#datepicker").data("kendoDatePicker").value(date);
+
+    }
+
+    //日付を変更するリンククリック
+    function displayWedDateSelectTable() {
+        $("#tblSelectWedDate").show();
+        $("div.clsSelectWedDate").hide();
+        $("div.clsSelectWedTime").hide();
+        $("#lvChurchAvail").hide();
+        $("div.formAreaBtn").hide();
+        $("div.note").show();
+    }
+
+    //挙式PKGの時間が指定された時
+    function selectTime(wed_day, start_time, status) {
+        $("div.clsSelectWedTime").text(App.L("【希望開始時間】 ", "[Wedding Time] ") + start_time);
+        var link_text = App.L("　開始時間を変更する", " Change time");
+
+        $('<a />', {
+            id: 'changeWedTime',
+            onclick: 'displayWedTimeSelectTable();',
+            text: link_text
+        }).appendTo($("div.clsSelectWedTime"));
+
+        $("div.clsSelectWedTime").show();
+        $("#lvChurchAvail").hide();
+        $("div.formAreaBtn").show();
+        $("div.note").hide();
+        $("#wed_time").val(start_time);
+        $("#status").val(status);
+        var date = kendo.parseDate(wed_day, "yyyy/MM/dd");
+        $("#datepicker").data("kendoDatePicker").value(date);
+    }
+
+    //開始時間を変更するリンククリック
+    function displayWedTimeSelectTable() {
+        $("div.clsSelectWedTime").hide();
+        $("#lvChurchAvail").show();
+        $("div.formAreaBtn").hide();
+        $("div.note").show();
+    }
+
+</script>
+
+<style scoped>
+    /* ListView */
+    #lvChurchAvail {
+        border-style: none;
+    }
+
+    .time_avail {
+        float: left;
+        position: relative;
+        /*width: 70px;
+        height: 35px;*/
+        margin: 0;
+        padding: 0;
+    }
+
+        .time_avail p {
+            visibility: hidden;
+        }
+
+    .start_time {
+        border-top: 1px solid rgba(0,0,0,0.2);
+        border-right: 1px solid rgba(0,0,0,0.2);
+        border-bottom: 1px solid rgba(0,0,0,0.2);
+        background-color: #ffd800;
+        text-align: center;
+        color: #ffffff;
+        padding: 2px 2px 2px 2px;
+        /*font-weight: bold;
+        font-size: 14px;*/
+    }
+
+    .status {
+        border-right: 1px solid rgba(0,0,0,0.2);
+        border-left: 1px solid rgba(0,0,0,0.2);
+        border-bottom: 1px solid rgba(0,0,0,0.2);
+        text-align: center;
+        background-color: #fff;
+        /*font-size: 14px;*/
+    }
+</style>

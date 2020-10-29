@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Vendor Confirmation";
+}
+
+@section head{
+    <link href="@Url.Content("~/Areas/Reports/Content/MgmReport.css")" rel="stylesheet" type="text/css" />
+}
+<div class="app_wrapper">
+    <h3>@ViewBag.Title</h3>
+    <div id="app">
+        <div class="search clearfix">
+            Date From
+            <input id="txtSearchDateFrom"
+                   type="text"
+                   class="form-control input-sm todate"
+                   style="width:95px;"
+                   data-role="datepicker"
+                   data-bind="value: search.date_from" />
+
+            To
+            <input id="txtSearchDateTo"
+                   type="text"
+                   class="form-control input-sm todate"
+                   style="width:95px;"
+                   data-role="datepicker"
+                   data-bind="value: search.date_to" />
+            <button id="refresh" type="button" class="btn btn-default search-button">
+                Refresh
+            </button>
+        </div>
+        <div class="k-content" style="width: 500px;">
+            <div id="grd"
+                 data-role="grid"
+                 data-bind="source: list"
+                 data-selectable="true"
+                 data-sortable="true"
+                 data-resizable="true"
+                 data-scrollable="true"
+                 data-height="560"
+                 data-columns="[{field: 'vendor_cd', title: 'VendorCd', width: 100}, {field: 'count', title: 'Count', width: 60, attributes: ' class=\'col_numeric\''}, {field: 'vendor_cd', title: ' ', width: 60, template: '<a data-repcd=\'#=vendor_cd#\' class=\'btn btn-default \' data-bind=\'click:preview\' ><span>Preview<\/span><\/a>'}]">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section scripts {
+    <script src='@Url.Content("~/Scripts/require.min.js")' data-main='@Url.Content("~/Areas/Reports/Scripts/VendorConfirmationListView")'></script>
+}
+

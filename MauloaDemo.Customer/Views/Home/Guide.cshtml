@@ -1,0 +1,113 @@
+﻿@section head {
+    <link href="@Url.Content("~/Content/guide.css")" rel="stylesheet" type="text/css" />
+}
+@{
+    ViewBag.Title = Lang.L("ご利用ガイド", "For First Time Users");
+}
+
+<div class="itemBlockIndex">
+    @if (Lang.isJPN()) {
+        <h1>ご利用ガイド</h1>
+        
+        <h2>1. お支払について</h2>
+        <p>お支払いには以下のクレジットカード（一括払い）をご利用頂けます。</p>
+        <ul>
+            <li>VISA</li>
+            <li>Mastercard</li>
+        </ul>
+
+
+        <h2>2. クレジットカード情報のセキュリティについて</h2>
+        <p class="lastItem">
+            WATABE.COMはSSL（セキュリティ・ソケット・レイヤー）と呼ばれる、暗号化通信を採用しております。
+            お客様のクレジットカード情報・個人情報などはSSLプロトコルによりインターネット上で暗号化され送受信されますので、 外部から個人情報を読み取られることはありません。
+            また、WATABE.COMからの入力されたクレジットカード情報をWATABE.COMが保有することはありません。　安心して、WATABE.COMをご利用ください。
+        </p>
+        
+        <h2>3. お申込みから、ご成約、催行当日までの流れ</h2>
+        <ul class="listOrd01">
+            <li> <strong>Step 1</strong> WEBでお申込み＆クレジットカードで簡単決済 </li>
+            <li> <strong>Step 2</strong> 購入後の返信メールをチェック
+                <p>
+                    ご不明な点があればメール記載のアドレス又は問い合わせフォーマットにてお問い合わせください。
+                    直接お申込みエリアより返信させていただきますのでお時間がかかる場合がございますので予めご了承ください。
+                </p>
+            </li>
+            <li> <strong>Step 3</strong> 申込み内容の確認＆必要項目の入力
+                <p>
+                    返信メールに記載されている必要項目は期日までに『My Wedding』(お客様の購入履歴、お客様情報の確認画面）よりご入力ください。（例：出発日、フライト、宿泊ホテル情報等）
+                </p>
+            </li>
+            <li> <strong>Step 4</strong> 2週間前にリマインドメールが届きます
+                <p>必要項目が未入力の場合は必ず入力をお願いいたします。</p>
+            </li>
+            <li> <strong>Step 5</strong> 催行エリアよりスケジュール等の情報が『My Wedding』に情報更新
+                <p>お客様の必要項目が入力されますと、現地到着後のスケジュール等が設定されます。出発前までに手配確認書画面をご確認いただき、タブレット等へ保存、または印刷をして現地へお持ちください。
+                   手配確認書にはお申込みの商品、現地でのスケジュール、注意事項等の記載がありますので必ず内容をご確認ください。
+                </p>
+            </li> 
+            <li> <strong>Step 6</strong> 催行場所ワタベウェディングサロンにて事前打ち合わせ
+            </li>
+            <li> <strong>Step 7</strong> 催行日当日
+                <p>撮影をお楽しみくださいませ。</p>
+            </li>
+        </ul>
+    } else {
+        <h1><span>For First Time Users</span></h1>
+        
+        <h2>1. Payment Information</h2>
+        <p>The following credit cards can be used as payment:</p>
+        
+        <ul>
+            <li>VISA</li>
+            <li>Mastercard</li>
+        </ul>
+
+        <h2>2. About Internet communication security</h2>
+        <p class="lastItem">
+            WATABE.COM uses Secure Socket Layer (SSL) encryption so that your credit card information and account information are protected during Internet communication.
+            WATABE.COM will never store your credit card information.　We understand how important account security is to you.
+        </p>
+        
+        <h2>3. Ordering Process (From Placing your order, to Confirmation, to the Event Date)</h2>
+        <ul class="listOrd01">
+            <li>
+                <strong>Step 1</strong> Order through the website, and conveniently complete payment with your credit card.
+            </li>
+            <li>
+                <strong>Step 2</strong> Check for your Confirmation Email of your order.
+                <p>
+                    If you have any questions or concerns regarding your order, please contact us through the email address link in the Confirmation Email, 
+                    or use our "Contact Us" Form. A representative from the local branch will reply to you, so please anticipate some time delay.
+                </p>
+            </li>
+            <li>
+                <strong>Step 3</strong> Confirm your order, and complete all the necessary information.
+                <p>
+                    Please fill out all required information (such as Departure Date, Flight Information, Hotel Information, etc.) stated in the Confirmation Email before your event date, 
+                    by logging on to the "My Wedding" page (click on the "My Wedding" button at the top of webpage, to see your information and order history).
+                </p>
+            </li>
+            <li>
+                <strong>Step 4</strong> A Reminder Email will be sent 2 weeks before your event date.
+                <p>If you have not yet filled out all the required information, please do so immediately.</p>
+            </li>
+            <li>
+                <strong>Step 5</strong> Any new information (such as Scheduling) will be updated on the "My Wedding" page, from the designated local branch.
+                <p>
+                    Once all the required information has been entered, a schedule will be created, for after your arrival. 
+                    Please confirm all arrangements by clicking on the "Confirmation Letter" button, prior to your departure, and please print the Page to bring with you. 
+                    The "Confirmation Letter" will contain your order list, the schedule at your designated area, and any precautionary statements, 
+                    so please read it carefully.
+                </p>
+            </li>
+            <li>
+                <strong>Step 6</strong> Briefing at the Watabe Wedding Salon in your designated local branch, prior to the event.
+            </li>
+            <li>
+                <strong>Step 7</strong> Day of your event.
+                <p>Enjoy your photo shooting!</p>
+            </li>
+        </ul>
+    }
+</div>

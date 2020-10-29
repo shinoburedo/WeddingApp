@@ -1,0 +1,241 @@
+﻿<div id="editWindow"
+     data-role="window"
+     data-visible="false"
+     data-modal="true"
+     data-min-width="680"
+     data-width="940"
+     data-min-height="600"
+     data-height="660"
+     style="display:none;">
+
+    <style scoped>
+        #editDiv {
+            width: 100%;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 98%;
+        }
+
+        .buttons {
+            width: 95%;
+            margin: 10px;
+            padding: 8px;
+            /*border-radius: 4px;
+            background-color:#eee;
+            border: solid 1px #ccc;*/
+            text-align: center;
+        }
+
+        #reportEditGrid {
+            min-width: 540px;
+            width: 100%;
+            margin-top: 8px;
+        }
+
+            #reportEditGrid .k-button.k-button-icontext.k-grid-edit, #reportEditGrid .k-button.k-button-icontext.k-grid-delete {
+                width: 28px;
+                min-width: 12px;
+                max-height: 25px;
+                overflow: hidden;
+                padding: 2px 8px 2px 8px;
+            }
+
+        #reportEditClose {
+            margin-left: 40px;
+        }
+    </style>
+
+    <div id="editDiv">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="" class="col-sm-3 control-label">Seq#</label>
+                <div class="col-sm-2">
+                    <input type="text" data-bind="value: mgmReport.rep_seq" maxlength="5" 
+                           class="form-control input-sm k-input k-textbox tohankaku" />
+                </div>
+                <label for="" class="col-sm-3 control-label">Menu</label>
+                <div class="col-sm-3">
+                    <input data-role="dropdownlist" type="text" 
+                           data-value-primitive="true"
+                           data-bind="value: mgmReport.menu_cd, source: menuCdList" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="" class="col-sm-3 control-label">Code</label>
+                <div class="col-sm-3">
+                    <input type="text" data-bind="value: mgmReport.rep_cd, enabled: isRepCdEditable" 
+                           maxlength="20" 
+                           class="form-control input-sm k-input k-textbox tohankaku toupper" />
+                </div>
+                <label for="" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-7">
+                    <input type="text" data-bind="value: mgmReport.rep_name" maxlength="50" 
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="" class="col-sm-3 control-label">Stored Proc</label>
+                <div class="col-sm-11">
+                    <input id="txtRepSp" type="text"
+                           data-role="autocomplete"
+                           data-min-length="4"
+                           data-bind="value: mgmReport.rep_sp, source:storedProcList"
+                           maxlength="30" style="width:260px;" />
+                    <a href="#" id="btnGetParams">Reload params</a>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="" class="col-sm-3 control-label">Description</label>
+                <div class="col-sm-12">
+                    <textarea data-bind="value: mgmReport.description" 
+                            maxlength="200" 
+                            class="form-control input-sm k-input k-textbox "
+                            style="height:40px;min-height: 30px;"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="" class="col-sm-3 control-label">Output Type</label>
+                <div class="col-sm-1">
+                    <select data-role="dropdownlist"
+                            data-value-field="value"
+                            data-text-field="text"
+                            data-value-primitive="true"
+                            data-bind="value: mgmReport.output_type, source:outputTypeList"
+                            style="width:80px;"></select>
+                </div>
+                <label for="" class="col-sm-4 control-label">Output Filename</label>
+                <div class="col-sm-4">
+                    <input type="text" data-bind="value: mgmReport.output_name" maxlength="50" 
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="" class="col-sm-3 control-label">Excel Template</label>
+                <div class="col-sm-5">
+                    <input type="text" data-bind="value: mgmReport.excel_name, enabled: isExcel" 
+                            maxlength="50" 
+                            class="form-control input-sm k-input k-textbox" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="" class="col-sm-3 control-label">Excel Sheet #</label>
+                <div class="col-sm-1">
+                    <input type="text" data-bind="value: mgmReport.sheet_num, enabled: isExcel" 
+                           class="form-control input-sm k-input k-textbox" />
+                </div>
+                <label for="" class="col-sm-off-2 col-sm-3 control-label">Start Position</label>
+                <div class="col-sm-1">
+                    <input type="text" data-bind="value: mgmReport.start_pos, enabled: isExcel" 
+                           maxlength="5" 
+                           class="form-control input-sm k-input k-textbox toupper" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="" class="col-sm-3 control-label">Column Header</label>
+                <div class="col-sm-1">
+                    <input type="checkbox" data-bind="checked: mgmReport.write_header" />
+                </div>
+                <label for="" class="col-sm-3 control-label">Hidden</label>
+                <div class="col-sm-1">
+                    <input type="checkbox" data-bind="checked: mgmReport.hidden" />
+                </div>
+            </div>
+
+            <div id="reportEditGrid"
+                 data-role="grid"
+                 data-toolbar="[{name:'new', text:'Create New'}, {name:'copy', text:'Copy'}]"
+                 data-bind="source: mgmReport.Params"
+                 data-editable="{mode: 'incell', createAt:'bottom'}"
+                 data-selectable="true"
+                 data-sortable="true"
+                 data-resizable="true"
+                 data-scrollable="true"
+                 data-height="290"
+                 data-columns="[{field: 'param_seq', title: '#', width: 50}, {field: 'param_name', title: 'name', width: 110}, {field: 'param_type', title: 'Type', width:60, editor: paramTypeEditor }, {field: 'caption', title: 'Caption', width:100}, {field: 'prefix', title: 'Prefix', width:40}, {field: 'suffix', title: 'Suffix', width:40}, {field: 'break_after', title: 'Break', width:40, template: '<input type=\'checkbox\' data-bind=\'checked: break_after\' \/>' }, {field: 'field_length', title: 'Length', width:40}, {field: 'decimal_length', title: 'Decimal', width:40}, {field: 'required', title: 'Required', width:40, template: '<input type=\'checkbox\' data-bind=\'checked: required\' \/>'}, {field: 'default_value', title: 'Default', width:80, editor: defaultValueEditor}, {field: 'list_cd', title: 'List', width:100, editor: listCdEditor}, {command:[ {name:'destroy', text:''}], title: ' ', width:40}]">
+            </div>
+
+            <div class="buttons">
+                <input id="reportEditSave" type="button" value="Save" data-bind="click:onSave" class="btn btn-primary" style="width:100px;" />
+                <input id="reportEditClose" type="button" value="Close" data-bind="click: onClose" class="btn btn-default" />
+            </div>
+        </form>
+    </div> @* End of editDiv *@
+</div> @* End of editWindow *@
+
+<script>
+    function paramTypeEditor(container, options) {
+        var input = $("<input/>");
+        input.attr("name", options.field);
+        input.appendTo(container);
+        input.kendoComboBox({
+            dataSource: [
+                "text"
+              //, "number"
+              , "date"
+              , "check"
+              , "combo"
+              , "radio"
+              , "hidden"
+            ]
+        });
+        input.data("kendoComboBox").list.width("80");
+    }
+
+    function defaultValueEditor(container, options) {
+        var input = $("<input/>");
+        input.attr("name", options.field);
+        input.appendTo(container);
+        input.kendoComboBox({
+            dataSource: [
+                "$Today"
+              , "$Yesterday"
+              , "$Tomorrow"
+              , "$StartOfMonth"
+              , "$EndOfMonth"
+              , "$StartOfLastMonth"
+              , "$EndOfLastMonth"
+              , "$WeekAgo"
+              , "$MonthAgo"
+              , "$YearAgo"
+              , "$WeekLater"
+              , "$MonthLater"
+              , "$YearLater"
+              , "$AddDays(0)"
+              , "$AddMonths(0)"
+              , "$AddYears(0)"
+              , "$UserId"
+              , "$UserArea"
+              //, "$DefaultArea"
+            ]
+        });
+        input.data("kendoComboBox").list.width("200");
+    }
+
+    function listCdEditor(container, options) {
+        var input = $("<input/>");
+        input.attr("name", options.field);
+        input.appendTo(container);
+        input.kendoComboBox({
+            dataSource: new kendo.data.DataSource({
+                transport: {
+                    read: {
+                        url: App.getApiPath("MgmReport/GetComboLists"),
+                        dataType: "json"
+                    }
+                }
+            })
+        });
+        input.data("kendoComboBox").list.width("200");
+    }
+</script>
+
+
+

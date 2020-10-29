@@ -1,0 +1,100 @@
+﻿@{
+    Layout = null;
+}
+<div class="schedule-dialog-content">
+
+    <style scoped>
+        td[role='gridcell'] {
+            font-size:86%;
+        }
+
+        .bottom-buttons {
+            clear: both;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        #grd .k-button.k-button-icontext.k-grid-edit, #grd .k-button.k-button-icontext.k-grid-delete {
+            width: 28px;
+            min-width: 12px;
+            max-height: 25px;
+            overflow: hidden;
+            padding: 2px 8px 2px 8px;
+        }
+
+        .k-list .k-item dt {
+            width: 120px;
+        }
+    </style>
+
+    <script type="text/template" id="patternTemplate">
+        <dl><dd>${ data.description }</dd></dl>
+    </script>
+
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="txtPattern" class="col-sm-3 control-label">Schedule Pattern</label>
+            <div class="col-sm-4">
+                <select id="txtPattern"
+                        class="form-control input-sm"
+                        style="width:95%;"
+                        data-role="combobox"
+                        data-value-primitive="true"
+                        data-value-field="sch_pattern_id"
+                        data-text-field="description"
+                        data-height="300"
+                        data-bind="value: sch_pattern_id, source: patternList, events: {change: recreateData}"
+                        data-template="patternTemplate"></select>
+            </div>
+
+            @*<div class="col-sm-offset-1 col-sm-2">
+                <button type="button" 
+                        class="btn btn-default " 
+                        data-bind="text: recreateButtonValue, click: recreateData, enabled: recreateButtonEnabled">Erase All and Re-Create</button>
+            </div>*@
+        </div>
+    </form>
+
+    <div id="grdPhrase"
+        data-role="grid"
+        data-auto-bind="true"
+        data-bind="source: phrases"
+        data-toolbar="[{name:'create', text:'Create New'}]"
+        data-editable="{mode: 'incell', createAt:'bottom'}"
+        data-sortable="false"
+        data-resizable="true"
+        data-selectable="true"
+        data-scrollable="true"
+        data-groupable="false"
+        data-navigatable="false"
+        data-columns="[  {field: 'date', title: 'Date', width: 80, format: '{0:M/d}' }, {field: 'time', title: 'Time', width: 60 }, {field: 'place', title: 'Place (日本語)', editor: App.data.schedulePhraseViewModel.placeEditor }, {field: 'title', title: 'Title (日本語)' }, {field: 'description', title: 'Description (日本語)' }, {field: 'place_eng', title: 'Place (English)', editor: App.data.schedulePhraseViewModel.placeEngEditor }, {field: 'title_eng', title: 'Title (English)' }, {field: 'description_eng', title: 'Description (English)' }, {field: 'deleted', title: 'Deleted', width: 50, template: '<input type=\'checkbox\' data-bind=\'checked: deleted\' \/>', attributes: ' class=\'centered\'' } ]"
+        style="height:380px;">
+    </div>
+
+    <div id="grdNote"
+        data-role="grid"
+        data-auto-bind="true"
+        data-bind="source: notes"
+        data-toolbar="[{name:'create', text:'Create New'}]"
+        data-editable="{mode: 'incell', createAt:'bottom'}"
+        data-sortable="false"
+        data-resizable="true"
+        data-selectable="true"
+        data-scrollable="true"
+        data-groupable="false"
+        data-navigatable="false"
+        data-columns="[  {field: 'template_cd', title: 'Template', editor: App.data.schedulePhraseViewModel.templateCdEditor, width: 120 }, {field: 'title_jpn', title: 'Title (日本語)', width: 140 }, {field: 'note_jpn', title: 'Note (日本語)' }, {field: 'title_eng', title: 'Title (English)', width: 140 }, {field: 'note_eng', title: 'Note (English)' }, {field: 'deleted', title: 'Deleted', width: 50, template: '<input type=\'checkbox\' data-bind=\'checked: deleted\' \/>', attributes: ' class=\'centered\'' } ]"
+        style="height:400px;">
+    </div>
+
+    <div class="bottom-buttons">
+        <input type="button" value=" Save " 
+                class="btn btn-danger" style="width:160px;margin-right:100px;" 
+                data-bind="events: {click: saveData}" />
+        <input type="button" value="Close"
+                class="btn btn-default" style="width:100px; margin-left: 100px;"
+                data-bind="events: {click: closeWindow}" />
+    </div>
+    
+</div>
+

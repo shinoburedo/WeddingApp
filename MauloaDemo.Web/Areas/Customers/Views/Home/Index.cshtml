@@ -1,0 +1,101 @@
+﻿@using MauloaDemo.Models
+@using MauloaDemo.Models.Combined
+
+@model MauloaDemo.Repository.CustomerRepository.SearchParams
+@{
+    ViewBag.Title = "Search";
+    LoginUser loginUser = ViewBag.CurrentLoginUser;
+}
+
+<style scoped>
+    section h3, section h4 {
+        color: #333;
+    }
+
+    input.custnum, 
+    input.custnum:hover, 
+    input.custname,
+    input.custname:hover {
+        font-weight: bold;
+        color: red;
+    }
+
+    .search-button {
+        width: 95%;
+    }
+
+    #grd {
+        height: 600px;
+        background-color: #ffe;
+        border: solid 1px #888;
+    }
+
+    .text-small {
+        font-size: small;
+    }
+
+    .action-new {
+        color: #36f;
+        /*font-weight:normal;*/
+    }
+
+    .status-changed {
+        color: orange;
+        /*font-weight:normal;*/
+    }
+
+    .status-confirmed {
+        color: #00D;
+        font-weight:bold;
+    }
+
+    .status-dropped {
+        color: red;
+        font-weight:bold;
+    }
+</style>
+
+<div id="app">
+    <div class="panel panel-default clearfix">
+        <div class="panel-body">
+            <ul class="nav nav-tabs nav-tabs-plans">
+                <li id="tabChanges" class="active"><a href="#panChanges" data-toggle="tab">CHANGES</a></li>
+@if (loginUser.IsStaff()) {
+                <li id="tabOrders"><a href="#panOrders" data-toggle="tab">ORDERS</a></li>
+}
+                <li id="tabCustomers"><a href="#panCustomers" data-toggle="tab">CUSTOMERS</a></li>
+@if (loginUser.IsStaff()) {
+                <li id="tabDuplicateCheck"><a href="#panDuplicateCheck" data-toggle="tab">DUPLICATE CHECK</a></li>
+}
+            </ul>
+
+            <div class="tab-content">
+                @Html.Partial("Index_ChangesPartial")
+
+                @if (loginUser.IsStaff()) {
+                    @Html.Partial("Index_OrdersPartial")
+                }
+
+                @Html.Partial("Index_CustomersPartial")
+
+                @if (loginUser.IsStaff()) {
+                    @Html.Partial("Index_DuplicatesPartial")
+                }
+            </div>
+        </div>
+    </div>
+
+    <script type="text/template" id="itemCdComboTemplate">
+        <dl>
+            <dt style="width:22%;">${ data.item_cd }</dt>
+            <dd style="width:76%;">${ App.L(data.item_name_jpn, data.item_name) }</dd>
+        </dl>
+    </script>
+
+</div>
+
+@section scripts{
+    <script src="@Url.Content("~/Scripts/require.min.js")"
+            data-main="@Url.Content("~/Scripts/App/customer_search")"></script>
+}
+

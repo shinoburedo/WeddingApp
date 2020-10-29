@@ -1,0 +1,134 @@
+@charset "UTF-8";
+/*****************************************************
+File Name: step4.css
+Style Info: 個別設定
+*****************************************************/
+/*====================================================
+メインビジュアル
+====================================================*/
+#mainVisual{
+	width: 100%;
+	height: 0px;
+	min-height: 0px;
+	text-align: center;
+	display: table;
+	background:url(../img/visual_sub_02.jpg) no-repeat center center;
+	background-size:100%;
+	background-position: center 70%;
+}
+.mainSection{
+	display: table-cell;
+    text-align: center;
+	vertical-align: middle;
+}
+
+/*====================================================
+processArea
+====================================================*/
+.processArea{
+	margin-top:20px;
+}
+.processArea ul{
+	display: table;
+	font-size:14px;
+	line-height:42px;
+	height:40px;
+	text-align: center;
+	margin: 0 auto;
+	background:url(../img/bg_step4.png) no-repeat center center;
+}
+.processArea li{
+	display: table-cell;
+    vertical-align: middle;
+    width:300px;
+	position: relative;
+}
+.processArea li img{
+	vertical-align: middle;
+	margin-right:20px;
+}
+
+/*====================================================
+#contents
+====================================================*/
+#contents{
+	width: 100%;
+	min-width: 100%;
+    overflow: hidden;
+	margin:0 auto;
+	padding:0 0 100px;
+	background: #fff;
+}
+#appRoot{
+	width:1260px;
+	padding:0 80px;
+	margin:0 auto;
+	font-size:14px;
+	line-height: 1.5;
+}
+
+/*テーブル*/
+.weddingPlanArea{
+	margin-top:5px;
+	font-size: 16px;
+}
+.weddingPlanArea th,
+.weddingPlanArea td{
+	border:none;
+}
+.weddingPlanDetail{
+	margin-top:10px;
+}
+.weddingPlanDetail strong{
+	font-size: 16px;
+	display: block;
+}
+.weddingPlanDetail .tdPicture.th_header {
+    padding: 0;
+    border-right: none !important;
+    width: 10%;
+}
+.weddingPlanDetail .tdDescription.th_header{
+    width: 40%;
+}
+.weddingPlanDetail .th_header {
+    background-color: #d4d4d4;
+    width: 10%;
+    font-weight: bold;
+}
+.weddingPlanDetail .tdPicture{
+	padding:0;
+}
+.weddingPlanDetail .checkRadio_wrap input[type=checkbox] + label {
+    padding:0px;
+}
+/* テキスト */
+.textBtnArea{
+	margin-top:60px;
+}
+#contents .btnList{
+	display: table;
+    margin:60px auto 0;
+}
+#contents .btnList li{
+	display: table-cell;
+}
+#contents .btnList li + li{
+	padding-left:10px;
+}
+#contents .btnList li a{
+	display: block;
+	background: #d4d4d4;
+	color:#000;
+	text-align: center;
+	width:150px;
+	margin:0 auto;
+	line-height: 44px;
+	border-radius: 5px;
+    font-size: 14px;
+    text-decoration: none;
+}
+#contents .btnList #btnCheckOut{
+	background: #000;
+	color:#fff;
+}

@@ -1,0 +1,169 @@
+﻿section h3, section h4 {
+    color: #44A;
+}
+
+.panel {
+    margin-bottom: 4px;
+}
+
+.section-customer header {
+    height: 40px;
+}
+
+.section-plans header, .section-options header {
+    height: 24px;
+}
+
+    .section-customer header h4, .section-plans header h4, .section-options header h4 {
+        margin-top: 4px;
+    }
+
+.customer-number {
+    margin-top: 16px;
+    width: 300px;
+}
+
+label.staff_note {
+    color:red;
+}
+
+.save-button {
+    width: 90%;
+}
+
+
+.customer-wedinfo {
+    margin:0;
+    padding:2px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+    .customer-wedinfo.has_wed_date {
+        background-color: #fbfc98;
+    }
+
+    .customer-wedinfo.has_wed_date input {
+        color: #00E !important;
+        font-weight: bold !important;
+    }
+
+.customer-wedinfo .k-textbox {
+    margin:0;
+    padding-left:0;
+    padding-right:0;
+    text-indent: 3px;
+}
+
+
+.button-report {
+    width: 90%;
+    margin-left: 0px;
+    margin-bottom: 4px;
+}
+    
+.nav-tabs-customer li {
+    width: 116px;
+}
+
+.options-header {
+    width: 140px;
+}
+
+.nav-tabs-plans li {
+    width: 22%;
+}
+
+.section-plans .tab-pane {
+    min-height: 300px;
+}
+
+.plan-add {
+    width: 70px;
+}
+    
+.plan-search {
+    width: 70px;
+}
+    
+div[data-role='grid'] {
+    /*height: 200px;*/
+    background-color: #eee;
+    border: solid 1px #888;
+}
+
+.buttons-option {
+    text-align:center;
+    padding: 6px 20px 2px 20px;
+}
+
+#btnAddOption {
+    width: 160px;
+}
+
+#grdOptions {
+    margin-top:8px;
+}
+
+
+#panAddress .toolbar, #panCostume .toolbar {
+    margin-bottom:8px;
+}
+
+#panAddress table td, #panCostume table td {
+    white-space: nowrap;
+}
+
+
+
+.schedule-dialog .loading {
+    width:300px;
+    height: 300px;
+    margin: auto;
+    padding-top:200px;
+    color: #444;
+    text-align:center;
+}
+
+.created_by {
+    color: #888;
+    font-size: 86%;
+}
+
+
+/* RQ(Q) */
+.status-rq {
+    color: #4af;
+    background-color: #fef328;
+}
+
+/* OK(K) */
+.status-ok {
+    color: #444;
+    background-color: white;
+}
+
+/* NG(N) */
+.status-ng {
+    color: #aaa;
+    background-color: #666;
+}
+
+/* CXLRQ(X) */
+.status-cxlrq {
+    color: red;
+    background-color: pink;
+}
+
+/* CXL(C) */
+.status-cxl {
+    color: red;
+    background-color: lightgray;
+}
+
+.note-readonly {
+    font-size:small;
+    color: #888 !important;
+    background-color: aliceblue !important;
+    cursor:pointer !important;
+}

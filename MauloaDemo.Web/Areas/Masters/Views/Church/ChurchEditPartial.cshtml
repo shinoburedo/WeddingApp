@@ -1,0 +1,208 @@
+﻿<style scoped>
+    #editDiv {
+        width: 100% !important;
+    }
+</style>
+
+<div id="editWindow"
+     data-role="window"
+     data-visible="false"
+     data-modal="true"
+     data-min-width="600"
+     data-width="700"
+     data-min-height="710"
+     data-height="710"
+     style="display:none;">
+
+    <div id="editDiv">
+        <form class="form-horizontal" data-role="validator">
+            <div class="form-group">
+                <label for="church_cd" class="col-sm-4 control-label required">Code</label>
+                <div class="col-sm-2">
+                    <input name="church_cd" type="text" data-bind="value: model.church_cd, enabled: isCodeEditable"
+                           maxlength="5" required
+                           class="form-control input-sm k-input k-textbox toupper tohankaku" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="church_name" class="col-sm-4 control-label">Name Eng</label>
+                <div class="col-sm-9">
+                    <input name="church_name" type="text" data-bind="value: model.church_name" maxlength="100" 
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="church_name_jpn" class="col-sm-4 control-label">Name Jpn</label>
+                <div class="col-sm-9">
+                    <input name="church_name_jpn" type="text" data-bind="value: model.church_name_jpn" maxlength="100"
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="plan_kind" class="col-sm-4 control-label">Plan Kind</label>
+                <div class="col-sm-1">
+                    <input name="plan_kind" type="text" data-bind="value: model.plan_kind" maxlength="1"
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+                <label for="abbrev_jpn" class="col-sm-2 control-label">Abbrev Jpn</label>
+                <div class="col-sm-1">
+                    <input name="abbrev_jpn" type="text" data-bind="value: model.abbrev_jpn" maxlength="10"
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="area_cd" class="col-sm-4 control-label">Area</label>
+                <div class="col-sm-4">
+                    <input name="area_cd" type="text" data-bind="value: model.area_cd" 
+                           class="form-control input-sm select-area" />
+                </div>
+                <label for="exclusive" class="col-sm-2 control-label">Exclusive</label>
+                <div class="col-sm-1">
+                    <input name="exclusive" type="checkbox" data-bind="checked: model.exclusive" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="release_days" class="col-sm-4 control-label">Release Days</label>
+                <div class="col-sm-2">
+                    <input name="release_days" type="number" data-bind="value: model.release_days"
+                           class="form-control input-sm k-input k-textbox numeric" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="op_address1" class="col-sm-4 control-label">OP Address 1</label>
+                <div class="col-sm-9">
+                    <input name="op_address1" type="text" data-bind="value: model.op_address1" maxlength="100"
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="op_address2" class="col-sm-4 control-label">2</label>
+                <div class="col-sm-9">
+                    <input name="op_address2" type="text" data-bind="value: model.op_address2" maxlength="100"
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="op_address3" class="col-sm-4 control-label">3</label>
+                <div class="col-sm-9">
+                    <input name="op_address3" type="text" data-bind="value: model.op_address3" maxlength="100"
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="op_address4" class="col-sm-4 control-label">4</label>
+                <div class="col-sm-9">
+                    <input name="op_address4" type="text" data-bind="value: model.op_address4" maxlength="100"
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="op_tel" class="col-sm-4 control-label">OP Phone</label>
+                <div class="col-sm-3">
+                    <input name="op_tel" type="text" data-bind="value: model.op_tel" maxlength="100" 
+                           class="form-control input-sm k-input k-textbox tohankaku " />
+                </div>
+                <label for="op_fax" class="col-sm-2 control-label">Fax</label>
+                <div class="col-sm-3">
+                    <input name="op_fax" type="text" data-bind="value: model.op_fax" maxlength="100" 
+                           class="form-control input-sm k-input k-textbox tohankaku " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ac_address1" class="col-sm-4 control-label">AC Address 1</label>
+                <div class="col-sm-9">
+                    <input name="ac_address1" type="text" data-bind="value: model.ac_address1" maxlength="100"
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ac_address2" class="col-sm-4 control-label">2</label>
+                <div class="col-sm-9">
+                    <input name="ac_address2" type="text" data-bind="value: model.ac_address2" maxlength="100"
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ac_address3" class="col-sm-4 control-label">3</label>
+                <div class="col-sm-9">
+                    <input name="ac_address3" type="text" data-bind="value: model.ac_address3" maxlength="100"
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ac_address4" class="col-sm-4 control-label">4</label>
+                <div class="col-sm-9">
+                    <input name="ac_address4" type="text" data-bind="value: model.ac_address4" maxlength="100"
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ac_tel" class="col-sm-4 control-label">AC Phone</label>
+                <div class="col-sm-3">
+                    <input name="ac_tel" type="text" data-bind="value: model.ac_tel" maxlength="100"
+                           class="form-control input-sm k-input k-textbox tohankaku " />
+                </div>
+                <label for="ac_fax" class="col-sm-2 control-label">Fax</label>
+                <div class="col-sm-3">
+                    <input name="ac_fax" type="text" data-bind="value: model.ac_fax" maxlength="100"
+                           class="form-control input-sm k-input k-textbox tohankaku " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="note" class="col-sm-4 control-label">Note</label>
+                <div class="col-sm-11">
+                    <input name="note" type="text" data-bind="value: model.note"
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="discon_date" class="col-sm-4 control-label">Discon Date</label>
+                <div class="col-sm-3">
+                    <input name="discon_date" type="text" 
+                           style="width:100px;" maxlength="10"
+                           data-role="datepicker"
+                           data-bind="value: model.discon_date" 
+                           class="form-control input-sm tohankaku " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="disp_seq" class="col-sm-4 control-label">Disp SEQ</label>
+                <div class="col-sm-2">
+                    <input name="disp_seq" type="number" data-bind="value: model.disp_seq"
+                           class="form-control input-sm k-input k-textbox numeric" />
+                </div>
+                <label for="default_pickup" class="col-sm-4 control-label">Default Pickup</label>
+                <div class="col-sm-2">
+                    <input name="default_pickup" type="number" data-bind="value: model.default_pickup"
+                           class="form-control input-sm k-input k-textbox numeric" />
+                </div>
+            </div>
+
+            @* Saveボタン、Closeボタン *@
+            <div class="buttons">
+                <input id="btnEditSave" type="button" value="Save" data-bind="click:onSave" class="btn btn-primary btn-save" />
+                <input id="btnEditClose" type="button" value="Close" data-bind="click: onClose" class="btn btn-default btn-close" />
+            </div>
+        </form>
+    </div>
+
+</div> @* End of editWindow *@
+

@@ -1,0 +1,61 @@
+﻿<style scoped>
+    #editDiv {
+        width: 100% !important;
+    }
+</style>
+
+<div id="editWindow"
+     data-role="window"
+     data-visible="false"
+     data-modal="true"
+     data-min-width="600"
+     data-width="650"
+     data-min-height="200"
+     data-height="230"
+     style="display:none;">
+
+    <div id="editDiv">
+        <form class="form-horizontal" data-role="validator">
+
+            <div class="form-group">
+                <label for="place_name" class="col-sm-2 control-label required">Name Jpn</label>
+                <div class="col-sm-12">
+                    <input name="place_name" type="text" data-bind="value: model.place_name" maxlength="50"
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="place_name_eng" class="col-sm-2 control-label">Name Eng</label>
+                <div class="col-sm-12">
+                    <input name="place_name_eng" type="text" data-bind="value: model.place_name_eng" maxlength="50"
+                           class="form-control input-sm k-input k-textbox " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="area_cd" class="col-sm-2 control-label">Hotel Cd</label>
+                <div class="col-sm-4">
+                    <input name="hotel_cd" type="text" data-bind="value: model.hotel_cd"
+                           class="form-control input-sm select-hotel " />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="place_order" class="col-sm-2 control-label">Place Order</label>
+                <div class="col-sm-2">
+                    <input name="place_order" type="number" data-bind="value: model.place_order"
+                           class="form-control input-sm k-input k-textbox numeric" />
+                </div>
+            </div>
+
+            @* Saveボタン、Closeボタン *@
+            <div class="buttons">
+                <input id="btnEditSave" type="button" value="Save" data-bind="click:onSave" class="btn btn-primary btn-save" />
+                <input id="btnEditClose" type="button" value="Close" data-bind="click: onClose" class="btn btn-default btn-close" />
+            </div>
+        </form>
+    </div>
+
+</div> @* End of editWindow *@
+

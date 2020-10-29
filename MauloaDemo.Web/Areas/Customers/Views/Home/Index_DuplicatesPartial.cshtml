@@ -1,0 +1,92 @@
+﻿@* Duplicate Check Tab *@
+<div class="tab-pane clearfix" id="panDuplicateCheck">
+    @using (Html.BeginForm("Index", "Home", new { area = "Customers" }, FormMethod.Post,
+        new { @id = "frmSearchDuplicateCheck", role = "form", @class = "form-horizontal" })) {
+
+        <div class="form-group">
+
+            <div class="col-sm-offset-1 col-sm-9" style="text-align:right">
+                <input type="checkbox"
+                        id="includeDupCheckDone"
+                        data-bind="checked: include_dup_check_done, events:{ change: DoSearchDuplicateCheck} ">
+                <label for="includeDupCheckDone" style="cursor:pointer;">Include Duplicate Check Done</label>
+            </div>
+
+            <div class="col-sm-offset-1 col-sm-2">
+                <button type="button" class="btn btn-primary search-button"
+                        data-bind="events:{ click: DoSearchDuplicateCheck}">
+                    Search
+                </button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-7">
+            </div>
+
+            <div class="col-sm-offset-4 col-sm-2">
+                <span data-bind="text: countDuplicateCheck"></span> records found.
+            </div>
+
+            <div class="col-sm-offset-2 col-sm-1">
+                <button type="button"
+                        class="btn btn-default"
+                        data-bind="events:{ click: onSaveChkDone}">
+                    Save
+                </button>
+            </div>
+        </div>
+
+    }
+
+    <div id="grdDuplicateCheck"
+            data-role="grid"
+            data-auto-bind="true"
+            data-bind="source: listDuplicateCheck"
+            data-sortable="true"
+            data-resizable="true"
+            data-selectable="true"
+            data-scrollable="true"
+            data-groupable="false"
+            data-navigatable="false"
+            data-pageable="{ pageSize: 50, pageSizes: [10, 25, 50, 100], refresh: true }"
+            data-height="600"
+            data-columns="[ {field: 'c_num', title: 'Cust #', width: 60 }
+                        , {field: 'wed_time', title: 'Wed Date/Time', width: 120 }
+                        , {field: 'cust_name', title: 'Customer Name' }
+                        , {field: 'sub_agent_cd', title: 'Agent', width: 80 }
+                        , {field: 'church_cd', title: 'Church', width: 70 }
+                        , {field: 'create_date', title: 'Created', width: 120}
+                        , {field: 'update_date', title: 'Updated', width: 120}
+                        , {field: 'dup_check_done', title:'Done', width:90, headerTemplate:kendo.template($('#template_done_header').html()) }
+                    ]"
+            data-row-template="tpl_duplicates_row">
+    </div>
+
+    <script id="tpl_duplicates_row" type="text/k-kendo-tmpl">
+            <tr data-uid="#: uid #">
+                <td ><a href="home/edit/#: c_num #" target="_blank">#: c_num #</a></td>
+                <td>#: wed_time ? kendo.toString(wed_time, App.Config.DateFormat) + ' ' + wed_date_s : '' #</td>
+                <td class="text-small">#: cust_name #</td>
+                <td >#: sub_agent_cd || '' #</td>
+                <td >#: church_cd || '' #</td>
+                <td >#: kendo.toString(create_date, App.Config.DateFormat + ' ' + App.Config.TimeFormat) #</td>
+                <td >#: kendo.toString(update_date, App.Config.DateFormat + ' ' + App.Config.TimeFormat) #</td>
+                <td class="centered"><input type="checkbox" data-bind="checked:dup_check_done, events: { change: onChangeDupCheckDone }"></td>
+            </tr>
+    </script>
+
+    <script id="template_done_header" type="text/x-kendo-tmpl">
+        <span>Done</span>
+        <div>
+            <button type="button" class="btn_done_check_on" style="font-size: xx-small;">On</button>
+            <button type="button" class="btn_done_check_off" style="font-size: xx-small;">Off</button>
+        </div>
+    </script>
+
+    @*<script id="template_done" type="text/x-kendo-tmpl">
+        <input type="checkbox" checked="checked"
+                data-bind="checked: dup_check_done, events: { change: onChangeDupCheckDone }" />
+    </script>*@
+</div>
+

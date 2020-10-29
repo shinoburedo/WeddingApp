@@ -1,0 +1,138 @@
+﻿@charset "UTF-8";
+/*****************************************************
+File Name: step2.css
+Style Info: 個別設定
+*****************************************************/
+/*====================================================
+メインビジュアル
+====================================================*/
+#mainVisual{
+	width: 100%;
+	height: 20px;
+	min-height: 200px;
+	text-align: center;
+	display: table;
+	background:url(../img/visual_sub_02.jpg) no-repeat center center;
+	background-size:100%;
+	background-position: center 70%;
+}
+.mainSection{
+	display: table-cell;
+    text-align: center;
+	vertical-align: middle;
+}
+
+/*====================================================
+processArea
+====================================================*/
+.processArea{
+	margin-top:10px;
+}
+.processArea ul{
+	display: table;
+	border:solid 4px #fff;
+	font-size:14px;
+	line-height:42px;
+	height:40px;
+	text-align: center;
+	margin: 0 auto;
+	background:url(../img/bg_step1.png) repeat center center;
+}
+.processArea li{
+	display: table-cell;
+    vertical-align: middle;
+    width:400px;
+	position: relative;
+}
+.processArea li img{
+	vertical-align: middle;
+	margin-right:10px;
+}
+
+/*====================================================
+#contents
+====================================================*/
+/*#contents{
+	width: 100%;
+	min-width: 100%;
+    overflow: hidden;
+	margin:0 auto;
+	padding:0 0 100px;
+	background: #fff;
+}*/
+#contents .itemBlockArea:after{
+	content:"";
+	display: block;
+	overflow: hidden;
+	clear: both;
+}
+#contents .itemBlockArea{
+	width: 100%;
+	padding:0 0px;
+	margin:0 auto;
+}
+#contents .itemBlockArea + .itemBlockArea{
+	margin-top:0px;
+}
+#contents .itemBlockIndex{
+	float:left;
+	margin-right:30px;
+	margin-top:30px;
+}
+#contents .itemBlockIndex .thumbArea{
+	width:280px;
+	height:150px;
+	overflow: hidden;
+	position: relative;
+
+}
+#contents .itemBlockIndex .thumbArea:hover figcaption{
+	top:0;
+}
+#contents .itemBlockIndex .thumbArea figcaption{
+	width:280px;
+	height:150px;
+	background-color: rgba(0,0,0,0.5);
+	position: absolute;
+	top:100%;
+	padding:10px;
+    -webkit-transition: 0.4s ease-in-out;
+    -moz-transition: 0.4s ease-in-out;
+    -ms-transition: 0.4s ease-in-out;
+    -o-transition: 0.4s ease-in-out;
+    transition: 0.4s ease-in-out;
+}
+#contents .itemBlockIndex .thumbArea a:hover{
+	opacity: 1;
+}
+#contents .itemBlockIndex .thumbArea figcaption p{
+	color:#fff!important;
+	margin-top:20px;
+	font-size:12px;
+	line-height: 2;
+}
+#contents .itemBlockIndex:nth-child(3n){
+	margin-right:0px;
+}
+#contents .itemBlockIndex .txtArea h2{
+	position: relative;
+	display: inline-block;
+	padding-right:25px;
+	margin-top:15px;
+}
+#contents .itemBlockIndex .txtArea h2 a{
+	font-size:16px;
+	line-height: 1;
+	color:#000;
+	text-decoration: none;
+}
+#contents .itemBlockIndex .txtArea h2:after{
+	content:"";
+	background:#FFF url(../img/arrow_01.png) repeat center center;
+	width:15px;
+	height:15px;
+	display: block;
+	position: absolute;
+	top:0;
+	right: 0;
+}

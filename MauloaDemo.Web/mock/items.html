@@ -1,0 +1,648 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="keywords" content="Mauloa" />
+<meta name="description" content="Mauloa" />
+<title>Mauloa</title>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
+<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
+<link rel="shortcut icon" href="./favicon.ico" />
+<link href="./common/css/normalize.css" rel="stylesheet" type="text/css" media="all" charset="utf-8" />
+<link href="./common/css/common.css" rel="stylesheet" type="text/css" media="all" charset="utf-8" />
+<link href="./common/css/step3.css" rel="stylesheet" type="text/css" media="all" charset="utf-8" />
+<link href="./common/css/jquery.bxslider.css" rel="stylesheet" type="text/css" media="all" charset="utf-8" />
+<link rel="stylesheet" href="./common/css/jquery-ui.css" >
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
+<script type="text/javascript" src="./common/js/common.js"></script>
+<script type="text/javascript" src="./common/js/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="./common/js/jquery.colorbox-min.js"></script>
+<script type="text/javascript" src="./common/js/jquery.zoom.js"></script>
+<script>
+  $(function() {
+      $("#datepicker").datepicker();
+      $("#datepicker").datepicker("option", "showOn", 'both');
+      $("#datepicker").datepicker("option", "buttonImageOnly", true);
+      $("#datepicker").datepicker("option", "buttonImage", 'common/img/icon_calendar.png');
+
+      $("img[id^='detail']").css("display", "none");
+      $("#detail1").toggle();
+
+      $("div[class='detailBlock']").css("display", "none");
+
+      $("span[id^='ex']").zoom();
+      $('.aaa').on('click', function () {
+          $(this).parents(".itemBlockArea").find(".detailBlock").toggle();
+          $(this).css("display", "none");
+          return false;
+      });
+      $('.close').on('click', function () {
+          $(this).parents(".detailBlock").css("display", "none");
+          $(this).parents(".itemBlockArea").find(".aaa").toggle();
+          return false;
+      });
+  });
+
+  function changeMediumPicture(that) {
+      $("img[id^='detail']").css("display", "none");
+      $("#detail" + that).toggle();
+  }
+
+  function cart() {
+      var x = (screen.width - 300) / 2;
+      var y = (screen.height - 200) / 2;
+      window.open("detail.html", "Mauloa", "width=300,height=200,scrollbars=yes"+ ",top=" + y + ",left=" + x);
+
+  }
+
+</script>
+</head>
+<body>
+
+<a name="top" id="top"></a>
+
+    <div id="ContentWrapper">
+
+        <div id="header">
+            <!--    <p class="logo"><a href="/"><img src="common/img/Watabe Wedding header_logo.png" alt="その日は消えないMauloa WEDDING Mauloa"/></a></p>-->
+            <p class="logo"><a href="/"><img src="common/img/header_logo2.png" width="190" alt="Mauloa" /></a></p>
+            <div class="headerContentList">
+                <ul>
+                    <li><div class="head_top_camp"><a href="login.html"><span>ログイン/新規登録</span></a></div></li>
+                    <li><div class="head_top_camp"><a href="myWedding.html"><span>My Page</span></a></div></li>
+                </ul>
+                <ul>
+                    <li><div class="head_top_camp"><a href="cart.html"><span>カート</span></a></div></li>
+                    <li><div id="help" data-role="tooltip"><a id="a_help"><span>ご利用ガイド</span></a></div></li>
+                </ul>
+            </div><!-- headerContentList -->
+        </div><!-- header -->
+
+        <div id="container">
+
+            <div id="sidebarL">
+                <div id="calendarArea">
+                    <div class="calendarBox">
+                        <span>ご希望日</span>
+                        <input type="text" id="datepicker" />
+                    </div>
+                </div>
+                <ul style="margin-bottom:20px;">
+                    <!--<li>
+                <span>ご希望日</span>
+                <input type="text" id="datepicker" />
+            </li>-->
+                    <li>
+                        <a href="#"><span>ウェディングプラン</span></a>
+                        <ul>
+                            <li><a href="#">ウェディングプラン</a></li>
+                            <li><a href="#">フォトプラン</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><span>オプション</span></a>
+                        <ul>
+                            <li><a href="#">パーティ</a></li>
+                            <li><a href="#">送迎車</a></li>
+                            <li><a href="#">フラワー</a></li>
+                            <li><a href="#">ビューティ</a></li>
+                            <li><a href="#">アルバム</a></li>
+                            <li><a href="#">DVD</a></li>
+                            <li><a href="#">現地レンタルドレス</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div id="calendarArea">
+                    <a href="login.html"><span>ログイン/新規登録</span></a>
+                </div>
+                <div id="calendarArea">
+                    <a href="myWedding.html"><span>My Page</span></a>
+                </div>
+                <div id="calendarArea">
+                    <a href="cart.html"><span>カート</span></a>
+                </div>
+                <div id="calendarArea">
+                    <a id="a_help"><span>ご利用ガイド</span></a>
+                </div>
+            </div>
+
+            <div id="contents">
+
+                <div class="itemBlockArea">
+                    <div class="titleBlock">
+
+                        <div class="itemNameArea">
+                            <h2><span>商品名</span></h2>
+                        </div>
+
+                        <div class="photoArea">
+                            <a class="ajax afade">
+                                <img src="common/img/H1V2_1_M.jpg" id="detail1" alt="" width="180" />
+                            </a>
+                            <img src="common/img/H1V2_1_S.jpg" id="detailL1" alt="" />
+                            <a href="common/img/H1V2_2_L.JPG" class="ajax afade">
+                                <img src="common/img/H1V2_2_M.jpg" id="detail2" alt="" width="180" />
+                            </a>
+                            <img src="common/img/H1V2_2_S.jpg" id="detailL2" alt="" />
+                            <a href="common/img/H1V2_3_L.JPG" class="ajax afade">
+                                <img src="common/img/H1V2_3_M.jpg" id="detail3" alt="" width="180" />
+                            </a>
+                            <img src="common/img/H1V2_3_S.jpg" id="detailL3" alt="" />
+                            <a href="common/img/H1V2_4_L.JPG" class="ajax afade">
+                                <img src="common/img/H1V2_4_M.jpg" id="detail4" alt="" width="180" />
+                            </a>
+                            <img src="common/img/H1V2_4_S.jpg" id="detailL4" alt="" />
+                            <a href="common/img/H1V2_5_L.JPG" class="ajax afade">
+                                <img src="common/img/H1V2_5_M.jpg" id="detail5" alt="" width="180" />
+                            </a>
+                            <img src="common/img/H1V2_5_S.jpg" id="detailL5" alt="" />
+                            <a href="common/img/H1V2_6_L.JPG" class="ajax afade">
+                                <img src="common/img/H1V2_6_M.jpg" id="detail6" alt="" width="180" />
+                            </a>
+                            <img src="common/img/H1V2_6_S.jpg" id="detailL6" alt="" />
+                        </div><!-- /photoArea -->
+                        <div class="smallphotoArea">
+                            <ul>
+                                <li>
+                                    <a onmouseover="changeMediumPicture(1)" class="afade">
+                                        <img src="common/img/H1V2_1_S.jpg" alt="1" width="55" />
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a onmouseover="changeMediumPicture(2)" class="afade">
+                                        <img src="common/img/H1V2_2_S.jpg" alt="2" width="55" />
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a onmouseover="changeMediumPicture(3)" class="afade">
+                                        <img src="common/img/H1V2_3_S.jpg" alt="3" width="55" />
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a onmouseover="changeMediumPicture(4)" class="afade">
+                                        <img src="common/img/H1V2_4_S.jpg" alt="4" width="55" />
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a onmouseover="changeMediumPicture(5)" class="afade">
+                                        <img src="common/img/H1V2_5_S.jpg" alt="5" width="55" />
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a onmouseover="changeMediumPicture(6)" class="afade">
+                                        <img src="common/img/H1V2_6_S.jpg" alt="6" width="55" />
+
+                                    </a>
+                                </li>
+                            </ul>
+                        </div><!-- /photoArea -->
+
+                        <div class="txtArea">
+                            <p>商品説明－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。</p>
+
+                            <div class="priceArea">
+                                <p><span>$2,000</span></p>
+                            </div><!-- /priceArea -->
+
+                            <div class="boxTypeA">
+                                <div class="selectArea">
+
+                                    <div class="wrap">
+                                        <div class="btnBack"><a class="btn btn-lg btn-default" onclick="cart();">カートに入れる</a></div>
+                                    </div>
+                                    <div class="linkDetail">
+                                        <p><a class="aaa">詳細をみる</a></p>
+                                    </div><!-- /priceArea -->
+                                </div><!-- /selectArea -->
+                            </div><!-- /boxTypeA -->
+                        </div><!-- /txtArea -->
+
+                    </div><!-- titleBlock end -->
+                    <div class="detailBlock">
+                        <div class="detailBlockOption">
+                            <dl>
+                                <dt class="tabProduct_jpn">商品詳細</dt>
+                                <dd>
+                                    商品詳細－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。<br />
+                                    商品詳細２－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。
+                                </dd>
+                            </dl>
+                            <dl class="tabPlan_jpn">
+                                <dt>プラン詳細</dt>
+                                <dd>
+                                    プラン詳細－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。<br />
+                                    プラン詳細２－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。
+                                </dd>
+                            </dl>
+                            <dl class="tabReview_jpn">
+                                <dt>レビュー</dt>
+                                <dd>
+                                    2015/01/01　○○<br />
+                                    レビュー－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。
+                                </dd>
+                                <dd>
+                                    2016/01/01　○○<br />
+                                    レビュー２－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。
+                                </dd>
+                            </dl>
+                            <!--     <dl class="youtubeArea">
+                <dd>
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/ReZ6BNW_k0M" frameborder="0" allowfullscreen></iframe>
+                </dd>
+              </dl>
+        -->
+                        </div>
+
+                        <div class="linkDetail">
+                            <p><a class="close">閉じる</a></p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="itemBlockArea">
+                    <div class="titleBlock">
+
+                        <div class="itemNameArea">
+                            <h2><span>商品名</span></h2>
+                        </div>
+
+                        <div class="photoArea">
+                            <a class="ajax afade">
+                                <img src="common/img/H1V2_1_M.jpg" alt="" width="180" />
+                            </a>
+                        </div><!-- /photoArea -->
+                        <div class="smallphotoArea">
+                            <ul>
+                                <li>
+                                    <a class="afade">
+                                        <img src="common/img/H1V2_1_S.jpg" alt="1" width="55" />
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a  class="afade">
+                                        <img src="common/img/H1V2_2_S.jpg" alt="2" width="55" />
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="afade">
+                                        <img src="common/img/H1V2_3_S.jpg" alt="3" width="55" />
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="afade">
+                                        <img src="common/img/H1V2_4_S.jpg" alt="4" width="55" />
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="afade">
+                                        <img src="common/img/H1V2_5_S.jpg" alt="5" width="55" />
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="afade">
+                                        <img src="common/img/H1V2_6_S.jpg" alt="6" width="55" />
+
+                                    </a>
+                                </li>
+                            </ul>
+                        </div><!-- /photoArea -->
+
+                        <div class="txtArea">
+                            <p>商品説明－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。</p>
+
+                            <div class="priceArea">
+                                <p><span>$2,000</span></p>
+                            </div><!-- /priceArea -->
+
+                            <div class="boxTypeA">
+                                <div class="selectArea">
+
+                                    <div class="wrap">
+                                        <div class="btnBack"><a class="btn btn-lg btn-default" onclick="cart();">カートに入れる</a></div>
+                                    </div>
+                                    <div class="linkDetail">
+                                        <p><a class="aaa">詳細をみる</a></p>
+                                    </div><!-- /priceArea -->
+                                </div><!-- /selectArea -->
+                            </div><!-- /boxTypeA -->
+                        </div><!-- /txtArea -->
+
+                    </div><!-- titleBlock end -->
+                    <div class="detailBlock">
+                        <div class="detailBlockOption">
+                            <dl>
+                                <dt class="tabProduct_jpn">商品詳細</dt>
+                                <dd>
+                                    商品詳細－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。<br />
+                                    商品詳細２－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。
+                                </dd>
+                            </dl>
+                            <dl class="tabPlan_jpn">
+                                <dt>プラン詳細</dt>
+                                <dd>
+                                    プラン詳細－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。<br />
+                                    プラン詳細２－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。
+                                </dd>
+                            </dl>
+                            <dl class="tabReview_jpn">
+                                <dt>レビュー</dt>
+                                <dd>
+                                    2015/01/01　○○<br />
+                                    レビュー－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。
+                                </dd>
+                                <dd>
+                                    2016/01/01　○○<br />
+                                    レビュー２－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。
+                                </dd>
+                            </dl>
+                            <!--     <dl class="youtubeArea">
+                        <dd>
+                          <iframe width="560" height="315" src="https://www.youtube.com/embed/ReZ6BNW_k0M" frameborder="0" allowfullscreen></iframe>
+                        </dd>
+                      </dl>
+                -->
+                        </div>
+
+                        <div class="linkDetail">
+                            <p><a class="close">閉じる</a></p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="itemBlockArea">
+                    <div class="titleBlock">
+
+                        <div class="itemNameArea">
+                            <h2><span>商品名</span></h2>
+                        </div>
+
+                        <div class="photoArea">
+                            <a class="ajax afade">
+                                <img src="common/img/H1V2_1_M.jpg" alt="" width="180" />
+                            </a>
+                        </div><!-- /photoArea -->
+                        <div class="smallphotoArea">
+                            <ul>
+                                <li>
+                                    <a class="afade">
+                                        <img src="common/img/H1V2_1_S.jpg" alt="1" width="55" />
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="afade">
+                                        <img src="common/img/H1V2_2_S.jpg" alt="2" width="55" />
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="afade">
+                                        <img src="common/img/H1V2_3_S.jpg" alt="3" width="55" />
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="afade">
+                                        <img src="common/img/H1V2_4_S.jpg" alt="4" width="55" />
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="afade">
+                                        <img src="common/img/H1V2_5_S.jpg" alt="5" width="55" />
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="afade">
+                                        <img src="common/img/H1V2_6_S.jpg" alt="6" width="55" />
+
+                                    </a>
+                                </li>
+                            </ul>
+                        </div><!-- /photoArea -->
+
+                        <div class="txtArea">
+                            <p>商品説明－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。</p>
+
+                            <div class="priceArea">
+                                <p><span>$2,000</span></p>
+                            </div><!-- /priceArea -->
+
+                            <div class="boxTypeA">
+                                <div class="selectArea">
+
+                                    <div class="wrap">
+                                        <div class="btnBack"><a class="btn btn-lg btn-default" onclick="cart();">カートに入れる</a></div>
+                                    </div>
+                                    <div class="linkDetail">
+                                        <p><a class="aaa">詳細をみる</a></p>
+                                    </div><!-- /priceArea -->
+                                </div><!-- /selectArea -->
+                            </div><!-- /boxTypeA -->
+                        </div><!-- /txtArea -->
+
+                    </div><!-- titleBlock end -->
+                    <div class="detailBlock">
+                        <div class="detailBlockOption">
+                            <dl>
+                                <dt class="tabProduct_jpn">商品詳細</dt>
+                                <dd>
+                                    商品詳細－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。<br />
+                                    商品詳細２－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。
+                                </dd>
+                            </dl>
+                            <dl class="tabPlan_jpn">
+                                <dt>プラン詳細</dt>
+                                <dd>
+                                    プラン詳細－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。<br />
+                                    プラン詳細２－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。
+                                </dd>
+                            </dl>
+                            <dl class="tabReview_jpn">
+                                <dt>レビュー</dt>
+                                <dd>
+                                    2015/01/01　○○<br />
+                                    レビュー－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。
+                                </dd>
+                                <dd>
+                                    2016/01/01　○○<br />
+                                    レビュー２－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。
+                                </dd>
+                            </dl>
+                            <!--     <dl class="youtubeArea">
+                        <dd>
+                          <iframe width="560" height="315" src="https://www.youtube.com/embed/ReZ6BNW_k0M" frameborder="0" allowfullscreen></iframe>
+                        </dd>
+                      </dl>
+                -->
+                        </div>
+
+                        <div class="linkDetail">
+                            <p><a class="close">閉じる</a></p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="itemBlockArea">
+                    <div class="titleBlock">
+
+                        <div class="itemNameArea">
+                            <h2><span>商品名</span></h2>
+                        </div>
+
+                        <div class="photoArea">
+                            <a class="ajax afade">
+                                <img src="common/img/H1V2_1_M.jpg" alt="" width="180" />
+                            </a>
+                        </div><!-- /photoArea -->
+                        <div class="smallphotoArea">
+                            <ul>
+                                <li>
+                                    <a class="afade">
+                                        <img src="common/img/H1V2_1_S.jpg" alt="1" width="55" />
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="afade">
+                                        <img src="common/img/H1V2_2_S.jpg" alt="2" width="55" />
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="afade">
+                                        <img src="common/img/H1V2_3_S.jpg" alt="3" width="55" />
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="afade">
+                                        <img src="common/img/H1V2_4_S.jpg" alt="4" width="55" />
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="afade">
+                                        <img src="common/img/H1V2_5_S.jpg" alt="5" width="55" />
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="afade">
+                                        <img src="common/img/H1V2_6_S.jpg" alt="6" width="55" />
+
+                                    </a>
+                                </li>
+                            </ul>
+                        </div><!-- /photoArea -->
+
+                        <div class="txtArea">
+                            <p>商品説明－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。</p>
+
+                            <div class="priceArea">
+                                <p><span>$2,000</span></p>
+                            </div><!-- /priceArea -->
+
+                            <div class="boxTypeA">
+                                <div class="selectArea">
+
+                                    <div class="wrap">
+                                        <div class="btnBack"><a class="btn btn-lg btn-default" onclick="cart();">カートに入れる</a></div>
+                                    </div>
+                                    <div class="linkDetail">
+                                        <p><a class="aaa">詳細をみる</a></p>
+                                    </div><!-- /priceArea -->
+                                </div><!-- /selectArea -->
+                            </div><!-- /boxTypeA -->
+                        </div><!-- /txtArea -->
+
+                    </div><!-- titleBlock end -->
+                    <div class="detailBlock">
+                        <div class="detailBlockOption">
+                            <dl>
+                                <dt class="tabProduct_jpn">商品詳細</dt>
+                                <dd>
+                                    商品詳細－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。<br />
+                                    商品詳細２－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。
+                                </dd>
+                            </dl>
+                            <dl class="tabPlan_jpn">
+                                <dt>プラン詳細</dt>
+                                <dd>
+                                    プラン詳細－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。<br />
+                                    プラン詳細２－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。
+                                </dd>
+                            </dl>
+                            <dl class="tabReview_jpn">
+                                <dt>レビュー</dt>
+                                <dd>
+                                    2015/01/01　○○<br />
+                                    レビュー－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。
+                                </dd>
+                                <dd>
+                                    2016/01/01　○○<br />
+                                    レビュー２－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－。
+                                </dd>
+                            </dl>
+                            <!--     <dl class="youtubeArea">
+                        <dd>
+                          <iframe width="560" height="315" src="https://www.youtube.com/embed/ReZ6BNW_k0M" frameborder="0" allowfullscreen></iframe>
+                        </dd>
+                      </dl>
+                -->
+                        </div>
+
+                        <div class="linkDetail">
+                            <p><a class="close">閉じる</a></p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div><!-- contents -->
+        </div>
+
+
+                <div id="footer">
+                    <ul id="footer_link">
+                        <li><a target="_blank" href="">会社概要</a></li>
+                        <li><a target="_blank" href="">ご利用ガイド</a></li>
+                        <li><a target="_blank" href="">サイト利用規約</a></li>
+                        <li><a target="_blank" href="">プライバシー規定</a></li>
+                        <li><a target="_blank" href="">ご注意事項</a></li>
+                        <li>
+                            <a href="/home/faq/">よくある質問</a>
+                        </li>
+                        <li>
+                            <a href="/home/contact/">お問合せ</a>
+                        </li>
+                    </ul>
+                    <div class="flogo"><a href="/"><img src="common/img/header_logo1.png" alt="Mauloa" /></a></div>
+                    <div class="copyright">Copyright(C) Visual Systems, Inc. All Rights Reserved.</div>
+                </div><!-- footer -->
+
+            </div><!-- /ContentWrapper -->
+
+        </div>
+
+    </div></body>
+</html>

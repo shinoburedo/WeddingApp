@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "Schedule Pattern";
+}
+
+@section head{
+    <link href="@Url.Content("~/Areas/Masters/Content/masters.css")" rel="stylesheet" type="text/css" />
+}
+
+<div class="app_wrapper">
+    <h3>@ViewBag.Title</h3>
+
+    <div id="app">
+        @* 検索パネル *@
+        <div class="search clearfix">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="" class="col-sm-1 control-label">Type</label>
+                    <div class="col-sm-2">
+                        <input id="cmbItemType"
+                               type="text"
+                               class="form-control input-sm toupper tohankaku"
+                               placeholder=""
+                               maxlength="3"
+                               data-value-field="item_type"
+                               data-text-field="name"
+                               data-role="combobox"
+                               data-source="[{ name: '', item_type: '' },
+                                            { name: 'PHP', item_type: 'PHP' },
+                                            { name: 'PKG', item_type: 'PKG' }]"
+                               data-bind="value: search.item_type" />
+
+                        </div>
+                    <label for="" class="col-sm-1 control-label">Code</label>
+                    <div class="col-sm-2">
+                        <select id="cmbItemCd"
+                                maxlength="15"
+                                class="form-control input-sm toupper tohankaku "
+                                data-height="400"
+                                data-role="combobox"
+                                data-value-field="item_cd"
+                                data-text-field="item_cd"
+                                data-value-primitive="true"
+                                data-bind="value: search.item_cd, source: itemList, events: {change: refreshList }"
+                                data-template="itemCdComboTemplate"></select>
+                        <script type="text/template" id="itemCdComboTemplate">
+                            <dl>
+                                <dt style="width:17%;">${ data.item_cd }</dt>
+                                # if (App.Config.Lang === 'ja'){ #
+                                <dd style="width:74%;">${ data.item_name_jpn }</dd>
+                                # } else { #
+                                <dd style="width:74%;">${ data.item_name }</dd>
+                                # } #
+                            </dl>
+                        </script>
+
+                    </div>
+                    <label for="" class="col-sm-2 control-label">Description</label>
+                    <div class="col-sm-5">
+                        <input type="text" data-bind="value: search.description, events: { change: refreshList }"
+                               class="form-control input-sm k-input k-textbox" />
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        @* 検索結果の一覧グリッド *@
+        <div id="grd"
+             data-role="grid"
+             data-bind="source: list"
+             data-toolbar="[{name:'create', text:'Create New'}, {name:'copy', text:'Copy'}, {name:'destroy', text:'Delete' }, {name: 'refresh', text:'Refresh'}]"
+             data-selectable="true"
+             data-sortable="true"
+             data-resizable="true"
+             data-scrollable="true"
+             data-height="560"
+             data-columns="[  {field: 'description', title: 'Description'}
+                            , {field: 'last_person', title: 'Last person', width:80}
+                            , {field: 'update_date', title: 'Updated', width:160, format: '{0:MM/dd/yyyy HH:mm:ss}' }
+                            , {field: 'sch_pattern_id', title: ' ', width: 60, template: '<a data-key=\'#=sch_pattern_id#\' class=\'btn btn-sm btn-default grid_edit_button\' data-bind=\'click:editItem\'><span class=\'k-icon k-edit\'><\/span><\/a>'}
+                        ]"></div>
+    </div>
+
+    @* 詳細編集ダイアログ *@
+    @Html.Partial("SchedulePatternEditPartial")
+</div>
+
+@section scripts {
+<script src="@Url.Content("~/Scripts/require.min.js")"
+            data-main="@Url.Content("~/Areas/Masters/Scripts/SchedulePatternIndexView")"></script>
+}

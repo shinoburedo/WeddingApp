@@ -1,0 +1,239 @@
+﻿<script id="create_dialog" type="text/x-kendo-template">
+    <div class="create-dialog">
+        <style scoped>
+            td[role='gridcell'] {
+                font-size:86%;
+            }
+
+            #txtEditPlan_listbox.k-list .k-item dt {
+                font-size:90%;
+            }
+
+            #txtEditPlan_listbox.k-list .k-item dd {
+                overflow:hidden;
+                text-wrap:none;
+                font-size:90%;
+            }
+
+            .bottom-buttons {
+                margin-bottom: 14px;
+            }
+
+        </style>
+
+        <form class="form-horizontal" data-role="validator">
+            <div class="form-group">
+
+                <label for="txtEditSubAgent" class="w-1 control-label">Agent</label>
+                <div class="w-2">
+                    <input type="text" id="txtEditSubAgent" 
+                           maxlength="6"
+                           class="form-control input-sm toupper tohankaku select-subagent"
+                           style="width:100px;"
+                           data-bind="value: sub_agent_cd, events: {change: onAgentChurchChanged }" />
+                </div>
+
+                <label for="txtEditPlan" class="w-1 control-label">Plan</label>
+                <div class="w-3">
+                    <select id="txtEditPlan" 
+                            maxlength="15"
+                            class="form-control input-sm toupper tohankaku w100 "
+                            data-role="combobox"
+                            data-value-primitive="true"
+                            data-value-field="item_cd"
+                            data-text-field="item_cd"
+                            data-height="400"
+                            data-bind="value: item_cd, source: planList, events: {change: onPlanChanged}, enabled: isPlanEnabled"
+                            data-template="planComboTemplate"
+                            data-header-template="planComboHeaderTemplate"
+                    ></select>
+                </div>
+
+                <label for="txtEditChurchCd" class="w-1 control-label" data-bind="text:church_label">Church</label>
+                <div class="w-2">
+                    <select id="txtEditChurchCd"
+                            maxlength="5"
+                            placeholder=""
+                            class="form-control input-sm toupper tohankaku"
+                            style="width:100%;"
+                            data-role="combobox"
+                            data-value-primitive="true"
+                            data-value-field="church_cd"
+                            data-text-field="church_cd"
+                            data-height="300"
+                            data-bind="value: church_cd, events: {change: onAgentChurchChanged }, enabled: isChurchEnabled"
+                            data-template="churchComboTemplate"></select>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="txtPlanName" class="w-1 control-label"></label>
+                <div class="w-10">
+                    <input type="text" id="txtPlanName" readonly class="form-control input-sm k-input k-textbox w100 toupper tohankaku"
+                           data-bind="value: item_name_jpn, visible: isJapan" />
+                    <input type="text" id="txtPlanName" readonly class="form-control input-sm k-input k-textbox w100 toupper tohankaku"
+                           data-bind="value: item_name, invisible: isJapan" />
+                </div>
+            </div>
+
+            @*<h4>Included Items</h4>*@
+            <div id="grdPlanItems"
+                 data-role="grid"
+                 data-auto-bind="true"
+                 data-bind="source: SelectedPlan.PlanItems, events: {dataBound: onPlanItemsDataBound}"
+                 data-sortable="true"
+                 data-resizable="true"
+                 data-selectable="true"
+                 data-scrollable="true"
+                 data-groupable="false"
+                 data-navigatable="false"
+                 data-height="240"
+                 data-columns="[ {field: 'item_type', title: 'Type', width: 50 }
+                    , {field: 'item_cd', title: 'Code', width: 100 }
+                    , {field: 'item_name_jpn', title: 'Name' }
+                    , {field: 'item_name', title: 'Name' }
+                    , {field: 'quantity', title: 'Qty', width: 40, attributes: ' class=\'col_numeric\'', headerAttributes: ' class=\'col_numeric\'' }
+                  ]">
+            </div>
+
+            <div class="form-group">
+                @*<label for="txtEditArea" class="w-1 control-label">Area</label>
+                <div class="w-1">
+                    <input type="text" id="txtEditArea"
+                           maxlength="3"
+                           class="form-control input-sm toupper tohankaku select-area"
+                           style="width:100%;"
+                           data-bind="value: area_cd" />
+                </div>*@
+
+                <label for="txtEditDate" class="w-1 control-label">Date</label>
+                <div class="w-2">
+                    <input type="text" id="txtEditDate"
+                           maxlength="10"
+                           readonly
+                           class="form-control input-sm k-input k-textbox w100 todate"
+                           data-bind="value: date_s" />
+                </div>
+                <label for="txtEditTime" class="w-1 control-label">Time</label>
+                <div class="w-1">
+                    <input type="text" id="txtEditTime"
+                           maxlength="5"
+                           readonly
+                           class="form-control input-sm k-input k-textbox w100 totime"
+                           data-bind="value: time_s" />
+                </div>
+            </div>
+
+            <div class="form-group">&nbsp;</div>
+
+            <div class="form-group">
+                <label for="txtEditGLast" class="w-1 control-label">Groom</label>
+                <div class="w-2">
+                    <input type="text" id="txtEditGLast" name="Lastname"
+                           maxlength="20" required 
+                           placeholder="Lastname"
+                           class="form-control input-sm k-input k-textbox w100 toupper tohankaku"
+                           data-bind="value: g_last" @*data-value-update="keyup"*@ />
+                </div>
+                <div class="w-2">
+                    <input type="text" id="txtEditGFirst"
+                           maxlength="20" 
+                           placeholder="Firstname"
+                           class="form-control input-sm k-input k-textbox w100 toupper tohankaku"
+                           data-bind="value: g_first" />
+                </div>
+                <label for="txtEditGLast" class="w-1 control-label">Bride</label>
+                <div class="w-2">
+                    <input type="text" id="txtEditBLast"
+                           maxlength="20" 
+                           placeholder="Lastname"
+                           class="form-control input-sm k-input k-textbox w100 toupper tohankaku"
+                           data-bind="value: b_last" />
+                </div>
+                <div class="w-2">
+                    <input type="text" id="txtEditBFirst"
+                           maxlength="20" 
+                           placeholder="Firstname"
+                           class="form-control input-sm k-input k-textbox w100 toupper tohankaku"
+                           data-bind="value: b_first" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="w-1 control-label">Staff</label>
+                <div class="w-2">
+                    <input type="text" name="Staff"
+                           maxlength="50" required
+                           class="form-control input-sm k-input k-textbox w100 toupper tohankaku"
+                           data-bind="value: staff" @*data-value-update="keyup"*@ />
+                </div>
+
+                <label class="w-1 control-label" data-bind="visible: isBranchStaffVisible">店舗担当者</label>
+                <div class="w-2">
+                    <input type="text" name="Branch Staff"
+                           maxlength="50"
+                           class="branch_staff form-control input-sm k-input k-textbox w100 toupper tohankaku"
+                           data-bind="value: branch_staff, visible: isBranchStaffVisible" />
+                </div>
+            </div>
+
+            <div class="bottom-buttons">
+                <input type="button" value=" O K "
+                       class="btn btn-primary" style="width:100px;"
+                       data-bind="click: onOkClick, enabled:isOKEnabled" />
+                <input id="btnClose" type="button" value="Close"
+                       class="btn btn-default" style="width:100px; margin-left: 100px;" />
+            </div>
+        </form>
+    </div>
+</script>
+
+<script type="text/template" id="planComboTemplate">
+    <dl>
+      # if (App.User.IsStaff) {#
+        <dt style="width:17%;">${ data.item_cd }</dt>
+        <dd style="width:67%;">${ App.L(data.item_name_jpn, data.item_name) }</dd>
+        <dd style="width:7%;text-align:right;float:right;">$${ data.d_net }</dd>
+        <dd style="width:7%;text-align:right;float:right;">$${ data.gross }</dd>
+      # } else if (App.User.AgentCd === "JTBO") { #
+        <dt style="width:17%;">${ data.item_cd }</dt>
+        <dd style="width:67%;">${ App.L(data.item_name_jpn, data.item_name) }</dd>
+        <dd style="width:7%;text-align:right;float:right;">$${ data.d_net }</dd>
+        <dd style="width:7%;text-align:right;float:right;">$${ data.gross }</dd>
+      # } else { #
+        <dt style="width:17%;">${ data.item_cd }</dt>
+        <dd style="width:74%;">${ App.L(data.item_name_jpn, data.item_name) }</dd>
+        <dd style="width:7%;text-align:right;float:right;">$${ data.d_net }</dd>
+      # } #
+    </dl>
+</script>
+
+<script type="text/template" id="planComboHeaderTemplate">
+    # if (App.User.IsStaff) {#
+        <div class="clearfix">
+            <dl>
+                <dt style="width:17%;"></dt>
+                <dd style="width:67%;"></dd>
+                <dd style="width:7%;text-align:right;float:right;">Net</dd>
+                <dd style="width:7%;text-align:right;float:right;">Gross</dd>
+            </dl>
+        </div>
+    # } else if (App.User.AgentCd === "JTBO"){ #
+        <div class="clearfix">
+            <dl>
+                <dt style="width:17%;"></dt>
+                <dd style="width:67%;"></dd>
+                <dd style="width:7%;text-align:right;float:right;margin-right: 8px;">Net</dd>
+                <dd style="width:7%;text-align:right;float:right;">Gross</dd>
+            </dl>
+        </div>
+    # } #
+</script>
+
+<script type="text/template" id="churchComboTemplate">
+    <dl>
+        <dt style='width:60px;'>${ data.church_cd }</dt>
+        <dd>${ App.L(data.church_name_jpn, data.church_name) }</dd>
+    </dl>
+</script>

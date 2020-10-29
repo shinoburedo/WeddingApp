@@ -1,0 +1,68 @@
+﻿@section head{
+    <link href="@Url.Content("~/Areas/Reports/Content/MgmReport.css")" rel="stylesheet" type="text/css" />
+}
+<div class="dailymovement-dialog">
+
+    <div style="margin-bottom:10px;">
+        <label for="txtWedDate" class="w-2 control-label">Wedding Date</label>
+        <input id="txtWedDate"
+               type="text"
+               class="form-control input-sm todate"
+               style="width:95px;"
+               data-role="datepicker"
+               data-bind="value: search.date_from" />
+    </div>
+    <div style="margin-bottom:10px;">
+        <label for="txtChurch" class="w-2 control-label">Church</label>
+        <input type="text" id="txtChurch"
+                maxlength="5"
+                class="form-control input-sm select-church toupper tohankaku"
+                style="width:90px;"
+                data-bind="value: search.church_cd, enabled: isPhotoPlanAgentEnabled" />
+    </div>
+        <div style="margin-bottom:10px;">
+            <label for="txtAgent" class="w-2 control-label">Agent</label>
+            <input type="text" id="txtAgent"
+                    maxlength="6"
+                    class="form-control input-sm select-agent toupper tohankaku"
+                    style="width:90px;"
+                    data-bind="value: search.agent_cd, enabled: isPhotoPlanAgentEnabled" />
+        </div>
+
+        <div style="text-align:center;">
+            <input type="button" value="Report"
+                   class="btn btn-default" style="width:100px;"
+                   onclick="preview();" />
+            @*<input type="button" value="Close"
+                   class="btn btn-default" style="width:100px; margin-left: 10px;"
+                   onclick="closeDialog();" />*@
+        </div>
+    </div>
+
+<script>
+
+    $(function () {
+        var today = new Date();
+        var wedDate = $("#txtWedDate").data("kendoDatePicker").value(today);
+    })
+
+    function preview() {
+        // 入力チェック
+        var wedDate = $("#txtWedDate").data("kendoDatePicker").value();
+        if (!wedDate) {
+            alert("Must enter valid Wedding Date !");
+            return false;
+        }
+        var url = "Home/PreviewDailyMovement";
+        url += "?wed_date=" + kendo.toString(wedDate, "yyyy/MM/dd");
+        url += "&agent_cd=" + $("#txtAgent").val();
+        url += "&church_cd=" + $("#txtChurch").val();
+        window.open(url, "_blank");
+    }
+
+    //function closeDialog() {
+    //    $(".dailymovement-dialog").parent().data("kendoWindow").close();
+    //}
+
+</script>
+

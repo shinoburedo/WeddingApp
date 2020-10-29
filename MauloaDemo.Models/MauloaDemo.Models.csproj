@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CB262AE1-41A4-47D0-9669-9D0A19002845}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MauloaDemo.Models</RootNamespace>
+    <AssemblyName>MauloaDemo.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=3.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4, Version=3.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="CBAF2013, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\DOTNET\CBAF2013\CBAF2013\bin\Release\CBAF2013.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddressInfo.cs" />
+    <Compile Include="Agent.cs" />
+    <Compile Include="AgentParent.cs" />
+    <Compile Include="BookingStatus.cs" />
+    <Compile Include="Combined\FileInfo.cs" />
+    <Compile Include="Combined\BookingReport.cs" />
+    <Compile Include="Combined\CItem.cs" />
+    <Compile Include="Combined\ItemType.cs" />
+    <Compile Include="Combined\SchedulePattern.cs" />
+    <Compile Include="Combined\ItemGrouping.cs" />
+    <Compile Include="Combined\GridResult.cs" />
+    <Compile Include="Combined\VendorConfirmation.cs" />
+    <Compile Include="Combined\CostumeOrderSheetInfo.cs" />
+    <Compile Include="Combined\ChurchOrderSheetInfo.cs" />
+    <Compile Include="Combined\FinalInfoSheetItem.cs" />
+    <Compile Include="Combined\ScheduleSheetInfo.cs" />
+    <Compile Include="Combined\VendorOrderSheetInfo.cs" />
+    <Compile Include="Helpers\HankakuHelper.cs" />
+    <Compile Include="Helpers\UpperCaseHelper.cs" />
+    <Compile Include="CItem.cs" />
+    <Compile Include="LogAction.cs" />
+    <Compile Include="LogChange.cs" />
+    <Compile Include="LogChangeArchive.cs" />
+    <Compile Include="MgmReport.cs" />
+    <Compile Include="MgmReportComboList.cs" />
+    <Compile Include="MgmReportParam.cs" />
+    <Compile Include="PickupPlace.cs" />
+    <Compile Include="Area.cs" />
+    <Compile Include="Arrangement.cs" />
+    <Compile Include="Calendar.cs" />
+    <Compile Include="Church.cs" />
+    <Compile Include="ChurchBlock.cs" />
+    <Compile Include="ChurchTime.cs" />
+    <Compile Include="Combined\ChurchBlockInfo.cs" />
+    <Compile Include="Combined\CustomerInfo.cs" />
+    <Compile Include="Combined\CustomerListItem.cs" />
+    <Compile Include="Combined\ItemWithPrice.cs" />
+    <Compile Include="Combined\SalesListItem.cs" />
+    <Compile Include="CosInfo.cs" />
+    <Compile Include="Culture.cs" />
+    <Compile Include="Customer.cs" />
+    <Compile Include="DeliveryInfo.cs" />
+    <Compile Include="Holiday.cs" />
+    <Compile Include="Hotel.cs" />
+    <Compile Include="Item.cs" />
+    <Compile Include="ItemCost.cs" />
+    <Compile Include="ItemOption.cs" />
+    <Compile Include="ItemPrice.cs" />
+    <Compile Include="ItemType.cs" />
+    <Compile Include="ItemVendor.cs" />
+    <Compile Include="LoginUser.cs" />
+    <Compile Include="LoginUserToken.cs" />
+    <Compile Include="MakeInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RcpInfo.cs" />
+    <Compile Include="Region.cs" />
+    <Compile Include="Sales.cs" />
+    <Compile Include="Notice.cs" />
+    <Compile Include="SchedulePattern.cs" />
+    <Compile Include="ScheduleNoteTemplate.cs" />
+    <Compile Include="SchedulePatternItem.cs" />
+    <Compile Include="SchedulePatternNote.cs" />
+    <Compile Include="SchedulePatternLine.cs" />
+    <Compile Include="ScheduleNote.cs" />
+    <Compile Include="SchedulePhrase.cs" />
+    <Compile Include="ShootInfo.cs" />
+    <Compile Include="TransInfo.cs" />
+    <Compile Include="Vendor.cs" />
+    <Compile Include="WedInfo.cs" />
+    <Compile Include="CAccount.cs" />
+    <Compile Include="WtAccountTemp.cs" />
+    <Compile Include="CBooking.cs" />
+    <Compile Include="WtBookingError .cs" />
+    <Compile Include="WtEmailHistory.cs" />
+    <Compile Include="WtEmailLimit.cs" />
+    <Compile Include="WtEmailQueue.cs" />
+    <Compile Include="WtEmailTemplate.cs" />
+    <Compile Include="WtPaymentLog.cs" />
+    <Compile Include="WtReview.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

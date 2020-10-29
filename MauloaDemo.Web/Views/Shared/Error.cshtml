@@ -1,0 +1,40 @@
+﻿@model HandleErrorInfo
+@{
+    ViewBag.Title = "Application Error";
+
+    string msg = "";
+    if (Model.Exception != null){
+        msg = Model.Exception.ToString().Replace("\n", "<br />");
+    }
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Sorry, something went wrong in the application.</h3>
+
+<div>
+    <p>URL: @Request.Url</p>
+    <p>Controller: @Model.ControllerName, Action: @Model.ActionName
+    </p>
+
+    <p>Exception: <a id="exceptionHandle" href="#">(Click here to show/hide details)</a><br />
+        <div id="exception" style="display:none;">
+            @Html.Raw( msg )
+        </div>
+    </p>
+</div>
+
+<p>
+    Please <a href="javascript:history.back();">return back to the previous page.</a>
+</p>
+
+@section scripts {
+    <script>
+        $(function() {
+            $("#exceptionHandle").click( function(e) {
+                $("#exception").slideToggle();
+                e.preventDefault();
+            });
+        });
+    </script>
+}

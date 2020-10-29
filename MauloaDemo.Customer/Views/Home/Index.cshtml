@@ -1,0 +1,33 @@
+﻿@section head {
+<link href="@Url.Content("~/common/css/step2.css")" rel="stylesheet" type="text/css" media="all" charset="utf-8" />
+<link rel="stylesheet" href="@Url.Content("~/common/css/jquery-ui.css")" />
+}
+@section scripts {
+<script>
+</script>
+}
+@{
+    ViewBag.Title = "Mauloa";
+}
+
+@Html.Partial("_Header")
+
+<div id="container">
+
+@Html.Action("ItemMenu", "Home")
+
+<div id="contents">
+    <div class="itemBlockArea">
+        <img src="@Url.Content("~/common/img/top_img.png")" style="width:100%;" alt="Mauloa" />
+    </div>
+    <div class="top_title">
+        TOPページ文言
+    </div>
+    <div style="margin-top:10px;line-height:1.5;">
+        サイト説明文ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー。<br>
+        サイト説明文２ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー。
+    </div>
+
+</div>
+
+</div>

@@ -1,0 +1,137 @@
+﻿@using MauloaDemo.Models
+@using MauloaDemo.Models.Combined
+
+@model CustomerInfo
+@{
+    ViewBag.Title = "New Order";
+    CustomerInfo customerInfo = (CustomerInfo)Model;
+    Customer customer = Model.Customer;
+
+    if (!string.IsNullOrEmpty(customer.c_num)) {
+        ViewBag.Title = "#" + customer.c_num;
+    }
+}
+
+@section head {
+    <link href="@Url.Content("~/Areas/Customers/Content/customer_edit.css")?v=20160615" rel="stylesheet" type="text/css" />
+}
+
+<div id="app">
+
+    @using (Html.BeginForm("Save", "Home", new { area = "Customers" }, FormMethod.Post,
+            new { @id = "frmCustomer", role = "form", @class = "form-horizontal", data_role = "validator"})) {
+        
+        <input type="hidden" id="hdnCNum" value="@customer.c_num" />
+
+        @* Customer Section *@
+        <section class="section-customer">
+            <header class="clearfix">
+                <div class="customer-number pull-left">
+                    <h4>
+                        Customer
+                        @if (!string.IsNullOrEmpty(customer.c_num)) {
+                            <text>#@customer.c_num</text>
+                        } else {
+                            <span data-bind="text: CNumText"></span>
+                        }
+                    </h4>
+                </div>
+            </header>
+
+            <div class="panel panel-default clearfix">
+                <div class="panel-body clearfix">
+                    @Html.Partial("CustomerInfoPartial")
+                </div>
+            </div>
+        </section>
+
+        @* Plans Section *@
+        <section class="section-plans">
+            <header class="clearfix">
+                <div class="pull-left">
+                    <h4>Plans and Options</h4>
+                </div>
+            </header>
+            <div class="panel panel-default clearfix">
+                <div class="panel-body">
+                    <ul class="nav nav-tabs nav-tabs-plans">
+                        <li id="tabPhoto" class="active"><a href="#panPhoto" data-toggle="tab">PHOTO PLANS (<span data-bind="text: getPhotoPlansCount"></span>)</a></li>
+                        <li id="tabWedding"><a href="#panWedding" data-toggle="tab">WEDDING PLANS (<span data-bind="text: getWeddingPlansCount"></span>)</a></li>
+                        <li id="tabOption"><a href="#panOption" data-toggle="tab">OPTIONS (<span data-bind="text: getOptionsCount"></span>)</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        @* PHOTO Tab *@
+                        <div class="tab-pane active clearfix" id="panPhoto">
+                            @Html.Partial("PhotoPlansPartial")
+                        </div>
+
+                        @* WEDDING Tab *@
+                        <div class="tab-pane clearfix" id="panWedding">
+                            @Html.Partial("WeddingPlansPartial")
+                        </div>
+
+                        @* OPTIONS Tab *@
+                        <div class="tab-pane clearfix" id="panOption">
+                            @Html.Partial("OptionsPartial")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    }   @* end of form *@
+</div> @* end of #app *@
+
+<div id="AddressInfoDialog"
+     data-role="window"
+     data-modal="true"
+     data-visible="false">
+@Html.Partial("AddressInfoDialog")
+</div>
+
+<div id="CosInfoDialog"
+     data-role="window"
+     data-modal="true"
+     data-visible="false">
+@Html.Partial("CosInfoDialog")
+</div>
+
+<div id="NoteDialog"
+     data-role="window"
+     data-modal="true"
+     data-visible="false">
+    @Html.Partial("NoteDialog")
+</div>
+
+<div id="PlanSearchDialog"
+     data-role="window"
+     data-modal="true"
+     data-visible="false">
+@Html.Partial("PlanSearchDialog")
+</div>
+
+<div id="OptionDetailDialog"
+     data-role="window"
+     data-modal="true"
+     data-visible="false">
+@Html.Partial("OptionDetailDialog")
+</div>
+
+@* カスタマー氏名の重複確認ダイアログ *@
+<div id="DupListDialog"
+     data-role="window"
+     data-modal="true"
+     data-visible="false">
+@Html.Partial("DuplicateListDialog")
+</div>
+
+@* CustomerFolderダイアログ *@
+@Html.Partial("CustomerFolderPartial")
+
+
+@section scripts{
+    <script src="@Url.Content("~/Scripts/require.min.js")" 
+            data-main="@Url.Content("~/Scripts/App/customer_edit")"></script>
+
+}

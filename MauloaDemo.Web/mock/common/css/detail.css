@@ -1,0 +1,278 @@
+﻿@charset "UTF-8";
+/*****************************************************
+File Name: detail.css
+Style Info: 個別設定
+*****************************************************/
+/*====================================================
+メインビジュアル
+====================================================*/
+#mainVisual{
+	width: 100%;
+	height: 200px;
+	min-height: 200px;
+	text-align: center;
+	display: table;
+	background:url(../img/visual_sub_02.jpg) no-repeat center center;
+	background-size:100%;
+	background-position: center 70%;
+}
+.mainSection{
+	display: table-cell;
+    text-align: center;
+	vertical-align: middle;
+}
+
+/*====================================================
+processArea
+====================================================*/
+.processArea{
+	margin-top:10px;
+}
+.processArea ul{
+	display: table;
+	font-size:14px;
+	line-height:40px;
+	height:40px;
+	text-align: center;
+	margin: 0 auto;
+	background:url(../img/bg_step3.png) no-repeat center center;
+}
+.processArea li{
+	display: table-cell;
+    vertical-align: middle;
+    width:400px;
+	position: relative;
+}
+.processArea li img{
+	vertical-align: middle;
+	margin-right:10px;
+}
+
+/*====================================================
+#contents
+====================================================*/
+/*#contents{
+	width: 100%;
+	min-width: 100%;
+    overflow: hidden;
+	margin:0 auto;
+	padding:0 0 100px;
+	background: #fff;
+}*/
+#contents .itemBlockArea:after{
+	content:"";
+	display: block;
+	overflow: hidden;
+	clear: both;
+}
+/*detailBlock*/
+.detailBlock{
+	width: 900px;
+	padding:0 0px;
+	margin:0px auto 0;
+}
+.detailBlock:after{
+	content:"";
+	display: block;
+	clear:both;
+	overflow: hidden;
+}
+.detailBlock .photoArea{
+	float: left;
+    width: 310px;
+    overflow: hidden;
+}
+.detailBlock .txtArea{
+	padding-left: 320px;
+}
+.detailBlock .photoArea ul {
+    margin: 5px 0 0 0;
+    padding: 0;
+    list-style-type: none;
+    overflow: hidden;
+}
+.detailBlock .photoArea li {
+	width: 60px;
+    margin: 0 0 0 1px;
+    padding: 0;
+    float: left;
+}
+.detailBlock .photoArea li img{
+	width: 100%;
+}
+.detailBlock .photoArea ul:after{
+	content:"";
+	clear:both;
+	overflow: hidden;
+}
+/*txtArea*/
+.txtArea > h2{
+	font-size:22px;
+    font-weight: bold;
+	line-height: 1.5;
+}
+.txtArea > p{
+	font-size:16px;
+	line-height: 1.5;
+	margin-top:20px;
+}
+.txtArea{
+	line-height: 1.5;
+}
+.priceArea{
+	text-align: right;
+	font-size:20px;
+	line-height: 1.5;
+}
+.priceArea span{
+	border-bottom:1px solid #000;
+}
+#contents .detailBlock .boxTypeA{
+	margin-top:20px;
+}
+#contents .detailBlock .boxTypeA .selectArea {
+    border-top:1px solid #d4d4d4;
+    /*background: #f2f2f2;*/
+	padding:20px 10px 15px;
+	position: relative;
+    font-size:14px;
+}
+.selectArea .ttl {
+    background: #000;
+    position: absolute;
+    top:0;
+    left:0;
+    display: inline-block;
+    padding: 3px 15px 3px;
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.5;
+}
+.selectArea h4 {
+    text-align: right;
+}
+.selectArea .notice{
+	font-size:1em;
+	color:red;
+	margin:10px 0 0;
+	display: block;
+}
+.selectWedDateArea{
+	display: table;
+    width: 100%;
+}
+.selectWedDateArea > div{
+	display: table-cell;
+	vertical-align: middle;
+}
+.selectWedDate{
+	font-size:14px;
+}
+.prevSelectWedDate:hover,
+.nextSelectWedDate:hover{
+	opacity: 0.7;
+}
+.prevSelectWedDate,
+.nextSelectWedDate{
+	cursor: pointer;
+	width: 80px;
+	font-size:14px;
+	line-height: 1.5;
+	text-align: center;
+	padding-bottom:25px;
+	-webkit-transition: opacity 0.2s; -moz-transition: opacity 0.2s; -ms-transition: opacity 0.2s; -o-transition: opacity 0.2s; transition: opacity 0.2s;
+}
+.prevSelectWedDate:after{
+	content:"";
+	display: block;
+	margin:5px auto 0;
+	width:24px;
+	height:24px;
+	background:url(../img/arrow_prev.png) no-repeat center top;
+}
+.nextSelectWedDate:after{
+	content:"";
+	display: block;
+	margin:5px auto 0;
+	width:24px;
+	height:24px;
+	background:url(../img/arrow_next.png) no-repeat center top;
+}
+#tblSelectWedDate{
+    border: 1px solid #666666;
+}
+#tblSelectWedDate .churchAvail th, td {
+    padding: 0px;
+    font-weight: normal;
+    text-align: center;
+}
+#tblSelectWedDate .churchAvail tbody {
+    border: 1px solid #666666;
+}
+#tblSelectWedDate .churchAvail th {
+    background-color: #FFFFF0;
+    color: #000;
+    border:none;
+}
+#tblSelectWedDate .churchAvail td {
+    background-color: #ffffff;
+    border:none;
+    padding:0px;
+    font-size:16px;
+}
+#tblSelectWedDate .churchAvail td a{
+	color:#000;
+	text-decoration: none;
+}
+#tblSelectWedDate .thSunday {
+        background-color: #FFD1D1 !important;
+        color:#990000 !important;
+}
+#tblSelectWedDate .thSaturday {
+        background-color: #CCF9FF !important;
+        color:#0000FF !important;
+}
+.selectArea .note{
+	margin-top:5px;
+	font-size:14px;
+}
+/*detailBlockOption*/
+#contents .detailBlockOption{
+	width: 900px;
+	/*padding:0 80px;*/
+	margin:0 auto;
+}
+.detailBlockOption dt{
+	border-bottom:solid 1px #d4d4d4;
+	font-size:18px;
+<!--    font-weight: bold;-->
+	line-height: 1.5;
+	margin-top:30px;
+}
+.detailBlockOption dd{
+	font-size:14px;
+	line-height: 1.5;
+	padding:20px 10px 0;
+}
+.detailBlockOption a{
+	color:#0022cd;
+	text-decoration: underline;
+}
+.detailBlockOption a:hover{
+	text-decoration: none;
+}
+.btnBack a{
+	display: block;
+	background: #000;
+	color:#fff;
+	text-align: center;
+	width:110px;
+	margin:30px auto 0;
+	line-height: 34px;
+	/*border-radius: 5px;*/
+    font-size: 14px;
+    text-decoration: none;
+}
+.youtubeArea{
+	text-align: left;
+}

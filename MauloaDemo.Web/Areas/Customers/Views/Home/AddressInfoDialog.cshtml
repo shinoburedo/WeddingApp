@@ -1,0 +1,164 @@
+﻿<style scoped>
+    .bottom-buttons {
+        clear: both;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .section-info {
+        margin: 30px 16px 30px 20px;
+    }
+
+</style>
+
+<div class="addressinfo-dialog">
+
+    <form class="form-horizontal">
+
+        <input type="hidden" data-bind="value: address_info.info_id" name="info_id" id="hdnInfoId" />
+
+        <div class="form-group">
+            <label for="drpPaxType" class="col-sm-3 control-label">Type</label>
+            <div class="col-sm-2">
+                <select id="drpPaxType"
+                        style="width:95%;"
+                        data-role="dropdownlist"
+                        data-value-primitive="true"
+                        data-value-field="pax_type"
+                        data-text-field="description"
+                        data-bind="value: address_info.pax_type, source: paxTypeList, disabled: isDisabled"></select>
+            </div>
+
+            <label for="txtPaxName" class="col-sm-1 control-label">Name</label>
+            <div class="col-sm-3">
+                <input type="text" id="txtPaxName"
+                       maxlength="100"
+                       class="form-control input-sm k-input k-textbox w100 toupper tohankaku "
+                       data-bind="value: address_info.pax_name, disabled: isDisabled" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="txtJpnZip" class="col-sm-3 control-label">Postal Code</label>
+            <div class="col-sm-2">
+                <input type="text" id="txtJpnZip"
+                       maxlength="10"
+                       class="form-control input-sm k-input k-textbox w100 toupper tohankaku "
+                       data-bind="value: address_info.jpn_zip, disabled: isDisabled" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="txtAddrKana1" class="col-sm-3 control-label">Address 1 (カナ)</label>
+            <div class="col-sm-12">
+                <input type="text" id="txtAddrKana1"
+                       maxlength="100"
+                       class="form-control input-sm k-input k-textbox w100 tohankaku"
+                       data-bind="value: address_info.addr_kana1, disabled: isDisabled" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="txtAddrKanji1" class="col-sm-3 control-label">(漢字)</label>
+            <div class="col-sm-12">
+                <input type="text" id="txtAddrKanji1"
+                       maxlength="100"
+                       class="form-control input-sm k-input k-textbox w100 tohankaku"
+                       data-bind="value: address_info.addr_kanji1, disabled: isDisabled" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="txtAddrKana2" class="col-sm-3 control-label">Address 2 (カナ)</label>
+            <div class="col-sm-12">
+                <input type="text" id="txtAddrKana2"
+                       maxlength="100"
+                       class="form-control input-sm k-input k-textbox w100 tohankaku"
+                       data-bind="value: address_info.addr_kana2, disabled: isDisabled" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="txtAddrKanji2" class="col-sm-3 control-label">(漢字)</label>
+            <div class="col-sm-12">
+                <input type="text" id="txtAddrKanji2"
+                       maxlength="100"
+                       class="form-control input-sm k-input k-textbox w100 tohankaku"
+                       data-bind="value: address_info.addr_kanji2, disabled: isDisabled" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="txtAddrKana3" class="col-sm-3 control-label">Address 3 (カナ)</label>
+            <div class="col-sm-12">
+                <input type="text" id="txtAddrKana3"
+                       maxlength="100"
+                       class="form-control input-sm k-input k-textbox w100 tohankaku"
+                       data-bind="value: address_info.addr_kana3, disabled: isDisabled" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="txtAddrKanji3" class="col-sm-3 control-label">(漢字)</label>
+            <div class="col-sm-12">
+                <input type="text" id="txtAddrKanji3"
+                       maxlength="100"
+                       class="form-control input-sm k-input k-textbox w100 tohankaku"
+                       data-bind="value: address_info.addr_kanji3, disabled: isDisabled" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="txtHomeTel" class="col-sm-3 control-label">Phone Home</label>
+            <div class="col-sm-3">
+                <input type="text" id="txtHomeTel"
+                       maxlength="20"
+                       class="form-control input-sm k-input k-textbox tohankaku"
+                       style="width:100%;"
+                       data-bind="value: address_info.home_tel, disabled: isDisabled" />
+            </div>
+
+            <label for="txtWorkTel" class="col-sm-1 control-label">Work</label>
+            <div class="col-sm-3">
+                <input type="text" id="txtWorkTel"
+                       maxlength="20"
+                       class="form-control input-sm k-input k-textbox tohankaku"
+                       style="width:100%;"
+                       data-bind="value: address_info.work_tel, disabled: isDisabled" />
+            </div>
+
+            <label for="txtCellTel" class="col-sm-1 control-label">Cell</label>
+            <div class="col-sm-3">
+                <input type="text" id="txtCellTel"
+                       maxlength="20"
+                       class="form-control input-sm k-input k-textbox tohankaku"
+                       style="width:100%;"
+                       data-bind="value: address_info.cell_tel, disabled: isDisabled" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="txtEmail" class="col-sm-3 control-label">Email</label>
+            <div class="col-sm-4">
+                <input type="text" id="txtEmail"
+                       maxlength="50"
+                       class="form-control input-sm k-input k-textbox tolower tohankaku"
+                       style="width:100%;"
+                       data-bind="value: address_info.e_mail, disabled: isDisabled" />
+            </div>
+        </div>
+
+
+        <div class="bottom-buttons">
+            <input type="button" value=" SAVE "
+                   class="btn btn-danger" style="width:100px;display:none;"
+                   data-bind="click: onOkClick, disabled: isDisabled, visible:isSaveButtonVisible" />
+            <input type="button" value="Close"
+                    class="btn btn-default" style="width:100px; margin-left: 100px;"
+                    data-bind="click: closeDialog" />
+        </div>
+
+</form>
+</div>
+
+

@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "SubAgent";
+}
+
+@section head{
+    <link href="@Url.Content("~/Areas/Masters/Content/masters.css")" rel="stylesheet" type="text/css" />
+}
+
+<div class="app_wrapper">
+    <h3>@ViewBag.Title</h3>
+
+    <div id="app">
+        @* 検索パネル *@
+        <div class="search clearfix">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">Sub Agent Code</label>
+                    <div class="col-sm-1">
+                        <input type="text" data-bind="value: search.child_cd, events: {change: refreshList }" 
+                               maxlength="6"
+                               class="form-control input-sm k-input k-textbox toupper tohankaku" />
+                    </div>
+                    <label for="" class="col-sm-2 control-label">Parent Agent Code</label>
+                    <div class="col-sm-1">
+                        <input type="text" data-bind="value: search.agent_cd, events: {change: refreshList }"
+                               maxlength="6"
+                               class="form-control input-sm k-input k-textbox toupper tohankaku" />
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        @* 検索結果の一覧グリッド *@
+        <div id="grd"
+             data-role="grid"
+             data-bind="source: list"
+             data-toolbar="[{name:'create', text:'Create New'}, {name:'copy', text:'Copy'}, {name:'destroy', text:'Delete' }, {name: 'refresh', text:'Refresh'}]"
+             data-selectable="true"
+             data-sortable="true"
+             data-resizable="true"
+             data-scrollable="true"
+             data-height="560"
+             data-columns="[ {field: 'child_cd', title: 'Code', width: 80}
+                            , {field: 'parent_cd', title: 'Parent Code', width: 80}
+                            , {field: 'company_name', title: 'Name Jpn'}
+                            , {field: 'company_name_eng', title: 'Name Eng'}
+                            , {field: 'last_person', title: 'Last person', width:80}
+                            , {field: 'update_date', title: 'Updated', width:160, format: '{0:MM/dd/yyyy HH:mm:ss}' }
+                            , {field: 'child_cd', title: ' ', width: 60, template: '<a data-key=\'#=child_cd#\' class=\'btn btn-sm btn-default grid_edit_button\' data-bind=\'click:editItem\'><span class=\'k-icon k-edit\'><\/span><\/a>'}
+                        ]"></div>
+    </div>
+
+    @* 詳細編集ダイアログ *@
+    @Html.Partial("SubAgentEditPartial")
+</div>
+
+@section scripts {
+<script src="@Url.Content("~/Scripts/require.min.js")"
+            data-main="@Url.Content("~/Areas/Masters/Scripts/SubAgentIndexView")"></script>
+}

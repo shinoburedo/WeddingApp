@@ -1,0 +1,179 @@
+﻿@using System.Configuration;
+@using MauloaDemo.Utilities;
+@using MauloaDemo.Customer.ViewModels;
+@using MauloaDemo.Models;
+@{
+    var EnableMultiLanguage = MauloaDemo.Utilities.TypeHelper.GetBool(ConfigurationManager.AppSettings["EnableMultiLanguage"]);
+    CAccount cur_user = ViewBag.CurrentLoginUser as CAccount;
+    RegionInfo cur_region = ViewBag.CurrentRegionInfo as RegionInfo;
+    var lang = cur_region != null ? cur_region.CurrentLanguage : "J";
+    //var culture_name = Lang.isJPN() ? "ja-JP" : "en-US";
+    //var picture_lang = Lang.isJPN() ? "jpn" : "eng";
+    var culture_name = "ja-JP";
+    var picture_lang = "jpn";
+    var shopping_enabled = MauloaDemo.Utilities.TypeHelper.GetBool(ConfigurationManager.AppSettings["ShoppingEnabled"]);
+    var logged_in = (cur_user != null);
+
+    //int user_id = cur_user != null ? cur_user.account_id : 0;
+    //string user_name = cur_user != null ? cur_user.CustomerName : "";
+    //string c_num = cur_user != null ? cur_user.c_num : "";
+    int user_id = 0;
+    string user_name = "";
+    string c_num = "";
+
+    //var default_date_format = lang == "E" ? "MM/dd/yyyy" : "yyyy/MM/dd";
+    //var date_format = cur_user != null ? cur_user.date_format : default_date_format;
+    //if (string.IsNullOrEmpty(date_format)) {
+    //    date_format = default_date_format;
+    //}
+    //var time_format = cur_user != null ? cur_user.time_format : default_time_format;
+    //if (string.IsNullOrEmpty(time_format)) {
+    //    time_format = default_time_format;
+    //}
+    var date_format = "yyyy/MM/dd";
+    var time_format = "HH:mm";
+
+    var RegionCd = cur_region != null ? cur_region.CurrentDestination : "";
+    var CurFmt = cur_region != null ? cur_region.CurrencyFormat : "";
+    var IsTest = MauloaDemo.Utilities.TypeHelper.GetBool(ConfigurationManager.AppSettings["IsTest"]);
+    var base_url = Url.Content("~/");
+    base_url = base_url.EndsWith("/") ? base_url : base_url + "/";
+
+    //下の「}」の後に改行を入れない事。(入れるとHTMLの1行目が空行になる。)
+}<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8" />
+    @*<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />*@
+    <meta name="viewport" content="width=device-width">
+    @*<meta name="viewport" content="width=1000" />*@
+
+    @* IE8のコンパティビリティモードを使用させない様にする。（IE6/7互換モードだとJSONのエラーが出るため。）*@
+    <meta http-equiv="X-UA-Compatible" content="IE=100" />
+
+    @if (!string.IsNullOrEmpty(ViewBag.MetaDescription)) {
+        <meta name="description" content="@ViewBag.MetaDescription" />
+    }
+    @if (!string.IsNullOrEmpty(ViewBag.MetaKeywords)) {
+        <meta name="keywords" content="@ViewBag.MetaKeywords" />
+    }
+    <title>@ViewBag.Title</title>
+
+    @*@Styles.Render("~/Content/structure")*@
+    @*@Styles.Render("~/Content/bootstrapcss")*@
+    @Styles.Render("~/Content/alertifycss")
+    @Styles.Render("~/Content/toastrcss")
+    @Styles.Render("~/Content/stylesheet")
+    @Styles.Render("~/Content/kendo/kendocss")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/underscore")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @*@Scripts.Render("~/bundles/bootstrapjs")*@
+    @Scripts.Render("~/bundles/kendo/kendoui")
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+        <script type="text/javascript" src="@Url.Content("~/common/js/jquery.backstretch.min.js")"></script>*@
+    @*これがあるとKENDOが効かなくなる*@
+    <script type="text/javascript" src="@Url.Content("~/common/js/common.js")"></script>
+    <script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
+    <script src="~/Scripts/kendo/cultures/kendo.culture.en-US.min.js"></script>
+    <script src="~/Scripts/kendo/cultures/kendo.culture.ja-JP.min.js"></script>
+    <script> kendo.culture("@(culture_name)"); </script>
+    @Scripts.Render("~/bundles/alertify")
+    @Scripts.Render("~/bundles/toastr")
+    @Scripts.Render("~/bundles/moment")
+
+    <link rel="shortcut icon" href="@Url.Content("~/common/img/favicon.ico")" />
+
+    @* アクセス解析用スクリプト *@
+    @if (!IsTest) {
+        @Html.Partial("GoogleAnalytics")
+        @Html.Partial("FacebookAdsYTMTag")
+        @Html.Partial("AdobeDTMTagHead")
+    }
+
+    <style>
+        .step1 ul{
+	        background:url("@Url.Content("~/common/img/bg_process_01.png")") no-repeat center center;
+        }
+        .step2 ul{
+	        background:url("@Url.Content("~/common/img/bg_process_02.png")") no-repeat center center;
+        }
+        .step3 ul{
+	        background:url("@Url.Content("~/common/img/bg_process_03.png")") no-repeat center center;
+        }
+        .step4 ul{
+	        background:url("@Url.Content("~/common/img/bg_process_04.png")") no-repeat center center;
+        }
+        .sidebarMenu dd a{
+	        background:url("@Url.Content("~/common/img/arrow_sideMenu.png")") no-repeat 15px center;
+	        padding:10px 15px 10px 30px;
+	        display: block;
+        }
+        .sidebarMenuArea dd a{
+	        background:url("@Url.Content("~/common/img/arrow_sideMenu.png")") no-repeat 15px center;
+	        padding:10px 15px 10px 30px;
+	        display: block;
+        }
+    </style>
+    @RenderSection("head", required: false)
+</head>
+<body>
+    <div id="ContentWrapper">
+        @RenderBody()
+        @Html.Partial("_Footer")
+    </div>
+
+    @Html.Partial("_LoginMenu")
+    @Html.Partial("_HelpMenu")
+
+    @* CSRF対策用トークン。 *@
+    <div id="AntiForgeryTokenContainer">@Html.AntiForgeryToken()</div>
+    <!-- [head]内や、[body]の終了直前などに配置 -->
+    <div id="fb-root"></div>
+
+    @* クライアントサイドのJavaScriptでグローバルに使用するAppオブジェクトを定義 *@
+    <script>
+        window.App = window.App || {};
+
+        App.User = {
+            Id: "@(user_id)",
+            Name: "@(user_name)",
+            c_num: "@(c_num)"
+        };
+        App.Config = {
+            RegionCd: "@(RegionCd)",
+            EnableMultiLanguage: !!("@(EnableMultiLanguage ? "1": "")"),
+            Language: "@(lang)",
+            CultureName: "@(culture_name)",
+            DateFormat: "@(date_format)",
+            TimeFormat: "@(time_format)",
+            CurFormat: "@(CurFmt)",
+            BaseURL: "@(base_url)",
+            IsTest: !!("@(IsTest ? "1": "")"),
+            AntiForgeryToken: ""    @* application.js内でセット。 *@
+        };
+        App.Utils = {};     @*ユーティリティ関数を~/Scripts/Apps/catweb_common.jsで定義。*@
+        App.Models = {};    @*JS側のモデル定義を~/Scripts/Apps/Models/*.jsで定義。*@
+        App.ViewModels = {};
+
+        $(function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/@(culture_name)/sdk.js#xfbml=1&version=v2.5&appId=450836918428884";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+    </script>
+
+    <script src="@Url.Content("~/Scripts/App/common.js")?v=20151228"></script>
+    <script src="@Url.Content("~/Scripts/App/application.js")?v=20151228"></script>
+    @RenderSection("scripts", required: false)
+
+    @if (!IsTest) {
+        @* Adobe（サイトカタリスト）DTM 計測用スクリプト (bodyタグの最後に入れるもの) *@
+        @Html.Partial("AdobeDTMTagBody")
+    }
+</body>
+</html>
