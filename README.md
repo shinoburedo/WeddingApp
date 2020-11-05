@@ -3,10 +3,10 @@ Enterprise system for Wedding Company using ASP.NET MVC, c#
 
 # Features
 
-Reservations
-Accounting(Invoice/Payment)
-Master maintenance
-Online Reservations(For Customers / Including credit card payment)
+* Reservations
+* Accounting(Invoice/Payment)
+* Master maintenance
+* Online Reservations(For Customers / Including credit card payment)
 
 # Requirement
 
